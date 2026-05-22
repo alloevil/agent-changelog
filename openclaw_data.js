@@ -1,5 +1,34 @@
 const CHANGELOG_DATA = [
 {
+        version: "v2026.5.20",
+        date: "2026-05-21",
+        features: [
+          { title: "Exec 审批移除旧兼容路径", tag: "变更", summary: "移除旧的 cat SKILL.md && printf 兼容路径，技能文件必须通过 read 工具加载，仅真实技能可执行文件自动放行", detail: "Exec approvals: remove the old allowlist compatibility path so skill files must be loaded with the read tool and only the real skill executable is auto-allowed.", summaryZh: "移除旧审批兼容路径，技能文件必须用 read 工具加载" },
+          { title: "Codex 升级至 0.132.0", tag: "优化", summary: "内置 Codex harness 升级至 @openai/codex 0.132.0，刷新模型目录文档", detail: "Dependencies: bump the bundled Codex harness to @openai/codex 0.132.0 and refresh the app-server model-list docs.", summaryZh: "Codex 升级至 0.132.0，刷新模型目录" },
+          { title: "WhatsApp Baileys 升级至 7.0.0-rc12", tag: "优化", summary: "WhatsApp Baileys 依赖升级至 7.0.0-rc12", detail: "WhatsApp: update Baileys to 7.0.0-rc12.", summaryZh: "WhatsApp Baileys 升级至 7.0.0-rc12" },
+          { title: "状态栏模型差异提示", tag: "新功能", summary: "会话固定模型与默认模型不同时，status 显示配置默认值、会话选择模型、原因和清除提示", detail: "Status: show the configured default, session-selected model, reason, clear hint, and docs link when a session remains pinned to a model that differs from agents.defaults.model.primary.", summaryZh: "状态栏显示会话模型与默认模型的差异及清除提示" },
+          { title: "WebChat 输入指示器清理", tag: "修复", summary: "会话切换事件标记活跃聊天运行完成时清除过期的输入指示器", detail: "WebChat: clear stale typing indicators when session change events mark the active chat run complete.", summaryZh: "修复 WebChat 会话切换后输入指示器未清除" },
+          { title: "macOS Peekaboo Bridge 升级至 3.2.1", tag: "修复", summary: "内嵌 Peekaboo bridge 升级至 3.2.1，兼容当前 Peekaboo CLI 捕获流程", detail: "macOS app: update the embedded Peekaboo bridge to 3.2.1.", summaryZh: "Peekaboo bridge 升级至 3.2.1，修复 UI 自动化兼容性" },
+          { title: "插件 compaction 钩子超时保护", tag: "修复", summary: "before/after_compaction 钩子默认 30 秒超时，防止插件处理程序挂起阻塞压缩完成", detail: "Plugins/hooks: apply a default 30-second timeout to before_compaction and after_compaction hooks.", summaryZh: "compaction 钩子新增 30 秒默认超时保护" },
+          { title: "Cron 旧版 jobs.json 兼容修复", tag: "修复", summary: "加载或添加定时任务时保留旧版顶层 jobs.json 数组格式，升级后旧 cron 任务不再被视为空", detail: "Cron: preserve legacy top-level array jobs.json stores when loading or adding scheduled jobs.", summaryZh: "修复升级后旧版 jobs.json 格式被视为空的问题" },
+          { title: "代理心跳工件过滤", tag: "修复", summary: "过滤嵌入上下文快照中的静默心跳响应工具转录工件，后续用户轮次不再被心跳空操作消息污染", detail: "Agents: filter silent heartbeat response-tool transcript artifacts out of embedded context snapshots.", summaryZh: "过滤心跳工件，防止污染后续用户轮次上下文" },
+        ],
+      },
+{
+        version: "v2026.5.20-beta.2",
+        date: "2026-05-21",
+        features: [
+          { title: "Exec 审批移除旧兼容路径", tag: "变更", summary: "移除旧的 cat SKILL.md && printf 兼容路径，技能文件必须通过 read 工具加载，仅真实技能可执行文件自动放行", detail: "Exec approvals: remove the old allowlist compatibility path so skill files must be loaded with the read tool and only the real skill executable is auto-allowed.", summaryZh: "移除旧审批兼容路径，技能文件必须用 read 工具加载" },
+          { title: "Codex 升级至 0.132.0", tag: "优化", summary: "内置 Codex harness 升级至 @openai/codex 0.132.0，刷新模型目录文档", detail: "Dependencies: bump the bundled Codex harness to @openai/codex 0.132.0 and refresh the app-server model-list docs.", summaryZh: "Codex 升级至 0.132.0，刷新模型目录" },
+          { title: "任务维护决策 JSON 输出增强", tag: "修复", summary: "openclaw tasks maintenance --json 包含过期运行任务维护决策，可解释 backing-session、cron、CLI 和子代理卡死状态", detail: "CLI/tasks: include stale-running task maintenance decisions in openclaw tasks maintenance --json.", summaryZh: "任务维护 JSON 输出包含过期运行决策详情" },
+          { title: "Codex 启动钩子工作区文件修复", tag: "修复", summary: "修复启动钩子仅提供 path+content 时系统提示报告失效的问题，SOUL/IDENTITY/TOOLS/USER 上下文注入恢复正常", detail: "Codex app-server: keep system-prompt reports working when bootstrap hooks provide workspace files with only a path and content.", summaryZh: "修复启动钩子提供工作区文件时系统提示报告失效" },
+          { title: "MiniMax 音乐时长控制修复", tag: "修复", summary: "停止广告 durationSeconds 控制，music_generate 将 MiniMax 时长报告为不支持的覆盖项", detail: "Providers/MiniMax music: stop advertising durationSeconds control and remove prompt-injected duration hints.", summaryZh: "修复 MiniMax 音乐时长控制提示错误" },
+          { title: "Doctor 沙箱工具策略警告", tag: "修复", summary: "Doctor 在沙箱工具策略隐藏 MCP 服务器工具时发出警告", detail: "Doctor: warn when sandbox tool policy hides configured MCP server tools before provider requests.", summaryZh: "Doctor 新增沙箱工具策略隐藏 MCP 工具的警告" },
+          { title: "/approve 决策路由修复", tag: "修复", summary: "手动 /approve 决策通过受信任审批运行时路由，活跃的 exec 和插件审批不再显示为未知或过期", detail: "Approvals: route manual /approve decisions through the trusted approval runtime.", summaryZh: "修复 /approve 决策路由，不再误显示为未知或过期" },
+          { title: "Doctor 明文密钥配置警告", tag: "修复", summary: "Doctor 在 openclaw.json 存储明文密钥字段（含 API Key 和敏感 header）时发出警告", detail: "Doctor: warn when openclaw.json stores plaintext secret-bearing config fields.", summaryZh: "Doctor 新增明文密钥配置字段警告" },
+        ],
+      },
+{
         version: "v2026.5.20-beta.1",
         date: "2026-05-21",
         features: [
