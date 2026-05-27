@@ -1,5 +1,37 @@
 const CHANGELOG_DATA = [
 {
+        version: "v2026.5.26-beta.1",
+        date: "2026-05-26",
+        features: [
+          { title: "回复与启动性能全面优化", tag: "优化", summary: "可见回复投递与后续工作分离，命令/模型/插件元数据热路径复用，Gateway 启动跳过重复扫描", detail: "Visible reply delivery now separates user-facing sends from slower follow-up work, command/model/plugin metadata is reused on hot paths, and Gateway startup avoids repeated plugin, channel, session, usage-cost, and filesystem scans.", summaryZh: "回复投递延迟降低，Gateway 启动跳过重复扫描，热路径元数据复用" },
+          { title: "Voice/Talk 实时控制增强", tag: "新功能", summary: "WebUI 和 Discord 语音支持实时查询、取消、引导和排队后续工作；唤醒词处理更宽容", detail: "Realtime Talk runs can be inspected, steered, cancelled, or followed up from Web UI and Discord voice; wake-name handling is more tolerant without letting ambient speech trigger agents.", summaryZh: "WebUI/Discord 语音支持实时会话控制，唤醒词处理更智能" },
+          { title: "多频道生产级稳定性提升", tag: "优化", summary: "Telegram 保持打字状态和论坛话题、iMessage 修复附件和重复源、WhatsApp 恢复群组/媒体行为、Discord 语音优化", detail: "Telegram keeps typing/progress context and forum topics, iMessage handles attachment roots and duplicate local Messages sources, WhatsApp restores group/media behavior, Discord improves voice playback and model picking.", summaryZh: "Telegram/iMessage/WhatsApp/Discord 多频道稳定性与行为修复" },
+          { title: "Signal/iMessage/WhatsApp 表情审批", tag: "新功能", summary: "Signal、iMessage、WhatsApp 均支持表情回应审批，移动端无需输入 /approve 命令", detail: "Signal reaction approvals, iMessage thumb approval reactions, and WhatsApp thumb approval reaction support so mobile approval flows work without textual /approve commands.", summaryZh: "三大频道新增表情回应审批，移动端审批更便捷" },
+          { title: "Transcripts 会议转录支持", tag: "新功能", summary: "新增核心转录捕获和 source-provider 支持，支持基于转录的会议摘要", detail: "Add core transcript capture and source-provider support for transcript-backed meeting summaries, including the renamed Transcripts docs and CLI surface.", summaryZh: "新增转录捕获能力，支持基于转录的会议摘要" },
+          { title: "命名模型登录配置文件", tag: "新功能", summary: "新增 Hermes、OpenCode、Codex 的命名登录配置文件，支持凭据迁移和非交互式控制", detail: "Add named model login profiles and supported credential migration for Hermes, OpenCode, and Codex auth profiles, with explicit opt-out and non-interactive controls.", summaryZh: "新增命名登录配置文件，支持凭据迁移和非交互式控制" },
+          { title: "可观测性大幅增强", tag: "新功能", summary: "新增 Activity 标签页、Gateway 密钥准备追踪、OpenTelemetry LLM 跨度、告警遥测信号", detail: "Activity tab, gateway secret-prep traces, tool/model stream progress, OpenTelemetry LLM content spans, and richer missing telemetry signals make failures easier to inspect.", summaryZh: "Activity 标签页、OpenTelemetry LLM 跨度、告警遥测等可观测性增强" },
+          { title: "Rastermill 替代 Sharp 图像后端", tag: "变更", summary: "用 Rastermill 替代 Sharp 处理图像元数据、缩放、EXIF 和 PNG 优化，不再依赖 Sharp/Jimp", detail: "Replace the Sharp image backend with Rastermill for metadata, resizing, EXIF orientation, and PNG alpha-preserving optimization so OpenClaw no longer installs Sharp or the WhatsApp Jimp fallback.", summaryZh: "Rastermill 替代 Sharp，图像处理不再依赖 Sharp/Jimp" },
+          { title: "Discord 模型选择器字母分桶", tag: "新功能", summary: "模型列表超 25 项时按首字母分桶显示（如 A–G(12)），provider/* 通配配置更易导航", detail: "Surface an alpha-bucket select when the provider list or a provider's model list exceeds 25 items, so configs with provider/* wildcards stay one click from the right page.", summaryZh: "模型列表超 25 项时按字母分桶，配置导航更高效" },
+          { title: "Control UI Activity 标签页", tag: "新功能", summary: "新增临时 Activity 标签页，实时显示工具活动摘要，不持久化原始遥测", detail: "Add an ephemeral Activity tab for sanitized live tool activity summaries without persisting raw telemetry.", summaryZh: "新增临时 Activity 标签页，实时查看工具活动" },
+          { title: "Voice SDK 统一实时能力", tag: "优化", summary: "实时语音 SDK 统一共享轮次追踪、输出活动、唤醒词匹配、咨询转录筛选等能力", detail: "Share activation-name matching, consult-transcript screening, output activity tracking, and turn-context tracking through the realtime voice SDK for Discord, browser voice, and meeting surfaces.", summaryZh: "Voice SDK 统一实时能力，Discord/浏览器/会议复用同一实现" },
+          { title: "大量问题修复与可靠性提升", tag: "修复", summary: "修复回复延迟、源投递、代理重放、Codex 恢复、配置验证、Windows 启动、锁定安全等 100+ 项问题", detail: "Fixes include: reply delivery latency, source-reply finals, legacy tool result replay, Codex app-server timeout, config doctor repair, Windows stack-size respawn, stale plugin lock ownership, Docker package timeouts, and 100+ more.", summaryZh: "100+ 项修复，涵盖回复延迟、重放、Codex、Windows、安全锁定等" },
+        ],
+      },
+{
+        version: "v2026.5.25-beta.1",
+        date: "2026-05-26",
+        features: [
+          { title: "iMessage 附件根路径修复", tag: "修复", summary: "iMessage 保存的附件（含通配符根路径）通过现有入站路径策略读取，不再被拒", detail: "Thread current channel/account inbound attachment roots into the image tool so iMessage-saved attachments under ~/Library/Messages/Attachments are read through the existing inbound path policy instead of being rejected as path-not-allowed.", summaryZh: "iMessage 附件根路径正确解析，不再被路径策略拒绝" },
+          { title: "iMessage 账户去重", tag: "修复", summary: "同一本地 Messages 源配置多个账户时不再产生重复 imsg rpc 进程和双份回复", detail: "Dedupe watcher startup when channels.imessage.accounts lists both default and a named account pointing at the same local Messages source, preventing duplicate imsg rpc processes and doubled inbound replies.", summaryZh: "iMessage 账户去重，避免重复进程和双份回复" },
+          { title: "Alpine Linux 安装器修复", tag: "修复", summary: "Alpine/musl Linux 正确使用 apk 安装 Node.js，不再下载不兼容的 glibc 包", detail: "Let the local-prefix CLI installer use Alpine's apk Node.js, npm, and Git packages on musl Linux instead of downloading glibc Node tarballs that fail node:sqlite.", summaryZh: "Alpine/musl Linux 安装兼容性修复，使用 apk 替代 glibc 包" },
+          { title: "Windows CLI 兼容性大幅改善", tag: "优化", summary: "Windows 下跨平台启动器、日志时间戳、源码检出插件开发等全面修复", detail: "Run direct Node package scripts with env overrides through a cross-platform launcher so gateway, TUI, Docker-all, Discord native opus installer entrypoints work on native Windows.", summaryZh: "Windows 下 Gateway/TUI/Docker 等入口全面兼容" },
+          { title: "MCP 工具发现超时保护", tag: "修复", summary: "MCP tools/list 目录发现设上限，挂起的 MCP 服务器不再阻塞会话工具物化", detail: "Bound bundled MCP tools/list catalog discovery so hung MCP servers do not block session tool materialization.", summaryZh: "MCP 工具发现加超时保护，避免挂起服务器阻塞" },
+          { title: "OpenRouter 上下文限制修正", tag: "修复", summary: "使用 OpenRouter top_provider 元数据的端点级上下文限制，不再高估可用上下文", detail: "Use endpoint-specific OpenRouter context limits from top_provider metadata so provider-routed models no longer overstate available context.", summaryZh: "OpenRouter 上下文限制按端点精确计算" },
+          { title: "Codex OAuth 侧车提示改善", tag: "修复", summary: "macOS Keychain 中有 Codex 凭据时发出明确的 log.warn 提示 openclaw doctor --fix", detail: "Emit a one-shot actionable log.warn from the embedded legacy Codex OAuth sidecar loader when the only available seed lives in the macOS Keychain.", summaryZh: "Codex OAuth 凭据缺失时给出明确修复提示" },
+          { title: "Cron 最大并发默认为 8", tag: "变更", summary: "cron.maxConcurrentRuns 默认值改为 8，定时任务无需额外配置即可并行执行", detail: "Default cron.maxConcurrentRuns to 8 so scheduled automations and their isolated agent turns can make progress in parallel without explicit configuration.", summaryZh: "Cron 并发默认 8，定时任务并行更顺畅" },
+        ],
+      },
+{
         version: "v2026.5.24-beta.2",
         date: "2026-05-24",
         features: [
