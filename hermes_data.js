@@ -3,6 +3,142 @@ const RELEASES_DATA = [
     "label": "2026年05月",
     "id": "2026-05",
     "releases": [
+
+      {
+        "version": "v2026.5.29",
+        "name": "Hermes Agent v0.15.1 (2026.5.29) — The Patch Release",
+        "date": "2026-05-29",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.29",
+        "features": [
+          {
+            "title": "Dashboard 401 无限重载循环修复",
+            "tag": "修复",
+            "summary": "修复 loopback 模式下 Dashboard 身份探测 401 导致的无限页面重载循环",
+            "detail": "In loopback mode the dashboard's identity probe returns 401 by design, but v0.15.0's stale-token reload guard treated every 401 as a rotated session token and full-page-reloaded. Fix adds an allowUnauthorized opt-out to fetchJSON.",
+            "summaryZh": "loopback 模式下 Dashboard 401 不再触发无限重载"
+          },
+          {
+            "title": "Docker `--insecure` 改为显式环境变量",
+            "tag": "变更",
+            "summary": "Docker `--insecure` 不再从 bind host 推断，需显式设置 `HERMES_DASHBOARD_INSECURE=1`",
+            "detail": "Previously the Docker entrypoint inferred --insecure when the dashboard bound to a non-loopback host. The fix splits them: bind host is bind host, and disabling loopback auth requires an explicit HERMES_DASHBOARD_INSECURE=1.",
+            "summaryZh": "Docker 安全模式需显式 opt-in，不再自动推断"
+          },
+          {
+            "title": "MCP 裸命令 Docker PATH 解析",
+            "tag": "修复",
+            "summary": "MCP 服务器的裸命令（npx/npm/node）在 Docker 中正确解析到 `/usr/local/bin`",
+            "detail": "MCP servers configured with bare commands now resolve against /usr/local/bin so they actually launch inside the Docker image where those binaries live.",
+            "summaryZh": "Docker 中 MCP 裸命令正确解析 PATH"
+          },
+          {
+            "title": "skills.sh 完整目录（858 → 19,932 条）",
+            "tag": "修复",
+            "summary": "Skills 页面从分页部分目录改为遍历 sitemap，展示全部 19,932 个 skills.sh 条目",
+            "detail": "The skills hub page was pulling a partial paginated catalog. The fetch now walks the sitemap, so all 19,932 skills.sh entries surface in the picker instead of just the first 858.",
+            "summaryZh": "Skills 目录从 858 扩展到 19,932 条，覆盖完整"
+          },
+          {
+            "title": "Kanban Worker SIGTERM 修复",
+            "tag": "修复",
+            "summary": "Kanban Worker 的 SIGTERM 信号不再被中间进程吸收，Worker 可正常终止",
+            "detail": "SIGTERM on a kanban worker was being absorbed by an intermediate process and the worker stayed running. Fixed.",
+            "summaryZh": "Kanban Worker 可被 SIGTERM 正常终止"
+          },
+          {
+            "title": "Gateway .md 文件投递恢复",
+            "tag": "修复",
+            "summary": "媒体投递验证改为仅黑名单模式，.md 文件恢复正常投递",
+            "detail": "Media-delivery validation defaults to denylist-only instead of an overly-narrow allowlist, so .md files deliver again.",
+            "summaryZh": ".md 文件投递恢复正常"
+          },
+          {
+            "title": "/yolo 会话级生效",
+            "tag": "修复",
+            "summary": "/yolo 中途执行改为会话级绕过，而非仅切换环境变量",
+            "detail": "/yolo mid-session enables the per-session bypass instead of just toggling the env var (which the running agent had already snapshotted).",
+            "summaryZh": "/yolo 中途执行正确生效于当前会话"
+          },
+        ]
+      },
+      {
+        "version": "v2026.5.28",
+        "name": "Hermes Agent v0.15.0 (2026.5.28) — The Velocity Release",
+        "date": "2026-05-28",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28",
+        "features": [
+          {
+            "title": "核心重构：run_agent.py 从 16,000 行缩减到 3,821 行",
+            "tag": "重构",
+            "summary": "核心对话循环文件从 16,083 行精简至 3,821 行（-76%），拆分为 14 个内聚模块",
+            "detail": "The 16,083-line run_agent.py collapses to 3,821 (-76%) across 14 cohesive agent/* modules. Behavior unchanged, every extraction keeps a thin forwarder on AIAgent.",
+            "summaryZh": "run_agent.py 精简 76%，拆分为 14 个模块，行为不变"
+          },
+          {
+            "title": "Kanban 演进为多代理平台（104 PRs）",
+            "tag": "新功能",
+            "summary": "自动任务分解、Swarm 拓扑、定时任务、per-task 工作区/模型覆盖、拖拽删除等 104 个 PR 完整落地",
+            "detail": "Triage auto-decomposes tasks into sub-task trees, hermes kanban swarm creates full Swarm v1 graphs, tasks support per-task model overrides, worktree paths, scheduled start times, and more.",
+            "summaryZh": "Kanban 全面升级：自动分解、Swarm 拓扑、per-task 模型覆盖等 104 PRs"
+          },
+          {
+            "title": "冷启动性能再优化：又省一秒，函数调用减少 47%",
+            "tag": "优化",
+            "summary": "延迟导入 openai._base_client（-240ms）、热路径优化减少 47% 函数调用、Termux 冷启动 2.9s→0.8s",
+            "detail": "Defer openai._base_client import (-240ms), hot-path optimizations cut 47% per-turn function calls, adaptive subprocess polling (-195ms per tool call). Termux cold start drops from 2.9s to 0.8s.",
+            "summaryZh": "冷启动再省一秒，函数调用减半，Termux 2.9s→0.8s"
+          },
+          {
+            "title": "session_search 重建：无需 LLM，4,500× 加速",
+            "tag": "新功能",
+            "summary": "旧版需辅助 LLM（~$0.30/次、~30s），新版三种模式（发现/滚动/浏览）纯本地，发现模式 ~20ms",
+            "detail": "The old session_search was aux-LLM-powered costing ~$0.30/call and ~30s. The new shape is one tool with three modes, no aux-LLM, discovery is ~20ms instead of ~90s.",
+            "summaryZh": "session_search 去掉 LLM 依赖，4,500× 加速且免费"
+          },
+          {
+            "title": "Promptware 防御：三重阻断点拦截 Brainworm 攻击",
+            "tag": "安全",
+            "summary": "基于 Brainworm/Promptware Kill Chain 研究，在工具输出、记忆召回、存储 Skill 三个阻断点防御提示注入",
+            "detail": "Single source of truth (tools/threat_patterns.py) with ~15 new Brainworm/C2 patterns; recalled memory scanned at load time; tool results get delimiter markers to prevent impersonation.",
+            "summaryZh": "三重阻断点防御 Brainworm 级提示注入攻击"
+          },
+          {
+            "title": "Bitwarden Secrets Manager 集成",
+            "tag": "新功能",
+            "summary": "一个 bootstrap token 替代所有 per-provider API Key，密钥在 Bitwarden Web 端轮换即生效",
+            "detail": "Install Bitwarden Secrets Manager, point Hermes with one BWS_ACCESS_TOKEN, and every credential comes from Bitwarden at startup. Rotate in web app and it takes effect immediately.",
+            "summaryZh": "一个 token 替代所有 API Key，Bitwarden 统一管理密钥"
+          },
+          {
+            "title": "ntfy 成为第 23 个消息平台",
+            "tag": "新功能",
+            "summary": "自托管推送通知服务 ntfy 接入，无需账号/API Key，仅需 topic URL",
+            "detail": "ntfy is the self-hostable push-notification service with no signup, no API key, just a topic URL. Hermes adapts to it as a platform plugin.",
+            "summaryZh": "ntfy 推送通知接入，零配置自托管"
+          },
+          {
+            "title": "xAI 深度集成 round",
+            "tag": "新功能",
+            "summary": "Web Search 插件、xai-oauth hermes proxy 上游、退役模型检测 + 迁移命令、TTS 语音标签自然停顿、Grok 执行指导",
+            "detail": "Deep xAI integration: Web Search plugin, xai-oauth proxy upstream, retired-May-15 model detection + hermes migrate xai, natural TTS speech-tag pauses, OpenAI-style execution guidance for Grok.",
+            "summaryZh": "xAI 生态全面接入：Web Search、OAuth、模型迁移、TTS、Grok 指导"
+          },
+          {
+            "title": "Ink TUI 多会话编排器",
+            "tag": "新功能",
+            "summary": "Ink TUI 新增多会话编排器界面",
+            "detail": "The Ink TUI gets a multi-session orchestrator.",
+            "summaryZh": "TUI 新增多会话编排能力"
+          },
+          {
+            "title": "Skill Bundles：一个斜杠命令加载整个工作流",
+            "tag": "新功能",
+            "summary": "Skill bundles 让一个 slash command 加载一整套工作流",
+            "detail": "Skill bundles let one slash command load a whole workflow.",
+            "summaryZh": "Skill Bundles 支持一条命令加载完整工作流"
+          },
+        ]
+      },
       {
         "version": "v2026.5.16",
         "name": "Hermes Agent v0.14.0 (2026.5.16) — The Foundation Release",

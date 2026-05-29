@@ -1,4 +1,32 @@
 const CHANGELOG_DATA = [
+
+{
+        version: "v2026.5.27",
+        date: "2026-05-28",
+        features: [
+          { title: "安全边界全面加固", tag: "安全", summary: "群聊提示文本隔离出系统提示、重复点号主机名规范化、副作用命令包装器拦截、不安全 Node 运行时环境变量覆盖阻断、无认证 Tailscale 暴露拒绝、设备/节点角色审批需管理员权限", detail: "Group prompt text kept out of system prompt, repeated-dot hostnames normalized, side-effecting command wrappers blocked, unsafe Node runtime env overrides rejected, no-auth Tailscale exposure rejected, node/device-role approvals require admin authority.", summaryZh: "群聊提示注入隔离、主机名规范化、Tailscale 安全、管理员审批等 6 项安全加固" },
+          { title: "Codex 应用服务器可靠性增强", tag: "修复", summary: "Codex 运行时模型优先解析、工作区内存通过工具路由、共享客户端在启动/子进程失败后存活、Hook 中继代际跨重启存活", detail: "Codex runtime models resolve first, workspace memory routed through tools, shared app-server clients survive startup and spawned-helper failures, native hook relay generations survive restarts.", summaryZh: "Codex 模型优先解析、客户端容错、Hook 中继持久化等可靠性增强" },
+          { title: "Gateway 与回复路径加速", tag: "优化", summary: "会话读取、插件元数据指纹、认证环境快照、工具搜索目录等热路径减少重复发现，可见回复不再继承隐藏清理超时", detail: "Session reads, plugin metadata fingerprints, auth env snapshots, auto-enabled plugin config, tool-search catalogs do less hot-path rediscovery; visible replies no longer inherit hidden cleanup timeouts.", summaryZh: "热路径元数据复用、回复超时隔离，Gateway 和回复投递更快" },
+          { title: "模型与 Provider 覆盖扩展", tag: "新功能", summary: "OpenAI 兼容嵌入 Provider 核心化、DeepInfra 全量模型目录浏览、Pixverse 视频生成 + API 区域选择、VLLM thinking 参数接入、Claude CLI OAuth 支持", detail: "OpenAI-compatible embedding providers are core, DeepInfra full catalog browsing, Pixverse video generation + API region selection, VLLM thinking params wired, Claude CLI OAuth overlays for PI auth profiles.", summaryZh: "嵌入 Provider 核心化、DeepInfra/Pixverse/VLLM/Claude CLI 等多 Provider 增强" },
+          { title: "多频道投递稳定性提升", tag: "修复", summary: "Telegram 持久化出站投递、iMessage 抑制重复审批提示、Slack 保留最终回复、Matrix 提及预览更严格、Discord 服务器请求者校验收紧、Google Chat DM 停止线程发送", detail: "Telegram durable outbound delivery, iMessage suppresses duplicate prompts, Slack keeps final replies, Matrix stricter mention previews, Discord tighter guild checks, Google Chat stops thread sends in DMs.", summaryZh: "Telegram/iMessage/Slack/Matrix/Discord/Google Chat 六频道投递稳定性修复" },
+          { title: "发布与 CI 流程加固", tag: "优化", summary: "npm 包清单遵守 dist 排除、Docker 运行时工作区模板打包冒烟测试、发布后检查更严格、beta 冒烟拒绝空运行", detail: "npm/package inventory honors dist exclusions, Docker runtime workspace templates packaged and smoked, release postpublish checks stricter, beta smoke rejects empty runs.", summaryZh: "npm/Docker/发布后检查/beta 冒烟等发布工程全面加固" },
+          { title: "Pixverse 视频生成 Provider", tag: "新功能", summary: "新增 Pixverse 视频生成 Provider，支持 API 区域选择、文档和外部插件打包", detail: "Add the Pixverse video generation provider, API region selection, docs, and external plugin packaging support.", summaryZh: "新增 Pixverse 视频生成 Provider，支持区域选择" },
+          { title: "心跳模板与兼容性修复", tag: "修复", summary: "心跳运行时模板从文档资产中拆分、旧版心跳模板内容兼容性修复", detail: "Split the heartbeat runtime template out of docs assets, add compatibility repair for legacy heartbeat template content.", summaryZh: "心跳模板拆分与旧版兼容性修复" },
+        ],
+      },
+{
+        version: "v2026.5.27-beta.1",
+        date: "2026-05-28",
+        features: [
+          { title: "安全边界全面加固", tag: "安全", summary: "群聊提示文本隔离出系统提示、重复点号主机名规范化、副作用命令包装器拦截、不安全 Node 运行时环境变量覆盖阻断、无认证 Tailscale 暴露拒绝、设备/节点角色审批需管理员权限", detail: "Group prompt text kept out of system prompt, repeated-dot hostnames normalized, side-effecting command wrappers blocked, unsafe Node runtime env overrides rejected, no-auth Tailscale exposure rejected, node/device-role approvals require admin authority.", summaryZh: "群聊提示注入隔离、主机名规范化、Tailscale 安全、管理员审批等 6 项安全加固" },
+          { title: "Codex 应用服务器可靠性增强", tag: "修复", summary: "Codex 运行时模型优先解析、工作区内存通过工具路由、共享客户端在启动/子进程失败后存活、Hook 中继代际跨重启存活", detail: "Codex runtime models resolve first, workspace memory routed through tools, shared app-server clients survive startup and spawned-helper failures, native hook relay generations survive restarts.", summaryZh: "Codex 模型优先解析、客户端容错、Hook 中继持久化等可靠性增强" },
+          { title: "Gateway 与回复路径加速", tag: "优化", summary: "会话读取、插件元数据指纹、认证环境快照、工具搜索目录等热路径减少重复发现，可见回复不再继承隐藏清理超时", detail: "Session reads, plugin metadata fingerprints, auth env snapshots, auto-enabled plugin config, tool-search catalogs do less hot-path rediscovery; visible replies no longer inherit hidden cleanup timeouts.", summaryZh: "热路径元数据复用、回复超时隔离，Gateway 和回复投递更快" },
+          { title: "模型与 Provider 覆盖扩展", tag: "新功能", summary: "OpenAI 兼容嵌入 Provider 核心化、DeepInfra 全量模型目录浏览、Pixverse 视频生成 + API 区域选择、VLLM thinking 参数接入、Claude CLI OAuth 支持", detail: "OpenAI-compatible embedding providers are core, DeepInfra full catalog browsing, Pixverse video generation + API region selection, VLLM thinking params wired, Claude CLI OAuth overlays for PI auth profiles.", summaryZh: "嵌入 Provider 核心化、DeepInfra/Pixverse/VLLM/Claude CLI 等多 Provider 增强" },
+          { title: "多频道投递稳定性提升", tag: "修复", summary: "Telegram 持久化出站投递、iMessage 抑制重复审批提示、Slack 保留最终回复、Matrix 提及预览更严格、Discord 服务器请求者校验收紧、Google Chat DM 停止线程发送", detail: "Telegram durable outbound delivery, iMessage suppresses duplicate prompts, Slack keeps final replies, Matrix stricter mention previews, Discord tighter guild checks, Google Chat stops thread sends in DMs.", summaryZh: "Telegram/iMessage/Slack/Matrix/Discord/Google Chat 六频道投递稳定性修复" },
+          { title: "发布与 CI 流程加固", tag: "优化", summary: "npm 包清单遵守 dist 排除、Docker 运行时工作区模板打包冒烟测试、发布后检查更严格、beta 冒烟拒绝空运行", detail: "npm/package inventory honors dist exclusions, Docker runtime workspace templates packaged and smoked, release postpublish checks stricter, beta smoke rejects empty runs.", summaryZh: "npm/Docker/发布后检查/beta 冒烟等发布工程全面加固" },
+          { title: "Pixverse 视频生成 Provider", tag: "新功能", summary: "新增 Pixverse 视频生成 Provider，支持 API 区域选择、文档和外部插件打包", detail: "Add the Pixverse video generation provider, API region selection, docs, and external plugin packaging support.", summaryZh: "新增 Pixverse 视频生成 Provider，支持区域选择" },
+        ],
+      },
 {
         version: "v2026.5.26",
         date: "2026-05-26",
