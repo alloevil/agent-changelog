@@ -5,6 +5,22 @@ const RELEASES_DATA = [
     "releases": [
 
       {
+        "version": "v2026.5.29.2",
+        "name": "Hermes Agent v0.15.2 (2026.5.29.2)",
+        "date": "2026-05-29",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.29.2",
+        "features": [
+          {
+            "title": "打包修复：wheel 和 sdist 包含 plugin.yaml manifest",
+            "tag": "修复",
+            "summary": "修复 wheel 和 sdist 发布包中缺失 bundled plugin.yaml manifest 的问题，确保安装后插件配置文件正确可用",
+            "detail": "Ship bundled plugin.yaml manifests in wheel and sdist packages to ensure plugin configuration files are correctly available after installation.",
+            "summaryZh": "wheel/sdist 打包包含 plugin.yaml，安装后插件配置可用"
+          }
+        ]
+      },
+
+      {
         "version": "v2026.5.29",
         "name": "Hermes Agent v0.15.1 (2026.5.29) — The Patch Release",
         "date": "2026-05-29",
