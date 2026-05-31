@@ -1,4 +1,21 @@
 const CHANGELOG_DATA = [
+      {
+        version: "v2026.5.28",
+        date: "2026-05-30",
+        features: [
+          { title: "Agent 与 Codex 运行时恢复稳定性增强", tag: "修复", summary: "子代理保持 cwd/工作区隔离、Hook 上下文限制在 prompt 本地、超时中止时正确释放会话锁、避免过期重启延续、Codex app-server/helper 故障不再拖垮共享运行时状态", detail: "Subagents keep cwd/workspace separation, hook context stays prompt-local, session locks release on timeout abort, stale restart continuations avoided, Codex app-server/helper failures no longer tear down shared runtime state.", summaryZh: "子代理工作区隔离、Hook 本地化、会话锁释放、Codex 容错等运行时稳定性增强" },
+          { title: "多频道投递与会话身份安全加固", tag: "安全", summary: "出站插件 Hook、Matrix 房间 ID、iMessage 反应/审批、Slack 最终回复、Discord 恢复工具警告、WhatsApp 配置认证根、Telegram 轮询、Teams 服务 URL 信任检查全面加固", detail: "Channel delivery and session identity safer across outbound plugin hooks, Matrix room ids, iMessage reactions/approvals, Slack final replies, Discord recovered tool warnings, WhatsApp profile auth roots, Telegram polling, Microsoft Teams service URL trust checks.", summaryZh: "出站 Hook、Matrix/iMessage/Slack/WhatsApp/Telegram/Teams 八频道安全加固" },
+          { title: "移动端与聊天界面全面刷新", tag: "优化", summary: "iOS Pro UI、托管推送中继默认值、实时 Talk 标签页播放、Gateway 聊天传输、引导流程、Talk 权限、WebChat 重连投递、会话选择器行为优化，重连和空搜索时保留更多状态", detail: "iOS Pro UI, hosted push relay default, realtime Talk tab playback, Gateway chat transport, onboarding, Talk permissions, WebChat reconnect delivery, session picker behavior preserve more state across reconnects and empty searches.", summaryZh: "iOS Pro UI、Talk 播放、WebChat 重连、会话选择器等移动端和聊天界面刷新" },
+          { title: "浏览器与自动化输入校验更严格", tag: "优化", summary: "浏览器工具超时、视口/标签页索引、Gateway 端口、cron 重试处理、Discord 组件 ID、schema 数组引用、Telegram 回调页面、频道进度回调等提前拒绝畸形值", detail: "Browser tool timeouts, viewport/tab indices, Gateway ports, cron retry handling, Discord component ids, schema array refs, Telegram callback pages, channel progress callbacks reject malformed values earlier.", summaryZh: "浏览器/Gateway/cron/Discord/Telegram 等输入校验严格化" },
+          { title: "Provider 与媒体能力扩展", tag: "新功能", summary: "新增 Claude Opus 4.8、Fal Krea 图像 schema、NVIDIA 精选模型、MiniMax 流式音乐响应、加密 PDF 提取、语音模型目录、GitHub Copilot agent 运行时支持、Codex Supervisor 插件路径", detail: "Claude Opus 4.8, Fal Krea image schemas, NVIDIA featured models, MiniMax streaming music responses, encrypted PDF extraction, voice model catalogs, GitHub Copilot agent runtime support, Codex Supervisor plugin path.", summaryZh: "Claude Opus 4.8/Fal Krea/NVIDIA/MiniMax/GitHub Copilot 等 Provider 和媒体能力扩展" },
+          { title: "CLI、认证与诊断路径优化", tag: "优化", summary: "畸形数字/版本选项快速拒绝、工作区 dotenv Provider 凭据忽略、OAuth/token 生命周期有界、agent 认证健康标签更清晰、遗留 api_key 认证迁移至规范形式", detail: "Malformed numeric/version options rejected, workspace dotenv provider credentials ignored, OAuth/token lifetimes bounded, agent auth health labels clearer, legacy api_key auth profiles migrate to canonical form.", summaryZh: "CLI 选项校验、dotenv 忽略、OAuth 有界、认证迁移等 CLI 和诊断路径优化" },
+          { title: "插件与 Gateway 热路径性能优化", tag: "优化", summary: "安装记录、配置 JSON 解析、工具搜索目录、会话存储、manifest 模型行、自动启用插件配置、浏览器 token、viewer 资产等热路径减少重复计算", detail: "Plugin and Gateway hot paths do less repeated work for install records, config JSON parsing, tool search catalogs, session stores, manifest model rows, auto-enabled plugin config, browser tokens, viewer assets.", summaryZh: "插件安装记录、配置解析、工具搜索等热路径缓存优化" },
+          { title: "ClawHub 插件展示名与信任验证", tag: "新功能", summary: "ClawHub 新增插件展示名、技能验证和信任标识", detail: "ClawHub adds plugin display names, skill verification and trust surfaces.", summaryZh: "ClawHub 插件展示名与技能信任验证" },
+          { title: "Codex Supervisor 插件与 GitHub Copilot 运行时", tag: "新功能", summary: "新增 Codex Supervisor 插件包用于委托 Codex 工作流，GitHub Copilot agent 运行时支持，外部化为按需安装插件", detail: "Add Codex Supervisor plugin package for delegated Codex workflows, GitHub Copilot agent runtime support, externalized as official install-on-demand plugins.", summaryZh: "Codex Supervisor 委托工作流 + GitHub Copilot 运行时，按需安装" },
+          { title: "Workboard 代理协调工具", tag: "新功能", summary: "新增 agent 协调工具，支持跟踪和交接活跃的 agent 工作", detail: "Add agent coordination tools for tracking and handing off active agent work.", summaryZh: "新增 Workboard agent 协调工具" },
+        ],
+      },
+
 
       {
         version: "v2026.5.28-beta.4",
