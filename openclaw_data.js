@@ -1,5 +1,208 @@
 const CHANGELOG_DATA = [
       {
+        version: "v2026.5.31-beta.3",
+        date: "2026-05-31",
+        features: [
+          {
+            title: "Agent 与 CLI 运行时恢复稳定性增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行从中断的工具调用、过期会话绑定、压缩交接和媒体投递重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试全面增强"
+          },
+          {
+            title: "九频道移动端投递稳定性提升",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九大频道移动端投递更稳定",
+            detail: "Channels and mobile delivery steadier across Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk.",
+            summaryZh: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九频道投递稳定"
+          },
+          {
+            title: "Gateway 与频道设置增强",
+            tag: "新功能",
+            summary: "新增 Tailscale Serve 绑定、Communication 通知设置、更安全的 agents add、多频道进度草稿可靠性提升",
+            detail: "Gateway and channel setup add Tailscale Serve service-name binding, Communication notification settings, safer agents add, and more reliable progress drafts across Discord, Telegram, Slack, Matrix, and Teams.",
+            summaryZh: "Tailscale Serve 绑定 + 通知设置 + 安全 agents add + 多频道进度草稿"
+          },
+          {
+            title: "Skill Workshop 受控技能创建流程",
+            tag: "新功能",
+            summary: "新增 Skill Workshop 指南和 agent 工具，支持受控技能创建、提案审查、回滚元数据和恢复机制",
+            detail: "Add Skill Workshop guide and agent tool covering governed skill creation, reviewable proposals, CLI/Gateway review actions, rollback metadata, and recovery.",
+            summaryZh: "Skill Workshop：受控技能创建、提案审查、回滚、恢复全流程"
+          },
+          {
+            title: "Tokenjuice 与 Copilot 插件外化",
+            tag: "新功能",
+            summary: "Tokenjuice 和 GitHub Copilot agent 运行时外化为官方 npm/ClawHub 按需安装插件",
+            detail: "Externalize Tokenjuice and GitHub Copilot agent runtime as official @openclaw/tokenjuice and @openclaw/copilot plugins with npm and ClawHub publish metadata.",
+            summaryZh: "Tokenjuice + GitHub Copilot 外化为官方按需安装插件"
+          },
+          {
+            title: "Workboard 多 Agent 协调工具",
+            tag: "新功能",
+            summary: "新增编排原语和 agent 协调工具，支持多 agent 规划和运行跟踪",
+            detail: "Add orchestration primitives and agent coordination tools for multi-agent planning and run tracking.",
+            summaryZh: "Workboard 多 Agent 编排与运行跟踪"
+          },
+          {
+            title: "Provider/插件请求超时有界化",
+            tag: "优化",
+            summary: "定时器、重试、OAuth/设备码生命周期、媒体下载、本地服务探测、生成内容轮询等路径全面设上限，防止运行挂起",
+            detail: "Provider and plugin requests now bound more timers, retries, OAuth/device-code lifetimes, media downloads, local service probes, and generated-content polling paths before they can hang a run.",
+            summaryZh: "Provider/插件请求全面超时有界化，防止运行挂起"
+          },
+          {
+            title: "热路径缓存与诊断优化",
+            tag: "优化",
+            summary: "技能、会话元数据、Gateway 运行时状态、插件元数据、存储写入等热路径减少重复计算；CI/发布/E2E 日志和探针全面设上限",
+            detail: "Skills, session metadata, gateway runtime state, plugin metadata, and store writes do less repeated work on hot paths; Release, CI, Docker, E2E, and diagnostics lanes cap more logs and probes.",
+            summaryZh: "热路径缓存优化 + CI/E2E/诊断全面设上限"
+          },
+        ],
+      },
+
+      {
+        version: "v2026.5.31-beta.2",
+        date: "2026-05-31",
+        features: [
+          {
+            title: "Agent 与 CLI 运行时恢复稳定性增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行从中断的工具调用、过期会话绑定、压缩交接和媒体投递重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试全面增强"
+          },
+          {
+            title: "九频道移动端投递稳定性提升",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九大频道移动端投递更稳定",
+            detail: "Channels and mobile delivery steadier across Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk.",
+            summaryZh: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九频道投递稳定"
+          },
+          {
+            title: "Skill Workshop 受控技能创建流程",
+            tag: "新功能",
+            summary: "新增 Skill Workshop 指南和 agent 工具，支持受控技能创建、提案审查、回滚元数据和恢复机制",
+            detail: "Add Skill Workshop guide and agent tool covering governed skill creation, reviewable proposals, CLI/Gateway review actions, rollback metadata, and recovery.",
+            summaryZh: "Skill Workshop：受控技能创建、提案审查、回滚、恢复全流程"
+          },
+          {
+            title: "Tokenjuice 与 Copilot 插件外化",
+            tag: "新功能",
+            summary: "Tokenjuice 和 GitHub Copilot agent 运行时外化为官方 npm/ClawHub 按需安装插件",
+            detail: "Externalize Tokenjuice and GitHub Copilot agent runtime as official plugins.",
+            summaryZh: "Tokenjuice + GitHub Copilot 外化为官方按需安装插件"
+          },
+          {
+            title: "Workboard 多 Agent 协调工具",
+            tag: "新功能",
+            summary: "新增编排原语和 agent 协调工具，支持多 agent 规划和运行跟踪",
+            detail: "Add orchestration primitives and agent coordination tools for multi-agent planning and run tracking.",
+            summaryZh: "Workboard 多 Agent 编排与运行跟踪"
+          },
+          {
+            title: "Dreaming 标签页 Agent 选择器",
+            tag: "新功能",
+            summary: "Control UI 新增 Dreaming 标签页 agent 选择器，状态/日记/操作联动",
+            detail: "Control UI add a Dreaming-tab agent selector and propagate the selected agent through Dreaming status, diary, and diary actions.",
+            summaryZh: "Dreaming 标签页新增 Agent 选择器"
+          },
+          {
+            title: "SecretRef Provider 集成清单",
+            tag: "新功能",
+            summary: "新增 SecretRef provider 集成清单契约，提取共享 LLM 核心包供 provider/插件复用",
+            detail: "Add a SecretRef provider integration manifest contract and extract shared LLM core packages for provider/plugin reuse.",
+            summaryZh: "SecretRef Provider 集成清单 + 共享 LLM 核心包"
+          },
+        ],
+      },
+
+      {
+        version: "v2026.5.31-beta.1",
+        date: "2026-05-31",
+        features: [
+          {
+            title: "Agent 与 CLI 运行时恢复稳定性增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行从中断的工具调用、过期会话绑定、压缩交接和媒体投递重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试全面增强"
+          },
+          {
+            title: "九频道移动端投递稳定性提升",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九大频道移动端投递更稳定",
+            detail: "Channels and mobile delivery steadier across Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk.",
+            summaryZh: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九频道投递稳定"
+          },
+          {
+            title: "Skill Workshop 受控技能创建流程",
+            tag: "新功能",
+            summary: "新增 Skill Workshop 指南和 agent 工具，支持受控技能创建、提案审查、回滚元数据和恢复机制",
+            detail: "Add Skill Workshop guide and agent tool.",
+            summaryZh: "Skill Workshop：受控技能创建、提案审查、回滚、恢复全流程"
+          },
+          {
+            title: "Tokenjuice 与 Copilot 插件外化",
+            tag: "新功能",
+            summary: "Tokenjuice 和 GitHub Copilot agent 运行时外化为官方 npm/ClawHub 按需安装插件",
+            detail: "Externalize Tokenjuice and GitHub Copilot agent runtime as official plugins.",
+            summaryZh: "Tokenjuice + GitHub Copilot 外化为官方按需安装插件"
+          },
+          {
+            title: "Provider/插件请求超时有界化",
+            tag: "优化",
+            summary: "定时器、重试、OAuth/设备码生命周期、媒体下载等路径全面设上限",
+            detail: "Provider and plugin requests now bound more timers, retries, OAuth/device-code lifetimes, media downloads.",
+            summaryZh: "Provider/插件请求全面超时有界化"
+          },
+        ],
+      },
+
+      {
+        version: "v2026.5.30-beta.1",
+        date: "2026-05-31",
+        features: [
+          {
+            title: "Agent 与 CLI 运行时恢复稳定性增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行从中断的工具调用、过期会话绑定、压缩交接和媒体投递重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试全面增强"
+          },
+          {
+            title: "九频道移动端投递稳定性提升",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九大频道移动端投递更稳定",
+            detail: "Channels and mobile delivery steadier across nine channels.",
+            summaryZh: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九频道投递稳定"
+          },
+          {
+            title: "Skill Workshop 提案与 agent 工具",
+            tag: "新功能",
+            summary: "新增 Skill Workshop 提案草案（PROPOSAL.md）、CLI/Gateway 审查操作、回滚元数据和 skill_research agent 工具",
+            detail: "Add Skill Workshop proposals with PROPOSAL.md drafts, CLI/Gateway review actions, rollback metadata, and the skill_research agent tool.",
+            summaryZh: "Skill Workshop PROPOSAL.md 提案 + skill_research agent 工具"
+          },
+          {
+            title: "Tokenjuice 与 Copilot 插件外化",
+            tag: "新功能",
+            summary: "Tokenjuice 和 GitHub Copilot agent 运行时外化为官方 npm/ClawHub 按需安装插件",
+            detail: "Externalize Tokenjuice and GitHub Copilot agent runtime as official plugins.",
+            summaryZh: "Tokenjuice + GitHub Copilot 外化为官方按需安装插件"
+          },
+          {
+            title: "Cron/Provider/频道超时与安全修复",
+            tag: "修复",
+            summary: "Cron SQLite 迁移兼容、Provider 媒体下载超时、GitHub Copilot OAuth 超时、12+ 频道请求/重试定时器设上限",
+            detail: "Bound cron SQLite migrations, provider media download timers, GitHub Copilot OAuth timeouts, and 12+ channel request/retry timers.",
+            summaryZh: "Cron 迁移兼容 + Provider/频道超时全面设上限"
+          },
+        ],
+      },
+
+      {
         version: "v2026.5.28",
         date: "2026-05-30",
         features: [
