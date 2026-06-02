@@ -1,5 +1,122 @@
 const CHANGELOG_DATA = [
       {
+        version: "v2026.6.1-beta.2",
+        date: "2026-06-02",
+        features: [
+          {
+            title: "Agent 与 CLI 运行时恢复稳定性大幅增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行时从中断的工具调用、过期会话绑定、压缩交接和媒体投递重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试全面增强"
+          },
+          {
+            title: "九频道移动端投递稳定性提升",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九大频道移动端投递更稳定",
+            detail: "Channels and mobile delivery are steadier across Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk.",
+            summaryZh: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 九频道投递稳定"
+          },
+          {
+            title: "Provider 与插件请求超时绑定",
+            tag: "优化",
+            summary: "Provider 和插件请求现在绑定更多定时器、重试、OAuth/设备码生命周期、媒体下载、本地服务探测和生成内容轮询路径，防止运行挂起",
+            detail: "Provider and plugin requests now bound more timers, retries, OAuth/device-code lifetimes, media downloads, local service probes, and generated-content polling paths before they can hang a run.",
+            summaryZh: "Provider/插件请求全面绑定超时和重试机制，防止运行挂起"
+          },
+          {
+            title: "热路径性能优化",
+            tag: "优化",
+            summary: "Skills、会话元数据、Gateway 运行时状态、插件元数据、内存监视器和存储写入在热路径上减少重复工作",
+            detail: "Skills, session metadata, gateway runtime state, plugin metadata, memory watchers, and store writes do less repeated work on hot paths while keeping config, dispatch, and Linux file-watch behavior stable.",
+            summaryZh: "热路径减少重复工作：Skills/会话/Gateway/插件/内存/存储全面优化"
+          },
+          {
+            title: "Skill Workshop 完整控制 UI 流程",
+            tag: "新功能",
+            summary: "Skill Workshop 新增完整的控制 UI 流程：提案列表、今日操作、修订交接、可搜索文件预览、审查状态、区域覆盖和可复用会话路由",
+            detail: "Skill Workshop now has a fuller Control UI flow with proposal lists, today actions, revision handoff, searchable file previews, review states, locale coverage, and reusable session routing.",
+            summaryZh: "Skill Workshop 控制 UI：提案列表+修订交接+文件预览+审查状态+会话路由"
+          },
+          {
+            title: "Workboard 多 Agent 编排原语",
+            tag: "新功能",
+            summary: "新增编排原语和 Agent 协调工具，支持多 Agent 规划和运行追踪",
+            detail: "Workboard: add orchestration primitives and agent coordination tools for multi-agent planning and run tracking.",
+            summaryZh: "Workboard 多 Agent 编排：规划+运行追踪+任务评论"
+          },
+          {
+            title: "MiniMax M3 模型支持",
+            tag: "新功能",
+            summary: "新增 MiniMax M3 模型支持，扩展 Provider 覆盖范围",
+            detail: "Providers: add MiniMax M3 model support.",
+            summaryZh: "新增 MiniMax M3 模型支持"
+          },
+          {
+            title: "iMessage/插件状态迁移至 SQLite",
+            tag: "优化",
+            summary: "iMessage 监控状态、入站队列和插件安装账本迁移至 SQLite 支持，重启和本地监控恢复时减少重复文件系统扫描",
+            detail: "iMessage monitor state, inbound queues, and plugin install ledgers moved toward SQLite-backed state so restarts and local monitors recover with less duplicate filesystem scanning.",
+            summaryZh: "iMessage/插件状态 SQLite 化：重启恢复更快，减少文件系统扫描"
+          }
+        ]
+      },
+      {
+        version: "v2026.6.1-beta.1",
+        date: "2026-06-01",
+        features: [
+          {
+            title: "Agent/CLI 运行时恢复增强",
+            tag: "修复",
+            summary: "Agent 和 CLI 运行时从中断工具调用、过期会话、压缩交接和媒体重试中更干净地恢复",
+            detail: "Agents and CLI-backed runtimes recover more cleanly from interrupted tool calls, stale session bindings, compaction handoffs, and media delivery retries.",
+            summaryZh: "Agent/CLI 运行时恢复：中断工具调用、过期会话、压缩交接、媒体重试增强"
+          },
+          {
+            title: "九频道移动端投递稳定",
+            tag: "优化",
+            summary: "Telegram/WhatsApp/iMessage/Slack/Discord/Teams/Google Chat/Meet/iOS Talk 投递更稳定",
+            detail: "Channels and mobile delivery are steadier across Telegram, WhatsApp, iMessage, Slack, Discord, Microsoft Teams, Google Chat, Google Meet, and iOS realtime Talk.",
+            summaryZh: "九频道移动端投递稳定性提升"
+          },
+          {
+            title: "Skill Workshop 完整控制 UI",
+            tag: "新功能",
+            summary: "新增控制 UI 导航、仪表盘、提案今日视图、修订对话框、文件预览模态框、可搜索预览文件、可复用会话交接和本地化字符串",
+            detail: "Skill Workshop: add the Control UI navigation, styled dashboard, proposal today view, revision dialog, file preview modal, searchable preview files, reusable session handoff, and localized strings.",
+            summaryZh: "Skill Workshop 控制 UI 全套：仪表盘+提案视图+修订+预览+本地化"
+          },
+          {
+            title: "Tokenjuice 和 Copilot 插件外部化",
+            tag: "新功能",
+            summary: "Tokenjuice 和 GitHub Copilot Agent 运行时外部化为官方插件，支持 npm 和 ClawHub 发布",
+            detail: "Plugins: externalize Tokenjuice as the official @openclaw/tokenjuice plugin and GitHub Copilot agent runtime as @openclaw/copilot plugin with npm and ClawHub publish metadata.",
+            summaryZh: "Tokenjuice/Copilot 外部化为官方插件，支持 npm/ClawHub 发布"
+          },
+          {
+            title: "iOS 托管推送中继和 iPad 布局",
+            tag: "新功能",
+            summary: "iOS 新增托管推送中继默认值、实时 Talk 回放、受保护 WebSocket ping 路径和原生 iPad 显示布局",
+            detail: "iOS: add hosted push relay defaults, realtime Talk playback, guarded WebSocket ping path, and native iPad display layouts.",
+            summaryZh: "iOS 推送中继+Talk 回放+WebSocket ping+iPad 布局"
+          },
+          {
+            title: "Chat/Control UI 启动路径优化",
+            tag: "优化",
+            summary: "启动时保持发送活跃、增量流式传输、跳过流式期间的 Markdown 解析、打字时保持草稿本地化、追踪首输出延迟",
+            detail: "Chat and Control UI startup paths keep sends alive through history loading, stream deltas incrementally, skip markdown work while streaming, keep drafts local while typing, trace first-output latency, and expose calmer composer controls.",
+            summaryZh: "Chat/UI 启动优化：流式增量+草稿本地+首输出延迟追踪"
+          },
+          {
+            title: "Provider 覆盖扩展",
+            tag: "新功能",
+            summary: "新增 MiniMax M3、Google/Vertex 目录修复、OpenRouter SQLite 模型缓存、Copilot Claude 1M 能力、Foundry 推理对齐",
+            detail: "Provider coverage and model metadata now include MiniMax M3, account OAuth endpoints, Google/Vertex catalog fixes, OpenRouter SQLite model caching, Copilot Claude 1M capabilities, Foundry reasoning alignment, and OpenAI response replay guards.",
+            summaryZh: "Provider 扩展：MiniMax M3+Vertex 修复+OpenRouter 缓存+Copilot 1M"
+          }
+        ]
+      },
+      {
         version: "v2026.5.31-beta.3",
         date: "2026-05-31",
         features: [
