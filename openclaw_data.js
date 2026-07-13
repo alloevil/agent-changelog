@@ -9124,5 +9124,129 @@ const CHANGELOG_DATA = [
         ]
       }
     ]
-  }
+  },
+  {
+    version: "v2026.7.1-beta.6",
+    date: "2026-07-13",
+    features: [
+      {
+        title: "2026.7.1-beta.6 发布",
+        tag: "优化",
+        summary: "依赖更新与发布工程修复",
+        detail: "Dependency updates and release engineering fixes.",
+        summaryZh: "依赖更新与发布工程修复"
+      }
+    ]
+  },
+  {
+    version: "v2026.7.1-beta.5",
+    date: "2026-07-11",
+    features: [
+      {
+        title: "对话式引导 Crestodian 上线",
+        tag: "新增",
+        summary: "CLI/Web/macOS 全端新增 AI 引导式 Provider 配置、模型审批绑定、凭据遮罩和确定性回退",
+        detail: "Crestodian now runs a real agent-loop setup across CLI, web install, and macOS app, with AI-guided provider setup, model-judged approvals bound to exact operations, masked credential prompts, and deterministic fallback.",
+        summaryZh: "Crestodian 对话式引导：AI 配置 Provider + 审批绑定 + 凭据遮罩"
+      },
+      {
+        title: "ClawRouter 路由与配额管理",
+        tag: "新增",
+        summary: "内置 ClawRouter Provider，支持凭据作用域动态模型发现、OpenAI/Anthropic/Gemini 传输和预算报告",
+        detail: "Add the bundled ClawRouter provider with credential-scoped dynamic model discovery, OpenAI-compatible and native Anthropic/Gemini transports, and managed budget reporting.",
+        summaryZh: "ClawRouter：动态模型发现 + 多传输协议 + 预算报告"
+      },
+      {
+        title: "Control UI 与原生 macOS 聊天",
+        tag: "新增",
+        summary: "会话优先侧边栏、紧凑上下文环、推理滑块、原生 macOS 会话浏览器（模型/思考选择器、斜杠命令、转录导出）",
+        detail: "Make sessions primary with a minimal searchable sidebar, compact context ring, reasoning-effort slider, and a native macOS session browser with model and thinking pickers, slash commands, transcript export.",
+        summaryZh: "Control UI 会话优先 + macOS 原生会话浏览器"
+      },
+      {
+        title: "离线与语音移动端聊天",
+        tag: "新增",
+        summary: "iOS/Android 离线预加载会话缓存；Apple Watch 完整语音轮次；iOS Gateway TTS 语音回复",
+        detail: "iOS and Android now pre-paint bounded per-gateway session and transcript caches offline; Apple Watch gains full voice turns, and iOS can speak replies through configured Gateway TTS.",
+        summaryZh: "iOS/Android 离线缓存 + Apple Watch 语音 + TTS 回复"
+      },
+      {
+        title: "会话分组与自动生成标题",
+        tag: "新增",
+        summary: "通过 utility-model 路由生成简洁会话标题，新增 Gateway 分组、未读、重命名、分支、归档和删除",
+        detail: "Generate concise session titles through utility-model routing and add Gateway-backed groups, unread state, rename, fork, archive, and delete controls.",
+        summaryZh: "自动生成会话标题 + 分组/未读/重命名/归档管理"
+      },
+      {
+        title: "OpenAI GPT-5.6 支持",
+        tag: "新增",
+        summary: "识别 Sol/Terra/Luna 模型族，支持 API Key/Codex OAuth/简单补全路径，含上下文和定价元数据",
+        detail: "Recognize the Sol, Terra, and Luna model family across API-key, ChatGPT/Codex OAuth, simple-completion, and Codex app-server paths, with correct context and pricing metadata.",
+        summaryZh: "GPT-5.6 全路径支持：Sol/Terra/Luna 模型族"
+      },
+      {
+        title: "外部挂载 openclaw attach",
+        tag: "新增",
+        summary: "openclaw attach 启动 Claude Code 挂载现有 Gateway 会话，含可撤销 TTL MCP 授权和退出自动回收",
+        detail: "openclaw attach launches Claude Code against an existing Gateway session with scoped, revocable, TTL-bound MCP grants and automatic revoke-on-exit.",
+        summaryZh: "openclaw attach：Claude Code 挂载 Gateway 会话 + MCP 授权管理"
+      },
+      {
+        title: "Telegram Codex 工作流",
+        tag: "新增",
+        summary: "Telegram 支持 /login 配对 Codex、/steer 和 /tell 操控运行、跨富实体/标题/引用的最终发送恢复",
+        detail: "Telegram can pair Codex through private /login, steer active runs with /steer and /tell, and recover final sends across rejected rich entities, captions, quotes, and flood waits.",
+        summaryZh: "Telegram Codex：/login 配对 + /steer 操控 + 富实体恢复"
+      },
+      {
+        title: "Meta Provider muse-spark-1.1",
+        tag: "新增",
+        summary: "新增内置 muse-spark-1.1 Responses API 支持，含流式/工具调用/加密推理回放，独立 npm/ClawHub 分发",
+        detail: "Add bundled muse-spark-1.1 Responses API support with streaming, tool calls, encrypted reasoning replay, and standalone npm/ClawHub distribution as @openclaw/meta-provider.",
+        summaryZh: "muse-spark-1.1：Responses API + 流式 + 工具调用 + 独立分发"
+      },
+      {
+        title: "Android 聊天 Agent 选择器",
+        tag: "新增",
+        summary: "Android 聊天界面直接切换活跃 Agent，聊天/Talk/主页共享同一规范会话",
+        detail: "Switch the active agent directly from the live chat screen while keeping chat, Talk mode, and home canvas on the same canonical session.",
+        summaryZh: "Android 聊天界面直接切换 Agent"
+      },
+      {
+        title: "Gateway 崩溃循环恢复",
+        tag: "修复",
+        summary: "持久化启动结果，重复非正常启动后进入控制平面安全模式，致命配置错误用 EX_CONFIG 退出",
+        detail: "Persist boot outcomes, enter control-plane-safe mode after repeated unclean starts, and exit with EX_CONFIG for fatal configuration errors so systemd and launchd stop restart flapping.",
+        summaryZh: "Gateway 崩溃循环恢复：安全模式 + EX_CONFIG 退出"
+      },
+      {
+        title: "SecretRef 模型凭据安全",
+        tag: "安全",
+        summary: "Provider 密钥保持在进程本地哨兵后，仅在最终网络边界注入明文，保留精确值日志脱敏",
+        detail: "Keep resolved provider secrets behind process-local sentinels through auth storage, stream setup, SDK configuration, then inject plaintext only at the final network boundary while retaining exact-value log redaction.",
+        summaryZh: "SecretRef：密钥进程本地化 + 最终边界注入 + 日志脱敏"
+      },
+      {
+        title: "Telegram Token 脱敏加固",
+        tag: "安全",
+        summary: "日志传输拆分 token 片段时仍能正确脱敏，防止碎片化凭据逃逸",
+        detail: "Redact bot tokens even when log transports split them across chunks, preventing fragmented credentials from escaping structured and streamed logs.",
+        summaryZh: "Telegram token 片段化脱敏，防止凭据逃逸"
+      },
+      {
+        title: "Telegram 持久化轮次采纳修复",
+        tag: "修复",
+        summary: "持久化 agent 采纳后才完成缓冲更新，抑制被取代的回复防止恢复时泄漏过期响应",
+        detail: "Complete spooled updates only after durable agent adoption, detach adopted turns from the ingress reply fence, and suppress superseded replies so recovery cannot leak stale or duplicate responses.",
+        summaryZh: "Telegram 持久化轮次：采纳后完成 + 抑制过期回复"
+      },
+      {
+        title: "任务投递恢复修复",
+        tag: "修复",
+        summary: "恢复任务记录时规范化旧版投递状态，旧队列任务可运行而非中止注册恢复",
+        detail: "Normalize legacy delivery statuses while restoring task records so older queued work becomes runnable instead of aborting registry recovery.",
+        summaryZh: "任务投递恢复：旧版状态规范化，队列任务不再中止"
+      }
+    ]
+  },
 ];
