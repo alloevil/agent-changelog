@@ -683,14 +683,17 @@ body {
 (function() {
   const TAG_MAP = {
     '新功能':  { cls: 'tag-new',   label: '新功能' },
+    '新增':    { cls: 'tag-new',   label: '新增' },
     '优化':    { cls: 'tag-opt',   label: '优化' },
     '修复':    { cls: 'tag-fix',   label: '修复' },
+    '安全':    { cls: 'tag-break', label: '安全' },
+    '变更':    { cls: 'tag-opt',   label: '变更' },
     'Breaking':{ cls: 'tag-break', label: 'BREAKING' }
   };
 
   // Category order for display
-  const CAT_ORDER = ['Breaking', '新功能', '修复'];
-  const CAT_LABELS = { '新功能': '新功能', '修复': '修复', 'Breaking': 'Breaking' };
+  const CAT_ORDER = ['Breaking', '安全', '新增', '新功能', '修复', '优化', '变更'];
+  const CAT_LABELS = { 'Breaking': 'Breaking', '安全': '安全', '新增': '新增', '新功能': '新功能', '修复': '修复', '优化': '优化', '变更': '变更' };
 
   let currentMonthIdx = 0;
 
