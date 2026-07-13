@@ -4,6 +4,130 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.1-beta.1",
+        "date": "2026-07-02",
+        "features": [
+          {
+            "title": "GPT-5.6 模型支持",
+            "tag": "新增",
+            "summary": "OpenClaw 识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择",
+            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
+            "summaryZh": "GPT-5.6 全链路支持"
+          },
+          {
+            "title": "外部挂载代理 (openclaw attach)",
+            "tag": "新增",
+            "summary": "可将外部编码代理挂载到已有 Gateway 会话",
+            "detail": "openclaw attach launches an external harness against an existing Gateway session.",
+            "summaryZh": "外部代理挂载到 Gateway 会话"
+          },
+          {
+            "title": "Telegram Codex 工作流",
+            "tag": "新增",
+            "summary": "Telegram 支持 /login 配对、/steer 操控、跨故障恢复",
+            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
+            "summaryZh": "Telegram Codex 配对与操控"
+          },
+          {
+            "title": "事件驱动定时任务",
+            "tag": "新增",
+            "summary": "on-exit 调度类型在命令退出时唤醒 Agent",
+            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits.",
+            "summaryZh": "命令退出触发 Agent 唤醒"
+          },
+          {
+            "title": "原生应用 iOS 26 刷新",
+            "tag": "优化",
+            "summary": "iOS 采用 iOS 26 视觉体系，多平台本地化扩展",
+            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows.",
+            "summaryZh": "iOS 26 Liquid Glass 视觉体系"
+          },
+          {
+            "title": "iMessage 原生投票",
+            "tag": "新增",
+            "summary": "支持创建、读取和投票原生投票",
+            "detail": "iMessage gains native poll creation, reading, and voting.",
+            "summaryZh": "iMessage 原生投票"
+          },
+          {
+            "title": "作用域对话能力配置",
+            "tag": "新增",
+            "summary": "能力配置文件为每个对话准备独立的工具和访问边界",
+            "detail": "Capability profiles prepare per-conversation tool and access boundaries.",
+            "summaryZh": "对话级别工具与访问边界"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.1-beta.2",
+        "date": "2026-07-05",
+        "features": [
+          {
+            "title": "GPT-5.6 模型支持",
+            "tag": "新增",
+            "summary": "OpenClaw 现已识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择路径",
+            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
+            "summaryZh": "新增 GPT-5.6 全链路支持"
+          },
+          {
+            "title": "外部挂载代理 (openclaw attach)",
+            "tag": "新增",
+            "summary": "可将外部编码代理挂载到已有 Gateway 会话，便于恢复和检查 Codex 风格工作流",
+            "detail": "openclaw attach launches an external harness against an existing Gateway session, making interactive Codex-style workflows easier to resume and inspect.",
+            "summaryZh": "外部代理一键挂载到现有会话"
+          },
+          {
+            "title": "Telegram Codex 工作流",
+            "tag": "新增",
+            "summary": "Telegram 支持 /login 配对 Codex、/steer 操控运行、跨故障恢复最终回复",
+            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
+            "summaryZh": "Telegram 深度集成 Codex 工作流"
+          },
+          {
+            "title": "事件驱动定时任务",
+            "tag": "新增",
+            "summary": "新增 on-exit 调度类型，监控命令退出时唤醒 Agent；会话定向运行可干净分离",
+            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits, while session-targeted runs can detach cleanly.",
+            "summaryZh": "on-exit 调度：命令退出即触发 Agent"
+          },
+          {
+            "title": "原生应用全面刷新",
+            "tag": "优化",
+            "summary": "iOS 采用 iOS 26 视觉体系，Apple/Android 原生界面本地化扩展至多语言",
+            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows, while native app localization expands across Apple and Android surfaces.",
+            "summaryZh": "iOS 26 视觉体系 + 多语言本地化"
+          },
+          {
+            "title": "iMessage 原生投票",
+            "tag": "新增",
+            "summary": "iMessage 支持创建、读取和投票原生投票",
+            "detail": "iMessage gains native poll creation, reading, and voting.",
+            "summaryZh": "iMessage 原生投票功能上线"
+          },
+          {
+            "title": "作用域对话能力配置",
+            "tag": "新增",
+            "summary": "能力配置文件为每个对话准备工具和访问边界，不削弱默认配置",
+            "detail": "Capability profiles prepare per-conversation tool and access boundaries without weakening the existing default profile.",
+            "summaryZh": "每个对话独立工具与访问边界"
+          },
+          {
+            "title": "macOS 本地 Gateway 自动安装",
+            "tag": "新增",
+            "summary": "macOS 应用可自动安装并启动本地 Gateway，减少首次使用手动配置",
+            "detail": "The macOS app can now install and start its local Gateway automatically, reducing the manual setup needed before first use.",
+            "summaryZh": "macOS 一键安装本地 Gateway"
+          },
+          {
+            "title": "Control UI 导航重构",
+            "tag": "优化",
+            "summary": "会话优先侧边栏、紧凑上下文环、暖色主题、推理强度滑块、斜杠命令选择器",
+            "detail": "A session-first sidebar, compact context meter, warm light theme, reasoning-effort slider, streamlined composer, and slash-command picker make active conversations and commands easier to reach.",
+            "summaryZh": "Control UI 全面重构导航体验"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.1-beta.6",
         "date": "2026-07-13",
         "features": [
@@ -133,6 +257,54 @@ const CHANGELOG_DATA = [
     "month": "2026 年 6 月",
     "monthId": "2026-06",
     "releases": [
+      {
+        "version": "v2026.6.11",
+        "date": "2026-06-30",
+        "features": [
+          {
+            "title": "频道投递可靠性全面提升",
+            "tag": "修复",
+            "summary": "覆盖 Telegram/WhatsApp/Matrix/Google Chat/iMessage/Feishu/Mattermost/WebChat 等全线投递与重连修复",
+            "detail": "Delivery and reconnect fixes span Telegram, WhatsApp, Matrix, Google Chat, iMessage, Feishu, Mattermost, WebChat, the Control UI, and the terminal UI.",
+            "summaryZh": "全频道投递与重连可靠性修复"
+          },
+          {
+            "title": "Provider 和模型恢复增强",
+            "tag": "修复",
+            "summary": "模型设置、OpenAI/OpenRouter 连接、快速模式回退行为更清晰可靠",
+            "detail": "Model setup, OpenAI, OpenRouter, and fast-mode follow-up behavior now recover more clearly in affected configurations.",
+            "summaryZh": "模型连接与回退恢复增强"
+          },
+          {
+            "title": "会话、记忆和信任连续性",
+            "tag": "修复",
+            "summary": "会话恢复、压缩、记忆搜索、工具策略更一致；Matrix 恢复和审批留在正确信任边界",
+            "detail": "Sessions, compaction, memory, QMD-backed memory, and Tool Search retain useful state more consistently, while Matrix recovery, tool policies, and approvals stay attached to the intended trust boundary.",
+            "summaryZh": "会话与记忆连续性全面加固"
+          },
+          {
+            "title": "Slack Router 中继模式",
+            "tag": "新增",
+            "summary": "为托管和多 Gateway 部署提供集中 Slack 流量路由支持",
+            "detail": "Slack router relay mode gives managed and multi-gateway deployments a supported way to centralize incoming Slack traffic.",
+            "summaryZh": "Slack 集中流量中继路由"
+          },
+          {
+            "title": "Raft 外部代理唤醒桥接",
+            "tag": "新增",
+            "summary": "Raft 频道支持本地 CLI 唤醒路径，触发待处理工作的外部代理",
+            "detail": "The Raft channel and plugin now support the local CLI wake path for External Agents.",
+            "summaryZh": "Raft 外部代理本地 CLI 唤醒"
+          },
+          {
+            "title": "官方插件安装与修复",
+            "tag": "优化",
+            "summary": "更多官方集成支持正常安装、更新和修复工作流",
+            "detail": "Plugin management and the plugin inventory now cover more official integrations through normal installation, update, and repair workflows.",
+            "summaryZh": "官方插件安装修复流程增强"
+          }
+        ]
+      },
       {
         "version": "v2026.6.1-beta.2",
         "date": "2026-06-02",

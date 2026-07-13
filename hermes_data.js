@@ -3,7 +3,6 @@ const RELEASES_DATA = [
     "label": "2026年05月",
     "id": "2026-05",
     "releases": [
-
       {
         "version": "v2026.5.29.2",
         "name": "Hermes Agent v0.15.2 (2026.5.29.2)",
@@ -19,7 +18,6 @@ const RELEASES_DATA = [
           }
         ]
       },
-
       {
         "version": "v2026.5.29",
         "name": "Hermes Agent v0.15.1 (2026.5.29) — The Patch Release",
@@ -74,7 +72,7 @@ const RELEASES_DATA = [
             "summary": "/yolo 中途执行改为会话级绕过，而非仅切换环境变量",
             "detail": "/yolo mid-session enables the per-session bypass instead of just toggling the env var (which the running agent had already snapshotted).",
             "summaryZh": "/yolo 中途执行正确生效于当前会话"
-          },
+          }
         ]
       },
       {
@@ -152,7 +150,7 @@ const RELEASES_DATA = [
             "summary": "Skill bundles 让一个 slash command 加载一整套工作流",
             "detail": "Skill bundles let one slash command load a whole workflow.",
             "summaryZh": "Skill Bundles 支持一条命令加载完整工作流"
-          },
+          }
         ]
       },
       {
@@ -1384,117 +1382,161 @@ const RELEASES_DATA = [
     "id": "2026-07",
     "releases": [
       {
-        version: "v2026.7.7.2",
-        date: "2026-07-08",
-        features: [
+        "version": "v2026.7.1",
+        "name": "Hermes Agent v0.18.0 — The Judgment Release",
+        "date": "2026-07-01",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.1",
+        "features": [
           {
-            title: "WhatsApp Baileys 依赖修复",
-            tag: "修复",
-            summary: "解除 Baileys git commit 固定，改用已发布的 7.0.0-rc13，Docker 镜像构建恢复正常",
-            detail: "Unpin Baileys from git commit, use published 7.0.0-rc13 — the WhatsApp bridge dependency now installs from the published npm release, making installs and Docker image builds reliable.",
-            summaryZh: "WhatsApp Baileys 解除 git 固定，Docker 构建恢复正常"
+            "title": "v0.18.0 The Judgment Release 发布",
+            "tag": "新增",
+            "summary": "Hermes Agent v0.18.0 正式发布，代号 The Judgment Release",
+            "detail": "Hermes Agent v0.18.0 (The Judgment Release) published.",
+            "summaryZh": "Hermes v0.18.0 The Judgment Release 正式发布"
           }
         ]
       },
       {
-        version: "v2026.7.7",
-        date: "2026-07-08",
-        features: [
+        "version": "v2026.7.7",
+        "name": "Hermes Agent v0.18.1 (2026.7.7)",
+        "date": "2026-07-08",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.7",
+        "features": [
           {
-            title: "v0.18.1 基础设施补丁发布",
-            tag: "优化",
-            summary: "滚动 v0.18.0 后约 660 个 PR（667 提交/~990 文件/+89.5k 行），含 Windows 安装修复、Dashboard/Gateway 修复、WhatsApp 配对、MCP/Provider 修复和大量稳定性工作",
-            detail: "Patch release rolling up ~660 PRs merged since v0.18.0 — bug fixes, hardening, and in-progress feature work including installer/updater self-healing on Windows, dashboard and gateway fixes, WhatsApp dashboard pairing, MCP and provider fixes.",
-            summaryZh: "v0.18.1 补丁：660+ PR 滚动，Windows 修复/Dashboard/Gateway/WhatsApp/MCP 稳定性"
+            "title": "v0.18.0 后累计 ~660 PR 的稳定性修复",
+            "tag": "修复",
+            "summary": "涵盖安装器/更新器自愈、Dashboard 和 Gateway 修复、WhatsApp 配对、MCP 和 Provider 修复等大量稳定性工作",
+            "detail": "~660 PRs merged since v0.18.0 covering installer/updater self-healing, dashboard and gateway fixes, WhatsApp dashboard pairing, MCP and provider fixes, and stability work.",
+            "summaryZh": "v0.18.0 后 ~660 PR 累积稳定性修复打包"
           }
         ]
       },
       {
-        version: "v2026.7.1",
-        date: "2026-07-01",
-        features: [
+        "version": "v2026.7.7.2",
+        "name": "Hermes Agent v0.18.2 (2026.7.7.2)",
+        "date": "2026-07-07",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.7.7.2",
+        "features": [
           {
-            title: "P0/P1 全量清零 — 100% 解决",
-            tag: "修复",
-            summary: "12 天内解决约 692 个最高优先级项（496 issues + 196 PRs），仓库 P0/P1 归零并承诺保持",
-            detail: "Resolved ~692 highest-priority items in twelve days — 496 issues closed and 196 PRs merged. The open P0/P1 count hit 0 across the entire repo.",
-            summaryZh: "P0/P1 全量清零：12 天解决 692 个最高优先级项，仓库归零"
+            "title": "WhatsApp Baileys 依赖修复",
+            "tag": "修复",
+            "summary": "将 WhatsApp 桥接依赖从固定 git commit 改为已发布的 npm 包 (Baileys 7.0.0-rc13)，使安装和 Docker 镜像构建可靠",
+            "detail": "Unpin Baileys from git commit, use published 7.0.0-rc13 npm release, making installs and Docker image builds reliable.",
+            "summaryZh": "WhatsApp Baileys 依赖改为 npm 发布版，Docker 构建可靠"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.7.2",
+        "date": "2026-07-08",
+        "features": [
+          {
+            "title": "WhatsApp Baileys 依赖修复",
+            "tag": "修复",
+            "summary": "解除 Baileys git commit 固定，改用已发布的 7.0.0-rc13，Docker 镜像构建恢复正常",
+            "detail": "Unpin Baileys from git commit, use published 7.0.0-rc13 — the WhatsApp bridge dependency now installs from the published npm release, making installs and Docker image builds reliable.",
+            "summaryZh": "WhatsApp Baileys 解除 git 固定，Docker 构建恢复正常"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.7",
+        "date": "2026-07-08",
+        "features": [
+          {
+            "title": "v0.18.1 基础设施补丁发布",
+            "tag": "优化",
+            "summary": "滚动 v0.18.0 后约 660 个 PR（667 提交/~990 文件/+89.5k 行），含 Windows 安装修复、Dashboard/Gateway 修复、WhatsApp 配对、MCP/Provider 修复和大量稳定性工作",
+            "detail": "Patch release rolling up ~660 PRs merged since v0.18.0 — bug fixes, hardening, and in-progress feature work including installer/updater self-healing on Windows, dashboard and gateway fixes, WhatsApp dashboard pairing, MCP and provider fixes.",
+            "summaryZh": "v0.18.1 补丁：660+ PR 滚动，Windows 修复/Dashboard/Gateway/WhatsApp/MCP 稳定性"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.1",
+        "date": "2026-07-01",
+        "features": [
+          {
+            "title": "P0/P1 全量清零 — 100% 解决",
+            "tag": "修复",
+            "summary": "12 天内解决约 692 个最高优先级项（496 issues + 196 PRs），仓库 P0/P1 归零并承诺保持",
+            "detail": "Resolved ~692 highest-priority items in twelve days — 496 issues closed and 196 PRs merged. The open P0/P1 count hit 0 across the entire repo.",
+            "summaryZh": "P0/P1 全量清零：12 天解决 692 个最高优先级项，仓库归零"
           },
           {
-            title: "Mixture-of-Agents 升级为一等模型",
-            tag: "新增",
-            summary: "MoA 预设作为可选虚拟模型出现在所有模型选择器中，参考模型推理实时展示，聚合器流式输出",
-            detail: "MoA presets now appear as selectable virtual models under a moa provider in every model picker. Each reference model's full output renders as labelled blocks, and the aggregator streams live.",
-            summaryZh: "MoA 一等模型：预设即选 + 参考推理展示 + 聚合器流式"
+            "title": "Mixture-of-Agents 升级为一等模型",
+            "tag": "新增",
+            "summary": "MoA 预设作为可选虚拟模型出现在所有模型选择器中，参考模型推理实时展示，聚合器流式输出",
+            "detail": "MoA presets now appear as selectable virtual models under a moa provider in every model picker. Each reference model's full output renders as labelled blocks, and the aggregator streams live.",
+            "summaryZh": "MoA 一等模型：预设即选 + 参考推理展示 + 聚合器流式"
           },
           {
-            title: "Agent 自证完成 — 验证而非声称",
-            tag: "新增",
-            summary: "/goal 新增完成契约，Agent 通过实际运行项目检查来判定完成；新增 pre_verify 钩子",
-            detail: "Hermes now records verification evidence for coding work. /goal gained completion contracts: you state what 'done' looks like, and the standing-goal loop judges against evidence.",
-            summaryZh: "Agent 自证完成：/goal 完成契约 + pre_verify 钩子 + 证据验证"
+            "title": "Agent 自证完成 — 验证而非声称",
+            "tag": "新增",
+            "summary": "/goal 新增完成契约，Agent 通过实际运行项目检查来判定完成；新增 pre_verify 钩子",
+            "detail": "Hermes now records verification evidence for coding work. /goal gained completion contracts: you state what 'done' looks like, and the standing-goal loop judges against evidence.",
+            "summaryZh": "Agent 自证完成：/goal 完成契约 + pre_verify 钩子 + 证据验证"
           },
           {
-            title: "/learn — 一键蒸馏可复用技能",
-            tag: "新增",
-            summary: "/learn 从目录、URL 或工作流中蒸馏出可复用技能，自动遵循 CONTRIBUTING.md 标准",
-            detail: "Run /learn and Hermes distills a reusable skill out of whatever you point it at — a directory, a URL, or a workflow.",
-            summaryZh: "/learn 一键蒸馏：目录/URL/工作流 → 可复用技能"
+            "title": "/learn — 一键蒸馏可复用技能",
+            "tag": "新增",
+            "summary": "/learn 从目录、URL 或工作流中蒸馏出可复用技能，自动遵循 CONTRIBUTING.md 标准",
+            "detail": "Run /learn and Hermes distills a reusable skill out of whatever you point it at — a directory, a URL, or a workflow.",
+            "summaryZh": "/learn 一键蒸馏：目录/URL/工作流 → 可复用技能"
           },
           {
-            title: "/journey — 学习时间线可视化",
-            tag: "新增",
-            summary: "CLI/TUI 新增 /journey 学习时间线，桌面端新增可交互记忆图谱，Agent 记忆不再是黑箱",
-            detail: "CLI and TUI gained /journey, a learning timeline showing accumulated memories and skills. Pair it with the desktop's new memory graph — a playable radial timeline.",
-            summaryZh: "/journey 学习时间线 + 桌面端记忆图谱，Agent 记忆可视化"
+            "title": "/journey — 学习时间线可视化",
+            "tag": "新增",
+            "summary": "CLI/TUI 新增 /journey 学习时间线，桌面端新增可交互记忆图谱，Agent 记忆不再是黑箱",
+            "detail": "CLI and TUI gained /journey, a learning timeline showing accumulated memories and skills. Pair it with the desktop's new memory graph — a playable radial timeline.",
+            "summaryZh": "/journey 学习时间线 + 桌面端记忆图谱，Agent 记忆可视化"
           },
           {
-            title: "后台扇出 — 委派不阻塞",
-            tag: "新增",
-            summary: "delegate_task 后台并行运行多个子代理，完成后合并为单次回复，主对话不阻塞",
-            detail: "delegate_task can now fan out multiple subagents that all run in the background: your chat is never blocked, and results come back as a single consolidated turn.",
-            summaryZh: "后台扇出：并行子代理 + 不阻塞主对话 + 合并回复"
+            "title": "后台扇出 — 委派不阻塞",
+            "tag": "新增",
+            "summary": "delegate_task 后台并行运行多个子代理，完成后合并为单次回复，主对话不阻塞",
+            "detail": "delegate_task can now fan out multiple subagents that all run in the background: your chat is never blocked, and results come back as a single consolidated turn.",
+            "summaryZh": "后台扇出：并行子代理 + 不阻塞主对话 + 合并回复"
           },
           {
-            title: "桌面端一等编码项目",
-            tag: "新增",
-            summary: "桌面端新增 per-profile 项目面板（代码库/编码轨道/审查窗格/git worktree/Agent 项目工具）",
-            detail: "The desktop app gained real, per-profile Projects — a sidebar of your codebases, a coding rail, a review pane, git worktree management, and agent-facing project tools.",
-            summaryZh: "桌面端编码项目：代码库/编码轨道/审查/git worktree/Agent 工具"
+            "title": "桌面端一等编码项目",
+            "tag": "新增",
+            "summary": "桌面端新增 per-profile 项目面板（代码库/编码轨道/审查窗格/git worktree/Agent 项目工具）",
+            "detail": "The desktop app gained real, per-profile Projects — a sidebar of your codebases, a coding rail, a review pane, git worktree management, and agent-facing project tools.",
+            "summaryZh": "桌面端编码项目：代码库/编码轨道/审查/git worktree/Agent 工具"
           },
           {
-            title: "规模化部署 — 缩容至零与排空协调",
-            tag: "新增",
-            summary: "Gateway 空闲时休眠，重启/迁移前协调排空，不中断进行中的对话",
-            detail: "The gateway can go dormant when idle and quiesce cleanly before restart, migration, or auto-update without dropping in-flight conversations.",
-            summaryZh: "缩容至零 + 排空协调：空闲休眠 + 安全重启不丢对话"
+            "title": "规模化部署 — 缩容至零与排空协调",
+            "tag": "新增",
+            "summary": "Gateway 空闲时休眠，重启/迁移前协调排空，不中断进行中的对话",
+            "detail": "The gateway can go dormant when idle and quiesce cleanly before restart, migration, or auto-update without dropping in-flight conversations.",
+            "summaryZh": "缩容至零 + 排空协调：空闲休眠 + 安全重启不丢对话"
           },
           {
-            title: "Google Vertex AI 一等 Provider",
-            tag: "新增",
-            summary: "Vertex AI 作为 Gemini 一等 Provider，自动从服务账号 JSON/ADC 铸造和刷新短期 OAuth2 token",
-            detail: "Vertex AI is now a first-class provider for Gemini models. Hermes mints and auto-refreshes short-lived OAuth2 access tokens from a service-account JSON or ADC.",
-            summaryZh: "Vertex AI 一等 Provider：自动 OAuth2 token 铸造和刷新"
+            "title": "Google Vertex AI 一等 Provider",
+            "tag": "新增",
+            "summary": "Vertex AI 作为 Gemini 一等 Provider，自动从服务账号 JSON/ADC 铸造和刷新短期 OAuth2 token",
+            "detail": "Vertex AI is now a first-class provider for Gemini models. Hermes mints and auto-refreshes short-lived OAuth2 access tokens from a service-account JSON or ADC.",
+            "summaryZh": "Vertex AI 一等 Provider：自动 OAuth2 token 铸造和刷新"
           },
           {
-            title: "安全加固轮",
-            tag: "安全",
-            summary: "MCP 配置持久化攻击面收紧、cron base_url 凭据外泄阻断、Slack xapp- token 脱敏、浏览器云元数据 SSRF 底线、aiohttp CVE 修复",
-            detail: "Hardened MCP-config persistence, blocked cron base_url credential exfiltration, Slack xapp- token redaction, browser cloud-metadata floor, and aiohttp CVE floor.",
-            summaryZh: "安全加固：MCP/cron/Slack/浏览器/aiohttp 六维防护"
+            "title": "安全加固轮",
+            "tag": "安全",
+            "summary": "MCP 配置持久化攻击面收紧、cron base_url 凭据外泄阻断、Slack xapp- token 脱敏、浏览器云元数据 SSRF 底线、aiohttp CVE 修复",
+            "detail": "Hardened MCP-config persistence, blocked cron base_url credential exfiltration, Slack xapp- token redaction, browser cloud-metadata floor, and aiohttp CVE floor.",
+            "summaryZh": "安全加固：MCP/cron/Slack/浏览器/aiohttp 六维防护"
           },
           {
-            title: "更便宜的自改进 — 智能后台审查",
-            tag: "优化",
-            summary: "后轮次自改进分支改用辅助模型、上下文摘要和自适应节奏，成本大幅降低",
-            detail: "The post-turn self-improvement fork now routes to an auxiliary model, digests context instead of replaying the whole conversation, and adapts its cadence.",
-            summaryZh: "自改进成本降低：辅助模型 + 上下文摘要 + 自适应节奏"
+            "title": "更便宜的自改进 — 智能后台审查",
+            "tag": "优化",
+            "summary": "后轮次自改进分支改用辅助模型、上下文摘要和自适应节奏，成本大幅降低",
+            "detail": "The post-turn self-improvement fork now routes to an auxiliary model, digests context instead of replaying the whole conversation, and adapts its cadence.",
+            "summaryZh": "自改进成本降低：辅助模型 + 上下文摘要 + 自适应节奏"
           }
         ]
       }
     ]
   }
-
 ];
 
 if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
