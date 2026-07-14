@@ -4,126 +4,162 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
-        "version": "v2026.7.1-beta.1",
-        "date": "2026-07-02",
+        "version": "v2026.7.1",
+        "date": "2026-07-13",
         "features": [
           {
-            "title": "GPT-5.6 模型支持",
+            "title": "Skill Workshop 历史回顾与自动提案",
             "tag": "新增",
-            "summary": "OpenClaw 识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择",
-            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
-            "summaryZh": "GPT-5.6 全链路支持"
+            "summary": "新增手动、最新优先的会话扫描机制，自动搜索历史工作并生成技能提案，即使自主学习关闭也可保留最多 3 条待处理提案",
+            "detail": "Skill Workshop history review: add a manual, newest-first session scan that progressively searches older substantial work for conservative skill ideas, stores only SQLite cursor metadata, and leaves up to three results as pending proposals even when autonomous self-learning is disabled.",
+            "summaryZh": "手动扫描历史工作生成技能提案，自主学习关闭时仍可保留待处理项"
           },
           {
-            "title": "外部挂载代理 (openclaw attach)",
+            "title": "SQLite 数据库快照备份",
             "tag": "新增",
-            "summary": "可将外部编码代理挂载到已有 Gateway 会话",
-            "detail": "openclaw attach launches an external harness against an existing Gateway session.",
-            "summaryZh": "外部代理挂载到 Gateway 会话"
+            "summary": "新增 openclaw backup sqlite create|list|verify|restore 命令，支持紧凑、可验证的全局和 per-agent 数据库快照",
+            "detail": "SQLite snapshots: add openclaw backup sqlite create|list|verify|restore for compact, verified global and per-agent database artifacts with fresh-target-only restore.",
+            "summaryZh": "新增数据库快照备份命令，支持创建、列表、验证和恢复"
           },
           {
-            "title": "Telegram Codex 工作流",
+            "title": "GPT-5.6 Ultra 与运行时切换",
             "tag": "新增",
-            "summary": "Telegram 支持 /login 配对、/steer 操控、跨故障恢复",
-            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
-            "summaryZh": "Telegram Codex 配对与操控"
+            "summary": "支持 Sol、Terra、Luna 三种 GPT-5.6 变体，通过 /model 和 fallback 实现模型、运行时和推理模式的原子化切换",
+            "detail": "GPT-5.6 Ultra and runtime switching: support Sol, Terra, and Luna across OpenClaw and Codex engines; keep model, runtime, and thinking selection atomic through /model and fallback.",
+            "summaryZh": "支持 GPT-5.6 Sol/Terra/Luna，通过 /model 原子化切换"
           },
           {
-            "title": "事件驱动定时任务",
+            "title": "Meta Provider muse-spark-1.1 模型支持",
             "tag": "新增",
-            "summary": "on-exit 调度类型在命令退出时唤醒 Agent",
-            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits.",
-            "summaryZh": "命令退出触发 Agent 唤醒"
+            "summary": "内置 Meta muse-spark-1.1 模型，支持 Responses API 流式传输、工具调用和加密推理回放",
+            "detail": "Meta provider: add bundled muse-spark-1.1 model support with Responses API streaming, tool calls, encrypted reasoning replay, onboarding, and standalone npm/ClawHub distribution.",
+            "summaryZh": "内置 Meta muse-spark-1.1，支持流式传输和工具调用"
           },
           {
-            "title": "原生应用 iOS 26 刷新",
+            "title": "Android 聊天 Agent 选择器",
+            "tag": "新增",
+            "summary": "在 Android 聊天界面直接切换活动 Agent，聊天、Talk 模式和主页共享同一会话",
+            "detail": "Android chat agent selector: switch the active agent directly from the live chat screen while keeping chat, Talk mode, and home canvas on the same canonical session.",
+            "summaryZh": "Android 端直接切换 Agent，聊天/Talk/主页共享会话"
+          },
+          {
+            "title": "Gateway 主机状态展示",
+            "tag": "新增",
+            "summary": "在 Control UI 设置中显示 Gateway 主机名、网络地址、OS、运行时、CPU、内存和磁盘信息",
+            "detail": "Gateway host status: show the connected Gateway host, network address, OS, runtime, uptime, CPU, memory, and disk details in Control UI Settings.",
+            "summaryZh": "Control UI 设置中显示 Gateway 完整主机状态"
+          },
+          {
+            "title": "iOS 离线聊天支持",
+            "tag": "新增",
+            "summary": "预绘制最近会话和历史记录，离线时禁用发送，配对重置时清除缓存",
+            "detail": "iOS offline chat: pre-paint recent sessions and canonical transcripts from a protected, bounded per-gateway cache, keep sending disabled offline, and purge cached conversation text when pairing is reset.",
+            "summaryZh": "iOS 支持离线浏览最近会话，断网不中断体验"
+          },
+          {
+            "title": "Slack 原生进度指示器",
             "tag": "优化",
-            "summary": "iOS 采用 iOS 26 视觉体系，多平台本地化扩展",
-            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows.",
-            "summaryZh": "iOS 26 Liquid Glass 视觉体系"
+            "summary": "默认使用 Slack 原生助手线程状态和旋转加载消息，确认反应保持静态",
+            "detail": "Slack progress indicators: use Slack native assistant thread status and rotating loading messages by default while keeping acknowledgement reactions static.",
+            "summaryZh": "Slack 默认使用原生线程状态和加载指示器"
           },
           {
-            "title": "iMessage 原生投票",
-            "tag": "新增",
-            "summary": "支持创建、读取和投票原生投票",
-            "detail": "iMessage gains native poll creation, reading, and voting.",
-            "summaryZh": "iMessage 原生投票"
-          },
-          {
-            "title": "作用域对话能力配置",
-            "tag": "新增",
-            "summary": "能力配置文件为每个对话准备独立的工具和访问边界",
-            "detail": "Capability profiles prepare per-conversation tool and access boundaries.",
-            "summaryZh": "对话级别工具与访问边界"
-          }
-        ]
-      },
-      {
-        "version": "v2026.7.1-beta.2",
-        "date": "2026-07-05",
-        "features": [
-          {
-            "title": "GPT-5.6 模型支持",
-            "tag": "新增",
-            "summary": "OpenClaw 现已识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择路径",
-            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
-            "summaryZh": "新增 GPT-5.6 全链路支持"
-          },
-          {
-            "title": "外部挂载代理 (openclaw attach)",
-            "tag": "新增",
-            "summary": "可将外部编码代理挂载到已有 Gateway 会话，便于恢复和检查 Codex 风格工作流",
-            "detail": "openclaw attach launches an external harness against an existing Gateway session, making interactive Codex-style workflows easier to resume and inspect.",
-            "summaryZh": "外部代理一键挂载到现有会话"
-          },
-          {
-            "title": "Telegram Codex 工作流",
-            "tag": "新增",
-            "summary": "Telegram 支持 /login 配对 Codex、/steer 操控运行、跨故障恢复最终回复",
-            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
-            "summaryZh": "Telegram 深度集成 Codex 工作流"
-          },
-          {
-            "title": "事件驱动定时任务",
-            "tag": "新增",
-            "summary": "新增 on-exit 调度类型，监控命令退出时唤醒 Agent；会话定向运行可干净分离",
-            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits, while session-targeted runs can detach cleanly.",
-            "summaryZh": "on-exit 调度：命令退出即触发 Agent"
-          },
-          {
-            "title": "原生应用全面刷新",
+            "title": "Control UI Talk 语音控制与设置",
             "tag": "优化",
-            "summary": "iOS 采用 iOS 26 视觉体系，Apple/Android 原生界面本地化扩展至多语言",
-            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows, while native app localization expands across Apple and Android surfaces.",
-            "summaryZh": "iOS 26 视觉体系 + 多语言本地化"
+            "summary": "语音、模型、灵敏度等实时设置集中在 Settings → Communications → Talk，支持选择浏览器音频输入设备",
+            "detail": "Control UI Talk controls: keep voice, model, sensitivity, and other realtime defaults in Settings → Communications → Talk, and use the composer microphone caret to select any browser audio input.",
+            "summaryZh": "语音设置集中管理，支持选择浏览器音频输入设备"
           },
           {
-            "title": "iMessage 原生投票",
-            "tag": "新增",
-            "summary": "iMessage 支持创建、读取和投票原生投票",
-            "detail": "iMessage gains native poll creation, reading, and voting.",
-            "summaryZh": "iMessage 原生投票功能上线"
-          },
-          {
-            "title": "作用域对话能力配置",
-            "tag": "新增",
-            "summary": "能力配置文件为每个对话准备工具和访问边界，不削弱默认配置",
-            "detail": "Capability profiles prepare per-conversation tool and access boundaries without weakening the existing default profile.",
-            "summaryZh": "每个对话独立工具与访问边界"
-          },
-          {
-            "title": "macOS 本地 Gateway 自动安装",
-            "tag": "新增",
-            "summary": "macOS 应用可自动安装并启动本地 Gateway，减少首次使用手动配置",
-            "detail": "The macOS app can now install and start its local Gateway automatically, reducing the manual setup needed before first use.",
-            "summaryZh": "macOS 一键安装本地 Gateway"
-          },
-          {
-            "title": "Control UI 导航重构",
+            "title": "Control UI 会话工作区与设置快捷键",
             "tag": "优化",
-            "summary": "会话优先侧边栏、紧凑上下文环、暖色主题、推理强度滑块、斜杠命令选择器",
-            "detail": "A session-first sidebar, compact context meter, warm light theme, reasoning-effort slider, streamlined composer, and slash-command picker make active conversations and commands easier to reach.",
-            "summaryZh": "Control UI 全面重构导航体验"
+            "summary": "⇧⌘B 展开/折叠会话工作区面板，⇧⌘, 打开设置",
+            "detail": "Control UI session workspace shortcut: expand or collapse the active Chat pane session workspace rail with ⇧⌘B. Control UI Settings shortcut: open Settings with ⇧⌘,.",
+            "summaryZh": "新增会话工作区和设置的键盘快捷键"
+          },
+          {
+            "title": "Control UI 聊天布局居中优化",
+            "tag": "优化",
+            "summary": "聊天记录以编辑器轴线居中，助手输出左对齐、用户气泡右对齐，保留自定义消息宽度",
+            "detail": "Control UI chat layout: center the transcript on the composer axis, keep assistant and tool output left and user bubbles right within the same readable frame.",
+            "summaryZh": "聊天布局居中优化，助手左/用户右，保留自定义宽度"
+          },
+          {
+            "title": "Control UI 侧边栏导航重构",
+            "tag": "优化",
+            "summary": "支持小尺寸可自定义固定导航项，其余页面收纳到更多，设置移至页脚",
+            "detail": "Control UI sidebar navigation: show a small customizable pinned destination set, keep the remaining pages under More, move Settings to the footer, and persist sidebar customization.",
+            "summaryZh": "侧边栏支持固定导航项，设置移至页脚，配置持久化"
+          },
+          {
+            "title": "Control UI GitHub 预览卡片",
+            "tag": "新增",
+            "summary": "在悬停和键盘聚焦时显示 Issue/PR 的状态、标题、作者、活动、评论和变更统计",
+            "detail": "Control UI GitHub previews: show issue and pull request state, title, author, activity, comments, and change statistics in hover and keyboard-focus cards.",
+            "summaryZh": "悬停显示 Issue/PR 详情卡片，含状态和变更统计"
+          },
+          {
+            "title": "Logbook 工作日志插件",
+            "tag": "新增",
+            "summary": "默认关闭的内置插件，将节点屏幕截图转为私人时间线、每日站会和基于时间线的问答",
+            "detail": "Logbook work journal: add a disabled-by-default bundled plugin that turns paired-node screen snapshots into a private timeline, daily standup, and timeline-grounded Q&A.",
+            "summaryZh": "内置 Logbook 插件，屏幕截图转时间线和每日站会"
+          },
+          {
+            "title": "Cron 定时任务模型选择",
+            "tag": "优化",
+            "summary": "Control UI 快速创建中可选择 Agent Turn 模型，任务列表和详情中显示配置或默认模型",
+            "detail": "Cron model selection: choose an agent-turn model in Control UI Quick Create and show configured or default models in cron job rows and details.",
+            "summaryZh": "定时任务支持在 UI 中选择模型"
+          },
+          {
+            "title": "Gateway TTS 语音播放",
+            "tag": "新增",
+            "summary": "新增操作员范围的 tts.speak RPC，返回配置的 TTS 提供商语音作为内联音频",
+            "detail": "Gateway TTS playback: add an operator-scoped tts.speak RPC that returns configured-provider speech as inline whole-clip audio for remote clients.",
+            "summaryZh": "新增 TTS 语音 RPC，支持远程客户端内联播放"
+          },
+          {
+            "title": "ClawHub 插件 API 范围修复",
+            "tag": "修复",
+            "summary": "委托 semver 处理波浪号、部分通配符和预发布插入符号范围，修复版本匹配错误",
+            "detail": "ClawHub plugin API ranges: delegate each supported comparator to semver so tilde, partial-wildcard, and prerelease caret bounds are correct.",
+            "summaryZh": "修复插件版本范围匹配错误，委托 semver 正确处理"
+          },
+          {
+            "title": "浏览器自动路由回退修复",
+            "tag": "修复",
+            "summary": "当隐式选择的浏览器节点报告控制主机不可达时，回退到 Gateway 主机",
+            "detail": "Browser auto-routing: fall back to the Gateway host when an implicitly selected browser node reports that its control host is unreachable.",
+            "summaryZh": "浏览器节点不可达时自动回退到 Gateway 主机"
+          },
+          {
+            "title": "Gateway 进程内重启状态清理",
+            "tag": "修复",
+            "summary": "清除过期 SIGUSR1 重启状态并恢复挂起的主机调度，防止重启冷却泄漏到下一个生命周期",
+            "detail": "Gateway in-process restarts: clear stale SIGUSR1 restart state and resume prepared host suspensions before rebuilding runtime admission.",
+            "summaryZh": "修复进程内重启后状态泄漏，清除过期重启信号"
+          },
+          {
+            "title": "Claude CLI 上下文预算修复",
+            "tag": "修复",
+            "summary": "正确遵守 Anthropic 模型和 per-agent contextTokens 限制，传递有效限制到 Claude Code 自动压缩器",
+            "detail": "Claude CLI context budgets: honor Anthropic model and per-agent contextTokens limits by passing the effective limit to Claude Code native auto-compactor.",
+            "summaryZh": "修复 Claude CLI 上下文预算未正确传递的 bug"
+          },
+          {
+            "title": "原生应用连接与中继可靠性修复",
+            "tag": "修复",
+            "summary": "修复 Android 断连、远程摄像头权限、iOS 引导连接失败、Watch 事件丢失等多个原生应用问题",
+            "detail": "Native app connection and relay reliability: fix Android disconnects, remote camera commands, iOS onboarding connection failures, stale Talk owners, and Watch event handling.",
+            "summaryZh": "修复 Android/iOS/Watch 多个原生连接和事件处理问题"
+          },
+          {
+            "title": "Deepgram 实时自定义端点修复",
+            "tag": "修复",
+            "summary": "验证 Voice Call 流式 base URL，保留显式 ws:// 和 wss:// 端点，映射 HTTP scheme 到对应 WebSocket 传输",
+            "detail": "Deepgram realtime custom endpoints: validate Voice Call streaming base URLs, preserve explicit ws:// and wss:// endpoints, and map HTTP schemes to matching WebSocket transport.",
+            "summaryZh": "修复 Deepgram 自定义端点的协议映射和验证"
           }
         ]
       },
@@ -248,6 +284,130 @@ const CHANGELOG_DATA = [
             "summary": "恢复任务记录时规范化旧版投递状态，旧队列任务可运行而非中止注册恢复",
             "detail": "Normalize legacy delivery statuses while restoring task records so older queued work becomes runnable instead of aborting registry recovery.",
             "summaryZh": "任务投递恢复：旧版状态规范化，队列任务不再中止"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.1-beta.2",
+        "date": "2026-07-05",
+        "features": [
+          {
+            "title": "GPT-5.6 模型支持",
+            "tag": "新增",
+            "summary": "OpenClaw 现已识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择路径",
+            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
+            "summaryZh": "新增 GPT-5.6 全链路支持"
+          },
+          {
+            "title": "外部挂载代理 (openclaw attach)",
+            "tag": "新增",
+            "summary": "可将外部编码代理挂载到已有 Gateway 会话，便于恢复和检查 Codex 风格工作流",
+            "detail": "openclaw attach launches an external harness against an existing Gateway session, making interactive Codex-style workflows easier to resume and inspect.",
+            "summaryZh": "外部代理一键挂载到现有会话"
+          },
+          {
+            "title": "Telegram Codex 工作流",
+            "tag": "新增",
+            "summary": "Telegram 支持 /login 配对 Codex、/steer 操控运行、跨故障恢复最终回复",
+            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
+            "summaryZh": "Telegram 深度集成 Codex 工作流"
+          },
+          {
+            "title": "事件驱动定时任务",
+            "tag": "新增",
+            "summary": "新增 on-exit 调度类型，监控命令退出时唤醒 Agent；会话定向运行可干净分离",
+            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits, while session-targeted runs can detach cleanly.",
+            "summaryZh": "on-exit 调度：命令退出即触发 Agent"
+          },
+          {
+            "title": "原生应用全面刷新",
+            "tag": "优化",
+            "summary": "iOS 采用 iOS 26 视觉体系，Apple/Android 原生界面本地化扩展至多语言",
+            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows, while native app localization expands across Apple and Android surfaces.",
+            "summaryZh": "iOS 26 视觉体系 + 多语言本地化"
+          },
+          {
+            "title": "iMessage 原生投票",
+            "tag": "新增",
+            "summary": "iMessage 支持创建、读取和投票原生投票",
+            "detail": "iMessage gains native poll creation, reading, and voting.",
+            "summaryZh": "iMessage 原生投票功能上线"
+          },
+          {
+            "title": "作用域对话能力配置",
+            "tag": "新增",
+            "summary": "能力配置文件为每个对话准备工具和访问边界，不削弱默认配置",
+            "detail": "Capability profiles prepare per-conversation tool and access boundaries without weakening the existing default profile.",
+            "summaryZh": "每个对话独立工具与访问边界"
+          },
+          {
+            "title": "macOS 本地 Gateway 自动安装",
+            "tag": "新增",
+            "summary": "macOS 应用可自动安装并启动本地 Gateway，减少首次使用手动配置",
+            "detail": "The macOS app can now install and start its local Gateway automatically, reducing the manual setup needed before first use.",
+            "summaryZh": "macOS 一键安装本地 Gateway"
+          },
+          {
+            "title": "Control UI 导航重构",
+            "tag": "优化",
+            "summary": "会话优先侧边栏、紧凑上下文环、暖色主题、推理强度滑块、斜杠命令选择器",
+            "detail": "A session-first sidebar, compact context meter, warm light theme, reasoning-effort slider, streamlined composer, and slash-command picker make active conversations and commands easier to reach.",
+            "summaryZh": "Control UI 全面重构导航体验"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.1-beta.1",
+        "date": "2026-07-02",
+        "features": [
+          {
+            "title": "GPT-5.6 模型支持",
+            "tag": "新增",
+            "summary": "OpenClaw 识别 GPT-5.6 模型家族，覆盖目录、能力与运行时选择",
+            "detail": "OpenClaw now recognizes the GPT-5.6 model family across catalog, capability, and runtime selection paths.",
+            "summaryZh": "GPT-5.6 全链路支持"
+          },
+          {
+            "title": "外部挂载代理 (openclaw attach)",
+            "tag": "新增",
+            "summary": "可将外部编码代理挂载到已有 Gateway 会话",
+            "detail": "openclaw attach launches an external harness against an existing Gateway session.",
+            "summaryZh": "外部代理挂载到 Gateway 会话"
+          },
+          {
+            "title": "Telegram Codex 工作流",
+            "tag": "新增",
+            "summary": "Telegram 支持 /login 配对、/steer 操控、跨故障恢复",
+            "detail": "Telegram can now start Codex pairing with /login, steer active Codex runs, and recover final replies across transient API failures.",
+            "summaryZh": "Telegram Codex 配对与操控"
+          },
+          {
+            "title": "事件驱动定时任务",
+            "tag": "新增",
+            "summary": "on-exit 调度类型在命令退出时唤醒 Agent",
+            "detail": "The new on-exit schedule kind wakes an agent when a watched command exits.",
+            "summaryZh": "命令退出触发 Agent 唤醒"
+          },
+          {
+            "title": "原生应用 iOS 26 刷新",
+            "tag": "优化",
+            "summary": "iOS 采用 iOS 26 视觉体系，多平台本地化扩展",
+            "detail": "iOS adopts the iOS 26 visual system with clearer navigation, settings, Chat, Talk, and onboarding flows.",
+            "summaryZh": "iOS 26 Liquid Glass 视觉体系"
+          },
+          {
+            "title": "iMessage 原生投票",
+            "tag": "新增",
+            "summary": "支持创建、读取和投票原生投票",
+            "detail": "iMessage gains native poll creation, reading, and voting.",
+            "summaryZh": "iMessage 原生投票"
+          },
+          {
+            "title": "作用域对话能力配置",
+            "tag": "新增",
+            "summary": "能力配置文件为每个对话准备独立的工具和访问边界",
+            "detail": "Capability profiles prepare per-conversation tool and access boundaries.",
+            "summaryZh": "对话级别工具与访问边界"
           }
         ]
       }
@@ -57027,4 +57187,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
