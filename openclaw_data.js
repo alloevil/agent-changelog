@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.2-beta.1",
+        "date": "2026-07-15",
+        "features": [
+          {
+            "title": "远程编码会话",
+            "tag": "新增",
+            "summary": "支持在云端 Worker 上运行 Control UI 会话，在终端中打开 Codex 和 Claude 编目会话，并直接在终端中恢复 OpenCode 和 Pi 会话",
+            "detail": "Run Control UI sessions on cloud workers, open Codex and Claude catalog sessions in terminals on their owning hosts, and resume OpenCode and Pi sessions directly in a terminal.",
+            "summaryZh": "云端 Worker 运行远程编码会话，终端中打开/恢复 Codex、Claude、OpenCode、Pi 会话"
+          },
+          {
+            "title": "原生自动化与节点能力",
+            "tag": "新增",
+            "summary": "移动端实现 Automations 功能对等，Android 前台语音唤醒，无头 Linux 节点暴露摄像头、定位和通知能力",
+            "detail": "Bring Automations parity to mobile, add foreground Voice Wake on Android, and expose camera, location, and notification capabilities from headless Linux nodes.",
+            "summaryZh": "移动端自动化对等、Android 语音唤醒、Linux 节点摄像头/定位/通知能力"
+          },
+          {
+            "title": "渠道安全性增强",
+            "tag": "修复",
+            "summary": "修复 Telegram 持久化入口重启后丢失、Signal 停止和审批控件在活跃回合中无响应、渠道白名单授予 owner 权限的问题",
+            "detail": "Prevent Telegram durable-ingress loss after restarts, keep Signal stop and approval controls responsive during active turns, and stop channel allowlists from granting owner access.",
+            "summaryZh": "修复 Telegram 重启丢失、Signal 控件无响应、渠道白名单越权问题"
+          },
+          {
+            "title": "引导式 Control UI 设置",
+            "tag": "新增",
+            "summary": "在设置中配置模型提供商，通过引导页面接入渠道，创建会话时可选择镜像和模型",
+            "detail": "Configure model providers from Settings, onboard channels through a guided setup page, and choose images and models while creating sessions.",
+            "summaryZh": "Control UI 引导设置：模型提供商配置、渠道接入引导、会话镜像/模型选择"
+          },
+          {
+            "title": "Gateway 与会话恢复",
+            "tag": "修复",
+            "summary": "修复重启准入阻塞 Gateway、回复会话在终结化停滞时无法恢复、一次性 cron 任务在生命周期竞争中被禁用的问题",
+            "detail": "Prevent restart admission from wedging the Gateway, recover reply sessions after finalization stalls, and keep one-shot cron jobs enabled through lifecycle claim races.",
+            "summaryZh": "修复 Gateway 阻塞、会话恢复停滞、cron 任务竞争禁用问题"
+          },
+          {
+            "title": "Linux 安装包支持",
+            "tag": "新增",
+            "summary": "新增 deb 和 AppImage 安装包，含 Gateway 引导指南；Windows 安装在 winget 添加 Node.js 后可立即继续",
+            "detail": "Add Linux deb and AppImage bundles with Gateway guidance, publish them from stable main-based releases, and let Windows installs continue immediately after winget adds Node.js.",
+            "summaryZh": "新增 Linux deb/AppImage 安装包，优化 Windows 安装流程"
+          },
+          {
+            "title": "终端会话改进",
+            "tag": "修复",
+            "summary": "保留早期按键输入、启用配对节点终端操作、授权配对节点目录读取、恢复过期 Control UI 连接、慢速客户端在高负载下保持连接",
+            "detail": "Preserve early keystrokes, enable paired-node terminal actions, authorize paired-node catalog reads, recover after stale Control UI connections, and keep slow clients attached under heavy output.",
+            "summaryZh": "终端体验改进：保留按键、配对节点操作、连接恢复、慢客户端稳定性"
+          },
+          {
+            "title": "Control UI 配置修复",
+            "tag": "修复",
+            "summary": "自动保存已验证的编辑、恢复自动保存门控、显示未应用重启状态、修复内容滚动和选择行为",
+            "detail": "Auto-save validated edits, restore autosave gates, show unapplied-restart state, and keep normal content scrolling and selection behavior.",
+            "summaryZh": "修复配置自动保存、重启状态显示、内容滚动行为"
+          },
+          {
+            "title": "Signal 恢复增强",
+            "tag": "修复",
+            "summary": "修复容器握手停滞后的重连、重启期间的重叠守护进程、电话号码标准化时保留用户名目标",
+            "detail": "Reconnect after stalled container handshakes, prevent overlapping daemons during restart, and preserve username targets during phone normalization.",
+            "summaryZh": "Signal 重连、去重叠守护进程、电话标准化修复"
+          },
+          {
+            "title": "Codex CLI 更新",
+            "tag": "变更",
+            "summary": "内置 Codex CLI 插件升级至 0.144.4 版本",
+            "detail": "Bump the bundled plugin to Codex CLI 0.144.4.",
+            "summaryZh": "Codex CLI 插件升级至 0.144.4"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.1",
         "date": "2026-07-13",
         "features": [
@@ -57187,4 +57263,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
