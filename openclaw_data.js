@@ -4,6 +4,131 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.2-beta.2",
+        "date": "2026-07-17",
+        "features": [
+          {
+            "title": "远程编码会话",
+            "tag": "新增",
+            "summary": "支持在云端 Worker 运行 Control UI 会话，在终端中打开 Codex 和 Claude 目录会话，并直接在终端恢复 OpenCode 和 Pi 会话。",
+            "detail": "Run Control UI sessions on cloud workers, open Codex and Claude catalog sessions in terminals on their owning hosts, and resume OpenCode and Pi sessions directly in a terminal.",
+            "summaryZh": "云端运行 Control UI 会话，终端直接打开/恢复 Codex、Claude、OpenCode、Pi 会话"
+          },
+          {
+            "title": "原生自动化与节点能力",
+            "tag": "新增",
+            "summary": "移动端实现 Automations 功能对等，Android 前台语音唤醒，以及无头 Linux 节点暴露摄像头、位置和通知能力。",
+            "detail": "Bring Automations parity to mobile, add foreground Voice Wake on Android, and expose camera, location, and notification capabilities from headless Linux nodes.",
+            "summaryZh": "移动端 Automations 对等、Android 语音唤醒、Linux 节点暴露摄像头/位置/通知"
+          },
+          {
+            "title": "更安全的通道操作",
+            "tag": "修复",
+            "summary": "修复 Telegram 重启后持久化数据丢失、Signal 停止和审批控件在活跃会话时无响应、通道白名单意外授予所有者权限的问题。",
+            "detail": "Prevent Telegram durable-ingress loss after restarts, keep Signal stop and approval controls responsive during active turns, and stop channel allowlists from granting owner access.",
+            "summaryZh": "修复 Telegram 重启丢数据、Signal 响应卡顿、通道白名单越权"
+          },
+          {
+            "title": "Control UI 引导设置",
+            "tag": "优化",
+            "summary": "从 Settings 配置模型提供商，通过引导页面配置通道，创建会话时可选择镜像和模型。",
+            "detail": "Configure model providers from Settings, onboard channels through a guided setup page, and choose images and models while creating sessions.",
+            "summaryZh": "Settings 配置模型、引导页配置通道、创建会话选镜像和模型"
+          },
+          {
+            "title": "Gateway 与会话恢复",
+            "tag": "修复",
+            "summary": "修复重启准入阻塞 Gateway、回复会话最终化卡顿、一次性 cron 任务生命周期竞争导致被禁用的问题。",
+            "detail": "Prevent restart admission from wedging the Gateway, recover reply sessions after finalization stalls, and keep one-shot cron jobs enabled through lifecycle claim races.",
+            "summaryZh": "修复 Gateway 重启阻塞、会话卡顿恢复、cron 任务竞争保持启用"
+          },
+          {
+            "title": "Linux 安装包支持",
+            "tag": "新增",
+            "summary": "新增 Linux deb 和 AppImage 打包，附带 Gateway 引导说明；Windows 安装在 winget 添加 Node.js 后可立即继续。",
+            "detail": "Add Linux deb and AppImage bundles with Gateway guidance, and let Windows installs continue immediately after winget adds Node.js.",
+            "summaryZh": "新增 Linux deb/AppImage 包，Windows 安装体验优化"
+          },
+          {
+            "title": "外部网关监管模式",
+            "tag": "变更",
+            "summary": "新增 OPENCLAW_SUPERVISOR_MODE=external 用于 OCM 等生命周期管理者，阻断原生服务变更和自更新。",
+            "detail": "Add OPENCLAW_SUPERVISOR_MODE=external for lifecycle owners such as OCM, blocking native service mutation and self-update with versioned atomic restart-handoff.",
+            "summaryZh": "新增 external 监管模式，OCM 等外部系统可控但不暴露原生服务权限"
+          },
+          {
+            "title": "ClickClack 引导设置与命令菜单",
+            "tag": "新增",
+            "summary": "通过 openclaw onboard 或 channels add clickclack 引导配置；启动时自动发布命令到 ClickClack 作曲家自动补全。",
+            "detail": "Configure ClickClack from openclaw onboard with URL/token/workspace prompts; publish native commands to ClickClack composer autocomplete at gateway startup.",
+            "summaryZh": "ClickClack 引导配置 + 启动时自动发布命令菜单"
+          },
+          {
+            "title": "Skill Workshop 审批策略调整",
+            "tag": "变更",
+            "summary": "默认跳过 agent 发起的 apply/reject/quarantine 额外审批提示，需显式 opt-in 开启审批门控。",
+            "detail": "Run agent-initiated workshop actions without an additional approval prompt by default while preserving opt-in approval gate.",
+            "summaryZh": "Skill Workshop 默认免审批，opt-in 启用审批门控"
+          },
+          {
+            "title": "TUI 模糊选择器",
+            "tag": "优化",
+            "summary": "委托 pi-tui 处理列表匹配，新增斜杠 token 和字母数字匹配，移除本地匹配器分支。",
+            "detail": "Delegate list matching to pi-tui, adding slash-token and alpha-number matching while removing the local matcher fork.",
+            "summaryZh": "TUI 列表匹配委托 pi-tui，新增多种匹配方式"
+          },
+          {
+            "title": "macOS 配对节点终端",
+            "tag": "新增",
+            "summary": "嵌入式节点主机广播双向 Codex 和 Claude 终端恢复命令，通过原生应用桥接转发交互输入和取消。",
+            "detail": "Advertise duplex Codex and Claude terminal resume commands from the embedded node host and forward interactive input through the native app bridge.",
+            "summaryZh": "macOS 节点终端双向恢复 Codex/Claude 会话"
+          },
+          {
+            "title": "Control UI 目录终端",
+            "tag": "新增",
+            "summary": "在 Gateway 或配对节点主机的原生 CLI 中打开 Codex 和 Claude Code 会话，支持查看器/终端偏好和交互式 PTY 中继。",
+            "detail": "Open eligible Codex and Claude Code sessions in the native CLI on their Gateway or paired-node host with viewer-versus-terminal preferences and interactive PTY relay.",
+            "summaryZh": "Control UI 可在原生终端打开 Codex/Claude Code 会话"
+          },
+          {
+            "title": "Skill Workshop 历史回顾",
+            "tag": "新增",
+            "summary": "新增手动最新优先会话扫描，渐进搜索较早工作生成技能建议，仅存储 SQLite 游标元数据。",
+            "detail": "Add manual newest-first session scan that progressively searches older work for skill ideas, stores only SQLite cursor metadata, and leaves up to three results as pending proposals.",
+            "summaryZh": "手动扫描历史会话生成技能建议，最多 3 条待审提案"
+          },
+          {
+            "title": "OpenAI GPT-5.6 默认模型",
+            "tag": "变更",
+            "summary": "新 API 密钥设置默认使用 openai/gpt-5.6（Sol 别名），Codex/OAuth 设置使用 gpt-5.6-sol，Sol 默认中等推理强度。",
+            "detail": "Use openai/gpt-5.6 for fresh API-key setup and openai/gpt-5.6-sol for fresh Codex/OAuth setup, default Sol to medium reasoning across both runtimes.",
+            "summaryZh": "新设置默认 GPT-5.6 (Sol)，中等推理强度"
+          },
+          {
+            "title": "iOS 离线聊天",
+            "tag": "新增",
+            "summary": "从受保护的有界 per-gateway 缓存预绘制最近会话和规范转录，离线时禁用发送，配对重置时清除缓存。",
+            "detail": "Pre-paint recent sessions and canonical transcripts from a protected per-gateway cache, keep sending disabled offline, and purge cached text when pairing is reset.",
+            "summaryZh": "iOS 离线可查看最近会话，配对重置时清除缓存"
+          },
+          {
+            "title": "Slack 进度指示器",
+            "tag": "优化",
+            "summary": "默认使用 Slack 原生助手线程状态和轮换加载消息，静态确认反应；状态反应更新需显式开启。",
+            "detail": "Use Slack native assistant thread status and rotating loading messages by default; lifecycle reaction updates now require messages.statusReactions.enabled: true.",
+            "summaryZh": "Slack 默认原生进度指示器，状态反应需显式开启"
+          },
+          {
+            "title": "Control UI 多项体验优化",
+            "tag": "优化",
+            "summary": "包括 Talk 控件集中设置、会话工作区快捷键 ⇧⌘B、设置快捷键 ⇧⌘,、聊天布局居中、composer 脚注居中、助手操作栏位置调整、消息上下文悬停显示、会话标题悬停动画、侧边栏用量移除等。",
+            "detail": "Talk controls in Settings, session workspace shortcut ⇧⌘B, Settings shortcut ⇧⌘,, centered chat layout, composer footer alignment, assistant actions repositioning, per-message context on hover, session title hover animation, sidebar usage removal.",
+            "summaryZh": "Control UI 大量交互优化：快捷键、布局、上下文显示等"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.2-beta.1",
         "date": "2026-07-15",
         "features": [
