@@ -4,6 +4,110 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.2-beta.3",
+        "date": "2026-07-18",
+        "features": [
+          {
+            "title": "远程编码会话",
+            "tag": "新增",
+            "summary": "支持在云端 Worker 上运行 Control UI 会话，在所属主机终端中打开 Codex 和 Claude 目录会话，并可直接在终端中恢复 OpenCode 和 Pi 会话",
+            "detail": "Run Control UI sessions on cloud workers, open Codex and Claude catalog sessions in terminals on their owning hosts, and resume OpenCode and Pi sessions directly in a terminal.",
+            "summaryZh": "云端 Worker 运行编码会话，终端直接恢复 Codex/Claude/OpenCode/Pi"
+          },
+          {
+            "title": "原生自动化与节点能力",
+            "tag": "新增",
+            "summary": "移动端实现 Automations 功能对等，Android 前台语音唤醒，无头 Linux 节点暴露摄像头、定位和通知能力",
+            "detail": "Bring Automations parity to mobile, add foreground Voice Wake on Android, and expose camera, location, and notification capabilities from headless Linux nodes.",
+            "summaryZh": "移动端自动化对等 + Android 语音唤醒 + Linux 节点硬件能力暴露"
+          },
+          {
+            "title": "频道安全性增强",
+            "tag": "修复",
+            "summary": "修复 Telegram 重启后持久化消息丢失、Signal 停止和审批控件在活跃轮次中无响应、频道白名单错误授予 Owner 权限的问题",
+            "detail": "Prevent Telegram durable-ingress loss after restarts, keep Signal stop and approval controls responsive during active turns, and stop channel allowlists from granting owner access.",
+            "summaryZh": "修复 Telegram 重启丢消息、Signal 控件卡死、频道白名单越权"
+          },
+          {
+            "title": "Control UI 引导式设置",
+            "tag": "新增",
+            "summary": "从 Settings 配置模型供应商，通过引导页面添加频道，创建会话时选择镜像和模型",
+            "detail": "Configure model providers from Settings, onboard channels through a guided setup page, and choose images and models while creating sessions.",
+            "summaryZh": "Control UI 支持引导式配置模型供应商和频道"
+          },
+          {
+            "title": "Gateway 与会话恢复",
+            "tag": "修复",
+            "summary": "修复重启准入阻塞 Gateway、回复会话终结卡死、一次性 Cron 任务在生命周期竞争中被禁用的问题",
+            "detail": "Prevent restart admission from wedging the Gateway, recover reply sessions after finalization stalls, and keep one-shot cron jobs enabled through lifecycle claim races.",
+            "summaryZh": "修复 Gateway 重启阻塞、会话卡死、Cron 任务竞争问题"
+          },
+          {
+            "title": "Linux 安装包发布",
+            "tag": "新增",
+            "summary": "新增 deb 和 AppImage 安装包（含 Gateway 引导），Windows 安装在 winget 添加 Node.js 后可立即继续",
+            "detail": "Add Linux deb and AppImage bundles with Gateway guidance, publish them from stable main-based releases, and let Windows installs continue immediately after winget adds Node.js.",
+            "summaryZh": "新增 Linux deb/AppImage 包，优化 Windows 安装流程"
+          },
+          {
+            "title": "外部 Gateway 监管模式",
+            "tag": "新增",
+            "summary": "新增 OPENCLAW_SUPERVISOR_MODE=external 配置，供 OCM 等生命周期管理者使用，阻止原生服务变更和自更新",
+            "detail": "Add OPENCLAW_SUPERVISOR_MODE=external for lifecycle owners such as OCM, preserving verified restart and deferral behavior without exposing native service authority.",
+            "summaryZh": "新增 external 监管模式，供 OCM 等外部生命周期管理"
+          },
+          {
+            "title": "ClickClack 引导配置与命令菜单",
+            "tag": "新增",
+            "summary": "支持通过 openclaw onboard 或 channels add clickclack 引导配置，启动时自动发布命令到作曲家自动补全",
+            "detail": "Configure ClickClack from openclaw onboard or openclaw channels add clickclack with guided prompts, and publish bot commands to composer autocomplete at gateway startup.",
+            "summaryZh": "ClickClack 支持引导配置和命令自动补全"
+          },
+          {
+            "title": "Skill Workshop 审批优化",
+            "tag": "优化",
+            "summary": "代理发起的 apply/reject/quarantine 操作默认跳过额外审批提示，可通过 approvalPolicy: pending 恢复",
+            "detail": "Run agent-initiated apply, reject, and quarantine actions without an additional approval prompt by default while preserving opt-in approval gate.",
+            "summaryZh": "Skill Workshop 代理操作默认免审批"
+          },
+          {
+            "title": "Control UI 目录终端",
+            "tag": "新增",
+            "summary": "在 Gateway 或配对节点主机的原生 CLI 中打开 Codex 和 Claude Code 会话，支持查看器与终端偏好设置",
+            "detail": "Open eligible Codex and Claude Code sessions in the native CLI on their Gateway or paired-node host, with viewer-versus-terminal preferences and an interactive PTY relay.",
+            "summaryZh": "Control UI 支持在原生终端打开 Codex/Claude 会话"
+          },
+          {
+            "title": "GPT-5.6 默认模型",
+            "tag": "变更",
+            "summary": "新 API Key 设置默认使用 openai/gpt-5.6 (Sol)，Codex/OAuth 默认使用 openai/gpt-5.6-sol，推理强度默认 medium",
+            "detail": "Use openai/gpt-5.6 (Sol alias) for fresh API-key setup and openai/gpt-5.6-sol for fresh Codex/OAuth setup, default Sol to medium reasoning.",
+            "summaryZh": "默认模型升级为 GPT-5.6 (Sol)"
+          },
+          {
+            "title": "iOS 离线聊天",
+            "tag": "新增",
+            "summary": "从受保护的本地缓存预加载最近会话和消息记录，离线时禁用发送，重置配对时清除缓存",
+            "detail": "Pre-paint recent sessions and canonical transcripts from a protected, bounded per-gateway cache, keep sending disabled offline, and purge cached conversation text when pairing is reset.",
+            "summaryZh": "iOS 支持离线查看聊天记录"
+          },
+          {
+            "title": "Slack 进度指示器",
+            "tag": "优化",
+            "summary": "默认使用 Slack 原生助手线程状态和旋转加载消息，生命周期表情更新需显式启用",
+            "detail": "Use Slack native assistant thread status and rotating loading messages by default; lifecycle reaction updates now require messages.statusReactions.enabled: true.",
+            "summaryZh": "Slack 改用原生线程状态指示器"
+          },
+          {
+            "title": "插件安装来源警告",
+            "tag": "安全",
+            "summary": "对任意可执行插件来源要求显式 --force 确认，受信任的 ClawHub/官方目录/捆绑包不受影响",
+            "detail": "Require explicit --force acknowledgement for arbitrary executable plugin sources in CLI and chat installs, keep trusted flows frictionless.",
+            "summaryZh": "非受信插件安装需显式确认"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.2-beta.2",
         "date": "2026-07-17",
         "features": [
