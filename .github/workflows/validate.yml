@@ -3,10 +3,22 @@ name: Validate JS Syntax
 on:
   push:
     branches: [master]
-    paths: ['index.html']
+    paths:
+      - 'index.html'
+      - 'openclaw.html'
+      - 'openclaw_data.js'
+      - 'hermes.html'
+      - 'hermes_data.js'
+      - 'scripts/sync.mjs'
   pull_request:
     branches: [master]
-    paths: ['index.html']
+    paths:
+      - 'index.html'
+      - 'openclaw.html'
+      - 'openclaw_data.js'
+      - 'hermes.html'
+      - 'hermes_data.js'
+      - 'scripts/sync.mjs'
 
 jobs:
   validate:
@@ -22,6 +34,9 @@ jobs:
 
       - name: Extract and validate JS syntax
         run: |
+          node --check openclaw_data.js
+          node --check hermes_data.js
+          node --check scripts/sync.mjs
           node -e "
             const fs = require('fs');
             const { execSync } = require('child_process');

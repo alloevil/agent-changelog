@@ -1,7 +1,7 @@
 name: Sync Changelog
 
 on:
-  workflow_dispatch: # Manual trigger only (semi-automatic mode)
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -28,10 +28,10 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet index.html; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          if git diff --quiet openclaw_data.js; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit and push
@@ -39,6 +39,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add openclaw_data.js
           git commit -m "chore: sync changelog from OpenClaw"
           git push

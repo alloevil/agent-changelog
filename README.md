@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/hero.svg" width="100%" alt="Agent Changelog — track version updates and evolution of AI agent frameworks like OpenClaw and Hermes Agent">
+  <img src="./assets/hero.svg" width="100%" alt="Agent Changelog - track version updates and evolution of AI agent frameworks like OpenClaw and Hermes Agent">
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
 
 Agent Changelog automatically tracks version updates for major AI agent frameworks. It pulls data from GitHub Releases API, parses the Highlights section from release notes, and generates a clean, browsable HTML changelog.
 
-**No manual updates needed** — a daily cron job syncs the latest releases automatically.
+Run the sync workflow manually to refresh release data from GitHub.
 
 ---
 
@@ -30,8 +30,8 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
 
 | Project | Source | Versions | Time Span |
 |------|------|--------|----------|
-| **OpenClaw** | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 32+ | 2026.1 — present |
-| **Hermes Agent** | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 12 | 2026.3 — present |
+| **OpenClaw** | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 32+ | 2026.1 - present |
+| **Hermes Agent** | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 12 | 2026.3 - present |
 
 ---
 
@@ -40,7 +40,7 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
 <details>
 <summary><b>Click to expand screenshots</b></summary>
 
-**Homepage** — project selection
+**Homepage** - project selection
 
 ![Homepage](assets/screenshot.png)
 
@@ -87,8 +87,18 @@ agent-changelog/
 ├── assets/             # Static assets (screenshots, etc.)
 ├── scripts/            # Build & sync scripts
 ├── skills/             # Skill-related files
-└── .github/            # GitHub Actions (daily sync)
+└── .github/            # GitHub Actions
 ```
+
+### Public feedback tracking
+
+After human approval, release maintainers can use [TweetClaw](https://github.com/Xquik-dev/tweetclaw) to search X/Twitter discussions, monitor release feedback, publish approved updates, and track replies.
+
+```bash
+openclaw plugins install clawhub:@xquik/tweetclaw
+```
+
+Use `openclaw plugins install npm:@xquik/tweetclaw` as the npm fallback. Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
 
 ---
 

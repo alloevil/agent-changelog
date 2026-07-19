@@ -3,7 +3,7 @@
 /**
  * sync.mjs
  * --------
- * Syncs OpenClaw GitHub Releases into index.html's CHANGELOG_DATA.
+ * Syncs OpenClaw GitHub Releases into openclaw_data.js.
  * Groups releases by month (monthly archive).
  *
  * Usage:
@@ -15,22 +15,22 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const INDEX_HTML = join(ROOT, 'index.html');
+const OPENCLAW_DATA = join(ROOT, 'openclaw_data.js');
 
 const REPO = 'openclaw/openclaw';
 const API_BASE = 'https://api.github.com';
 
-// AI summary config — reads from env, skips if not set
+// AI summary config - reads from env, skips if not set
 const AI_BASE_URL = process.env.ANTHROPIC_BASE_URL;
 const AI_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN;
 const AI_MODEL = 'xiaomi/mimo-v2-pro';
 const AI_BATCH_SIZE = 20;
 
-// Tag mapping: section headers in release body → tag categories
+// Tag mapping: section headers in release body to tag categories
 const SECTION_TAGS = {
   'Breaking': 'Breaking',
   'Changes':  '新功能',
@@ -298,49 +298,34 @@ function formatChangelogData(months) {
 }
 
 /**
- * Validate that the generated JS in index.html is syntactically correct.
- * Extracts all <script> blocks and runs `node --check` on each.
+ * Validate that the generated data file is syntactically correct.
  */
-function validateJsSyntax(html) {
-  const scriptRegex = /<script>([\s\S]*?)<\/script>/g;
-  let match;
-  let idx = 0;
+function validateJsSyntax(source) {
+  const result = spawnSync(process.execPath, ['--check'], {
+    input: source,
+    encoding: 'utf-8',
+  });
 
-  while ((match = scriptRegex.exec(html)) !== null) {
-    idx++;
-    const scriptBody = match[1].trim();
-    if (!scriptBody) continue;
-
-    const tmpFile = `/tmp/changelog_validate_${idx}.js`;
-    writeFileSync(tmpFile, scriptBody, 'utf-8');
-
-    try {
-      execSync(`node --check ${tmpFile}`, { stdio: 'pipe' });
-    } catch (err) {
-      const stderr = err.stderr?.toString() || '';
-      throw new Error(`JS syntax error in <script> block #${idx}:\n${stderr}`);
-    }
+  if (result.status !== 0) {
+    throw new Error(`JavaScript syntax error in generated data:\n${result.stderr}`);
   }
 
-  console.log(`  Validated ${idx} <script> block(s) — syntax OK.`);
+  console.log('  Validated openclaw_data.js syntax.');
 }
 
-function updateIndexHtml(months) {
-  const html = readFileSync(INDEX_HTML, 'utf-8');
-  const dataRegex = /const CHANGELOG_DATA\s*=\s*\[[\s\S]*?^\];/m;
-
+function updateOpenClawData(months) {
+  const currentSource = readFileSync(OPENCLAW_DATA, 'utf-8');
   const newArray = formatChangelogData(months);
-  const newHtml = html.replace(dataRegex, () => `const CHANGELOG_DATA = ${newArray};`);
+  const newSource = `const CHANGELOG_DATA = ${newArray};\n`;
 
-  if (newHtml === html) {
-    console.log('No CHANGELOG_DATA found in index.html, or content unchanged.');
+  if (newSource === currentSource) {
+    console.log('openclaw_data.js is unchanged.');
     return false;
   }
 
-  // Validate JS syntax before writing
-  validateJsSyntax(newHtml);
+  validateJsSyntax(newSource);
 
-  writeFileSync(INDEX_HTML, newHtml, 'utf-8');
+  writeFileSync(OPENCLAW_DATA, newSource, 'utf-8');
   return true;
 }
 
@@ -351,7 +336,7 @@ async function main() {
     const releases = await fetchReleases();
     console.log(`Found ${releases.length} releases.\n`);
 
-    const published = releases.filter(r => !r.draft && !r.prerelease);
+    const published = releases.filter(r => !r.draft);
     console.log(`${published.length} published releases.\n`);
 
     const entries = published
@@ -361,11 +346,11 @@ async function main() {
 
     console.log(`${entries.length} releases with parseable features:\n`);
     for (const e of entries) {
-      console.log(`  ${e.version} (${e.date}) — ${e.features.length} features`);
+      console.log(`  ${e.version} (${e.date}) - ${e.features.length} features`);
     }
 
     if (entries.length === 0) {
-      console.log('No releases with parseable features found. index.html not modified.');
+      console.log('No releases with parseable features found. openclaw_data.js not modified.');
       process.exit(0);
     }
 
@@ -380,9 +365,9 @@ async function main() {
       console.log(`  ${m.month}: ${m.releases.length} releases`);
     }
 
-    const changed = updateIndexHtml(months);
+    const changed = updateOpenClawData(months);
     if (changed) {
-      console.log('\nindex.html updated successfully.');
+      console.log('\nopenclaw_data.js updated successfully.');
     } else {
       console.log('\nNo changes needed.');
     }
