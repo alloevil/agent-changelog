@@ -1378,6 +1378,147 @@ const RELEASES_DATA = [
     ]
   },
   {
+    "label": "2026年06月",
+    "id": "2026-06",
+    "releases": [
+      {
+        "version": "v2026.6.19",
+        "name": "Hermes Agent v0.17.0 (2026.6.19)",
+        "date": "2026-06-19",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.19",
+        "features": [
+          {
+            "title": "iMessage 通道 — Photon Spectrum，无需 Mac 中继",
+            "tag": "新增",
+            "summary": "基于 Photon 托管线路池的 iMessage 平台插件，运行 hermes photon login 认证后即可收发 iMessage",
+            "detail": "New iMessage platform plugin built on Photon's managed line pool. Run hermes photon login, authenticate with a device code, and Hermes can send and receive iMessage — no Mac relay required.",
+            "summaryZh": "iMessage 通道：Photon 线路池，无需 Mac 中继"
+          },
+          {
+            "title": "Raft 网络适配器",
+            "tag": "新增",
+            "summary": "Hermes 通过 Raft 平台适配器接入 Raft 网络，wake-channel 桥接唤醒，隐私优先设计（元数据唤醒，不传消息体）",
+            "detail": "New bundled Raft platform adapter lets Hermes connect to Raft as an external agent through a wake-channel bridge with privacy-by-contract design.",
+            "summaryZh": "Raft 适配器：元数据唤醒，隐私优先"
+          },
+          {
+            "title": "桌面端大幅增强",
+            "tag": "优化",
+            "summary": "可重绑快捷键、原生通知、子代理 watch-window 实时流、VS Code 主题安装、RTL 文本支持、终端窗格",
+            "detail": "Rebindable keyboard shortcuts, native OS notifications, live subagent watch-windows, VS Code Marketplace theme installation, RTL text, resizable terminal pane.",
+            "summaryZh": "桌面端：快捷键/通知/watch-window/VS Code 主题/终端"
+          },
+          {
+            "title": "子代理后台运行",
+            "tag": "新增",
+            "summary": "子代理可在后台运行，桌面端 watch-window 实时流式查看其活动",
+            "detail": "Subagents can now run in the background with live streaming activity view in the desktop app.",
+            "summaryZh": "子代理后台运行 + watch-window 流式查看"
+          },
+          {
+            "title": "图片生成编辑能力",
+            "tag": "新增",
+            "summary": "图片生成工具学会编辑现有图片，不仅仅是从零生成",
+            "detail": "Image generation learned to edit existing images, not just generate from scratch.",
+            "summaryZh": "图片编辑：对已有图片进行编辑生成"
+          },
+          {
+            "title": "Dashboard 个人资料构建器和安全登录",
+            "tag": "新增",
+            "summary": "Dashboard 新增完整个人资料构建器和安全登录功能",
+            "detail": "Dashboard got a full profile builder and secure login.",
+            "summaryZh": "Dashboard：个人资料构建器 + 安全登录"
+          },
+          {
+            "title": "Skills Hub 浏览器重构",
+            "tag": "优化",
+            "summary": "Skills Hub 浏览器全面重构，体验更流畅",
+            "detail": "Skills Hub browser was rehauled with improved browsing experience.",
+            "summaryZh": "Skills Hub 浏览器重构"
+          },
+          {
+            "title": "memory 工具重大升级",
+            "tag": "优化",
+            "summary": "memory 工具获得重大升级，记忆管理更强大",
+            "detail": "The memory tool got a major upgrade for better memory management.",
+            "summaryZh": "memory 工具重大升级"
+          },
+          {
+            "title": "安全加固轮",
+            "tag": "安全",
+            "summary": "安全相关修复和加固",
+            "detail": "Security round included with 300+ issues closed.",
+            "summaryZh": "安全加固"
+          }
+        ]
+      },
+      {
+        "version": "v2026.6.5",
+        "name": "Hermes Agent v0.16.0 (2026.6.5)",
+        "date": "2026-06-06",
+        "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.5",
+        "features": [
+          {
+            "title": "Hermes Desktop 原生桌面应用发布",
+            "tag": "新增",
+            "summary": "全新 Electron 桌面应用：一键安装、自更新、拖拽文件、状态栏模型选择器、多 Profile 并发、简体中文翻译",
+            "detail": "Brand-new native Electron desktop app with one-click install, self-update, drag-and-drop files, inline model picker, concurrent multi-profile sessions, and Simplified Chinese translation.",
+            "summaryZh": "桌面应用：Electron 原生，一键安装/自更新/多语言"
+          },
+          {
+            "title": "远程 Gateway 连接",
+            "tag": "新增",
+            "summary": "桌面端支持 OAuth 或用户名/密码连接远程 Hermes Gateway",
+            "detail": "Desktop app can connect to a remote Hermes gateway over OAuth or username/password authentication.",
+            "summaryZh": "远程 Gateway：OAuth/用户名密码连接"
+          },
+          {
+            "title": "Dashboard 完整浏览器管理面板",
+            "tag": "新增",
+            "summary": "Web Dashboard 新增 MCP 目录、消息通道、凭据、Webhook、Memory、OIDC 登录等完整管理能力",
+            "detail": "Full browser-based administration panel with MCP catalog, messaging channels, credentials, webhooks, memory, and pluggable OIDC/username-password login.",
+            "summaryZh": "Dashboard 管理面板：MCP/通道/凭据/Webhook/Memory/OIDC"
+          },
+          {
+            "title": "Quick Setup via Nous Portal",
+            "tag": "新增",
+            "summary": "首次设置新增 Nous Portal 快速设置路径，从安装到首条消息只需几秒",
+            "detail": "First-time setup got a Quick Setup via Nous Portal path for instant onboarding.",
+            "summaryZh": "快速设置：Nous Portal 一键初始化"
+          },
+          {
+            "title": "模型选择器全局模糊搜索",
+            "tag": "优化",
+            "summary": "桌面、Web、TUI、CLI 均支持模糊搜索选择模型",
+            "detail": "Model picker is now fuzzy-searchable everywhere — desktop, web, TUI, and CLI.",
+            "summaryZh": "模型模糊搜索：桌面/Web/TUI/CLI 全覆盖"
+          },
+          {
+            "title": "/undo 撤销最近 N 轮对话",
+            "tag": "新增",
+            "summary": "新增 /undo 命令，可撤销最近 N 轮对话",
+            "detail": "New /undo command lets you take back the last N turns.",
+            "summaryZh": "/undo 命令：撤销最近 N 轮对话"
+          },
+          {
+            "title": "NVIDIA/skills 加入 Skills Hub",
+            "tag": "新增",
+            "summary": "NVIDIA/skills 成为 Skills Hub 信任源，技能生态更丰富",
+            "detail": "NVIDIA/skills joined the trusted Skills Hub taps for expanded skill ecosystem.",
+            "summaryZh": "NVIDIA/skills 加入 Skills Hub"
+          },
+          {
+            "title": "安全加固",
+            "tag": "安全",
+            "summary": "CVE-2026-48710 Starlette 版本锁定、SSRF 防护加固、子进程凭据剥离",
+            "detail": "Security round: CVE-2026-48710 Starlette pin, SSRF off-loop hardening, subprocess credential stripping.",
+            "summaryZh": "安全加固：Starlette CVE/SSRF/凭据剥离"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "2026年07月",
     "id": "2026-07",
     "releases": [
@@ -1423,115 +1564,6 @@ const RELEASES_DATA = [
             "summary": "将 WhatsApp 桥接依赖从固定 git commit 改为已发布的 npm 包 (Baileys 7.0.0-rc13)，使安装和 Docker 镜像构建可靠",
             "detail": "Unpin Baileys from git commit, use published 7.0.0-rc13 npm release, making installs and Docker image builds reliable.",
             "summaryZh": "WhatsApp Baileys 依赖改为 npm 发布版，Docker 构建可靠"
-          }
-        ]
-      },
-      {
-        "version": "v2026.7.7.2",
-        "date": "2026-07-08",
-        "features": [
-          {
-            "title": "WhatsApp Baileys 依赖修复",
-            "tag": "修复",
-            "summary": "解除 Baileys git commit 固定，改用已发布的 7.0.0-rc13，Docker 镜像构建恢复正常",
-            "detail": "Unpin Baileys from git commit, use published 7.0.0-rc13 — the WhatsApp bridge dependency now installs from the published npm release, making installs and Docker image builds reliable.",
-            "summaryZh": "WhatsApp Baileys 解除 git 固定，Docker 构建恢复正常"
-          }
-        ]
-      },
-      {
-        "version": "v2026.7.7",
-        "date": "2026-07-08",
-        "features": [
-          {
-            "title": "v0.18.1 基础设施补丁发布",
-            "tag": "优化",
-            "summary": "滚动 v0.18.0 后约 660 个 PR（667 提交/~990 文件/+89.5k 行），含 Windows 安装修复、Dashboard/Gateway 修复、WhatsApp 配对、MCP/Provider 修复和大量稳定性工作",
-            "detail": "Patch release rolling up ~660 PRs merged since v0.18.0 — bug fixes, hardening, and in-progress feature work including installer/updater self-healing on Windows, dashboard and gateway fixes, WhatsApp dashboard pairing, MCP and provider fixes.",
-            "summaryZh": "v0.18.1 补丁：660+ PR 滚动，Windows 修复/Dashboard/Gateway/WhatsApp/MCP 稳定性"
-          }
-        ]
-      },
-      {
-        "version": "v2026.7.1",
-        "date": "2026-07-01",
-        "features": [
-          {
-            "title": "P0/P1 全量清零 — 100% 解决",
-            "tag": "修复",
-            "summary": "12 天内解决约 692 个最高优先级项（496 issues + 196 PRs），仓库 P0/P1 归零并承诺保持",
-            "detail": "Resolved ~692 highest-priority items in twelve days — 496 issues closed and 196 PRs merged. The open P0/P1 count hit 0 across the entire repo.",
-            "summaryZh": "P0/P1 全量清零：12 天解决 692 个最高优先级项，仓库归零"
-          },
-          {
-            "title": "Mixture-of-Agents 升级为一等模型",
-            "tag": "新增",
-            "summary": "MoA 预设作为可选虚拟模型出现在所有模型选择器中，参考模型推理实时展示，聚合器流式输出",
-            "detail": "MoA presets now appear as selectable virtual models under a moa provider in every model picker. Each reference model's full output renders as labelled blocks, and the aggregator streams live.",
-            "summaryZh": "MoA 一等模型：预设即选 + 参考推理展示 + 聚合器流式"
-          },
-          {
-            "title": "Agent 自证完成 — 验证而非声称",
-            "tag": "新增",
-            "summary": "/goal 新增完成契约，Agent 通过实际运行项目检查来判定完成；新增 pre_verify 钩子",
-            "detail": "Hermes now records verification evidence for coding work. /goal gained completion contracts: you state what 'done' looks like, and the standing-goal loop judges against evidence.",
-            "summaryZh": "Agent 自证完成：/goal 完成契约 + pre_verify 钩子 + 证据验证"
-          },
-          {
-            "title": "/learn — 一键蒸馏可复用技能",
-            "tag": "新增",
-            "summary": "/learn 从目录、URL 或工作流中蒸馏出可复用技能，自动遵循 CONTRIBUTING.md 标准",
-            "detail": "Run /learn and Hermes distills a reusable skill out of whatever you point it at — a directory, a URL, or a workflow.",
-            "summaryZh": "/learn 一键蒸馏：目录/URL/工作流 → 可复用技能"
-          },
-          {
-            "title": "/journey — 学习时间线可视化",
-            "tag": "新增",
-            "summary": "CLI/TUI 新增 /journey 学习时间线，桌面端新增可交互记忆图谱，Agent 记忆不再是黑箱",
-            "detail": "CLI and TUI gained /journey, a learning timeline showing accumulated memories and skills. Pair it with the desktop's new memory graph — a playable radial timeline.",
-            "summaryZh": "/journey 学习时间线 + 桌面端记忆图谱，Agent 记忆可视化"
-          },
-          {
-            "title": "后台扇出 — 委派不阻塞",
-            "tag": "新增",
-            "summary": "delegate_task 后台并行运行多个子代理，完成后合并为单次回复，主对话不阻塞",
-            "detail": "delegate_task can now fan out multiple subagents that all run in the background: your chat is never blocked, and results come back as a single consolidated turn.",
-            "summaryZh": "后台扇出：并行子代理 + 不阻塞主对话 + 合并回复"
-          },
-          {
-            "title": "桌面端一等编码项目",
-            "tag": "新增",
-            "summary": "桌面端新增 per-profile 项目面板（代码库/编码轨道/审查窗格/git worktree/Agent 项目工具）",
-            "detail": "The desktop app gained real, per-profile Projects — a sidebar of your codebases, a coding rail, a review pane, git worktree management, and agent-facing project tools.",
-            "summaryZh": "桌面端编码项目：代码库/编码轨道/审查/git worktree/Agent 工具"
-          },
-          {
-            "title": "规模化部署 — 缩容至零与排空协调",
-            "tag": "新增",
-            "summary": "Gateway 空闲时休眠，重启/迁移前协调排空，不中断进行中的对话",
-            "detail": "The gateway can go dormant when idle and quiesce cleanly before restart, migration, or auto-update without dropping in-flight conversations.",
-            "summaryZh": "缩容至零 + 排空协调：空闲休眠 + 安全重启不丢对话"
-          },
-          {
-            "title": "Google Vertex AI 一等 Provider",
-            "tag": "新增",
-            "summary": "Vertex AI 作为 Gemini 一等 Provider，自动从服务账号 JSON/ADC 铸造和刷新短期 OAuth2 token",
-            "detail": "Vertex AI is now a first-class provider for Gemini models. Hermes mints and auto-refreshes short-lived OAuth2 access tokens from a service-account JSON or ADC.",
-            "summaryZh": "Vertex AI 一等 Provider：自动 OAuth2 token 铸造和刷新"
-          },
-          {
-            "title": "安全加固轮",
-            "tag": "安全",
-            "summary": "MCP 配置持久化攻击面收紧、cron base_url 凭据外泄阻断、Slack xapp- token 脱敏、浏览器云元数据 SSRF 底线、aiohttp CVE 修复",
-            "detail": "Hardened MCP-config persistence, blocked cron base_url credential exfiltration, Slack xapp- token redaction, browser cloud-metadata floor, and aiohttp CVE floor.",
-            "summaryZh": "安全加固：MCP/cron/Slack/浏览器/aiohttp 六维防护"
-          },
-          {
-            "title": "更便宜的自改进 — 智能后台审查",
-            "tag": "优化",
-            "summary": "后轮次自改进分支改用辅助模型、上下文摘要和自适应节奏，成本大幅降低",
-            "detail": "The post-turn self-improvement fork now routes to an auxiliary model, digests context instead of replaying the whole conversation, and adapts its cadence.",
-            "summaryZh": "自改进成本降低：辅助模型 + 上下文摘要 + 自适应节奏"
           }
         ]
       }
