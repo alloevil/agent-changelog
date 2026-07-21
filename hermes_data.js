@@ -1,4 +1,100 @@
-const RELEASES_DATA = [
+const CHANGELOG_DATA = [
+  {
+    "month": "2026 年 7 月",
+    "monthId": "2026-07",
+    "releases": [
+      {
+        "version": "v2026.7.20",
+        "date": "2026-07-20",
+        "features": [
+          {
+            "title": "首 token 延迟降低 ~80%",
+            "tag": "优化",
+            "summary": "冷启动从 ~4.3s 降至 ~0.9s，推理模型默认实时流式输出思考过程，响应逐 token 渲染",
+            "detail": "Cold-start \"Initializing agent...\" dropped from ~4.3s to ~0.9s (~80% cut) across CLI, gateway, TUI, desktop, and cron. Reasoning models stream thinking live by default, response box paints per token instead of per line.",
+            "summaryZh": "全平台首 token 延迟从 4.3s 降至 0.9s，推理过程实时流式显示"
+          },
+          {
+            "title": "桌面端性能优化（20+ PR）",
+            "tag": "优化",
+            "summary": "Markdown 分割器 CPU 降低 14 倍，虚拟化 diff 面板，会话切换不再卡顿",
+            "detail": "Streaming markdown 14× less CPU via incremental block lexing, virtualized review-pane diffs, snappy session switching, pre-warm profile backends on hover intent, idle-mount boot-hidden panes.",
+            "summaryZh": "桌面端全面提速：Markdown 渲染 14x 提升，diff 虚拟化，会话切换流畅"
+          },
+          {
+            "title": "终端内管理 Nous 订阅",
+            "tag": "新增",
+            "summary": "/subscription 和 /topup 命令可在 TUI/CLI 中查看计划、升级/降级、充值",
+            "detail": "/subscription opens a full flow in TUI or CLI: see plan and remaining allowance, preview upgrade costs, apply changes with scheduled-change banners and undo. Desktop app got matching billing settings tab.",
+            "summaryZh": "无需离开终端即可管理 Nous 订阅和充值"
+          },
+          {
+            "title": "智能审批默认开启",
+            "tag": "新增",
+            "summary": "LLM 独立评估标记命令，支持用户自定义拒绝规则和 /deny 原因说明",
+            "detail": "LLM reviewer assesses flagged commands independently instead of asking user to approve every one. Combined with user-defined deny rules and /deny <reason> for course correction.",
+            "summaryZh": "LLM 自动评估命令安全性，大幅减少审批疲劳"
+          },
+          {
+            "title": "密码管理器集成（Bitwarden & 1Password）",
+            "tag": "新增",
+            "summary": "API 密钥不再需要明文存 .env，通过 SecretSource 接口从密码管理器加载",
+            "detail": "New pluggable SecretSource interface fetches secrets from Bitwarden and 1Password (op:// references) at load time, with multiple vaults, deterministic precedence, and conflict warnings.",
+            "summaryZh": "支持从 Bitwarden/1Password 安全加载密钥，告别明文 .env"
+          },
+          {
+            "title": "子代理实时监控 + 持久化委托",
+            "tag": "新增",
+            "summary": "delegate_task 返回实时日志文件可 tail -f，后台委托结果持久化不丢失",
+            "detail": "delegate_task dispatches return live transcript files for tail -f. Background delegation completions are durable — results restored on process restart via ownership-checked ledger.",
+            "summaryZh": "子代理启动即可实时查看日志，重启后结果不丢失"
+          },
+          {
+            "title": "响应持久化投递账本",
+            "tag": "修复",
+            "summary": "Gateway 崩溃后已生成的回复不再丢失，重启时自动重投",
+            "detail": "Final responses recorded in durable ledger in state.db and redelivered on next boot, closing a P1 silent-loss window for Telegram, Discord, Slack, and every other channel.",
+            "summaryZh": "Gateway 崩溃后自动重投未送达的回复，修复 P1 静默丢失问题"
+          },
+          {
+            "title": "Profile 消息路由",
+            "tag": "新增",
+            "summary": "单个 Gateway 可将不同频道/线程路由到不同 Profile，配置/技能/记忆完全隔离",
+            "detail": "Single multiplexed gateway sharing one bot token can route specific guilds, channels, or threads to different profiles with fully isolated config, skills, memory, and secrets.",
+            "summaryZh": "一个 Gateway 按频道路由到不同 Profile，各自完全隔离"
+          },
+          {
+            "title": "新增模型提供商和前沿模型",
+            "tag": "新增",
+            "summary": "Fireworks AI、DeepInfra 一级支持；新增 GPT-5.6、grok-4.5、kimi-k3、claude-sonnet-5 等",
+            "detail": "Fireworks AI and DeepInfra as first-class providers. Model catalogs added GPT-5.6 (Sol/Terra/Luna + Pro), grok-4.5 (GA), moonshotai/kimi-k3, claude-fable-5/claude-sonnet-5, tencent/hy3 GA, plus LM Studio JIT loading.",
+            "summaryZh": "新增 Fireworks AI/DeepInfra 提供商，支持 GPT-5.6/grok-4.5/kimi-k3 等新模型"
+          },
+          {
+            "title": "推理强度分级控制",
+            "tag": "新增",
+            "summary": "新增 max/ultra 推理级别，支持按模型、按 MoA 槽位、按任务单独配置",
+            "detail": "Reasoning effort gained max and ultra levels, selectable from CLI to desktop. Per-model reasoning-effort overrides, per-slot effort in MoA presets, and per-task effort for auxiliary models.",
+            "summaryZh": "推理深度可精细调控：按模型/按任务/按 MoA 槽位独立设置"
+          },
+          {
+            "title": "会话导出功能",
+            "tag": "新增",
+            "summary": "支持导出为 Markdown/HTML/Quarto/HuggingFace trace 格式，含密钥脱敏选项",
+            "detail": "hermes sessions export writes Markdown, Quarto, HTML, prompt-only, and Hugging Face-ready trace formats with --redact secret-scrubbing pass and compacted-session lineage.",
+            "summaryZh": "会话历史可导出为多种格式，支持密钥自动脱敏"
+          },
+          {
+            "title": "安全加固",
+            "tag": "安全",
+            "summary": "修复凭证暴露面：Vertex 凭证隔离、webhook 体大小限制、token 脱敏等",
+            "detail": "Vertex credentials scoped away from subprocess env, media/vision reads through shared credential guard, webhook body-size-cap sweep, bot-token redaction in Telegram errors, Fireworks token prefix redaction, CI hardened against untrusted-ref interpolation.",
+            "summaryZh": "全面修复凭证暴露面：子进程隔离、webhook 限制、token 脱敏"
+          }
+        ]
+      }
+    ]
+  },
   {
     "label": "2026年05月",
     "id": "2026-05",
@@ -1571,4 +1667,4 @@ const RELEASES_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
