@@ -8,6 +8,96 @@ const CHANGELOG_DATA = [
         "date": "2026-07-20",
         "features": [
           {
+            "title": "全面提速：首 token 延迟降低约 80%",
+            "tag": "优化",
+            "summary": "冷启动从约 4.3 秒降至约 0.9 秒，CLI/Gateway/TUI/桌面端/Cron 全平台生效；推理模型默认实时流式输出思考过程",
+            "detail": "Cold-start reduced from ~4.3s to ~0.9s (~80% cut) across CLI, gateway, TUI, desktop, and cron. Reasoning models now stream thinking live by default, per-token response painting.",
+            "summaryZh": "冷启动延迟降低 80%，推理模型默认流式输出"
+          },
+          {
+            "title": "桌面端性能大优化：20+ 专项 PR",
+            "tag": "优化",
+            "summary": "Markdown 渲染 CPU 降低 14 倍，大 diff 虚拟化、会话切换不再卡顿，流式输出不再逐 token 重渲染侧边栏",
+            "detail": "14× less CPU in markdown splitter, virtualized review-pane diffs, snappy session switching, stopped per-token sidebar re-renders during streaming.",
+            "summaryZh": "Markdown 渲染提速 14 倍，桌面端体验接近原生应用"
+          },
+          {
+            "title": "终端内管理 Nous 订阅：/subscription 和 /topup",
+            "tag": "新增",
+            "summary": "在 TUI/CLI 中直接查看套餐、预览升级费用、执行升降级操作，桌面端同步新增账单设置页",
+            "detail": "Full subscription management flow in TUI and CLI: view plan, preview upgrade/downgrade costs, apply changes with scheduled-change banners and undo.",
+            "summaryZh": "终端内直接管理 Nous 订阅和充值"
+          },
+          {
+            "title": "智能审批默认开启",
+            "tag": "新增",
+            "summary": "LLM 独立评估标记命令安全性，每次命令独立审查；新增用户自定义拒绝规则和 /deny 命令说明拒绝原因",
+            "detail": "LLM reviewer independently assesses flagged commands. Each verdict covers only that exact command. User-defined deny rules block commands even under yolo mode, /deny tells the agent why.",
+            "summaryZh": "LLM 智能评估替代逐条人工审批"
+          },
+          {
+            "title": "密码管理器集成：Bitwarden 和 1Password",
+            "tag": "新增",
+            "summary": "可插拔 SecretSource 接口，直接从 Bitwarden/1Password 拉取密钥，支持多 vault 同时启用、优先级和冲突警告",
+            "detail": "Pluggable SecretSource interface fetches secrets from Bitwarden and 1Password at load time, with multiple vaults, deterministic precedence, and conflict warnings.",
+            "summaryZh": "API Key 不再需要明文存储，直接从密码管理器获取"
+          },
+          {
+            "title": "子代理实时可观测：实时日志 + 持久化委托",
+            "tag": "新增",
+            "summary": "delegate_task 返回实时日志文件可 tail -f；后台委托结果持久化，进程重启后自动恢复投递",
+            "detail": "delegate_task dispatches return live transcript files. Background delegation completions are durable — results restored and delivered through ownership-checked ledger after restart.",
+            "summaryZh": "子代理实时日志 + 后台任务结果不丢失"
+          },
+          {
+            "title": "响应投递持久化账本：不再丢失已生成的回答",
+            "tag": "修复",
+            "summary": "Gateway 崩溃时已生成但未确认投递的响应会记录到 state.db，重启后自动重投，覆盖 Telegram/Discord/Slack 等所有渠道",
+            "detail": "Final responses recorded in durable ledger in state.db, redelivered on next boot — closing P1 silent-loss window for all channels.",
+            "summaryZh": "Gateway 崩溃后自动重投已生成的响应"
+          },
+          {
+            "title": "单网关多 Profile：基于 Profile 的消息路由",
+            "tag": "新增",
+            "summary": "单个网关可按 guild/channel/thread 路由到不同 Profile，各自独立配置、技能、记忆和密钥",
+            "detail": "Single multiplexed gateway routes specific guilds, channels, or threads to different profiles with fully isolated config, skills, memory, and secrets.",
+            "summaryZh": "一个网关按频道路由到不同独立 Profile"
+          },
+          {
+            "title": "新增模型提供商和前沿模型支持",
+            "tag": "新增",
+            "summary": "新增 Fireworks AI、DeepInfra 一级提供商；模型目录新增 GPT-5.6、grok-4.5、kimi-k3、claude-fable-5/sonnet-5、tencent/hy3",
+            "detail": "Fireworks AI and DeepInfra as first-class providers. New models: GPT-5.6 (Sol/Terra/Luna + Pro), grok-4.5 GA, moonshotai/kimi-k3, claude-fable-5/sonnet-5, tencent/hy3 GA, LM Studio JIT loading.",
+            "summaryZh": "新增 Fireworks AI/DeepInfra，支持 GPT-5.6 等最新模型"
+          },
+          {
+            "title": "推理深度控制：新增 max/ultra 级别和按模型配置",
+            "tag": "优化",
+            "summary": "推理努力新增 max 和 ultra 级别，支持按模型、按 MoA 槽位、按任务单独配置推理深度",
+            "detail": "Reasoning effort gained max and ultra levels, selectable everywhere with per-model overrides, per-slot effort in MoA presets, and per-task effort for auxiliary models.",
+            "summaryZh": "推理深度从全局开关变为可精细调节的旋钮"
+          },
+          {
+            "title": "会话数据全面导出",
+            "tag": "新增",
+            "summary": "hermes sessions export 支持 Markdown/Quarto/HTML/HuggingFace trace 格式，可选密钥脱敏，支持压缩会话血缘拼接",
+            "detail": "Session export writes Markdown, Quarto, HTML, prompt-only, and HuggingFace-ready trace formats with --redact secret-scrubbing and compacted-session lineage.",
+            "summaryZh": "会话历史可导出为多种格式的数据集"
+          },
+          {
+            "title": "安全加固：凭证表面收窄",
+            "tag": "安全",
+            "summary": "Vertex 凭证限定作用域、本地文件读取统一凭证守卫、webhook body 大小限制、Telegram token 脱敏等一揽子安全修复",
+            "detail": "Vertex credentials scoped, local-file reads through shared credential guard, webhook body-size-cap sweep, bot-token redaction in Telegram errors, Fireworks token prefixes added to redactor.",
+            "summaryZh": "一揽子安全修复收窄凭证暴露面"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.20",
+        "date": "2026-07-20",
+        "features": [
+          {
             "title": "首 token 延迟降低 ~80%",
             "tag": "优化",
             "summary": "冷启动从 ~4.3s 降至 ~0.9s，推理模型默认实时流式输出思考过程，响应逐 token 渲染",
