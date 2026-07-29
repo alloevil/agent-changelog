@@ -4,6 +4,96 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.2-beta.5",
+        "date": "2026-07-28",
+        "features": [
+          {
+            "title": "状态安全与恢复",
+            "tag": "新增",
+            "summary": "引入隔离存储保护持久化数据，支持崩溃可恢复的 SQLite 快照、崩溃持久化文件系统发布、Schema 升级数据丢失拒绝及回滚写入器快照恢复",
+            "detail": "Protect persisted data with a quarantine store, crash-recoverable SQLite snapshots, crash-durable filesystem publication, schema-upgrade data-loss rejection, and rollback-writer snapshot recovery",
+            "summaryZh": "引入隔离存储和崩溃恢复机制，全面保护持久化数据安全"
+          },
+          {
+            "title": "持久化通道投递",
+            "tag": "优化",
+            "summary": "跨网关重启和本地崩溃保持消息可恢复，通过共享入口排空和死信恢复覆盖 Telegram、Signal、Slack 等多平台",
+            "detail": "Keep accepted messages recoverable across gateway restarts and local crashes through shared ingress drain and dead-letter recovery across Telegram, Signal, Slack, QQBot, Twitch and more",
+            "summaryZh": "多平台消息投递支持跨崩溃持久化恢复"
+          },
+          {
+            "title": "会话回溯与分支",
+            "tag": "新增",
+            "summary": "支持从任意消息回溯或分叉对话，在 Web 和原生应用间切换转录分支，支持 Codex 会话分叉",
+            "detail": "Rewind or fork conversations from individual messages, switch transcript branches across web and native apps, fork upstream Codex sessions with branch-safe queued sends",
+            "summaryZh": "支持会话任意消息回溯和跨平台分支切换"
+          },
+          {
+            "title": "交互式 MCP Apps 与仪表盘",
+            "tag": "新增",
+            "summary": "支持带绑定工具和资源的 MCP Apps 从频道回复打开，可固定到持久化仪表盘，原生插件可直接声明",
+            "detail": "Host ticketed MCP Apps with bound tools, resources, and bounded context updates; open from channel replies, pin to durable dashboards, native plugins can declare them directly",
+            "summaryZh": "交互式 MCP Apps 支持从频道回复打开并固定到仪表盘"
+          },
+          {
+            "title": "全局提问与审批",
+            "tag": "优化",
+            "summary": "代理可在 Web、频道、macOS 和原生应用中发送结构化选项卡问题，审批增加推送通知、历史记录、公平队列和无头解析",
+            "detail": "Agents can ask structured questions with option cards across all platforms, approvals gain push notifications, history, fair queuing, headless resolution, and Claude tool-request relay",
+            "summaryZh": "代理跨平台结构化提问，审批系统全面增强"
+          },
+          {
+            "title": "会议与实时 Talk",
+            "tag": "新增",
+            "summary": "默认启用 Teams、Zoom 和 Google Meet 会议插件，自动收集持久化转录；实时 Talk 增加 OpenAI 和 Gemini 视频及 GPT Live",
+            "detail": "Join Teams, Zoom, and Google Meet calls with default-enabled plugins and durable transcript collection; realtime Talk adds OpenAI/Gemini video and GPT Live through Codex OAuth",
+            "summaryZh": "默认启用主流会议插件，实时 Talk 支持视频和 GPT Live"
+          },
+          {
+            "title": "Wear OS 伴侣应用",
+            "tag": "新增",
+            "summary": "手机代理的 Wear 伴侣支持主页代理/会话/模型选择、实时 Talk 控制和音频响应播放",
+            "detail": "Phone-proxied Wear companion with home-screen agent/session/model selection, realtime Talk controls, audio-reactive playback, and an instant-talk tile",
+            "summaryZh": "Wear OS 伴侣应用支持代理选择和实时 Talk 控制"
+          },
+          {
+            "title": "引导式设置与本地推理",
+            "tag": "优化",
+            "summary": "跨浏览器、Linux 和 macOS 引导设置，支持本地推理提供商检测、最强模型选择、可下载模型和进程内 llama.cpp/Gemma 路径",
+            "detail": "Guide setup across browser, Linux, and macOS with local-provider detection, strongest-model selection, downloadable models, and in-process RAM-gated llama.cpp/Gemma path",
+            "summaryZh": "跨平台引导设置支持本地推理和 llama.cpp/Gemma 推理"
+          },
+          {
+            "title": "模型与提供商更新",
+            "tag": "新增",
+            "summary": "新增 Claude Opus 5、Kimi K3 和 GPT Live（通过 Codex OAuth）",
+            "detail": "Add Claude Opus 5 across catalog and runtime, Kimi K3, and GPT Live through Codex OAuth",
+            "summaryZh": "新增 Claude Opus 5、Kimi K3、GPT Live 模型支持"
+          },
+          {
+            "title": "安全与授权修复",
+            "tag": "修复",
+            "summary": "修复频道白名单越权、会话导出泄露、伪造标记绕过等多项安全漏洞",
+            "detail": "Prevent channel allowlists from granting owner access, close forged-marker bypass, prevent non-owner ACP session exposure, harden secret redaction and exec/OAuth approvals",
+            "summaryZh": "修复多项安全漏洞包括权限越权和标记伪造绕过"
+          },
+          {
+            "title": "通道投递修复",
+            "tag": "修复",
+            "summary": "修复 Telegram 持久化入口丢失、Discord/iMessage/WhatsApp 崩溃后流量丢失、重启后助理上下文恢复等问题",
+            "detail": "Fix Telegram durable-ingress loss, preserve Discord/iMessage/WhatsApp traffic across crashes, restore assistant context and interrupted turns after restart",
+            "summaryZh": "修复多通道崩溃和重启后的消息丢失问题"
+          },
+          {
+            "title": "CJK 文本压缩修复",
+            "tag": "修复",
+            "summary": "压缩估算正确处理 CJK 文本，将 no_compactable_entries 视为良性跳过",
+            "detail": "Account for CJK text in compaction estimates and treat no_compactable_entries as a benign skip",
+            "summaryZh": "压缩估算修复 CJK 文本处理"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.2-beta.3",
         "date": "2026-07-18",
         "features": [
