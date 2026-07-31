@@ -4,6 +4,47 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.30",
+        "date": "2026-07-30",
+        "features": [
+          {
+            "title": "v0.19.1 补丁发布：千余 PR 合并稳定版",
+            "tag": "修复",
+            "summary": "汇总 v0.19.0 以来约 1,000+ PR、2,789 次提交的修复与改进，涵盖网关、语音子系统、桌面应用和安装器的大量 bug 修复浪潮",
+            "detail": "Patch release rolling up ~1,000+ PRs since v0.19.0 with ~2,789 commits, ~4,748 files changed. Dominated by bug-fix and salvage waves across gateway, voice subsystem, desktop app, and installer.",
+            "summaryZh": "v0.19.0 后千余 PR 汇总的补丁稳定版，大面积修复网关/语音/桌面端"
+          },
+          {
+            "title": "Buzz/Nostr 频道支持",
+            "tag": "新增",
+            "summary": "新增 Buzz 和 Nostr 作为消息通道，扩展平台覆盖",
+            "detail": "Added Buzz and Nostr as new messaging channels, expanding platform coverage.",
+            "summaryZh": "新增 Buzz 和 Nostr 消息通道"
+          },
+          {
+            "title": "FLUX3 视频生成与投递",
+            "tag": "新增",
+            "summary": "支持 FLUX3 视频生成能力及视频内容投递",
+            "detail": "Added FLUX3 video generation and delivery capabilities.",
+            "summaryZh": "新增 FLUX3 视频生成与投递能力"
+          },
+          {
+            "title": "Telegram 媒体可靠性改进",
+            "tag": "优化",
+            "summary": "提升 Telegram 平台媒体消息的投递可靠性",
+            "detail": "Improved Telegram media delivery reliability.",
+            "summaryZh": "Telegram 媒体投递更可靠"
+          },
+          {
+            "title": "语音模式回归问题修复",
+            "tag": "修复",
+            "summary": "修复语音模式中的回归缺陷",
+            "detail": "Fixed voice-mode regressions.",
+            "summaryZh": "修复语音模式回归问题"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.20",
         "date": "2026-07-20",
         "features": [
@@ -1757,4 +1798,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
