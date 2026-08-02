@@ -1,5 +1,87 @@
 const CHANGELOG_DATA = [
   {
+    "month": "2026 年 8 月",
+    "monthId": "2026-08",
+    "releases": [
+      {
+        "version": "v2026.7.2-beta.6",
+        "date": "2026-08-01",
+        "features": [
+          {
+            "title": "状态安全与恢复",
+            "tag": "新增",
+            "summary": "隔离存储保护持久化数据，支持崩溃可恢复的 SQLite 快照、崩溃持久化文件系统发布、Schema 升级数据丢失拒绝和回滚写入器快照恢复",
+            "detail": "Protect persisted data with a quarantine store that survives primary-database damage, crash-recoverable SQLite snapshots, crash-durable filesystem publication, schema-upgrade data-loss rejection, and rollback-writer snapshot recovery.",
+            "summaryZh": "隔离存储+崩溃恢复快照+文件系统持久发布，全面保护数据安全"
+          },
+          {
+            "title": "持久化通道投递",
+            "tag": "新增",
+            "summary": "通过共享入口排空和死信恢复，确保消息在 Gateway 重启和本地崩溃后仍可恢复，覆盖 Telegram、Signal、Slack 等 9 个平台",
+            "detail": "Keep accepted messages recoverable across gateway restarts and local crashes through the shared ingress drain and dead-letter recovery, covering Telegram, Signal, Slack, QQBot, Twitch, Synology Chat, Tlon, IRC, and Zalo User.",
+            "summaryZh": "消息投递持久化，Gateway 重启不丢消息，覆盖 9 个平台"
+          },
+          {
+            "title": "会话回退与分支",
+            "tag": "新增",
+            "summary": "支持从单条消息回退或分叉对话，在 Web 和原生应用间切换转录分支，分叉上游 Codex 会话",
+            "detail": "Rewind or fork conversations from individual messages, switch transcript branches across web and native apps, fork upstream Codex sessions, preserve branch-safe queued sends, reject stale-pane writes, and restore prompt images after a fork.",
+            "summaryZh": "会话可回退/分叉，跨平台切换分支"
+          },
+          {
+            "title": "交互式 MCP Apps 与仪表盘",
+            "tag": "新增",
+            "summary": "托管带工票的 MCP Apps，绑定工具、资源和有界上下文更新；可从频道回复打开并固定到持久仪表盘",
+            "detail": "Host ticketed MCP Apps with bound tools, resources, and bounded context updates; open them from channel replies, pin them to durable dashboards, harden their shared sandbox, and let native plugins declare them directly.",
+            "summaryZh": "MCP Apps 支持工票托管、仪表盘固定和原生插件声明"
+          },
+          {
+            "title": "全平台提问与审批",
+            "tag": "新增",
+            "summary": "Agent 可在 Web、频道、macOS 和原生应用上发送带选项卡片的结构化问题；审批支持推送通知、历史记录、公平队列和无头解析",
+            "detail": "Let agents ask structured questions with option cards across web, channels, macOS, and native apps, while approvals gain push notifications, history, fair queuing, headless resolution, Claude tool-request relay, reviewer detail, and clearer formatted prompts.",
+            "summaryZh": "结构化提问+审批增强：推送通知、公平队列、无头解析"
+          },
+          {
+            "title": "会议与实时 Talk",
+            "tag": "新增",
+            "summary": "支持加入 Teams、Zoom 和 Google Meet 通话，默认启用会议插件和持久化转录收集；实时 Talk 添加 OpenAI 和 Gemini 视频",
+            "detail": "Join Teams, Zoom, and Google Meet calls with default-enabled meeting plugins and durable transcript collection, while realtime Talk adds OpenAI and Gemini video.",
+            "summaryZh": "默认支持 Teams/Zoom/Meet 入会+转录，实时 Talk 新增视频"
+          },
+          {
+            "title": "Wear OS 伴侣应用",
+            "tag": "新增",
+            "summary": "手机代理的 Wear 伴侣应用，支持主屏幕 Agent/会话/模型选择、实时 Talk 控制和即时通话磁贴",
+            "detail": "Add the phone-proxied Wear companion with home-screen agent/session/model selection, realtime Talk controls, audio-reactive playback, and an instant-talk tile.",
+            "summaryZh": "Wear OS 伴侣应用：手表上选模型、控制 Talk、即时通话"
+          },
+          {
+            "title": "引导设置与本地推理",
+            "tag": "新增",
+            "summary": "跨浏览器、Linux 和 macOS 引导设置，支持本地提供商检测、最强模型选择、可下载模型和内存受限的 llama.cpp/Gemma 路径",
+            "detail": "Guide setup across browser, Linux, and macOS with local-provider detection, strongest-model selection, downloadable models, lean mode, memory imports, and an in-process RAM-gated llama.cpp/Gemma path.",
+            "summaryZh": "引导式设置+本地 llama.cpp 推理，开箱即用"
+          },
+          {
+            "title": "新增模型支持",
+            "tag": "变更",
+            "summary": "新增 Claude Opus 5、Kimi K3、GPT Live 实时支持，以及 Fish Audio S2.1 语音合成",
+            "detail": "Add Claude Opus 5 across catalog and runtime, Kimi K3, and GPT Live realtime support. Add hosted Fish Audio S2.1 synthesis with streaming, voice notes, voice discovery, and telephony.",
+            "summaryZh": "Claude Opus 5、Kimi K3、GPT Live、Fish Audio S2.1"
+          },
+          {
+            "title": "安全与授权修复",
+            "tag": "安全",
+            "summary": "修复频道白名单授予 Owner 访问、会话导出泄露、Web 搜索边界绕过等多个安全问题",
+            "detail": "Prevent channel allowlists from granting owner access, keep session exports inside the workspace, close a forged-marker/web-search boundary bypass, prevent non-owner ACP session exposure, reject unsafe explicit approval IDs, harden secret redaction and exec/OAuth approvals.",
+            "summaryZh": "修复白名单越权、导出泄露、搜索绕过等安全漏洞"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 7 月",
     "monthId": "2026-07",
     "releases": [
