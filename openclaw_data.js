@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.7.2-beta.7",
+        "date": "2026-08-02",
+        "features": [
+          {
+            "title": "状态安全与恢复机制",
+            "tag": "新增",
+            "summary": "引入隔离存储、崩溃可恢复 SQLite 快照、持久化文件系统发布、Schema 升级数据丢失拒绝及回滚写入器快照恢复，全面保护持久化数据",
+            "detail": "Protect persisted data with a quarantine store, crash-recoverable SQLite snapshots, crash-durable filesystem publication, schema-upgrade data-loss rejection, and rollback-writer snapshot recovery.",
+            "summaryZh": "引入隔离存储和崩溃恢复机制，全面保护持久化数据安全"
+          },
+          {
+            "title": "持久化通道投递",
+            "tag": "优化",
+            "summary": "通过共享入口排空和死信恢复，确保已接受消息在网关重启和本地崩溃后仍可恢复，覆盖 Telegram/Signal/Slack 等多平台",
+            "detail": "Keep accepted messages recoverable across gateway restarts and local crashes through the shared ingress drain and dead-letter recovery, covering Telegram, Signal, Slack, QQBot, Twitch, and more.",
+            "summaryZh": "消息投递具备崩溃持久性，网关重启不丢失已接受消息"
+          },
+          {
+            "title": "会话回溯与分支",
+            "tag": "新增",
+            "summary": "支持从任意消息回溯或分叉对话，在 Web 和原生应用间切换转录分支，分叉上游 Codex 会话",
+            "detail": "Rewind or fork conversations from individual messages, switch transcript branches across web and native apps, fork upstream Codex sessions, and preserve branch-safe queued sends.",
+            "summaryZh": "支持会话回溯和分支切换，可从任意消息分叉对话"
+          },
+          {
+            "title": "交互式 MCP Apps 与仪表盘",
+            "tag": "新增",
+            "summary": "支持托管带票据的 MCP Apps，绑定工具和资源，从频道回复打开并固定到持久化仪表盘",
+            "detail": "Host ticketed MCP Apps with bound tools, resources, and bounded context updates; open them from channel replies and pin them to durable dashboards.",
+            "summaryZh": "新增 MCP Apps 托管能力，支持工具绑定和持久化仪表盘"
+          },
+          {
+            "title": "全局提问与审批",
+            "tag": "优化",
+            "summary": "支持跨 Web/macOS/原生应用的结构化问题卡片，审批增加推送通知、历史记录、公平队列和无头解析",
+            "detail": "Let agents ask structured questions with option cards across web, channels, macOS, and native apps, while approvals gain push notifications, history, fair queuing, and headless resolution.",
+            "summaryZh": "提问和审批能力全面增强，支持多端交互和推送通知"
+          },
+          {
+            "title": "会议与实时 Talk",
+            "tag": "新增",
+            "summary": "支持加入 Teams/Zoom/Google Meet 会议，默认启用会议插件和持久化转录收集；实时 Talk 新增 OpenAI 和 Gemini 视频支持",
+            "detail": "Join Teams, Zoom, and Google Meet calls with default-enabled meeting plugins and durable transcript collection; realtime Talk adds OpenAI and Gemini video.",
+            "summaryZh": "支持加入 Teams/Zoom/Meet 会议，实时 Talk 新增视频能力"
+          },
+          {
+            "title": "Wear OS 伴侣应用",
+            "tag": "新增",
+            "summary": "新增手机代理的 Wear OS 伴侣，支持主屏幕代理/会话/模型选择、实时 Talk 控制和音频响应播放",
+            "detail": "Add the phone-proxied Wear companion with home-screen agent/session/model selection, realtime Talk controls, audio-reactive playback, and an instant-talk tile.",
+            "summaryZh": "新增 Wear OS 伴侣应用，支持手表端控制代理和实时对话"
+          },
+          {
+            "title": "引导式设置与本地推理",
+            "tag": "新增",
+            "summary": "跨浏览器/Linux/macOS 引导设置，支持本地推理提供商检测、最强模型选择、可下载模型和进程内 llama.cpp/Gemma 路径",
+            "detail": "Guide setup across browser, Linux, and macOS with local-provider detection, strongest-model selection, downloadable models, and an in-process RAM-gated llama.cpp/Gemma path.",
+            "summaryZh": "新增引导式设置流程，支持本地推理和模型自动检测"
+          },
+          {
+            "title": "Claude Opus 5 及新模型支持",
+            "tag": "新增",
+            "summary": "新增 Claude Opus 5、Kimi K3、GPT Live 实时支持，采用支持的 Platform API 认证路径",
+            "detail": "Add Claude Opus 5 across catalog and runtime, Kimi K3, and GPT Live realtime support with the supported Platform API authentication path.",
+            "summaryZh": "新增 Claude Opus 5、Kimi K3 等前沿模型支持"
+          },
+          {
+            "title": "Fish Audio 语音合成",
+            "tag": "新增",
+            "summary": "新增托管 S2.1 语音合成，支持流式传输、语音笔记、语音发现和电话功能",
+            "detail": "Add hosted S2.1 synthesis with streaming, voice notes, voice discovery, and telephony, plus local Fish S2 Pro reference-voice streaming.",
+            "summaryZh": "新增 Fish Audio 语音合成，支持流式传输和语音笔记"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.2-beta.6",
         "date": "2026-08-01",
         "features": [

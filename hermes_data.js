@@ -8,6 +8,47 @@ const CHANGELOG_DATA = [
         "date": "2026-07-30",
         "features": [
           {
+            "title": "v0.19.1 累积补丁发布",
+            "tag": "优化",
+            "summary": "自 v0.19.0 以来累积 ~2,789 次提交、~4,748 文件变更、~442,000 行新增、~392,300 行删除的稳定性补丁",
+            "detail": "Patch release rolling up ~1,000+ PRs since v0.19.0. Dominated by bug-fix and salvage waves across the gateway, voice subsystem, desktop app, and installer.",
+            "summaryZh": "v0.19.1 累积补丁，包含网关、语音、桌面端和安装器的大量修复"
+          },
+          {
+            "title": "Buzz/Nostr 频道支持",
+            "tag": "新增",
+            "summary": "新增 Buzz 和 Nostr 频道集成",
+            "detail": "Continued platform work on Buzz/Nostr channel integration.",
+            "summaryZh": "新增 Buzz 和 Nostr 频道集成"
+          },
+          {
+            "title": "FLUX3 视频生成与投递",
+            "tag": "新增",
+            "summary": "新增 FLUX3 视频生成能力及投递管道",
+            "detail": "FLUX3 video generation and delivery pipeline added.",
+            "summaryZh": "新增 FLUX3 视频生成能力"
+          },
+          {
+            "title": "Telegram 媒体可靠性改进",
+            "tag": "修复",
+            "summary": "提升 Telegram 媒体投递的可靠性",
+            "detail": "Telegram media reliability improvements.",
+            "summaryZh": "提升 Telegram 媒体投递可靠性"
+          },
+          {
+            "title": "语音模式回归修复",
+            "tag": "修复",
+            "summary": "修复语音模式中的多个回归问题",
+            "detail": "Voice-mode regression fixes across the platform.",
+            "summaryZh": "修复语音模式回归问题"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.30",
+        "date": "2026-07-30",
+        "features": [
+          {
             "title": "v0.19.1 补丁发布：千余 PR 合并稳定版",
             "tag": "修复",
             "summary": "汇总 v0.19.0 以来约 1,000+ PR、2,789 次提交的修复与改进，涵盖网关、语音子系统、桌面应用和安装器的大量 bug 修复浪潮",
@@ -1798,4 +1839,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
