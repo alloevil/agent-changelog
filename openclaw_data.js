@@ -4,6 +4,60 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.7.1-1",
+        "date": "2026-08-04",
+        "features": [
+          {
+            "title": "Codex 进度回复续行",
+            "tag": "修复",
+            "summary": "进度消息投递后保持 app-server turns 运行，使 GPT/Codex 能正常到达权威终止响应而非中途停止",
+            "detail": "Keep app-server turns running after delivered progress messages so GPT/Codex reaches its authoritative terminal response instead of stopping mid-turn.",
+            "summaryZh": "修复 Codex 进度消息导致响应中途停止的问题"
+          },
+          {
+            "title": "Memory Core 启动修复",
+            "tag": "修复",
+            "summary": "恢复遗留索引和缓存 sidecar 冲突，避免 Gateway 陷入致命重启循环，同时保持向量存储结构损坏可重试",
+            "detail": "Recover derived legacy-index and cache-sidecar conflicts without trapping the Gateway in a fatal restart loop, while keeping structural vector-store corruption retryable.",
+            "summaryZh": "修复 Memory Core 索引冲突导致 Gateway 无限重启的问题"
+          },
+          {
+            "title": "WSL 状态权限兼容",
+            "tag": "修复",
+            "summary": "当现有状态路径已是私有时容忍 EEROFS chmod 操作，保留宽权限的 fail-closed 处理",
+            "detail": "Tolerate EROFS from guarded chmod operations only when the existing state path is already private, preserving fail-closed handling for broad permissions.",
+            "summaryZh": "修复 WSL 环境下状态目录 chmod 操作的 EROFS 容错"
+          },
+          {
+            "title": "遗留迁移恢复",
+            "tag": "修复",
+            "summary": "将已审查的迁移残留保持为非致命错误，不再阻塞健康升级",
+            "detail": "Keep reviewed migration residue nonfatal during startup instead of blocking otherwise healthy upgrades.",
+            "summaryZh": "遗留迁移残留不再阻塞正常升级流程"
+          },
+          {
+            "title": "托管插件更新恢复",
+            "tag": "修复",
+            "summary": "恢复过期的 npm lock 元数据，使官方托管插件能干净更新",
+            "detail": "Recover stale npm lock metadata so official managed plugins can update cleanly.",
+            "summaryZh": "修复 npm lock 元数据过期导致托管插件无法更新的问题"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.1-2",
+        "date": "2026-08-04",
+        "features": [
+          {
+            "title": "npm 插件更新兼容",
+            "tag": "修复",
+            "summary": "接受新版 npm 客户端的 singleton-array 元数据格式，确保官方插件能正常安装和更新",
+            "detail": "Accept singleton-array metadata from newer npm clients so tracked official plugins can install and update to correction releases.",
+            "summaryZh": "修复新版 npm 客户端元数据格式导致官方插件安装更新失败的问题"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.2-beta.7",
         "date": "2026-08-02",
         "features": [
@@ -57740,4 +57794,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;

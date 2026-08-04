@@ -1,5 +1,108 @@
 const CHANGELOG_DATA = [
   {
+    "month": "2026 年 8 月",
+    "monthId": "2026-08",
+    "releases": [
+      {
+        "version": "v2026.8.3",
+        "date": "2026-08-03",
+        "features": [
+          {
+            "title": "流式对话语音 + 打断交互",
+            "tag": "新增",
+            "summary": "语音模式支持逐句流式合成，用户可中途打断，实现真正的双向对话体验",
+            "detail": "Streaming conversational TTS with barge-in: clause-by-clause synthesis across CLI, desktop, and gateway adapters; busy-aware silence detection and full-duplex turn listener.",
+            "summaryZh": "语音对话支持流式合成和中途打断，告别语音信箱式交互"
+          },
+          {
+            "title": "设备端唤醒词 + 免提控制",
+            "tag": "新增",
+            "summary": "支持自定义唤醒词（设备端检测），多配置文件语音路由，说 stop 即可结束语音对话",
+            "detail": "Open-vocabulary wake words with on-device detection; multi-profile voice routing; say stop to end voice chat hands-free on every surface.",
+            "summaryZh": "自定义唤醒词 + 免提控制，无需键盘即可对话"
+          },
+          {
+            "title": "全平台语音支持",
+            "tag": "新增",
+            "summary": "WhatsApp/飞书/钉钉/LINE/QQ/微信等平台语音消息自动转录回复，STT 全面可配置",
+            "detail": "Inbound voice classification/routing for Feishu, DingTalk, LINE, QQ, Photon, WhatsApp, Weixin; fully configurable STT with OpenAI gpt-transcribe support.",
+            "summaryZh": "七大平台语音消息收发，STT 全面可配置"
+          },
+          {
+            "title": "可溯源引用 + 事实核查",
+            "tag": "新增",
+            "summary": "grounded-citations 技能确保每个论点都有可验证来源引用，支持事实核查模式",
+            "detail": "The grounded-citations skill produces research where every claim is backed by a verifiable source with matched quotes and fact-checking mode.",
+            "summaryZh": "研究内容自带可溯源引用，告别 sounds right 时代"
+          },
+          {
+            "title": "签名 Webhook 推送",
+            "tag": "新增",
+            "summary": "支持向任意 HTTP 端点推送带 HMAC 签名的生命周期事件",
+            "detail": "Signed outbound webhooks push session activity, turn completions, and tool events to any registered HTTP endpoint with HMAC signatures.",
+            "summaryZh": "Hermes 主动推送签名 Webhook 事件到你的系统"
+          },
+          {
+            "title": "桌面端升级为工作台",
+            "tag": "新增",
+            "summary": "Artifacts 实时预览 + 插件 SDK + 全局快捷入口 + 多窗口支持",
+            "detail": "Desktop renders versioned artifacts with sandboxed live preview; plugin SDK with Kanban; global-hotkey quick-entry window; multiple GUI windows.",
+            "summaryZh": "桌面端从聊天客户端升级为全能工作台"
+          },
+          {
+            "title": "Agent-to-Agent v1.0 协议",
+            "tag": "新增",
+            "summary": "内置 A2A 协议插件，支持与其他 A2A 兼容 Agent 发现和通信",
+            "detail": "Bundled plugin implements the Agent-to-Agent protocol so Hermes can discover, talk to, and be driven by other A2A-compatible agents.",
+            "summaryZh": "内置 A2A v1.0 协议，加入多 Agent 异构系统"
+          },
+          {
+            "title": "CLI 高级命令集",
+            "tag": "新增",
+            "summary": "新增 !shell 模式、/init、/diff、/context、/focus 等命令，hermes import-agent 一键迁移",
+            "detail": "Shell mode (!command), /init scans project for AGENTS.md, /diff shows changes, /context analyzes context window, /focus reduced-output view, Ctrl+S stash prompt.",
+            "summaryZh": "一批 CLI 高级命令上线，含 !shell、/init、/diff、/context、/focus"
+          },
+          {
+            "title": "运行中重定向",
+            "tag": "新增",
+            "summary": "Hermes 运行时可输入纠正方向，无需 /stop 重启，已有工作保留",
+            "detail": "Type a correction while Hermes works and the active turn is redirected; work in flight is preserved with course-correction.",
+            "summaryZh": "运行中途输入纠正即可重定向，无需停止重启"
+          },
+          {
+            "title": "工具自愈能力",
+            "tag": "优化",
+            "summary": "终端输出截断自动写文件、patch 检测幂等、搜索无结果自动探查，工具迭代上限 90→500",
+            "detail": "Self-recovery upgrades: truncated output spills to file, patch detects already-applied edits, searches probe for near-misses; tool iteration limit jumped 90 to 500.",
+            "summaryZh": "工具失败自动修复，自主运行不再撞墙"
+          },
+          {
+            "title": "上下文压缩深度改造",
+            "tag": "优化",
+            "summary": "支持按轮微压缩、N 条用户消息尾部保证、进度感知超时、ghost-skill 防御",
+            "detail": "Per-turn micro-compaction, N-user-message tail guarantee, progress-aware timeouts, ghost-skill defense, per-model threshold overrides.",
+            "summaryZh": "上下文压缩更智能更温和，长对话保持连贯"
+          },
+          {
+            "title": "智能审批升级",
+            "tag": "优化",
+            "summary": "审批历史自动挖掘白名单建议，连续拒绝熔断机制，Docker 守护进程重定向审批",
+            "detail": "Approval history mining for allowlist proposals, consecutive-denial circuit breaker, docker/podman daemon-redirect approval gate.",
+            "summaryZh": "智能审批：历史挖掘白名单 + 连续拒绝熔断"
+          },
+          {
+            "title": "全面性能提升",
+            "tag": "优化",
+            "summary": "冷启动 ~14s→~1.8s，配置读取 54x 提速，桌面端 60fps 流式渲染，空闲 CPU 接近零",
+            "detail": "Cold start dropped ~14s to ~1.8s, config reads 54x faster, desktop 60fps streaming cost independent of transcript length, idle CPU near zero.",
+            "summaryZh": "冷启动 14 秒降至 1.8 秒，配置读取提速 54 倍"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 7 月",
     "monthId": "2026-07",
     "releases": [
@@ -1839,4 +1942,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
