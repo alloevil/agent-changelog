@@ -1,4 +1,4 @@
-const CHANGELOG_DATA = [
+const RELEASES_DATA = [
   {
     "month": "2026 年 8 月",
     "monthId": "2026-08",
