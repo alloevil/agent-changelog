@@ -312,8 +312,8 @@ body {
 
   // Adapt RELEASES_DATA (from hermes_data.js) to CHANGELOG_DATA format
   const CHANGELOG_DATA = (RELEASES_DATA || []).map(m => ({
-    month: m.label,
-    monthId: m.id,
+    month: m.month,
+    monthId: m.monthId,
     releases: m.releases.map(r => ({
       version: r.version,
       date: r.date,
