@@ -1,0 +1,19 @@
+{
+  "name": "agent-changelog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw Changelog - synced from OpenClaw releases",
+  "scripts": {
+    "lint": "biome check scripts/",
+    "lint:fix": "biome check --fix scripts/",
+    "format": "biome format scripts/",
+    "format:fix": "biome format --write scripts/",
+    "check": "biome check scripts/",
+    "test": "node --test tests/",
+    "validate": "npm run check && npm test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0"
+  }
+}
