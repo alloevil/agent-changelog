@@ -12,10 +12,10 @@
  * Without GITHUB_TOKEN, uses unauthenticated API (60 req/hr limit).
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -32,12 +32,12 @@ const AI_BATCH_SIZE = 20;
 
 // Tag mapping: section headers in release body → tag categories
 const SECTION_TAGS = {
-  'Breaking': 'Breaking',
-  'Changes':  '新功能',
-  'Fixes':    '修复',
+  Breaking: 'Breaking',
+  Changes: '新功能',
+  Fixes: '修复',
 };
 
-function detectTag(currentSection) {
+export function detectTag(currentSection) {
   return SECTION_TAGS[currentSection] || '新功能';
 }
 
@@ -52,7 +52,7 @@ function detectTag(currentSection) {
  *   ### Fixes
  *   - description text
  */
-function parseFeatures(body) {
+export function parseFeatures(body) {
   if (!body) return [];
 
   const features = [];
@@ -86,9 +86,10 @@ function parseFeatures(body) {
         titleEnd = commaIdx;
       }
 
-      const title = titleEnd > 0
-        ? text.slice(0, titleEnd).replace(/[,，.。:：]$/, '')
-        : text.slice(0, 40).replace(/[,，.。:：]$/, '');
+      const title =
+        titleEnd > 0
+          ? text.slice(0, titleEnd).replace(/[,，.。:：]$/, '')
+          : text.slice(0, 40).replace(/[,，.。:：]$/, '');
 
       features.push({
         title: title.trim(),
@@ -158,10 +159,12 @@ async function generateSummaries(features) {
           model: AI_MODEL,
           max_tokens: 2048,
           system: systemPrompt,
-          messages: [{
-            role: 'user',
-            content: `请为以下更新条目生成中文摘要。返回JSON数组，每个元素格式：{"index": 序号, "summaryZh": "中文摘要"}\n\n${JSON.stringify(input, null, 2)}`,
-          }],
+          messages: [
+            {
+              role: 'user',
+              content: `请为以下更新条目生成中文摘要。返回JSON数组，每个元素格式：{"index": 序号, "summaryZh": "中文摘要"}\n\n${JSON.stringify(input, null, 2)}`,
+            },
+          ],
         }),
       });
 
@@ -195,19 +198,19 @@ async function generateSummaries(features) {
     }
   }
 
-  const withSummary = features.filter(f => f.summaryZh).length;
+  const withSummary = features.filter((f) => f.summaryZh).length;
   console.log(`  Generated ${withSummary}/${features.length} Chinese summaries.`);
 }
 
 async function fetchReleases() {
   const headers = {
-    'Accept': 'application/vnd.github.v3+json',
+    Accept: 'application/vnd.github.v3+json',
     'User-Agent': 'openlaw-changelog-sync',
   };
 
   const token = process.env.GITHUB_TOKEN;
   if (token) {
-    headers['Authorization'] = `token ${token}`;
+    headers.Authorization = `token ${token}`;
   }
 
   const allReleases = [];
@@ -236,10 +239,10 @@ async function fetchReleases() {
   return allReleases;
 }
 
-function releaseToChangelogEntry(release) {
+export function releaseToChangelogEntry(release) {
   let version = release.tag_name || release.name || '';
   if (!version.startsWith('v')) {
-    version = 'v' + version;
+    version = `v${version}`;
   }
 
   const date = release.published_at
@@ -254,13 +257,13 @@ function releaseToChangelogEntry(release) {
 /**
  * Group flat entries by month into the CHANGELOG_DATA format.
  */
-function groupByMonth(entries) {
+export function groupByMonth(entries) {
   const monthMap = new Map();
 
   for (const entry of entries) {
     const [year, month] = entry.date.split('-');
     const monthKey = `${year}-${month}`;
-    const monthLabel = `${year} 年 ${parseInt(month)} 月`;
+    const monthLabel = `${year} 年 ${parseInt(month, 10)} 月`;
 
     if (!monthMap.has(monthKey)) {
       monthMap.set(monthKey, {
@@ -274,25 +277,31 @@ function groupByMonth(entries) {
   }
 
   // Sort months newest first
-  return Array.from(monthMap.values())
-    .sort((a, b) => b.monthId.localeCompare(a.monthId));
+  return Array.from(monthMap.values()).sort((a, b) => b.monthId.localeCompare(a.monthId));
 }
 
 /**
  * Format CHANGELOG_DATA as JS source string.
  */
-function formatChangelogData(months) {
-  const monthStrs = months.map(month => {
-    const releaseStrs = month.releases.map(release => {
-      const featureStrs = release.features.map(f =>
-        `          { title: ${JSON.stringify(f.title)}, tag: ${JSON.stringify(f.tag)}, summary: ${JSON.stringify(f.summary)}, detail: ${JSON.stringify(f.detail)}, summaryZh: ${JSON.stringify(f.summaryZh || null)} }`
-      ).join(',\n');
+export function formatChangelogData(months) {
+  const monthStrs = months
+    .map((month) => {
+      const releaseStrs = month.releases
+        .map((release) => {
+          const featureStrs = release.features
+            .map(
+              (f) =>
+                `          { title: ${JSON.stringify(f.title)}, tag: ${JSON.stringify(f.tag)}, summary: ${JSON.stringify(f.summary)}, detail: ${JSON.stringify(f.detail)}, summaryZh: ${JSON.stringify(f.summaryZh || null)} }`,
+            )
+            .join(',\n');
 
-      return `      {\n        version: ${JSON.stringify(release.version)},\n        date: ${JSON.stringify(release.date)},\n        features: [\n${featureStrs}\n        ]\n      }`;
-    }).join(',\n');
+          return `      {\n        version: ${JSON.stringify(release.version)},\n        date: ${JSON.stringify(release.date)},\n        features: [\n${featureStrs}\n        ]\n      }`;
+        })
+        .join(',\n');
 
-    return `  {\n    month: ${JSON.stringify(month.month)},\n    monthId: ${JSON.stringify(month.monthId)},\n    releases: [\n${releaseStrs}\n    ]\n  }`;
-  }).join(',\n');
+      return `  {\n    month: ${JSON.stringify(month.month)},\n    monthId: ${JSON.stringify(month.monthId)},\n    releases: [\n${releaseStrs}\n    ]\n  }`;
+    })
+    .join(',\n');
 
   return `[\n${monthStrs}\n]`;
 }
@@ -301,12 +310,11 @@ function formatChangelogData(months) {
  * Validate that the generated JS in index.html is syntactically correct.
  * Extracts all <script> blocks and runs `node --check` on each.
  */
-function validateJsSyntax(html) {
+export function validateJsSyntax(html) {
   const scriptRegex = /<script>([\s\S]*?)<\/script>/g;
-  let match;
   let idx = 0;
 
-  while ((match = scriptRegex.exec(html)) !== null) {
+  for (const match of html.matchAll(scriptRegex)) {
     idx++;
     const scriptBody = match[1].trim();
     if (!scriptBody) continue;
@@ -351,12 +359,12 @@ async function main() {
     const releases = await fetchReleases();
     console.log(`Found ${releases.length} releases.\n`);
 
-    const published = releases.filter(r => !r.draft && !r.prerelease);
+    const published = releases.filter((r) => !r.draft && !r.prerelease);
     console.log(`${published.length} published releases.\n`);
 
     const entries = published
       .map(releaseToChangelogEntry)
-      .filter(e => e.features.length > 0)
+      .filter((e) => e.features.length > 0)
       .sort((a, b) => b.date.localeCompare(a.date));
 
     console.log(`${entries.length} releases with parseable features:\n`);
@@ -392,4 +400,6 @@ async function main() {
   }
 }
 
-main();
+if (process.argv[1] && !process.argv[1].includes('test')) {
+  main();
+}
