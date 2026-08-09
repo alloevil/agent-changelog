@@ -4,6 +4,68 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.6.34",
+        "date": "2026-08-08",
+        "features": [
+          {
+            "title": "浏览器与网络安全边界加固",
+            "tag": "安全",
+            "summary": "沙箱化浏览器路由、可信 DNS 目标、自定义浏览器来源和回环端点，现在均拒绝不安全的访问路径",
+            "detail": "Sandboxed browser routes, trusted DNS targets, custom browser origins, and loopback provider endpoints now reject unsafe access paths.",
+            "summaryZh": "浏览器路由和 DNS 端点全面加固，拒绝不安全访问路径"
+          },
+          {
+            "title": "Agent 与 Provider 运行更健壮",
+            "tag": "修复",
+            "summary": "会话写入保留、Provider 回退、流式进度处理和 stdio 失败现在都能恢复，不再静默中断活跃工作",
+            "detail": "Retained session writes, provider fallbacks, stream progress handling, and stdio failures now recover without silently ending active work.",
+            "summaryZh": "会话和 Provider 故障可自动恢复，不再静默中断"
+          },
+          {
+            "title": "Channel 恢复能力增强",
+            "tag": "优化",
+            "summary": "待处理 Channel 工作在恢复后可继续执行，确认消息幂等化，Discord 网关突发流量得到限制",
+            "detail": "Pending channel work resumes after recovery, acknowledgements are idempotent, and sustained Discord gateway bursts stay bounded.",
+            "summaryZh": "Channel 恢复后自动续接，Discord 流量突发得到控制"
+          },
+          {
+            "title": "操作者诊断安全化",
+            "tag": "安全",
+            "summary": "命令和状态界面保护仅所有者可执行的操作，防止凭据出现在账户 URL 或摘要中",
+            "detail": "Command and status surfaces keep owner-only actions protected and prevent credentials from appearing in account URLs or summaries.",
+            "summaryZh": "凭据不再泄露到 URL 或摘要，所有者操作受保护"
+          },
+          {
+            "title": "本地运行时状态更健壮",
+            "tag": "修复",
+            "summary": "SQLite 检查点、工作区读取、Gateway 进程信号、插件 HTTP 响应和依赖处理不再因瞬态宿主条件导致运行失败",
+            "detail": "SQLite checkpoints, workspace reads, gateway process signalling, plugin HTTP responses, and dependency handling no longer turn transient host conditions into failed runs.",
+            "summaryZh": "SQLite 和 Gateway 瞬态故障不再导致运行失败"
+          },
+          {
+            "title": "依赖安全更新",
+            "tag": "安全",
+            "summary": "更新 brace-expansion、PostCSS、fast-uri、ip-address 和 Undici 的生产依赖版本",
+            "detail": "Updates production dependency resolutions for patched brace-expansion, PostCSS, fast-uri, ip-address, and Undici versions.",
+            "summaryZh": "多个关键依赖安全版本升级"
+          },
+          {
+            "title": "Codex 原生子代理修复",
+            "tag": "修复",
+            "summary": "保留父级 app-server 订阅，识别多代理 V2 子活动直到 yield 的子完成到达请求者",
+            "detail": "Retain the parent app-server subscription and recognize multi-agent V2 child activity until a yielded child completion reaches its requester.",
+            "summaryZh": "修复 Codex 子代理父级订阅丢失问题"
+          },
+          {
+            "title": "Plugin SDK 即将废弃提醒",
+            "tag": "变更",
+            "summary": "before_agent_start、根级 SDK 导入、providerAuthEnvVars 和 channelEnvVars 计划 7 月 24 日后移除",
+            "detail": "before_agent_start, root openclaw/plugin-sdk imports, providerAuthEnvVars, and channelEnvVars are scheduled for removal after July 24.",
+            "summaryZh": "旧版 Plugin SDK 接口即将废弃，需迁移至新版"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.1-1",
         "date": "2026-08-04",
         "features": [
