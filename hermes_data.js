@@ -107,6 +107,121 @@ const CHANGELOG_DATA = [
     "monthId": "2026-07",
     "releases": [
       {
+        "version": "v2026.7.7",
+        "date": "2026-07-08",
+        "features": [
+          {
+            "title": "v0.18.1 补丁发布",
+            "tag": "修复",
+            "summary": "汇总 v0.18.0 以来 660+ PR，含 Windows 安装器自愈、仪表盘/网关修复",
+            "detail": "Patch release with ~660 PRs — installer self-healing, dashboard/gateway fixes, WhatsApp pairing, MCP fixes.",
+            "summaryZh": "v0.18.1 补丁：660+ PR 汇总，Windows 安装器自愈等"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.7.2",
+        "date": "2026-07-08",
+        "features": [
+          {
+            "title": "WhatsApp Baileys 依赖修复",
+            "tag": "修复",
+            "summary": "Baileys 从 git commit 改为 npm 发布版 7.0.0-rc13，修复 Docker 构建",
+            "detail": "Unpin Baileys from git commit, use published npm release for reliable Docker builds.",
+            "summaryZh": "WhatsApp 依赖改为 npm 发布版，修复 Docker 构建"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.20",
+        "date": "2026-07-20",
+        "features": [
+          {
+            "title": "首 token 延迟降低 ~80%",
+            "tag": "优化",
+            "summary": "冷启动从 ~4.3s 降至 ~0.9s，推理模型默认实时流式输出思考过程",
+            "detail": "Cold-start dropped from ~4.3s to ~0.9s across all platforms. Reasoning models stream thinking live by default.",
+            "summaryZh": "冷启动 ~4.3s→~0.9s，推理模型实时流式思考"
+          },
+          {
+            "title": "桌面端性能大改 — 20+ 性能 PR",
+            "tag": "优化",
+            "summary": "Markdown 渲染 14 倍提速，虚拟化 diff 视图，会话切换不再卡顿",
+            "detail": "14x less splitter CPU, virtualized diffs, snappy session switching, stopped per-token re-renders.",
+            "summaryZh": "桌面端 14 倍渲染提速，会话切换丝滑"
+          },
+          {
+            "title": "终端内管理订阅",
+            "tag": "新增",
+            "summary": "/subscription 和 /topup 命令，无需离开终端即可管理 Nous 订阅",
+            "detail": "Full subscription management in TUI/CLI with preview, scheduled changes, and undo.",
+            "summaryZh": "终端内直接管理 Nous 订阅和充值"
+          },
+          {
+            "title": "智能审批成为默认",
+            "tag": "优化",
+            "summary": "LLM 独立评估标记命令，支持用户自定义拒绝规则",
+            "detail": "LLM reviewer assesses flagged commands. User-defined deny rules block even under yolo mode.",
+            "summaryZh": "LLM 自动评估命令安全性，减少手动审批"
+          },
+          {
+            "title": "密码管理器集成",
+            "tag": "新增",
+            "summary": "SecretSource 接口支持 Bitwarden 和 1Password 密钥获取",
+            "detail": "Pluggable SecretSource interface with Bitwarden and 1Password providers.",
+            "summaryZh": "Bitwarden/1Password 密钥无缝集成"
+          },
+          {
+            "title": "子代理实时监控 + 持久化",
+            "tag": "新增",
+            "summary": "delegate_task 返回实时日志，后台结果持久化不丢失",
+            "detail": "Live transcript files for delegate_task, durable background completions via ownership-checked ledger.",
+            "summaryZh": "子代理实时日志 + 后台结果持久化"
+          },
+          {
+            "title": "响应投递持久化账本",
+            "tag": "修复",
+            "summary": "最终响应记录在持久账本中，网关崩溃后自动重发",
+            "detail": "Durable delivery-obligation ledger in state.db, redelivered on next boot.",
+            "summaryZh": "网关崩溃后自动重发已完成的回复"
+          },
+          {
+            "title": "新模型与提供商",
+            "tag": "新增",
+            "summary": "Fireworks AI、DeepInfra、GPT-5.6、grok-4.5、kimi-k3、claude-sonnet-5",
+            "detail": "New first-class providers and latest frontier models end-to-end.",
+            "summaryZh": "新增 Fireworks/DeepInfra 及 GPT-5.6 等最新模型"
+          },
+          {
+            "title": "推理深度 max/ultra 级别",
+            "tag": "新增",
+            "summary": "按模型、槽位、任务精细控制推理努力程度",
+            "detail": "New max/ultra reasoning effort levels with per-model/Slot/task overrides.",
+            "summaryZh": "推理深度可精细到模型/槽位/任务级别"
+          },
+          {
+            "title": "全面会话导出",
+            "tag": "新增",
+            "summary": "导出为 Markdown/HTML/HF trace 等格式，支持密钥脱敏",
+            "detail": "Sessions export to Markdown, HTML, HF-ready trace with --redact.",
+            "summaryZh": "会话导出支持多种格式 + 密钥脱敏"
+          }
+        ]
+      },
+      {
+        "version": "v2026.7.30",
+        "date": "2026-07-30",
+        "features": [
+          {
+            "title": "v0.19.1 补丁发布",
+            "tag": "修复",
+            "summary": "汇总自 v0.19.0 以来的 1000+ PR，覆盖网关、语音、桌面端和安装器的 bug 修复与加固",
+            "detail": "Patch release rolling up ~1,000+ PRs since v0.19.0. Bug-fix and salvage waves across gateway, voice subsystem, desktop app, and installer, plus continued platform work (Buzz/Nostr channel, FLUX3 video generation, Telegram media reliability).",
+            "summaryZh": "v0.19.1 补丁：1000+ PR 汇总，网关/语音/桌面端稳定性修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.1",
         "date": "2026-07-01",
         "features": [
