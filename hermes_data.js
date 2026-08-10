@@ -1,4 +1,4 @@
-const CHANGELOG_DATA = [
+const RELEASES_DATA = [
   {
     "month": "2026 年 8 月",
     "monthId": "2026-08",
@@ -287,4 +287,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = RELEASES_DATA;
