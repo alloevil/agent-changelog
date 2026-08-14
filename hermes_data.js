@@ -4,6 +4,19 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.13",
+        "date": "2026-08-13",
+        "features": [
+          {
+            "title": "v0.20.1 稳定性修补版本发布",
+            "tag": "修复",
+            "summary": "自 v0.20.0 以来合并约 656 个 PR、1,444 次提交，涵盖桌面应用、网关平台、安装器、工具系统和 Provider 目录的广泛稳定性修复",
+            "detail": "Patch release rolling up ~656 merged PRs since v0.20.0 with stabilization-and-fixes across desktop app, gateway platforms, installers, tool system, and provider catalogs.",
+            "summaryZh": "v0.20.1 修补版本，656 个 PR 广泛修复桌面、网关、工具等子系统"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.3",
         "date": "2026-08-03",
         "features": [
