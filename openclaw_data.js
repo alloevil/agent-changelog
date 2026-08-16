@@ -4,6 +4,117 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.1-beta.2",
+        "date": "2026-08-15",
+        "features": [
+          {
+            "title": "Secret 出站主机绑定",
+            "tag": "安全",
+            "summary": "每个 shared-store secret 现在绑定到精确的 HTTPS 目标主机，未绑定的哨兵替换在明文出站前会安全失败",
+            "detail": "Each shared-store secret binds to exact HTTPS destination hosts across CLI, Gateway RPC, and Control UI; unbound sentinel substitution fails closed before plaintext egress.",
+            "summaryZh": "Secret 绑定精确 HTTPS 主机，未绑定请求安全拒绝"
+          },
+          {
+            "title": "GPT-5.6 Ultra 与运行时切换",
+            "tag": "新增",
+            "summary": "支持 Sol、Terra、Luna 三种变体，通过 /model 命令原子切换模型、运行时和思考模式，OpenClaw 和 Codex 引擎均覆盖",
+            "detail": "Support Sol, Terra, and Luna across OpenClaw and Codex engines; model, runtime, and thinking selection atomic through /model and fallback with live matrix coverage.",
+            "summaryZh": "GPT-5.6 支持 Sol/Terra/Luna，/model 原子切换"
+          },
+          {
+            "title": "Channel 插件入口监控",
+            "tag": "新增",
+            "summary": "新增共享插件 SDK 监控器，覆盖持久化准入、轮询、裁剪、身份验证、接管和关闭，IRC/Synology Chat/Google Chat 已迁移",
+            "detail": "Shared plugin SDK monitor for durable admission, polling, pruning, claim identity validation, adoption handoff, and shutdown; IRC, Synology Chat, and Google Chat migrated.",
+            "summaryZh": "Channel 插件统一生命周期监控，IRC/Synology/Google Chat 已迁移"
+          },
+          {
+            "title": "SQLite 快照备份",
+            "tag": "新增",
+            "summary": "新增 openclaw backup sqlite create|list|verify|restore 命令，支持紧凑、可验证的全局和单 Agent 数据库备份，仅限新目标恢复",
+            "detail": "openclaw backup sqlite create|list|verify|restore for compact, verified global and per-agent database artifacts with fresh-target-only restore.",
+            "summaryZh": "SQLite 数据库快照备份与恢复命令"
+          },
+          {
+            "title": "macOS 应用多实例隔离",
+            "tag": "新增",
+            "summary": "命名应用实例在状态、偏好、Keychain、Gateway 服务和重复实例所有权上完全隔离，主机全局登录和节点服务不受影响",
+            "detail": "Isolate named app instances across state, preferences, Keychain, Gateway services, and duplicate-instance ownership while keeping host-global login and node services untouched.",
+            "summaryZh": "macOS 支持命名应用实例完全隔离"
+          },
+          {
+            "title": "插件安装来源安全警告",
+            "tag": "安全",
+            "summary": "CLI 和聊天安装任意可执行插件来源时需显式 --force 确认，可信 ClawHub/官方目录/跟踪更新保持无摩擦",
+            "detail": "Require explicit --force for arbitrary executable plugin sources; trusted ClawHub, bundled, official-catalog, and tracked-update flows remain frictionless.",
+            "summaryZh": "非可信插件来源需 --force 确认，官方来源不受影响"
+          },
+          {
+            "title": "Control UI 更新恢复修复",
+            "tag": "修复",
+            "summary": "新版本可用 Reload 按钮现在会等待 Gateway 重启完成后自动刷新，不再静默无响应需要手动硬刷新",
+            "detail": "Reload button waits out gateway restart and reloads as soon as it answers instead of silently doing nothing.",
+            "summaryZh": "更新 Reload 按钮等待 Gateway 重启后自动刷新"
+          },
+          {
+            "title": "浏览器扩展 CDP 兼容",
+            "tag": "优化",
+            "summary": "回答 Target.getBrowserContexts 请求，Puppeteer 客户端可直接驱动配对 Chrome，新增 openclaw browser extension cdp 命令",
+            "detail": "Answer Target.getBrowserContexts so Puppeteer-based clients can drive paired Chrome; serve DevTools-style /json/list descriptors; add cdp endpoint command.",
+            "summaryZh": "Puppeteer 可直接驱动配对 Chrome，新增 cdp 端点命令"
+          },
+          {
+            "title": "Fish Audio 语音合成",
+            "tag": "新增",
+            "summary": "新增托管 S2.1 语音合成，支持流式、语音笔记、语音发现和电话集成，macOS Talk 本地 Fish S2 Pro 参考语音流式",
+            "detail": "Hosted S2.1 synthesis with streaming, voice notes, voice discovery, and telephony; local Fish S2 Pro reference-voice streaming in native macOS Talk.",
+            "summaryZh": "Fish Audio S2.1 托管语音合成，支持流式和电话"
+          },
+          {
+            "title": "Buzz 消息保真与输入状态",
+            "tag": "优化",
+            "summary": "保留 Markdown 输出，支持 Buzz 普通/富内容/结构化差异消息；显示房间和话题级输入状态指示器",
+            "detail": "Preserve Markdown output and accept Buzz normal/rich-content/structured-diff messages; show room- and thread-scoped typing indicators during agent replies.",
+            "summaryZh": "Buzz 消息保留 Markdown 格式，新增输入状态指示"
+          },
+          {
+            "title": "ClickClack 引导设置与命令菜单",
+            "tag": "新增",
+            "summary": "通过 openclaw onboard 或 channels add 配置 ClickClack，自动发布原生命令到作曲器补全，支持机器人协作",
+            "detail": "Configure ClickClack from onboarding; publish native commands to composer autocomplete; add opt-in bot-authored inbound dispatch.",
+            "summaryZh": "ClickClack 引导设置、命令菜单和机器人协作"
+          },
+          {
+            "title": "Skill Workshop 审批策略优化",
+            "tag": "优化",
+            "summary": "Agent 发起的 apply/reject/quarantine 操作默认无需额外审批，可通过 skills.workshop.approvalPolicy: pending 启用",
+            "detail": "Agent-initiated apply, reject, and quarantine actions run without additional approval by default; opt-in pending policy available.",
+            "summaryZh": "Skill Workshop Agent 操作默认免审批"
+          },
+          {
+            "title": "Meta Muse Spark 1.1 模型支持",
+            "tag": "新增",
+            "summary": "新增 Meta muse-spark-1.1 模型支持，包含 Responses API 流式、工具调用、加密推理回放和独立分发",
+            "detail": "Bundled muse-spark-1.1 model with Responses API streaming, tool calls, encrypted reasoning replay, onboarding, and standalone distribution.",
+            "summaryZh": "新增 Meta muse-spark-1.1 模型，支持流式和推理回放"
+          },
+          {
+            "title": "外部 Gateway 监督模式",
+            "tag": "新增",
+            "summary": "新增 OPENCLAW_SUPERVISOR_MODE=external 模式，支持 OCM 等生命周期所有者管理 Gateway，不暴露原生服务权限",
+            "detail": "OPENCLAW_SUPERVISOR_MODE=external for lifecycle owners such as OCM; preserves restart behavior without exposing native service authority.",
+            "summaryZh": "外部 Gateway 监督模式，支持 OCM 管理生命周期"
+          },
+          {
+            "title": "Logbook 工作日志插件",
+            "tag": "新增",
+            "summary": "新增默认禁用的内置插件，将配对节点屏幕快照转化为私人时间线、每日站会和基于时间线的问答",
+            "detail": "Disabled-by-default bundled plugin turning paired-node screen snapshots into a private timeline, daily standup, and timeline-grounded Q&A.",
+            "summaryZh": "Logbook 插件：屏幕快照转时间线和每日站会"
+          }
+        ]
+      },
+      {
         "version": "v2026.6.34",
         "date": "2026-08-08",
         "features": [
