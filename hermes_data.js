@@ -4,6 +4,33 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.16",
+        "date": "2026-08-16",
+        "features": [
+          {
+            "title": "v0.20.2 补丁发布",
+            "tag": "修复",
+            "summary": "滚动整合 v0.20.1 以来约 397 个 PR、967 次提交的修复和改进，涵盖桌面端、CLI、网关等全方位",
+            "detail": "Patch release rolling up ~397 PRs and ~967 commits since v0.20.1, spanning desktop app (multi-gateway Connections registry, profile-scoped refreshes, MCP health checks), CLI (Windows update probes, Kitty keyboard protocol), gateway (persisted model routes, /loop completion, Telegram DM topics), prompt caching for LiteLLM Claude, cron hardening, and auth resolution.",
+            "summaryZh": "v0.20.2 补丁：整合 397 个 PR，桌面端/CLI/网关全面修复"
+          },
+          {
+            "title": "多网关 Connections 注册表",
+            "tag": "新增",
+            "summary": "桌面端支持多网关连接注册，配置文件范围刷新，MCP 健康检查和深度链接",
+            "detail": "Desktop app gains multi-gateway Connections registry, profile-scoped refreshes, MCP health checks and deep links.",
+            "summaryZh": "桌面端多网关连接管理、MCP 健康检查"
+          },
+          {
+            "title": "CLI 与网关稳定性增强",
+            "tag": "优化",
+            "summary": "Windows 更新探测、Kitty 键盘协议支持、Telegram DM 话题、持久化模型路由等",
+            "detail": "CLI improvements including Windows update probes, Kitty keyboard protocol, chat -c hardening. Gateway gains persisted model routes, /loop completion, Telegram DM topics.",
+            "summaryZh": "CLI Kitty 键盘协议、网关持久化模型路由、Telegram DM 话题"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.13",
         "date": "2026-08-13",
         "features": [
