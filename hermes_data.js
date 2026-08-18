@@ -4,6 +4,40 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.16.2",
+        "date": "2026-08-17",
+        "features": [
+          {
+            "title": "MCP 2.x SDK 迁移与 Bot Mode 插件",
+            "tag": "新增",
+            "summary": "完成 MCP 2.x SDK 迁移并支持 2026-07-28 无状态协议；新增内置 Bot Mode（hermes-bots）插件，包含核心队友协议",
+            "detail": "MCP 2.x SDK migration with 2026-07-28 stateless protocol support; bundled Bot Mode (hermes-bots) plugin with core teammate protocol",
+            "summaryZh": "MCP 2.x SDK 迁移 + 内置 Bot Mode 插件"
+          },
+          {
+            "title": "CommandCode 提供者插件与运行时加固",
+            "tag": "新增",
+            "summary": "新增 CommandCode 提供者插件；Python 子进程运行时所有权加固（PYTHONHOME/PYTHONPATH 隔离）；Cua Driver 0.20 运行时合约",
+            "detail": "CommandCode provider plugin; subprocess Python runtime ownership hardening (PYTHONHOME/PYTHONPATH isolation); Cua Driver 0.20 runtime contracts",
+            "summaryZh": "新增 CommandCode 插件 + Python 运行时隔离加固"
+          },
+          {
+            "title": "Cron 调度器自愈与会话交接修复",
+            "tag": "修复",
+            "summary": "Cron 调度器自愈（EMFILE 恢复、过期 claim 协调、卡住任务重置）；修复会话交接数据丢失；看板 worktree/dispatch 修复",
+            "detail": "Cron scheduler self-heal (EMFILE recovery, stale-claim reconciliation, wedged-job re-arm); session handoff data-loss fixes; kanban worktree/dispatch fixes",
+            "summaryZh": "Cron 调度器自愈 + 会话交接数据丢失修复"
+          },
+          {
+            "title": "生态侦察移植（安全扫描、回滚等）",
+            "tag": "新增",
+            "summary": "移植生态侦察成果：插件安装安全扫描、/worktree、/rollback 手动编辑保留、UTF-16 文件读取、Gemini 3 tool-call ID 保留等",
+            "detail": "Ports from ecosystem scout: plugin install security scanning, /worktree, /rollback hand-edit preservation, UTF-16 file reads, Gemini 3 tool-call ID preservation",
+            "summaryZh": "移植插件安全扫描、UTF-16 读取等多项生态改进"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.16",
         "date": "2026-08-16",
         "features": [
