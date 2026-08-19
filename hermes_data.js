@@ -4,6 +4,40 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.18",
+        "date": "2026-08-18",
+        "features": [
+          {
+            "title": "桌面端 Glass/半透明表面与标签式侧边栏",
+            "tag": "新增",
+            "summary": "桌面端新增 matte glass、frost picker、macOS 预选效果；侧边栏改为 SESSIONS|BOTS 标签式布局，支持按 Bot 隐藏/显示",
+            "detail": "Desktop glass/translucency surface work (matte glass, frost picker, macOS pre-select); tabbed SESSIONS|BOTS sidebar with per-bot hide/unhide",
+            "summaryZh": "桌面端 Glass 半透明效果 + 标签式 SESSIONS|BOTS 侧边栏"
+          },
+          {
+            "title": "Bot Mode 群聊修复与 NVIDIA SkillEvaluator",
+            "tag": "修复",
+            "summary": "修复 Bot Mode 群聊中长时间成员轮次、Markdown 渲染和跨机器路由问题；技能安装时新增 NVIDIA SkillEvaluator Tier 1 安全扫描（许可证 + 安全检查）",
+            "detail": "Bot Mode group-chat fixes (long-running member turns, Markdown rendering, cross-machine routing); NVIDIA SkillEvaluator Tier 1 advisory scanning on skill installs",
+            "summaryZh": "Bot Mode 群聊修复 + NVIDIA 技能安全扫描"
+          },
+          {
+            "title": "Cron 媒体发送加固与 SessionDB 修复",
+            "tag": "优化",
+            "summary": "Cron 媒体发送加固：可配置超时、手动运行附件、错过触发提醒；SessionDB 事件循环线程和争用修复",
+            "detail": "Cron media-send hardening (configurable timeout, manual-run attachments, missed-fire surfacing); SessionDB event-loop-thread and contention fixes",
+            "summaryZh": "Cron 媒体发送可配置超时 + SessionDB 争用修复"
+          },
+          {
+            "title": "hermes update 分支诚实检测与看板原生通知",
+            "tag": "优化",
+            "summary": "hermes update 修正了停放分支的诚实检测；看板新增原生操作系统通知",
+            "detail": "hermes update parked-branch honesty; kanban native OS notifications",
+            "summaryZh": "update 停放分支检测修正 + 看板原生通知"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.16.2",
         "date": "2026-08-17",
         "features": [
