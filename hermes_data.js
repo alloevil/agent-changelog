@@ -4,6 +4,75 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.19",
+        "date": "2026-08-21",
+        "features": [
+          {
+            "title": "Bot Mode 群组房间线程与可折叠对话摘要",
+            "tag": "新增",
+            "summary": "Bot Mode 新增群组房间线程支持、可折叠对话摘要、blob-face 头像以及 PDF/文件拖拽附件",
+            "detail": "Bot Mode group-room threads, foldable conversation summaries, blob-face avatars, and PDF/file attachments with drag & drop",
+            "summaryZh": "Bot Mode 支持群组线程、折叠摘要、头像和文件附件"
+          },
+          {
+            "title": "无密钥 Web 层",
+            "tag": "新增",
+            "summary": "5 供应商免费轮换与环形故障转移，全新安装无需任何密钥即可使用 Web 搜索",
+            "detail": "Keyless web tier with 5-vendor free rotation and ring failover; web search works on fresh installs with zero keys",
+            "summaryZh": "零密钥 Web 搜索，5 供应商自动轮换"
+          },
+          {
+            "title": "CLI 体验优化",
+            "tag": "优化",
+            "summary": "新增模糊 /model 选择器、Ctrl+P 命令面板、更丰富的 /status 输出",
+            "detail": "CLI polish wave: fuzzy /model picker, Ctrl+P command palette, richer /status",
+            "summaryZh": "CLI 新增模糊模型选择器、命令面板和增强状态"
+          },
+          {
+            "title": "执行纪律与运行时卡顿防护",
+            "tag": "优化",
+            "summary": "基于 Composio 评估发现，增强执行纪律和运行时卡顿防护机制",
+            "detail": "Execution-discipline and runtime stall guards from the Composio eval findings",
+            "summaryZh": "执行纪律增强与运行时卡顿防护"
+          },
+          {
+            "title": "桌面端性能优化",
+            "tag": "优化",
+            "summary": "Bot Mode 采用 paint-first 水合、合成器旋转动画，两个渲染器均启用 React Compiler",
+            "detail": "Desktop perf work: paint-first Bot Mode hydration, compositor spinners, React Compiler in both renderers",
+            "summaryZh": "桌面端 paint-first 水合 + React Compiler 双渲染器"
+          },
+          {
+            "title": "Cron 任务持久记忆与推理力度",
+            "tag": "新增",
+            "summary": "Cron 任务获得持久记忆能力和按任务独立的推理力度设置",
+            "detail": "Cron jobs gaining persistent memory and per-job reasoning effort",
+            "summaryZh": "Cron 任务支持持久记忆和独立推理力度"
+          },
+          {
+            "title": "hermes update 收据与 fleet --plan 验证",
+            "tag": "新增",
+            "summary": "更新命令生成收据记录，fleet --plan 支持验证检查",
+            "detail": "hermes update receipts and fleet --plan verification",
+            "summaryZh": "更新收据与 fleet 计划验证"
+          },
+          {
+            "title": "hermes worktree list/prune",
+            "tag": "新增",
+            "summary": "新增 worktree 列表和清理命令",
+            "detail": "hermes worktree list/prune",
+            "summaryZh": "worktree 列表与清理命令"
+          },
+          {
+            "title": "opencode-free 零认证 Provider",
+            "tag": "新增",
+            "summary": "新增无需认证的 opencode-free provider",
+            "detail": "The opencode-free zero-auth provider",
+            "summaryZh": "零认证 opencode-free provider"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.18",
         "date": "2026-08-18",
         "features": [
@@ -395,4 +464,4 @@ const RELEASES_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = RELEASES_DATA;
+if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
