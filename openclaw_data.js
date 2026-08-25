@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.1-beta.3",
+        "date": "2026-08-24",
+        "features": [
+          {
+            "title": "GPT-5.6 全系列推理支持",
+            "tag": "新增",
+            "summary": "GPT-5.6 Sol、Terra、Luna 和 Ultra 推理模型在 OpenClaw 和 Codex 运行时全面支持",
+            "detail": "GPT-5.6 Sol, Terra, Luna, and Ultra reasoning support across OpenClaw and the Codex runtime.",
+            "summaryZh": "GPT-5.6 Sol/Terra/Luna/Ultra 全面支持"
+          },
+          {
+            "title": "Control UI 首次运行设置优化",
+            "tag": "优化",
+            "summary": "首次运行设置流程现在会将已验证的模型设置延续到 Custodian 和可选的 Channel 配置",
+            "detail": "Control UI first-run setup now continues verified model setup into Custodian and optional channel setup.",
+            "summaryZh": "首次设置自动延续到 Custodian 和 Channel 配置"
+          },
+          {
+            "title": "Puppeteer 兼容 CDP 中继",
+            "tag": "新增",
+            "summary": "支持 Puppeteer 兼容的 CDP 中继，可驱动配对的 Chrome 会话",
+            "detail": "Puppeteer-compatible CDP relay support for paired Chrome sessions.",
+            "summaryZh": "Puppeteer CDP 中继支持配对 Chrome 会话"
+          },
+          {
+            "title": "外部 Gateway 生命周期监管",
+            "tag": "新增",
+            "summary": "显式外部 Gateway 生命周期监管，支持验证的重启移交",
+            "detail": "Explicit external Gateway lifecycle supervision with verified restart handoff.",
+            "summaryZh": "外部 Gateway 生命周期监管与验证重启"
+          },
+          {
+            "title": "SQLite 备份与恢复命令",
+            "tag": "新增",
+            "summary": "紧凑、可验证的 SQLite 备份和全新目标恢复命令",
+            "detail": "Compact, verified SQLite backup and fresh-target restore commands.",
+            "summaryZh": "SQLite 备份与全新目标恢复"
+          },
+          {
+            "title": "Channel 插件共享持久化入口监控",
+            "tag": "新增",
+            "summary": "Channel 插件新增共享持久化入口监控器",
+            "detail": "Shared durable ingress monitors for channel plugins.",
+            "summaryZh": "Channel 插件共享持久化入口监控"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.1-beta.2",
         "date": "2026-08-15",
         "features": [
@@ -57967,4 +58015,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
