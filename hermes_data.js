@@ -4,6 +4,96 @@ const RELEASES_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.27",
+        "date": "2026-08-27",
+        "features": [
+          {
+            "title": "同意授权的本地浏览器档案浏览",
+            "tag": "新增",
+            "summary": "使用默认 Chromium 配置文件进行本地浏览，Windows 带关闭审批流程",
+            "detail": "Consent-gated real-profile browsing: use your default Chromium profile for local browsing, with Windows close-with-approval flow",
+            "summaryZh": "同意授权后可用默认 Chromium 档案本地浏览"
+          },
+          {
+            "title": "桌面端独立窗口与 SSH 远程更新引擎",
+            "tag": "新增",
+            "summary": "桌面浏览器获得独立操作系统窗口，新增托管 SSH 远程更新引擎和 fleet 配置文件轨道",
+            "detail": "Desktop Browser gets its own OS window plus a managed SSH remote-update engine and fleet profile rail",
+            "summaryZh": "桌面浏览器独立窗口 + SSH 远程更新 + fleet 管理"
+          },
+          {
+            "title": "远程 MCP 目录大规模扩展（50+ 供应商）",
+            "tag": "新增",
+            "summary": "新增 50+ 经实时验证的供应商托管 MCP 服务器，含 Cloudflare、Grafana Cloud、Better Stack、Railway 等",
+            "detail": "Large remote MCP catalog expansion: 50+ live-verified vendor-hosted servers including Cloudflare, Grafana Cloud, Better Stack, Railway",
+            "summaryZh": "MCP 目录扩展至 50+ 供应商服务器"
+          },
+          {
+            "title": "Web 搜索/提取 TTL 缓存与 lean-tail 压缩",
+            "tag": "新增",
+            "summary": "web_search/web_extract 结果支持 TTL 缓存，lean-tail 压缩成为默认策略",
+            "detail": "TTL result caching for web_search/web_extract; lean-tail compression as the default",
+            "summaryZh": "Web 工具 TTL 缓存 + lean-tail 压缩默认开启"
+          },
+          {
+            "title": "多查询工具搜索与词干提取",
+            "tag": "新增",
+            "summary": "tool_search 支持多查询并发搜索和词干提取匹配",
+            "detail": "Multi-query tool_search with stemming",
+            "summaryZh": "工具搜索支持多查询和词干提取"
+          },
+          {
+            "title": "OS 钥匙链加密存储密钥",
+            "tag": "新增",
+            "summary": "可选使用操作系统钥匙链加密存储密钥，告别每次启动 macOS 钥匙链弹窗",
+            "detail": "Opt-in OS-keychain encryption for stored secrets — no more per-launch macOS Keychain prompts",
+            "summaryZh": "密钥可选存储在 OS 钥匙链，免去反复弹窗"
+          },
+          {
+            "title": "更新器暂停网关替代强杀",
+            "tag": "优化",
+            "summary": "更新器通过控制套接字暂停网关，而非直接强杀进程树",
+            "detail": "Updaters pausing gateways over the control socket instead of tree-killing them",
+            "summaryZh": "更新时暂停网关而非强杀进程"
+          },
+          {
+            "title": "不安全的就地更新拒绝（Phase 3）",
+            "tag": "安全",
+            "summary": "镜像/包管理安装场景下拒绝不安全的就地更新",
+            "detail": "Image/package-managed installs refusing unsafe in-place updates (#91277 Phase 3)",
+            "summaryZh": "镜像/包管理安装拒绝不安全就地更新"
+          },
+          {
+            "title": "Cron 持久化事件确认与代码偏差检测",
+            "tag": "优化",
+            "summary": "Cron 持久化事件确认，代码版本偏差时给出更清晰的失败提示",
+            "detail": "Cron durable-incident acks and clearer code-skew failures",
+            "summaryZh": "Cron 事件确认持久化 + 代码偏差失败提示优化"
+          },
+          {
+            "title": "Slack 链接预展控制",
+            "tag": "新增",
+            "summary": "支持控制 Slack 消息中链接的预展展开行为",
+            "detail": "Slack link-unfurl controls",
+            "summaryZh": "Slack 链接预展可控"
+          },
+          {
+            "title": "共享 Docker 容器身份与终端环境后端",
+            "tag": "新增",
+            "summary": "支持共享 Docker 容器身份；终端环境改为可插拔后端架构",
+            "detail": "Shared Docker container identities; pluggable terminal environment backends",
+            "summaryZh": "Docker 容器共享身份 + 可插拔终端后端"
+          },
+          {
+            "title": "新增模型：GLM-5.3-Flash、MiniMax M3/H3",
+            "tag": "新增",
+            "summary": "模型选择器新增 GLM-5.3-Flash、MiniMax M3 免费版和 MiniMax H3 Max 视频模型",
+            "detail": "New models in pickers: GLM-5.3-Flash, MiniMax M3 free, MiniMax H3 Max video",
+            "summaryZh": "新增 GLM-5.3-Flash、MiniMax M3/H3 模型"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.19",
         "date": "2026-08-21",
         "features": [
