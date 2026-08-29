@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.9.1-beta.1",
+        "date": "2026-08-28",
+        "features": [
+          {
+            "title": "Gateway 重启恢复",
+            "tag": "修复",
+            "summary": "跨多次 Gateway 重启保留已接纳的任务，确保重启安全的运行能继续通过检查点并交付最终响应",
+            "detail": "Preserve admitted turns across repeated Gateway restarts so restart-safe runs continue through each checkpoint and deliver their final response",
+            "summaryZh": "Gateway 重启不再丢失正在执行的任务"
+          },
+          {
+            "title": "Gateway 配置写入可靠性",
+            "tag": "修复",
+            "summary": "在 watcher 切换期间保持已提交的配置写入处于 pending 状态，防止同一写入的 reload 失败",
+            "detail": "Keep committed config writes pending through watcher handoff so same-write reloads settle against the observed generation instead of failing during source transfer",
+            "summaryZh": "修复 config.patch 在 watcher 切换时偶发失败的问题"
+          },
+          {
+            "title": "Codex 运行时升级",
+            "tag": "变更",
+            "summary": "将内置 Codex 运行时更新至 0.150.1，覆盖 Linux/macOS/Windows 平台",
+            "detail": "Update the bundled Codex runtime to 0.150.1 across Linux, macOS, and Windows while retaining platform-specific package resolution",
+            "summaryZh": "Codex 运行时升级至 0.150.1"
+          },
+          {
+            "title": "Linux 安装可靠性",
+            "tag": "修复",
+            "summary": "使用稳定版 Node 24 LTS，限制 RPM 安装仅使用配置的 NodeSource 仓库，避免选到不兼容的预发布版本",
+            "detail": "Provision the stable Node 24 LTS stream and constrain RPM installs to the configured NodeSource repository so Linux setup cannot select an incompatible prerelease",
+            "summaryZh": "修复 Linux 安装可能选到不兼容 Node 预发布版本的问题"
+          },
+          {
+            "title": "Worker 恢复机制",
+            "tag": "修复",
+            "summary": "重新激活超时的准入启动、将死掉的 Worker 任务标记为终止，并延迟清理残留，使中断的委托工作可见地完成",
+            "detail": "Re-arm admission-deadline launches, terminalize dead-worker turns, and defer debris cleanup so interrupted delegated work settles visibly",
+            "summaryZh": "修复 Worker 中断后委托工作无法正常结束的问题"
+          },
+          {
+            "title": "控制台文件安全",
+            "tag": "修复",
+            "summary": "在并发读取和刷新时保护已确认的 agent 文件保存，同时保留较新的草稿",
+            "detail": "Preserve confirmed agent-file saves during overlapping reads and refreshes while keeping newer drafts intact",
+            "summaryZh": "修复控制台并发操作时文件保存可能丢失的问题"
+          },
+          {
+            "title": "模型浏览可靠性",
+            "tag": "修复",
+            "summary": "自动插件激活后保持模型发现可用，不再丢失已选的 provider 目录",
+            "detail": "Keep model discovery available after automatic plugin activation instead of losing the selected provider catalog",
+            "summaryZh": "修复插件自动激活后模型列表消失的问题"
+          },
+          {
+            "title": "审计决策记录",
+            "tag": "优化",
+            "summary": "在权威执行边界记录通用工具操作决策，提供更清晰的运维诊断信息",
+            "detail": "Record generic tool-action decisions at their authoritative execution boundary for clearer operator diagnostics",
+            "summaryZh": "优化审计日志中工具操作决策的记录位置"
+          },
+          {
+            "title": "控制台外观个性化",
+            "tag": "新增",
+            "summary": "外观偏好设置改为按用户配置文件存储，共享浏览器不再互相覆盖视觉设置",
+            "detail": "Save appearance preferences per user profile so shared browsers no longer collapse everyone onto one visual setup",
+            "summaryZh": "支持按用户保存控制台外观偏好"
+          },
+          {
+            "title": "模型选择作用域",
+            "tag": "新增",
+            "summary": "新增可配置的模型选择作用域，同时保留规范的 provider 和运行时策略路径",
+            "detail": "Add configurable model-selection scopes while preserving the canonical provider and runtime policy path",
+            "summaryZh": "支持配置模型选择作用域"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.1-beta.3",
         "date": "2026-08-24",
         "features": [
