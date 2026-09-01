@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-08",
     "releases": [
       {
+        "version": "v2026.8.1",
+        "date": "2026-08-31",
+        "features": [
+          {
+            "title": "GPT-5.6 Ultra 与多运行时切换",
+            "tag": "新增",
+            "summary": "支持 Sol、Terra、Luna 三种运行时，通过 /model 命令在 OpenClaw 和 Codex 引擎间原子切换",
+            "detail": "Support GPT-5.6 Ultra with Sol, Terra, and Luna runtimes across OpenClaw and Codex engines; keep model, runtime, and thinking selection atomic through /model and fallback.",
+            "summaryZh": "GPT-5.6 Ultra 三运行时，/model 一键切换"
+          },
+          {
+            "title": "Meta Muse Spark 1.1 内置模型",
+            "tag": "新增",
+            "summary": "新增 Meta Muse Spark 1.1 模型支持，含 Responses API 流式传输、工具调用和加密推理重放",
+            "detail": "Add bundled muse-spark-1.1 model support with Responses API streaming, tool calls, encrypted reasoning replay, onboarding, and standalone npm/ClawHub distribution.",
+            "summaryZh": "Meta Muse Spark 1.1 内置支持，流式+工具调用"
+          },
+          {
+            "title": "Android 端 Agent 选择器",
+            "tag": "新增",
+            "summary": "在聊天界面直接切换活跃 Agent，聊天、Talk 模式和主页画布共享同一会话",
+            "detail": "Switch the active agent directly from the live chat screen while keeping chat, Talk mode, and home canvas on the same canonical session.",
+            "summaryZh": "Android 聊天界面直接切换 Agent"
+          },
+          {
+            "title": "Gateway 主机状态面板",
+            "tag": "新增",
+            "summary": "Control UI 设置中展示 Gateway 主机的网络地址、OS、运行时、CPU/内存/磁盘等详情",
+            "detail": "Show the connected Gateway host, network address, OS, runtime, uptime, CPU, memory, and disk details in Control UI Settings.",
+            "summaryZh": "Control UI 展示 Gateway 主机状态详情"
+          },
+          {
+            "title": "iOS 离线聊天缓存",
+            "tag": "新增",
+            "summary": "iOS 端支持离线浏览近期会话，从受保护的本地缓存预加载聊天记录",
+            "detail": "Pre-paint recent sessions and canonical transcripts from a protected, bounded per-gateway cache, keep sending disabled offline, and purge cached conversation text when pairing is reset.",
+            "summaryZh": "iOS 离线浏览近期会话，本地缓存预加载"
+          },
+          {
+            "title": "Slack 原生进度指示器",
+            "tag": "优化",
+            "summary": "Slack 渠道默认使用原生助手线程状态和轮换加载消息，优化交互体验",
+            "detail": "Use Slack native assistant thread status and rotating loading messages by default while keeping acknowledgement reactions static.",
+            "summaryZh": "Slack 原生线程状态+加载指示器"
+          },
+          {
+            "title": "Control UI GitHub PR/Issue 预览",
+            "tag": "新增",
+            "summary": "Control UI 悬停卡片展示 GitHub Issue/PR 的状态、标题、作者、评论和变更统计",
+            "detail": "Show issue and pull request state, title, author, activity, comments, and change statistics in hover and keyboard-focus cards.",
+            "summaryZh": "Control UI 悬停预览 GitHub Issue/PR 详情"
+          },
+          {
+            "title": "Logbook 工作日志插件",
+            "tag": "新增",
+            "summary": "新增 Logbook 插件，将屏幕快照转化为私有时间线和每日站会",
+            "detail": "Add a disabled-by-default bundled plugin that turns paired-node screen snapshots into a private timeline, daily standup, and timeline-grounded Q&A.",
+            "summaryZh": "Logbook 插件：屏幕快照→时间线+站会"
+          },
+          {
+            "title": "Cron 任务模型选择",
+            "tag": "优化",
+            "summary": "Control UI 快速创建中可为 Cron Agent Turn 选择模型，任务行和详情页展示模型信息",
+            "detail": "Choose an agent-turn model in Control UI Quick Create and show configured or default models in cron job rows and details.",
+            "summaryZh": "Cron 任务支持选择模型，详情展示模型"
+          },
+          {
+            "title": "子代理完成识别修复",
+            "tag": "修复",
+            "summary": "修复子代理在内部/嵌套父会话中交付最终答案时被误判为失败的问题",
+            "detail": "Recognize visible final answers delivered to internal and nested parent sessions, preventing false delivery failures while preserving external channel delivery checks.",
+            "summaryZh": "子代理内部会话答案不再被误判交付失败"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.1-beta.1",
         "date": "2026-08-28",
         "features": [
