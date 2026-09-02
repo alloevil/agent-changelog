@@ -1,5 +1,101 @@
 const CHANGELOG_DATA = [
   {
+    "month": "2026 年 9 月",
+    "monthId": "2026-09",
+    "releases": [
+      {
+        "version": "v2026.8.2",
+        "date": "2026-09-01",
+        "features": [
+          {
+            "title": "Home Agent 侧边停靠",
+            "tag": "新增",
+            "summary": "支持在右侧或底部停靠面板中打开 Home，工作页面和 Home 并排显示，可预览或移除工作上下文快照",
+            "detail": "Open Home in a right or bottom dock with Cmd/Ctrl+Shift+H, keep your current page in view, and preview or remove its work-context snapshot or attach selected text to your message.",
+            "summaryZh": "Home Agent 侧边停靠，并排工作不切页"
+          },
+          {
+            "title": "Linux 桌面客户端",
+            "tag": "新增",
+            "summary": "支持 .deb 和 AppImage 安装 x86-64 Linux，可连接本地或远程 Gateway，系统托盘或 X11 快捷键打开 Quick Chat",
+            "detail": "Install the .deb or AppImage on x86-64 Linux, connect to a local or remote Gateway, and open Quick Chat from the system tray or an X11 keyboard shortcut.",
+            "summaryZh": "Linux 桌面客户端，.deb / AppImage 安装"
+          },
+          {
+            "title": "后台会话创建",
+            "tag": "新增",
+            "summary": "在新会话页面直接创建并运行后台会话，完成后通过通知打开",
+            "detail": "Create and run a background session from New Session, keep its selected placement, and open it from the completion notice.",
+            "summaryZh": "新会话页直接创建后台任务，完成通知打开"
+          },
+          {
+            "title": "更安全的升级机制",
+            "tag": "修复",
+            "summary": "保留较新配置、阻止不完整的会话迁移声称成功、更新失败后安全恢复 Gateway",
+            "detail": "Preserve newer configuration, stop incomplete session migrations before claiming success, and recover a stopped Gateway after a failed update.",
+            "summaryZh": "升级保留新配置，失败可安全恢复"
+          },
+          {
+            "title": "回复完成修复",
+            "tag": "修复",
+            "summary": "工具执行完毕后返回最终答案，修复对话停在工具输出或初始确认的问题",
+            "detail": "Return a final answer after settled tool work and surface failures after an accepted turn, fixing conversations that stopped at tool output.",
+            "summaryZh": "修复对话停在工具输出不返回最终答案"
+          },
+          {
+            "title": "语音功能改进",
+            "tag": "修复",
+            "summary": "语音不再泄露内部推理过程，保留工具生成的音频，修复浏览器 Talk 后续轮次问题",
+            "detail": "Keep internal reasoning out of speech, preserve tool-generated audio through delivery, and keep later browser Talk turns working after call setup.",
+            "summaryZh": "语音不泄露推理过程，Talk 模式修复"
+          },
+          {
+            "title": "无 Gateway 浏览器控制",
+            "tag": "新增",
+            "summary": "macOS 和 Linux Chrome 扩展可唤醒配对的本地中继，无需运行 Gateway 即可进行 CDP 浏览器控制",
+            "detail": "Let supported macOS and Linux Chrome extension builds wake their paired local relay for authenticated CDP clients without a running Gateway.",
+            "summaryZh": "Chrome 扩展唤醒本地中继，无需 Gateway"
+          },
+          {
+            "title": "四款新主题",
+            "tag": "新增",
+            "summary": "新增 CRT、Manuscript、Rosé、Miami 四款 Control UI 主题，选择离线保留",
+            "detail": "Personalize the Control UI with CRT, Manuscript, Rosé, or Miami themes, with choices preserved offline and applied without flashing during reload.",
+            "summaryZh": "CRT/Manuscript/Rosé/Miami 四款新主题"
+          },
+          {
+            "title": "会话组织增强",
+            "tag": "优化",
+            "summary": "会话操作分组更清晰，支持复制 Markdown 转录、在标签页/窗口/分屏中打开会话",
+            "detail": "Group session actions into clearer menus, copy transcripts as Markdown, open sessions in tabs, windows, or splits, edit icons and colors together.",
+            "summaryZh": "会话菜单分组优化，支持复制 Markdown 转录"
+          },
+          {
+            "title": "跨会话消息展示",
+            "tag": "新增",
+            "summary": "转发消息渲染为独立气泡，带源会话链接和发送者身份标识",
+            "detail": "Render forwarded messages as distinct speech bubbles with source-session links and sending-agent identity.",
+            "summaryZh": "转发消息显示为独立气泡，带来源链接"
+          },
+          {
+            "title": "Beam 分享链接",
+            "tag": "新增",
+            "summary": "通过可读的 /beam/ URL 分享会话转录，以会话名命名",
+            "detail": "Share transcripts through readable /beam/ URLs named after their sessions, with existing access checks and contextual navigation preserved.",
+            "summaryZh": "/beam/ 可读链接分享会话转录"
+          },
+          {
+            "title": "iOS 编辑器增强",
+            "tag": "优化",
+            "summary": "内联模型、推理、权限、附件和上下文控制更接近 Web 体验",
+            "detail": "Bring inline model, thinking, permission, attachment, and context controls closer to the web experience on iOS.",
+            "summaryZh": "iOS 编辑器控件对齐 Web 体验"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 8 月",
     "monthId": "2026-08",
     "releases": [
@@ -58167,4 +58263,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
