@@ -4,6 +4,96 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.1",
+        "date": "2026-09-03",
+        "features": [
+          {
+            "title": "聊天中渲染 Mermaid 图表",
+            "tag": "新增",
+            "summary": "Mermaid 代码块在 Control UI、macOS/iOS/Android 原生应用中自动渲染为图表，支持放大预览和移动端重试",
+            "detail": "Mermaid blocks now render as diagrams in the Control UI and in the native macOS, iOS, and Android apps, with enlarge previews and a retry when a diagram fails to render on mobile.",
+            "summaryZh": "聊天内 Mermaid 图表自动渲染"
+          },
+          {
+            "title": "一键安装到对话",
+            "tag": "新增",
+            "summary": "全新安装体验：自动检测已有 Claude Code/Codex 登录和 API 密钥，实时验证后直接进入 Web Dashboard",
+            "detail": "Fresh installs get a quick-start lane that detects existing Claude Code or Codex logins and API keys, verifies them live, and opens the web dashboard from a foreground Gateway.",
+            "summaryZh": "全新安装一键直达对话，自动检测已有凭证"
+          },
+          {
+            "title": "个人技能库",
+            "tag": "新增",
+            "summary": "通过 openclaw skills library 管理个人技能，支持从 ZIP 导入，可在团队 Gateway 上按身份共享或发布",
+            "detail": "Keep your own skills beside the workspace set with openclaw skills library, import them from ZIP archives, and share or publish them per identity on team Gateways.",
+            "summaryZh": "个人技能库，支持 ZIP 导入和按身份共享"
+          },
+          {
+            "title": "更新自动回滚与故障自愈",
+            "tag": "优化",
+            "summary": "更新失败时自动回滚 npm 候选版本，保留配置和密钥引用，内置分诊代理处理故障，无服务管理器时也能继续更新",
+            "detail": "openclaw update now rolls back the npm candidate when the post-update Doctor fails, preserves configuration and secret references, hands failures to a built-in triage agent, and proceeds without a Gateway service.",
+            "summaryZh": "更新失败自动回滚，内置故障分诊代理"
+          },
+          {
+            "title": "Gateway 启动稳定性增强",
+            "tag": "修复",
+            "summary": "高负载和大型 Agent 阵容下启动恢复，畸形 cron 行隔离而非阻塞启动，本地模型服务优先被 OOM 杀掉",
+            "detail": "Startup recovers under load and with large agent rosters, malformed legacy cron rows are quarantined instead of blocking boot, and local model servers become the preferred OOM victims.",
+            "summaryZh": "Gateway 启动更稳定，畸形 cron 行自动隔离"
+          },
+          {
+            "title": "Codex 持久化审批",
+            "tag": "优化",
+            "summary": "Allow Always 对 MCP 工具持久生效，审批跟随会话姿态，已授予的审批在活跃 Codex placement 中自动复用",
+            "detail": "Allow Always is durable for MCP tools on configured servers, tool approvals follow the session posture, and approvals granted to an active Codex placement are reused.",
+            "summaryZh": "Codex 审批持久化，MCP 工具 Allow Always 生效"
+          },
+          {
+            "title": "审批卡片推送到聊天频道",
+            "tag": "新增",
+            "summary": "委托 Agent 提议配置变更或 Gateway 重启时，审批卡片直接推送到发起频道（含 Telegram 话题），不再静默卡住",
+            "detail": "When a delegated system agent proposes a config change or Gateway restart, the approval card is delivered to the originating channel with the requester title, instead of stalling silently.",
+            "summaryZh": "审批卡片直达聊天频道，不再静默等待"
+          },
+          {
+            "title": "Android 客户端追平 Web UI",
+            "tag": "优化",
+            "summary": "聊天界面、侧边栏导航和外观设置对齐 Control UI，编辑器扩展至六行，听写不可用时提供录音功能",
+            "detail": "The chat screen, sidebar navigation, and appearance settings match the Control UI, the composer grows to six lines, and recording is offered when dictation is unavailable.",
+            "summaryZh": "Android 客户端追平 Web UI，编辑器扩展至六行"
+          },
+          {
+            "title": "个人 GitHub 账户关联",
+            "tag": "新增",
+            "summary": "在 Profile 中关联个人 GitHub 账户，以个人身份发布 PR，切换会话无需重新验证凭证",
+            "detail": "Connect My GitHub beside the system account, publish pull requests under an explicit personal identity, and switch sessions without re-verifying credentials.",
+            "summaryZh": "个人 GitHub 账户关联，切换会话免重新验证"
+          },
+          {
+            "title": "Agent 工作目录与 Worktree 管理",
+            "tag": "新增",
+            "summary": "支持配置 agents.defaults.cwd 和全局 worktreeRoot，最多管理 100 个 checkout 而不被拒绝",
+            "detail": "Set agents.defaults.cwd or a per-agent cwd, configure a global worktreeRoot, and run up to 100 managed checkouts without sessions being rejected.",
+            "summaryZh": "Agent 工作目录可配置，支持 100 个 worktree"
+          },
+          {
+            "title": "内存维护与索引重建",
+            "tag": "优化",
+            "summary": "openclaw memory reset 可重建派生索引而不删除会话，活跃记忆的召回结果反馈给模型",
+            "detail": "openclaw memory reset rebuilds derived indexes without deleting sessions, and recall outcomes from active memory are surfaced to the model.",
+            "summaryZh": "memory reset 重建索引不删会话，召回结果可见"
+          },
+          {
+            "title": "新模型支持",
+            "tag": "新增",
+            "summary": "支持 Anthropic Fable 5.1、SuperGrok 用量展示、GPT-5.6 Ultra 跨运行时保持选中、Sonnet 5 Vertex 定价更新",
+            "detail": "Support Anthropic Fable 5.1, show SuperGrok usage, keep GPT-5.6 Ultra selected across runtime boundaries, and keep Sonnet 5 pricing current on Vertex.",
+            "summaryZh": "新增 Fable 5.1、SuperGrok 用量、GPT-5.6 Ultra 支持"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.2",
         "date": "2026-09-01",
         "features": [
