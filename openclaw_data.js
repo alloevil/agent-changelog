@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.2",
+        "date": "2026-09-05",
+        "features": [
+          {
+            "title": "聊天与仪表盘响应提速",
+            "tag": "优化",
+            "summary": "长会话和磁盘使用处理不再阻塞聊天和仪表盘交互，直接查找和异步历史读取让界面更流畅",
+            "detail": "Keep chat, dashboards, and session interactions responsive while long transcripts and disk usage are processed, with direct dashboard lookup and durable history reads outside the Gateway event loop",
+            "summaryZh": "聊天和仪表盘在处理长会话时保持响应，异步历史读取提升流畅度"
+          },
+          {
+            "title": "升级与恢复更可靠",
+            "tag": "优化",
+            "summary": "自动更新保留活跃设置、启用的 Skills 和默认 Agent 归属，Git 更新后恢复 Gateway 重启",
+            "detail": "Keep active settings, enabled skills, and default-agent ownership in automatic updates, restore Gateway restarts after Git updates",
+            "summaryZh": "自动更新保留设置和 Skills，Git 更新后恢复 Gateway 重启"
+          },
+          {
+            "title": "支持 GPT-6 Astra 模型",
+            "tag": "新增",
+            "summary": "通过 OpenAI API-key 或 ChatGPT/Codex 账号选择 openai/gpt-6-astra，支持文本和图像输入、Responses 工具调用和推理控制",
+            "detail": "Select openai/gpt-6-astra with an OpenAI API-key profile or an eligible ChatGPT/Codex account, with text and image input, Responses tool calls, and supported reasoning controls",
+            "summaryZh": "新增 GPT-6 Astra 模型支持，文本/图像输入 + 推理控制"
+          },
+          {
+            "title": "回复在重启后恢复",
+            "tag": "修复",
+            "summary": "Gateway 重启后恢复活跃、排队和委派的回复，压缩和重试时保留延续指令",
+            "detail": "Recover active, queued, and delegated replies after Gateway restarts without letting one completed reply discard another recovery marker",
+            "summaryZh": "Gateway 重启后自动恢复排队和委派的回复"
+          },
+          {
+            "title": "备份数据完整性增强",
+            "tag": "修复",
+            "summary": "Git 备份保留含嵌入 NUL 字符的完整文本，支持 Nix 管理的配置和凭证链接，拒绝损坏的归档头",
+            "detail": "Preserve complete text containing embedded NUL characters in Git backups, support Nix-managed config and credential links, and reject corrupt archive headers",
+            "summaryZh": "Git 备份支持 NUL 字符和 Nix 配置，拒绝损坏归档"
+          },
+          {
+            "title": "设置热更新无需重启",
+            "tag": "优化",
+            "summary": "大部分 Agent、模型、工具、频道、浏览器等设置可直接应用，无需重启 Gateway",
+            "detail": "Apply more agent, model, tool, channel, browser, node, access, and terminal settings through their running owners",
+            "summaryZh": "多数设置热更新生效，无需重启 Gateway"
+          },
+          {
+            "title": "Swarm 默认启用",
+            "tag": "变更",
+            "summary": "编排并发子 Agent 现在默认开启，支持结构化结果和实时进度",
+            "detail": "Orchestrate concurrent sub-agents with structured results and live progress, while preserving explicit opt-outs and tool restrictions",
+            "summaryZh": "Swarm 并发子 Agent 编排默认启用"
+          },
+          {
+            "title": "GPT-6 Astra 异步工具与推理",
+            "tag": "新增",
+            "summary": "支持 OpenAI Platform API 路由的异步函数工具、WebSocket 引导和推理努力度切换",
+            "detail": "Run direct function tools asynchronously, steer active responses over cached WebSockets, and retain request prefixes when changing reasoning effort",
+            "summaryZh": "GPT-6 Astra 支持异步工具和 WebSocket 推理引导"
+          },
+          {
+            "title": "Slack 富回复与会话控制",
+            "tag": "优化",
+            "summary": "引导 Agent 使用 Block Kit 布局进行主动回复，新增原生停止按钮和会话状态同步",
+            "detail": "Guide agents to use Block Kit layouts for Slack replies; add native Stop button, session processing status, and synchronized titles",
+            "summaryZh": "Slack 支持 Block Kit 富回复和会话控制"
+          },
+          {
+            "title": "Discord 会议纪要",
+            "tag": "新增",
+            "summary": "支持占用驱动的静默会议捕获，自动生成笔记并展示在 Control UI 会议页面",
+            "detail": "Opt into occupancy-driven, listen-only meeting capture with automatic notes and a Control UI Meetings page",
+            "summaryZh": "Discord 自动捕获会议并生成笔记"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.1",
         "date": "2026-09-03",
         "features": [
