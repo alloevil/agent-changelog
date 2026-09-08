@@ -148,6 +148,24 @@ body {
   border-top: 1px solid var(--border);
 }
 .footer a { color: var(--accent); text-decoration: none; }
+.footer p + p { margin-top: 8px; }
+
+.about {
+  width: 100%;
+  margin-top: 96px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.about h2 { font-size: 24px; font-weight: 700; margin-bottom: 20px; }
+.about h3 { font-size: 16px; font-weight: 600; color: var(--text-primary); margin: 28px 0 8px; }
+.about p { font-size: 15px; color: var(--text-secondary); margin-bottom: 12px; max-width: 720px; }
+.about ul { margin: 0 0 12px 20px; max-width: 720px; }
+.about li { font-size: 15px; color: var(--text-secondary); padding: 3px 0; }
+.about a { color: var(--accent); text-decoration: none; }
+.about a:hover { text-decoration: underline; }
+.about code { font-size: 14px; color: var(--text-primary); }
+.about strong { color: var(--text-primary); font-weight: 600; }
 
 @media (max-width: 640px) {
   .hero h1 { font-size: 32px; }
@@ -216,10 +234,46 @@ body {
       <span class="card-arrow">→</span>
     </a>
   </div>
+
+  <section class="about" id="about">
+    <h2>关于本站</h2>
+
+    <p><strong>Agent Changelog 是一个非官方的衍生追踪站</strong>，把 AI Agent 框架的 GitHub Releases 整理成按月浏览的更新日志，面向需要判断「要不要升级、什么时候升级」的开发者。它不由所追踪的项目发布，与之没有关联，也未获其背书；上游发布页面始终是权威来源，两者不一致时以上游为准。</p>
+
+    <h3>追踪哪些框架</h3>
+    <ul>
+      <li><a href="openclaw.html">OpenClaw 更新日志</a>——全能 AI Agent 运行时，支持多渠道接入、技能系统、子代理编排与持久记忆。上游：<a href="https://github.com/openclaw/openclaw/releases" target="_blank" rel="noopener">openclaw/openclaw releases</a></li>
+      <li><a href="hermes.html">Hermes Agent 更新日志</a>——Nous Research 出品的自主 AI Agent，支持多代理看板、跨会话记忆与技能自动生成。上游：<a href="https://github.com/NousResearch/hermes-agent/releases" target="_blank" rel="noopener">NousResearch/hermes-agent releases</a></li>
+    </ul>
+    <p>每个项目一页：页面上半部分是可按月份、日期、类别展开的交互式视图，下半部分是<strong>全量静态归档</strong>——同样的条目按月份铺开，不依赖 JavaScript 也能读到每个版本的发布日期与逐条变更。</p>
+
+    <h3>数据是怎么来的</h3>
+    <p><code>scripts/sync.mjs</code> 通过 GitHub Releases API 拉取发布记录，按 <code>### Breaking</code> / <code>### Changes</code> / <code>### Fixes</code> 小节切分正文，为每条要点打上标签（如 Breaking、安全、新增、优化、修复、变更），补一句中文摘要，按月份分组写入项目数据文件 <code>openclaw_data.js</code> 和 <code>hermes_data.js</code>，最后由 <code>scripts/render-static.mjs</code> 把静态归档渲染进项目页面。只有落在上述三个小节下的要点会被提取，所以不使用这种结构的发布记录条目更少甚至为空；完整正文、发布产物、贡献者名单与提交范围都不会复制过来。</p>
+
+    <h3>数据有多新</h3>
+    <p>同步是<strong>手动触发</strong>的：<code>.github/workflows/sync.yml</code> 只声明 <code>workflow_dispatch</code>，没有定时任务，因此本站的新鲜度等于最后一次同步，可能落后上游任意长的时间。最诚实的答案是数据文件里实际存在的月份范围，它就写在每个项目页归档段落的开头。各项统计数字连同复现命令发布在 <a href="claims.json">claims.json</a>。</p>
+
+    <h3>适合什么场景</h3>
+    <ul>
+      <li>想在一页里按月份看完 OpenClaw 或 Hermes Agent 各版本改了什么，而不是逐页翻 GitHub Releases。</li>
+      <li>读中文，希望每条变更旁边有一句中文摘要，同时保留原始英文说明。</li>
+      <li>升级前想按标签快速扫一遍 Breaking 变更和修复项。</li>
+      <li>想直接拿到底层数据自己查询，而不是抓 HTML 或调 GitHub API。</li>
+    </ul>
+
+    <h3>不适合什么场景</h3>
+    <ul>
+      <li><strong>需要权威记录</strong>：这是衍生的非官方整理。发布产物、准确的版本号、安全公告，以及任何你会据此采取行动的信息，请读上游发布页面。</li>
+      <li><strong>需要保证最新</strong>：同步由人工触发，可能滞后于上游。</li>
+      <li><strong>需要完整发布说明</strong>：只提取被识别的三个小节，且每条会被压缩成标题加摘要。</li>
+      <li><strong>需要其他框架，或需要 API</strong>：目前只追踪这两个框架，也没有接口——数据以静态 <code>*_data.js</code> 文件的形式提供，可直接加载查询。</li>
+    </ul>
+  </section>
 </main>
 
 <footer class="footer">
   <p>数据来源：<a href="https://github.com/openclaw/openclaw/releases" target="_blank">OpenClaw</a> · <a href="https://github.com/NousResearch/hermes-agent/releases" target="_blank">Hermes Agent</a> · 自动构建</p>
+  <p><a href="https://alloevil.github.io/projects/">更多项目</a></p>
 </footer>
 
 </body>

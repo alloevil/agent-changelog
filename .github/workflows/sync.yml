@@ -25,10 +25,12 @@ jobs:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
 
+      # sync.mjs writes openclaw_data.js and then re-renders the static release
+      # archive inside the project pages, so those are the files that move.
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet index.html; then
+          if git diff --quiet openclaw_data.js hermes_data.js openclaw.html hermes.html; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -39,6 +41,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add openclaw_data.js hermes_data.js openclaw.html hermes.html
           git commit -m "chore: sync changelog from OpenClaw"
           git push

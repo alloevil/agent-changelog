@@ -6,20 +6,29 @@ on:
     paths:
       - 'scripts/**'
       - 'tests/**'
-      - 'index.html'
+      - '*.html'
+      - '*_data.js'
+      - 'sitemap.xml'
+      - 'robots.txt'
       - 'package.json'
       - 'package-lock.json'
       - 'biome.json'
+      # tests/site.test.mjs reads the deploy allowlist out of this workflow.
+      - '.github/workflows/deploy.yml'
       - '.github/workflows/validate.yml'
   pull_request:
     branches: [master]
     paths:
       - 'scripts/**'
       - 'tests/**'
-      - 'index.html'
+      - '*.html'
+      - '*_data.js'
+      - 'sitemap.xml'
+      - 'robots.txt'
       - 'package.json'
       - 'package-lock.json'
       - 'biome.json'
+      - '.github/workflows/deploy.yml'
       - '.github/workflows/validate.yml'
 
 jobs:

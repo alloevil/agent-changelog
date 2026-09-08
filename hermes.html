@@ -271,6 +271,40 @@ body {
   .feature-title { font-size: 12px; }
   .feature-summary { display: none; }
 }
+
+/* Static release archive (markup rendered by scripts/render-static.mjs) */
+.ra { margin-top: 96px; padding-top: 40px; border-top: 1px solid var(--border); }
+.ra h2 { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+.ra-intro { font-size: 14px; color: var(--text-secondary); max-width: 720px; margin-bottom: 12px; }
+.ra-intro a { color: var(--accent); text-decoration: none; }
+.ra-intro a:hover { text-decoration: underline; }
+.ra-intro code { font-size: 13px; color: var(--text-primary); }
+
+.ra-month { border-bottom: 1px solid var(--border); }
+.ra-month > summary {
+  display: flex; align-items: baseline; gap: 12px; padding: 14px 4px;
+  font-size: 16px; font-weight: 600; color: var(--text-primary);
+  cursor: pointer; list-style: none;
+}
+.ra-month > summary::-webkit-details-marker { display: none; }
+.ra-month > summary::before { content: '▸'; color: var(--text-muted); }
+.ra-month[open] > summary::before { content: '▾'; }
+.ra-month > summary:hover { color: var(--accent); }
+.ra-month > summary span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+
+.ra-release { padding: 10px 0 18px 22px; }
+.ra-release h3 {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  font-size: 15px; font-weight: 600; color: var(--text-primary);
+}
+.ra-release h3 time { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+.ra-release h3 span { font-size: 12px; font-weight: 400; color: var(--text-muted); }
+
+.ra-cat { display: flex; align-items: flex-start; gap: 10px; margin-top: 8px; }
+.ra-cat > i { font-style: normal; margin-top: 2px; }
+.ra-cat ul { list-style: none; flex: 1; min-width: 0; }
+.ra-cat li { font-size: 13px; color: var(--text-secondary); padding: 2px 0; }
+
 </style>
 </head>
 <body>
@@ -299,6 +333,195 @@ body {
     <p>Hermes Agent 的每一次进化，都在这里记录。新功能、优化与重要变更。</p>
   </div>
   <div id="changelog"></div>
+<!-- BEGIN release-archive: rendered by scripts/render-static.mjs (npm run render) — do not edit by hand -->
+<section class="ra" id="release-archive">
+<h2>Hermes Agent 全部版本归档</h2>
+<p class="ra-intro">本站为 Hermes Agent 收录的全部版本条目：14 个版本、87 项变更，覆盖 2026 年 7 月 — 2026 年 9 月。内容与上方交互式视图一致，但不依赖 JavaScript——按月份分组，点开任一月份即可读到该月每个版本的发布日期与逐条变更。</p>
+<p class="ra-intro">数据同步自 <a href="https://github.com/NousResearch/hermes-agent/releases" target="_blank" rel="noopener">NousResearch/hermes-agent 的 GitHub Releases</a>，由 <code>scripts/sync.mjs</code> 解析后写入 <code>hermes_data.js</code>。本站是非官方的衍生整理，不由 Hermes Agent 发布或背书；上游发布页面为权威来源，两者不一致时以上游为准。</p>
+<details class="ra-month" open>
+<summary>2026 年 9 月 <span>1 个版本 · 10 项变更</span></summary>
+<article class="ra-release"><h3>v2026.9.7 <time datetime="2026-09-07">2026-09-07</time> <span>10 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-break">安全</i><ul>
+<li>Agent 指令文件写入保护和密钥泄露修复</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>Bot Mode 内置桌面端，支持多 Agent 群聊和头像配置</li>
+<li>Agent 间可通过 handle 互相发消息，对话持久可查</li>
+<li>新增命令面板、状态栏增强和终端宠物功能</li>
+<li>Agent 可直接操控应用内浏览器</li>
+<li>新增 6 个模型提供商和多个模型支持</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>定时任务支持持久记忆和跨次执行上下文传递</li>
+<li>子代理支持实时编排、中途修正和提前停止</li>
+<li>MCP 服务器管理整合为统一仪表盘</li>
+<li>代码库模块化和启动性能优化</li>
+</ul></div>
+</article>
+</details>
+<details class="ra-month">
+<summary>2026 年 8 月 <span>8 个版本 · 56 项变更</span></summary>
+<article class="ra-release"><h3>v2026.8.31 <time datetime="2026-08-31">2026-08-31</time> <span>10 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-break">安全</i><ul>
+<li>指令文件写入审批+深度脱敏+macOS TCC 持久化</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>Bot Mode 内置：Agent 群聊+头像+@提及</li>
+<li>Agent 间通过 handle 跨网关私信，对话持久</li>
+<li>Cron 持久记忆+continuity，监控模式省 LLM</li>
+<li>delegate_task 实时编排：查看/纠偏/终止子代理</li>
+<li>MCP 统一仪表盘：拖拽导入+健康检查+用量</li>
+<li>CLI 大升级：Ctrl+P 命令面板+/model 模糊搜索/宠物</li>
+<li>Agent 直接操控应用内浏览器：导航+点击+读取</li>
+<li>6 家新提供商 + GLM-5.3/qwen3.8/Gemini 3.7 等模型</li>
+<li>8 个生产力技能：文档/邮件/会议/监控自动化</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.27 <time datetime="2026-08-27">2026-08-27</time> <span>12 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-break">安全</i><ul>
+<li>镜像/包管理安装拒绝不安全就地更新</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>同意授权后可用默认 Chromium 档案本地浏览</li>
+<li>桌面浏览器独立窗口 + SSH 远程更新 + fleet 管理</li>
+<li>MCP 目录扩展至 50+ 供应商服务器</li>
+<li>Web 工具 TTL 缓存 + lean-tail 压缩默认开启</li>
+<li>工具搜索支持多查询和词干提取</li>
+<li>密钥可选存储在 OS 钥匙链，免去反复弹窗</li>
+<li>Slack 链接预展可控</li>
+<li>Docker 容器共享身份 + 可插拔终端后端</li>
+<li>新增 GLM-5.3-Flash、MiniMax M3/H3 模型</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>更新时暂停网关而非强杀进程</li>
+<li>Cron 事件确认持久化 + 代码偏差失败提示优化</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.19 <time datetime="2026-08-21">2026-08-21</time> <span>9 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>Bot Mode 支持群组线程、折叠摘要、头像和文件附件</li>
+<li>零密钥 Web 搜索，5 供应商自动轮换</li>
+<li>Cron 任务支持持久记忆和独立推理力度</li>
+<li>更新收据与 fleet 计划验证</li>
+<li>worktree 列表与清理命令</li>
+<li>零认证 opencode-free provider</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>CLI 新增模糊模型选择器、命令面板和增强状态</li>
+<li>执行纪律增强与运行时卡顿防护</li>
+<li>桌面端 paint-first 水合 + React Compiler 双渲染器</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.18 <time datetime="2026-08-18">2026-08-18</time> <span>4 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>桌面端 Glass 半透明效果 + 标签式 SESSIONS|BOTS 侧边栏</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>Bot Mode 群聊修复 + NVIDIA 技能安全扫描</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>Cron 媒体发送可配置超时 + SessionDB 争用修复</li>
+<li>update 停放分支检测修正 + 看板原生通知</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.16.2 <time datetime="2026-08-17">2026-08-17</time> <span>4 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>MCP 2.x SDK 迁移 + 内置 Bot Mode 插件</li>
+<li>新增 CommandCode 插件 + Python 运行时隔离加固</li>
+<li>移植插件安全扫描、UTF-16 读取等多项生态改进</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>Cron 调度器自愈 + 会话交接数据丢失修复</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.16 <time datetime="2026-08-16">2026-08-16</time> <span>3 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>桌面端多网关连接管理、MCP 健康检查</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>v0.20.2 补丁：整合 397 个 PR，桌面端/CLI/网关全面修复</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>CLI Kitty 键盘协议、网关持久化模型路由、Telegram DM 话题</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.13 <time datetime="2026-08-13">2026-08-13</time> <span>1 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>v0.20.1 修补版本，656 个 PR 广泛修复桌面、网关、工具等子系统</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.8.3 <time datetime="2026-08-03">2026-08-03</time> <span>13 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>实时流式语音对话，支持中途打断和智能静音检测</li>
+<li>设备端唤醒词检测，自定义唤醒短语，支持免手操作</li>
+<li>多平台语音消息统一转录和自动 TTS 回复</li>
+<li>研究输出自带可验证引用，支持事实核查模式</li>
+<li>带签名的出站 Webhook，主动推送生命周期事件</li>
+<li>桌面端支持 Artifacts 实时预览和插件 SDK</li>
+<li>内置 A2A v1.0 协议，支持多代理互通</li>
+<li>一批 CLI 新命令：!shell、/init、/diff、/context、/focus</li>
+<li>运行中输入修正即可重定向，无需停止重来</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>工具自动检测并修复常见失败，迭代上限提升至 500</li>
+<li>上下文压缩支持微压缩和按模型配置阈值</li>
+<li>审批历史自动学习白名单，新增连续拒绝断路器</li>
+<li>冷启动降至 1.8 秒，桌面端 60fps 流式渲染</li>
+</ul></div>
+</article>
+</details>
+<details class="ra-month">
+<summary>2026 年 7 月 <span>5 个版本 · 21 项变更</span></summary>
+<article class="ra-release"><h3>v2026.7.7 <time datetime="2026-07-08">2026-07-08</time> <span>1 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>v0.18.1 补丁：660+ PR 汇总，Windows 安装器自愈等</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.7.7.2 <time datetime="2026-07-08">2026-07-08</time> <span>1 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>WhatsApp 依赖改为 npm 发布版，修复 Docker 构建</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.7.20 <time datetime="2026-07-20">2026-07-20</time> <span>10 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>终端内直接管理 Nous 订阅和充值</li>
+<li>Bitwarden/1Password 密钥无缝集成</li>
+<li>子代理实时日志 + 后台结果持久化</li>
+<li>新增 Fireworks/DeepInfra 及 GPT-5.6 等最新模型</li>
+<li>推理深度可精细到模型/槽位/任务级别</li>
+<li>会话导出支持多种格式 + 密钥脱敏</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>网关崩溃后自动重发已完成的回复</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-opt">优化</i><ul>
+<li>冷启动 ~4.3s→~0.9s，推理模型实时流式思考</li>
+<li>桌面端 14 倍渲染提速，会话切换丝滑</li>
+<li>LLM 自动评估命令安全性，减少手动审批</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.7.30 <time datetime="2026-07-30">2026-07-30</time> <span>1 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>v0.19.1 补丁：1000+ PR 汇总，网关/语音/桌面端稳定性修复</li>
+</ul></div>
+</article>
+<article class="ra-release"><h3>v2026.7.1 <time datetime="2026-07-01">2026-07-01</time> <span>8 项变更</span></h3>
+<div class="ra-cat"><i class="feature-tag tag-new">新增</i><ul>
+<li>MoA 预设成为可选模型，多模型推理过程可视化</li>
+<li>/goal 完成合约：用实际检查证明工作完成</li>
+<li>/learn 一键将任意内容提炼为可复用技能</li>
+<li>/journey 可视化代理记忆，桌面端新增记忆图谱</li>
+<li>后台并行委派多个子代理，结果自动汇总</li>
+<li>桌面端新增 Projects 管理，含代码/审查/Git 工作流</li>
+<li>Gateway 支持空闲休眠和优雅重启，不中断对话</li>
+</ul></div>
+<div class="ra-cat"><i class="feature-tag tag-fix">修复</i><ul>
+<li>12 天清零全部 P0/P1，约 692 个高优先级项全部解决</li>
+</ul></div>
+</article>
+</details>
+</section>
+<!-- END release-archive -->
 </main>
 
 <footer class="footer">

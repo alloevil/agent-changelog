@@ -1,12 +1,19 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { describe, it } from 'node:test';
+import { fileURLToPath } from 'node:url';
+import { loadData, PAGES } from '../scripts/render-static.mjs';
 import {
   detectTag,
   formatChangelogData,
   groupByMonth,
+  mergeSummaries,
   parseFeatures,
   releaseToChangelogEntry,
 } from '../scripts/sync.mjs';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // ── detectTag ──
 
@@ -224,5 +231,79 @@ describe('formatChangelogData', () => {
     assert.equal(data[0].monthId, '2026-03');
     assert.equal(data[0].releases[0].version, 'v1.0.0');
     assert.equal(data[0].releases[0].features[0].title, 'New feature');
+  });
+
+  it('reproduces the committed openclaw_data.js byte for byte', () => {
+    // A sync rewrites the whole data file. If the serializer disagreed with the
+    // committed format, every sync would ship a 3.6 MB reformatting diff.
+    const page = PAGES.find((p) => p.data === 'openclaw_data.js');
+    const body = formatChangelogData(loadData(page));
+    const rebuilt = `const ${page.varName} = ${body};\n\nif (typeof module !== "undefined") module.exports = ${page.varName};\n`;
+    assert.equal(rebuilt, readFileSync(join(ROOT, page.data), 'utf-8'));
+  });
+});
+
+// ── mergeSummaries ──
+
+describe('mergeSummaries', () => {
+  const fresh = () => [
+    {
+      month: '2026 年 3 月',
+      monthId: '2026-03',
+      releases: [
+        {
+          version: 'v1.0.0',
+          date: '2026-03-15',
+          features: [
+            { title: 'Old', tag: '新功能', summary: 'Old', detail: 'Old bullet text' },
+            { title: 'Fresh', tag: '新功能', summary: 'Fresh', detail: 'Fresh bullet text' },
+            { title: 'Edited', tag: '新功能', summary: 'Edited', detail: 'Bullet text, reworded' },
+          ],
+        },
+      ],
+    },
+  ];
+
+  const committed = [
+    {
+      month: '2026 年 3 月',
+      monthId: '2026-03',
+      releases: [
+        {
+          version: 'v1.0.0',
+          date: '2026-03-15',
+          features: [
+            { title: 'Old', detail: 'Old bullet text', summaryZh: '旧条目的中文摘要' },
+            { title: 'Edited', detail: 'Bullet text', summaryZh: '改写前的中文摘要' },
+          ],
+        },
+      ],
+    },
+  ];
+
+  it('carries a committed summary onto the same bullet of the same version', () => {
+    const merged = mergeSummaries(fresh(), committed);
+    assert.equal(merged[0].releases[0].features[0].summaryZh, '旧条目的中文摘要');
+  });
+
+  it('leaves a freshly generated summary untouched', () => {
+    const months = fresh();
+    months[0].releases[0].features[0].summaryZh = '本次生成的摘要';
+    const merged = mergeSummaries(months, committed);
+    assert.equal(merged[0].releases[0].features[0].summaryZh, '本次生成的摘要');
+  });
+
+  it('does not attach a stale summary to a reworded bullet', () => {
+    const merged = mergeSummaries(fresh(), committed);
+    assert.equal(merged[0].releases[0].features[2].summaryZh, undefined);
+  });
+
+  it('leaves bullets with no committed summary alone', () => {
+    const merged = mergeSummaries(fresh(), committed);
+    assert.equal(merged[0].releases[0].features[1].summaryZh, undefined);
+  });
+
+  it('is a no-op against an empty committed dataset', () => {
+    assert.deepEqual(mergeSummaries(fresh(), []), fresh());
   });
 });

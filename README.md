@@ -124,7 +124,7 @@ Nothing needs to be installed to read the site — it is static HTML plus one da
 
 ```bash
 npm ci
-npm test          # node --test tests/
+npm test          # node --test tests/*.test.mjs
 npm run check     # biome check scripts/
 ```
 
@@ -135,6 +135,13 @@ GITHUB_TOKEN=ghp_xxx node scripts/sync.mjs
 ```
 
 `GITHUB_TOKEN` is optional; without it the script uses the unauthenticated GitHub API and is capped at 60 requests per hour. Setting `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` additionally enables the AI summary pass; with those unset the summary step is skipped and the sync still completes.
+
+The sync writes `openclaw_data.js` and then re-renders the static release archive inside `openclaw.html` and `hermes.html`. After editing a data file by hand, re-render it on its own:
+
+```bash
+npm run render        # rewrite the archive in openclaw.html and hermes.html
+npm run render:check  # exit 1 if a page has drifted from its data file
+```
 
 ## Development
 
@@ -172,6 +179,8 @@ const CHANGELOG_DATA = [
 2. Create `newproject.html` (copy from an existing one)
 3. Add entry to `index.html`
 4. Update the sync script in `scripts/`
+5. Add its URL to `sitemap.xml` and its files to the allowlist in `.github/workflows/deploy.yml`
+6. Add the page to `PAGES` in `scripts/render-static.mjs` and run `npm run render`
 
 ## When to use it
 

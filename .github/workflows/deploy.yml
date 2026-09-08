@@ -31,6 +31,13 @@ jobs:
       # package.json, package-lock.json, biome.json, scripts/, tests/ and skills/
       # as static files. skills/sync-openlaw/SKILL.md in particular is internal
       # operator tooling that answer engines could cite as project documentation.
+      #
+      # README.md stays out too, but its substantive explanation — what this
+      # tracks, where the data comes from, that it is unofficial and manually
+      # synced, when not to use it — is published as visible prose in the
+      # "关于本站" section of index.html instead, so excluding the README no
+      # longer costs the site its only crawlable text. tests/site.test.mjs
+      # asserts every root page and every sitemap URL is staged here.
       - name: Stage site
         run: |
           set -euo pipefail
