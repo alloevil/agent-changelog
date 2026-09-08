@@ -27,10 +27,27 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      # Publish an explicit allowlist, not the whole repo. Uploading '.' served
+      # package.json, package-lock.json, biome.json, scripts/, tests/ and skills/
+      # as static files. skills/sync-openlaw/SKILL.md in particular is internal
+      # operator tooling that answer engines could cite as project documentation.
+      - name: Stage site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          for f in index.html openclaw.html hermes.html \
+                   openclaw_data.js hermes_data.js favicon.ico \
+                   robots.txt sitemap.xml llms.txt llms-full.txt claims.json; do
+            [ -f "$f" ] || { echo "missing required site file: $f" >&2; exit 1; }
+            cp "$f" _site/
+          done
+          cp -R assets _site/assets
+          echo "staged:"; find _site -type f | sort
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
