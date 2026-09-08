@@ -1,5 +1,87 @@
 const RELEASES_DATA = [
   {
+    "month": "2026 年 9 月",
+    "monthId": "2026-09",
+    "releases": [
+      {
+        "version": "v2026.9.7",
+        "date": "2026-09-07",
+        "features": [
+          {
+            "title": "Bot Mode 内置桌面端",
+            "tag": "新增",
+            "summary": "Bot Mode 成为桌面端默认功能：每个 Agent 配置获得名称、确定性头像和共享名册，支持创建 Discord 风格群聊，多个 Bot 和用户可在同一房间对话、@提及",
+            "detail": "Bot Mode is now bundled and default-on in the desktop app: every agent profile gets a name, deterministic avatar, and shared roster. Create Discord-style group chats with multi-bot and human participants.",
+            "summaryZh": "Bot Mode 内置桌面端，支持多 Agent 群聊和头像配置"
+          },
+          {
+            "title": "hermes peer 跨 Agent 通信",
+            "tag": "新增",
+            "summary": "任意 Hermes Agent 可通过 handle 互相发消息，跨配置和网关，支持 CLI 和对话内调用，回复持久保存在 Bot Chat 中",
+            "detail": "Any Hermes agent can now message any other by handle, across profiles and gateways. Replies land in each agent's canonical Bot Chat for durable, inspectable conversations.",
+            "summaryZh": "Agent 间可通过 handle 互相发消息，对话持久可查"
+          },
+          {
+            "title": "定时任务持久记忆",
+            "tag": "优化",
+            "summary": "Cron 任务支持加载和更新持久记忆，continuity=true 将上次输出传递给下次执行，监控模式无变化时跳过 LLM，输出可发至 Bot Chat",
+            "detail": "Cron agents now load and update persistent memory, continuity=true carries output between runs, monitor-mode jobs skip LLM when nothing changed, and cron output can land in Bot Chat.",
+            "summaryZh": "定时任务支持持久记忆和跨次执行上下文传递"
+          },
+          {
+            "title": "子代理实时编排",
+            "tag": "优化",
+            "summary": "delegate_task 支持实时编排：列出运行中的子代理、中途修正方向、提前停止并保留部分结果，支持 JSON Schema 校验输出，默认 250 次迭代和 10 并发",
+            "detail": "delegate_task gained live orchestration: list running children, steer mid-flight, stop early with partial results. Added JSON-schema validation, per-delegation cost, and raised defaults (250 iterations, 10 concurrent).",
+            "summaryZh": "子代理支持实时编排、中途修正和提前停止"
+          },
+          {
+            "title": "MCP 管理中心",
+            "tag": "优化",
+            "summary": "MCP 服务器和目录合并为统一桌面页面，支持粘贴导入、后台健康检查、成本/用量覆盖层和 hermes:// 深度链接安装",
+            "detail": "MCP servers and catalog merged into one desktop page with paste-import, background health checks, fleet cost/usage overlay, and hermes:// deep links for installation.",
+            "summaryZh": "MCP 服务器管理整合为统一仪表盘"
+          },
+          {
+            "title": "CLI 增强浪潮",
+            "tag": "新增",
+            "summary": "Ctrl+P 模糊命令面板、/model 实时过滤、/status 显示推理模式和上下文用量、状态栏显示缓存命中率/延迟/吞吐量，还有终端宠物",
+            "detail": "Ctrl+P opens fuzzy command palette, /model picker filters as you type, /status shows reasoning mode and context usage, status bar displays cache-hit %, latency, and tokens/sec. Plus terminal pets.",
+            "summaryZh": "新增命令面板、状态栏增强和终端宠物功能"
+          },
+          {
+            "title": "Agent 驱动桌面浏览器",
+            "tag": "新增",
+            "summary": "应用内浏览器支持 Agent 直接导航、点击和读取，页面可弹出到系统浏览器并保留完整链接上下文菜单",
+            "detail": "The in-app browser now supports direct agent navigation, clicking, and reading. Pages can be popped out to the system browser with full link context menus.",
+            "summaryZh": "Agent 可直接操控应用内浏览器"
+          },
+          {
+            "title": "6 个新模型提供商",
+            "tag": "新增",
+            "summary": "新增 Meta Model API (Muse Spark)、CommandCode、Tencent TokenPlan、Nebius Token Factory、Ramp Router、Actual Computer，新增 GLM-5.3-Flash、qwen3.8、Gemini 3.7 Flash 等模型",
+            "detail": "Six new providers: Meta Model API (Muse Spark), CommandCode, Tencent TokenPlan, Nebius Token Factory, Ramp Router, Actual Computer. New models include GLM-5.3-Flash, qwen3.8-max/flash, Gemini 3.7 Flash, MiniMax M3, Nemotron 3.5 Lightning.",
+            "summaryZh": "新增 6 个模型提供商和多个模型支持"
+          },
+          {
+            "title": "全面安全加固",
+            "tag": "安全",
+            "summary": "Agent 指令文件（AGENTS.md、skills、memory）写入需审批，深度脱敏扫描关闭终端错误/.env/检查点/ACP 日志中的密钥泄露，macOS 权限更新后保留",
+            "detail": "Protected agent-instruction files now require write approval. Deep redaction sweep closed secret-leak gaps across terminal errors, .env reads, checkpoints, and ACP logs. macOS permissions survive updates via stable TCC signing identity.",
+            "summaryZh": "Agent 指令文件写入保护和密钥泄露修复"
+          },
+          {
+            "title": "代码库模块化重构",
+            "tag": "优化",
+            "summary": "代码库模块化重构，文件操作和启动性能优化，桌面会话控制和浏览器标注改进",
+            "detail": "Codebase modularization, file-operation and startup performance improvements, desktop session controls and browser annotations enhancements.",
+            "summaryZh": "代码库模块化和启动性能优化"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 8 月",
     "monthId": "2026-08",
     "releases": [
@@ -630,4 +712,4 @@ const RELEASES_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
+if (typeof module !== "undefined") module.exports = RELEASES_DATA;
