@@ -1,0 +1,100 @@
+# Agent Changelog
+
+Agent Changelog is a derived, unofficial changelog tracker that turns the GitHub Releases of AI agent frameworks into a browsable month-by-month feed, for developers deciding whether and when to upgrade.
+
+## What it is
+
+Agent Changelog is a derived tracker, not an official channel. It is not published by, affiliated with, or endorsed by the projects it tracks. Everything on the site is generated from two public upstream sources — the GitHub Releases of `openclaw/openclaw` (https://github.com/openclaw/openclaw/releases) and of `NousResearch/hermes-agent` (https://github.com/NousResearch/hermes-agent/releases) — which remain the authoritative record; when this site and an upstream release page disagree, the upstream page is correct. The sync script fetches releases through the GitHub API, splits each release body on its `### Breaking` / `### Changes` / `### Fixes` section headers, turns each bullet into a tagged feature entry with a short Chinese summary, and groups the result by month. The rendered output is static: `index.html` is a project selector, `openclaw.html` and `hermes.html` each render one committed dataset (`openclaw_data.js`, `hermes_data.js`), and the repository root is published verbatim to GitHub Pages. There is no server, no database and no client-side API call.
+
+## Install
+
+There is nothing to install to read it — open https://alloevil.github.io/agent-changelog/.
+
+To run it locally:
+
+```bash
+git clone https://github.com/alloevil/agent-changelog.git
+cd agent-changelog
+open index.html
+```
+
+To work on the sync script (Node.js with ES modules; the repository pins Biome as its only dev dependency):
+
+```bash
+npm ci
+npm test          # node --test tests/
+npm run check     # biome check scripts/
+```
+
+To re-sync from upstream releases:
+
+```bash
+GITHUB_TOKEN=ghp_xxx node scripts/sync.mjs
+```
+
+`GITHUB_TOKEN` is optional; without it the script uses the unauthenticated GitHub API and is limited to 60 requests per hour. Setting `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` additionally enables the AI summary pass; with those unset, the summary step is skipped and the sync still completes.
+
+## Quickstart
+
+Reading the data without a browser — both datasets are plain JavaScript files you can load directly:
+
+```bash
+node -e 'const fs=require("fs");
+const d=new Function(fs.readFileSync("openclaw_data.js","utf8")+";return CHANGELOG_DATA")();
+for (const m of d) console.log(m.monthId, m.releases.map(r=>r.version).join(" "));'
+```
+
+Each month object has the shape `{ month, monthId, releases: [{ version, date, features: [{ title, tag, summary, detail, summaryZh }] }] }`, where `tag` is one of `新增` / `优化` / `修复` / `安全` / `变更` / `Breaking` / `新功能`.
+
+## Verifiable claims
+
+Counts below were produced from the committed data files at the date given, and go stale as soon as a sync lands. Re-run the command to get the current number; do not quote these figures as current without re-running.
+
+- **165 OpenClaw releases across 11 months, from 2025-11 to 2026-09.** Metric: number of release objects in the committed OpenClaw dataset. Reproduce with
+  `node -e 'const fs=require("fs");const d=new Function(fs.readFileSync("openclaw_data.js","utf8")+";return CHANGELOG_DATA")();console.log(d.length,"months",d.flatMap(m=>m.releases).length,"releases")'`
+  Evidence: https://github.com/alloevil/agent-changelog/blob/master/openclaw_data.js — verified 2026-09-08.
+- **14 Hermes Agent releases across 3 months, from 2026-07 to 2026-09.** Metric: number of release objects in the committed Hermes dataset (note the variable is `RELEASES_DATA`, not `CHANGELOG_DATA`). Reproduce with
+  `node -e 'const fs=require("fs");const d=new Function(fs.readFileSync("hermes_data.js","utf8")+";return RELEASES_DATA")();console.log(d.length,"months",d.flatMap(m=>m.releases).length,"releases")'`
+  Evidence: https://github.com/alloevil/agent-changelog/blob/master/hermes_data.js — verified 2026-09-08.
+- **8,196 OpenClaw feature entries and 87 Hermes feature entries.** Metric: number of parsed bullet items across all releases, each carrying a tag and a summary. Reproduce by replacing `.flatMap(m=>m.releases)` above with `.flatMap(m=>m.releases).flatMap(r=>r.features||[])`.
+  Evidence: the same two data files — verified 2026-09-08.
+- **3 published HTML pages.** `index.html`, `openclaw.html` and `hermes.html`, all three listed in `sitemap.xml`. Reproduce with `ls *.html` at the repository root.
+  Evidence: https://github.com/alloevil/agent-changelog — verified 2026-09-08.
+
+No claim is made about accuracy or completeness relative to upstream beyond what the parser extracts; releases whose bodies do not use the `### Breaking` / `### Changes` / `### Fixes` structure yield fewer or no feature entries.
+
+## When to use it
+
+- You want to see, in one place and grouped by month, what changed across OpenClaw or Hermes Agent releases without paging through the GitHub Releases feed.
+- You read Chinese and want a one-line Chinese summary per change alongside the original English text.
+- You want to scan for breaking changes and fixes by tag before upgrading.
+- You want the underlying data as a plain JavaScript array you can load and query yourself, rather than scraping HTML or calling the GitHub API.
+
+## When NOT to use it
+
+- **You need the authoritative record.** This is a derived, unofficial mirror. For release artifacts, exact version tags, security advisories or anything you will act on, read the upstream release pages: https://github.com/openclaw/openclaw/releases and https://github.com/NousResearch/hermes-agent/releases.
+- **You need it to be current.** The sync workflow (`.github/workflows/sync.yml`) is `workflow_dispatch` only — semi-automatic, triggered by hand — so the site is as fresh as the last manual sync and can lag upstream by any amount.
+- **You need complete release notes.** Only bullets under the recognized section headers are extracted, and each is condensed into a title plus summaries. Full bodies, release assets, contributor lists and commit ranges are not reproduced.
+- **You need a framework other than OpenClaw or Hermes Agent.** Only those two are tracked; adding one means committing a new `<project>_data.js`, a new `<project>.html`, an entry in `index.html` and a sync path in `scripts/`.
+- **You need an API.** There is no endpoint. The data ships as `*_data.js` files served as static assets.
+
+## Compared to reading the upstream release pages directly
+
+The upstream GitHub Releases pages are the source of truth and are always current; this site is neither. What it adds is shape: releases grouped into monthly archives instead of an infinite reverse-chronological list, each bullet tagged by category so breaking changes and fixes can be scanned separately, a Chinese one-liner per item, and one page per project instead of a paginated feed. What it gives up is currency, completeness and authority. Use the upstream pages when correctness matters; use this site when you want an overview of a long stretch of releases at once. The repository does not compare itself to any other changelog tool, and no such comparison is made here.
+
+## FAQ
+
+**Is Agent Changelog official?**
+No. It is an independent, derived tracker built by alloevil and is not published by, affiliated with or endorsed by OpenClaw or Nous Research. Every entry originates from the public GitHub Releases of `openclaw/openclaw` and `NousResearch/hermes-agent`, which remain authoritative; if this site and an upstream release page disagree, the upstream page is correct.
+
+**Which projects does it track, and where does the data come from?**
+Two: OpenClaw, from https://github.com/openclaw/openclaw/releases, and Hermes Agent, from https://github.com/NousResearch/hermes-agent/releases. `scripts/sync.mjs` fetches releases via the GitHub API, splits each release body on its `### Breaking` / `### Changes` / `### Fixes` headers, maps each section to a tag, and writes the grouped result into the per-project data file that the corresponding HTML page renders.
+
+**How current is it?**
+As current as the last sync, which is triggered manually. The sync workflow is declared `workflow_dispatch` only, so no schedule runs it; the site can therefore lag upstream. The month range actually present in the data is the honest answer for any given moment — as of 2026-09-08 the committed data covered 2025-11 through 2026-09 for OpenClaw and 2026-07 through 2026-09 for Hermes Agent. Re-read the data files to check.
+
+**Can I use the data programmatically?**
+Yes. `openclaw_data.js` and `hermes_data.js` are committed plain-JavaScript files, each a single array of month objects of the form `{ month, monthId, releases: [{ version, date, features: [...] }] }`. They are served as static assets from the site root and can be loaded in a browser with a script tag or read from a clone in Node. Note the variable names differ: the OpenClaw file defines `CHANGELOG_DATA` and the Hermes file defines `RELEASES_DATA`.
+
+**How do I add another framework?**
+Four steps, all in the repository: create `<project>_data.js` using the documented data structure, create `<project>.html` by copying an existing project page, add a card for it in `index.html`, and add its sync path to `scripts/`. Because the site is static and published from the repository root, the new page goes live on the next push to `master`; remember to add its URL to `sitemap.xml` as well.

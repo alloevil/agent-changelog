@@ -1,0 +1,49 @@
+{
+  "project": "agent-changelog",
+  "url": "https://alloevil.github.io/agent-changelog/",
+  "repository": "https://github.com/alloevil/agent-changelog",
+  "updated": "2026-09-08",
+  "note": "Counts are read from the committed data files and go stale after every sync. Re-run each repro command before quoting a number as current. This site is a derived, unofficial tracker; the upstream GitHub Releases pages are authoritative.",
+  "claims": [
+    {
+      "id": "openclaw-releases-tracked",
+      "claim": "The committed OpenClaw dataset contains 165 releases grouped into 11 monthly archives, covering 2025-11 through 2026-09.",
+      "value": "165",
+      "metric": "number of release objects across all month objects in openclaw_data.js",
+      "method": "loaded the committed data file and counted release objects; month range taken from the monthId fields",
+      "repro": "node -e 'const fs=require(\"fs\");const d=new Function(fs.readFileSync(\"openclaw_data.js\",\"utf8\")+\";return CHANGELOG_DATA\")();console.log(d.length,\"months\",d.flatMap(m=>m.releases).length,\"releases\")'",
+      "evidence": "https://github.com/alloevil/agent-changelog/blob/master/openclaw_data.js",
+      "verified": "2026-09-08"
+    },
+    {
+      "id": "hermes-releases-tracked",
+      "claim": "The committed Hermes Agent dataset contains 14 releases grouped into 3 monthly archives, covering 2026-07 through 2026-09.",
+      "value": "14",
+      "metric": "number of release objects across all month objects in hermes_data.js",
+      "method": "loaded the committed data file and counted release objects; month range taken from the monthId fields",
+      "repro": "node -e 'const fs=require(\"fs\");const d=new Function(fs.readFileSync(\"hermes_data.js\",\"utf8\")+\";return RELEASES_DATA\")();console.log(d.length,\"months\",d.flatMap(m=>m.releases).length,\"releases\")'",
+      "evidence": "https://github.com/alloevil/agent-changelog/blob/master/hermes_data.js",
+      "verified": "2026-09-08"
+    },
+    {
+      "id": "feature-entries-parsed",
+      "claim": "The committed datasets hold 8196 parsed OpenClaw feature entries and 87 parsed Hermes Agent feature entries, each carrying a category tag and a summary.",
+      "value": "8196 / 87",
+      "metric": "number of feature objects across every release in openclaw_data.js and hermes_data.js respectively",
+      "method": "loaded each committed data file and counted feature objects across all releases",
+      "repro": "node -e 'const fs=require(\"fs\");for (const [f,v] of [[\"openclaw_data.js\",\"CHANGELOG_DATA\"],[\"hermes_data.js\",\"RELEASES_DATA\"]]) {const d=new Function(fs.readFileSync(f,\"utf8\")+\";return \"+v)();console.log(f,d.flatMap(m=>m.releases).flatMap(r=>r.features||[]).length)}'",
+      "evidence": "https://github.com/alloevil/agent-changelog",
+      "verified": "2026-09-08"
+    },
+    {
+      "id": "published-pages",
+      "claim": "The site publishes 3 HTML pages from the repository root, all three listed in sitemap.xml.",
+      "value": "3",
+      "metric": "number of .html files at the repository root, which is the directory the Pages workflow uploads",
+      "method": "listed the repository root and compared it against the loc entries in sitemap.xml",
+      "repro": "ls *.html && cat sitemap.xml",
+      "evidence": "https://github.com/alloevil/agent-changelog/blob/master/sitemap.xml",
+      "verified": "2026-09-08"
+    }
+  ]
+}

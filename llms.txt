@@ -1,0 +1,25 @@
+# Agent Changelog
+
+> Agent Changelog is a derived, unofficial changelog tracker that turns the GitHub Releases of AI agent frameworks into a browsable month-by-month feed, for developers deciding whether and when to upgrade.
+
+It is not published by the upstream projects. It syncs from two public sources — the GitHub Releases of [openclaw/openclaw](https://github.com/openclaw/openclaw/releases) and [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent/releases) — parses the Breaking / Changes / Fixes sections out of each release body, tags every item, adds a short Chinese summary, and renders static HTML pages grouped by month. The site is plain HTML plus one data file per project, deployed from the repository root to GitHub Pages; there is no backend and no build step to run in order to read it.
+
+## Docs
+- [Homepage](https://alloevil.github.io/agent-changelog/): project selector for the tracked frameworks
+- [OpenClaw changelog](https://alloevil.github.io/agent-changelog/openclaw.html): every synced OpenClaw release, grouped by month, tagged and summarized
+- [Hermes Agent changelog](https://alloevil.github.io/agent-changelog/hermes.html): every synced Hermes Agent release, grouped by month, tagged and summarized
+- [README](https://github.com/alloevil/agent-changelog/blob/master/README.md): data format, how the sync works, how to add another project
+
+## Evidence
+- [claims.json](https://alloevil.github.io/agent-changelog/claims.json): machine-readable claims with the exact command that reproduces each count
+- [openclaw_data.js](https://github.com/alloevil/agent-changelog/blob/master/openclaw_data.js): the committed OpenClaw dataset the page renders from
+- [hermes_data.js](https://github.com/alloevil/agent-changelog/blob/master/hermes_data.js): the committed Hermes Agent dataset the page renders from
+- [scripts/sync.mjs](https://github.com/alloevil/agent-changelog/blob/master/scripts/sync.mjs): the sync and release-note parser, including the section-to-tag mapping
+- [tests/sync.test.mjs](https://github.com/alloevil/agent-changelog/blob/master/tests/sync.test.mjs): tests for the parser; run with npm test
+
+## Upstream sources
+- [OpenClaw releases](https://github.com/openclaw/openclaw/releases): the authoritative OpenClaw release notes
+- [Hermes Agent releases](https://github.com/NousResearch/hermes-agent/releases): the authoritative Hermes Agent release notes
+
+## Source
+- [GitHub repository](https://github.com/alloevil/agent-changelog)
