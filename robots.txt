@@ -1,12 +1,7 @@
 User-agent: *
 Allow: /
-# /skills/ holds internal operator instructions (skills/sync-openlaw/SKILL.md),
-# not site content, and it is stale: it names the repo as alloevil/openclaw-changelog
-# and describes editing CHANGELOG_DATA inside index.html, which it no longer holds.
-# Excluded so answer engines do not cite it as project documentation.
-# This subpath robots.txt is ADVISORY: the Robots Exclusion Protocol is origin-scoped,
-# so crawlers read https://alloevil.github.io/robots.txt instead. The effective entry
-# is mirrored there (repo alloevil/alloevil.github.io) — do not delete one half alone.
-Disallow: /skills/
+# Advisory file: the Robots Exclusion Protocol is origin-scoped at the root path, so
+# crawlers read https://alloevil.github.io/robots.txt and never this subpath copy.
+# Kept as fleet convention and in case this project ever moves to its own domain.
 
 Sitemap: https://alloevil.github.io/agent-changelog/sitemap.xml
