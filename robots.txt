@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /skills/
 
 Sitemap: https://alloevil.github.io/agent-changelog/sitemap.xml
