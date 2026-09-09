@@ -4,6 +4,124 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.3",
+        "date": "2026-09-08",
+        "features": [
+          {
+            "title": "更新安全性增强：隔离预演与边界修复",
+            "tag": "优化",
+            "summary": "核心和插件变更在隔离候选状态下预演后再激活，支持从 2026.9.2 迁移，可自动恢复已放弃的更新记录",
+            "detail": "Rehearse core and plugin changes in isolated candidate state before activation, support eligible 2026.9.2 migrations, and recover abandoned update records without stopping a healthy Gateway",
+            "summaryZh": "更新流程支持隔离预演和自动恢复，更安全可靠"
+          },
+          {
+            "title": "性能优化：缓存预热与 Worker 复用",
+            "tag": "优化",
+            "summary": "保留热缓存减少重复工作，冷会话更新和内存搜索减少开销，跨会话复用 Worker 构建产物",
+            "detail": "Preserve warm prompt caches, reduce unnecessary work during cold session updates and memory search, and reuse worker builds between sessions",
+            "summaryZh": "保留热缓存、减少冷启动开销、复用 Worker 构建"
+          },
+          {
+            "title": "Skill Workshop 统一管理",
+            "tag": "优化",
+            "summary": "技能在单一持久化 Agent 拥有的集合中管理，支持完整指令对比，Doctor 安全清理缺失草稿",
+            "detail": "Keep skills in one persistent agent-owned collection across workspaces, compare complete skill instructions, and retire missing-draft suggestions safely through Doctor",
+            "summaryZh": "技能统一管理、支持指令对比和安全清理"
+          },
+          {
+            "title": "浏览器面板实时预览与原生标签页",
+            "tag": "新增",
+            "summary": "可实时观看 Agent 浏览器页面渲染，外部链接在 macOS 原生 WebKit 标签页中打开，标签页跟随窗口跨聊天切换",
+            "detail": "Watch agent pages repaint and open external links in native Mac tabs that remain with their window across chat switches",
+            "summaryZh": "浏览器面板支持实时预览和原生标签页"
+          },
+          {
+            "title": "Provider 账户统一管理",
+            "tag": "新增",
+            "summary": "在模型设置中直接管理已连接的 Provider 账户和账户优先级",
+            "detail": "Manage connected accounts and supported account priority directly in Models settings",
+            "summaryZh": "模型设置中统一管理 Provider 账户和优先级"
+          },
+          {
+            "title": "会话共享功能",
+            "tag": "新增",
+            "summary": "可发布会话的只读视图，通过公开链接分享，支持随时撤销访问",
+            "detail": "Explicitly publish a revocable read-only view of a session conversation text, accessible to anyone with its public link",
+            "summaryZh": "发布会话只读链接并支持撤销访问"
+          },
+          {
+            "title": "会议记录库",
+            "tag": "新增",
+            "summary": "浏览已保存笔记、搜索完整转录、下载 Markdown/JSONL 归档、在控制界面管理采集源",
+            "detail": "Browse saved notes, search full transcripts, download complete Markdown or JSONL archives, and manage capture sources from the Control UI",
+            "summaryZh": "搜索会议转录、下载归档、管理采集源"
+          },
+          {
+            "title": "Team Reports 可选插件",
+            "tag": "新增",
+            "summary": "安装后可浏览 GitHub 活动和 Discord 讨论的历史报告，支持模型摘要和人员时间线",
+            "detail": "Install and enable Team Reports to browse authenticated GitHub activity and Discord discussion with stored history and optional model summaries",
+            "summaryZh": "可选团队报告插件，支持 GitHub/Discord 活动浏览"
+          },
+          {
+            "title": "Node.js 运行时要求变更（破坏性）",
+            "tag": "变更",
+            "summary": "要求 Node 24.16.0+ 或 Node 26.1.0+，推荐 Node 26；Node 22、25 和早期 24.x/26.x 不再支持",
+            "detail": "Require Node 24.16.0+ on 24.x or Node 26.1.0+; Node 26 is recommended. Node 22, 25, and earlier 24.x/26.x are no longer supported",
+            "summaryZh": "Node.js 最低版本要求提升，推荐 Node 26"
+          },
+          {
+            "title": "Code Mode 增强：JS 环境保持与 TS 检查",
+            "tag": "优化",
+            "summary": "快速工具调用间保持 JavaScript 运行环境，支持可选 TypeScript 检查，报告原始源码错误位置",
+            "detail": "Retain the running JavaScript environment across fast tool replies, add optional TypeScript checks against available tools, and report original-source error locations",
+            "summaryZh": "Code Mode 保持 JS 环境、支持 TS 检查和源码定位"
+          },
+          {
+            "title": "持久化会话与子代理编辑",
+            "tag": "优化",
+            "summary": "持久化会话在父树中可编辑和引导，子代理运行保持只读但显示实时进度",
+            "detail": "Keep persistent sessions editable and steerable in their parent tree. Subagent runs remain view-only with live progress in the parent conversation",
+            "summaryZh": "持久化会话可编辑引导，子代理显示实时进度"
+          },
+          {
+            "title": "Telegram 相册合并发送",
+            "tag": "新增",
+            "summary": "连续照片自动合并为原生相册（最多10张），保留顺序、标题、回复目标和话题",
+            "detail": "Group consecutive eligible photos into native albums of up to ten while preserving order, captions, reply targets, and topics",
+            "summaryZh": "Telegram 连续照片自动合并为原生相册"
+          },
+          {
+            "title": "递归代理委派",
+            "tag": "新增",
+            "summary": "默认启用有界递归会话生成，保留显式深度和并发限制及沙箱限制",
+            "detail": "Enable bounded recursive session spawning by default while retaining explicit depth and concurrency limits and existing sandbox restrictions",
+            "summaryZh": "默认启用递归会话生成，保留深度和并发限制"
+          },
+          {
+            "title": "iOS 语音快捷方式",
+            "tag": "新增",
+            "summary": "通过 Start Live Voice App Shortcut 快速打开聊天并启动语音",
+            "detail": "Open the current chat and start Talk with the Start Live Voice App Shortcut",
+            "summaryZh": "iOS 支持语音快捷方式快速启动对话"
+          },
+          {
+            "title": "Android 折叠屏布局适配",
+            "tag": "新增",
+            "summary": "折叠屏设备内容避开铰链区域，书本折叠模式侧边导航，桌面模式分离转录和输入区域",
+            "detail": "Keep content clear of separating hinges, show navigation beside content on book folds, and split transcript and composer across tabletop panes",
+            "summaryZh": "Android 折叠屏设备自适应布局"
+          },
+          {
+            "title": "会话历史容量提升",
+            "tag": "优化",
+            "summary": "默认活跃会话上限提升至 5000，同时保留显式配置限制",
+            "detail": "Raise the default active-session cap to 5,000 while preserving explicit configured limits",
+            "summaryZh": "活跃会话上限提升至 5000"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.2",
         "date": "2026-09-05",
         "features": [
