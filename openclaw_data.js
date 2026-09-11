@@ -4,6 +4,61 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.6.35",
+        "date": "2026-09-10",
+        "features": [
+          {
+            "title": "更安全的 Provider 和 Channel 边界",
+            "tag": "安全",
+            "summary": "内置 Provider 和 Channel 适配器现在会限制不可信响应体大小，在执行昂贵操作前拒绝过大输入，并在传输失败时保留安全恢复机制。",
+            "detail": "Bundled providers and channel adapters now bound untrusted response bodies, reject oversized inputs before expensive work, and preserve safe recovery when transports fail.",
+            "summaryZh": "Provider 和 Channel 适配器加固响应体大小限制与安全恢复"
+          },
+          {
+            "title": "更可靠的长时间运行投递",
+            "tag": "修复",
+            "summary": "Agent、Gateway、重试和 Channel 路径现在能正确处理取消、重试、部分发送和进程流失败，不会丢失工作或重复执行不安全操作。",
+            "detail": "Agent, gateway, retry, and channel paths now handle cancellation, retries, partial sends, and process-stream failures without losing work or replaying unsafe operations.",
+            "summaryZh": "长时间任务投递链路全面加固，消除丢任务和重复执行问题"
+          },
+          {
+            "title": "内置插件韧性增强",
+            "tag": "优化",
+            "summary": "本地模型、浏览器、媒体和协作插件现在能从格式错误的 payload、超时和瞬态上游故障中干净恢复。",
+            "detail": "Local-model, browser, media, and collaboration plugins recover cleanly from malformed payloads, timeouts, and transient upstream failures.",
+            "summaryZh": "内置插件异常恢复能力全面提升"
+          },
+          {
+            "title": "工具和工作空间使用更安全",
+            "tag": "安全",
+            "summary": "浏览器自动化、本地工具、工作空间读取和插件元数据处理现在会在中断活跃 Agent 运行前拒绝格式错误或过大的输入。",
+            "detail": "Browser automation, local tools, workspace reads, and plugin metadata handling now reject malformed or oversized inputs before they can interrupt an active agent run.",
+            "summaryZh": "工具和工作空间输入校验加固，防止恶意输入中断 Agent"
+          },
+          {
+            "title": "本地集成更可靠",
+            "tag": "优化",
+            "summary": "本地模型发现、语音、会议和协作集成现在发出有界请求，并在不破坏网关稳定性的前提下暴露故障。",
+            "detail": "Local-model discovery, speech, meeting, and collaboration integrations now make bounded requests and surface failures without destabilizing the gateway.",
+            "summaryZh": "本地集成请求有界化，提升网关稳定性"
+          },
+          {
+            "title": "响应和内存安全修复",
+            "tag": "安全",
+            "summary": "Provider、搜索、嵌入、媒体和 Channel 集成在恶意 payload 耗尽进程内存前，会限制成功和错误响应的读取大小。",
+            "detail": "Provider, search, embedding, media, and channel integrations cap successful and error response reads before hostile payloads can exhaust process memory.",
+            "summaryZh": "响应读取大小限制，防御恶意 payload 耗尽内存"
+          },
+          {
+            "title": "Extended Stable 维护发布",
+            "tag": "变更",
+            "summary": "此发布携带为 extended-stable 线选择的经审计可靠性和安全向后移植，不引入新的发布线功能。",
+            "detail": "This release carries the audited reliability and security backports selected for the extended-stable line, without introducing a new release-line feature.",
+            "summaryZh": "June LTS 最终版，仅含安全和可靠性向后移植"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.3",
         "date": "2026-09-08",
         "features": [
