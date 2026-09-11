@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
   <title id="title">Agent Changelog — release tracker for AI agent frameworks</title>
-  <desc id="desc">Two tracked projects (OpenClaw, Hermes Agent) whose GitHub Releases are parsed for the Highlights section by a daily cron job and rendered as browsable bilingual HTML pages.</desc>
+  <desc id="desc">Two tracked projects (OpenClaw, Hermes Agent) whose GitHub Releases are parsed for the Highlights section by a sync script that is run on demand, and rendered as browsable bilingual HTML pages.</desc>
 
   <defs>
     <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
@@ -18,28 +18,28 @@
     <text x="0" y="104" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="21" fill="#9dabba">Upstream releases become a browsable, bilingual changelog.</text>
 
     <g transform="translate(0 150)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
-      <rect x="0" y="-22" width="196" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="14" y="2" fill="#c8d4e2">GitHub Releases API</text>
-      <path d="M202 0 h22 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
+      <rect x="0" y="-22" width="118" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="14" y="2" fill="#c8d4e2">Releases</text>
+      <path d="M124 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="230" y="-22" width="176" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="244" y="2" fill="#c8d4e2">parse Highlights</text>
-      <path d="M412 0 h22 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
+      <rect x="150" y="-22" width="147" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="164" y="2" fill="#c8d4e2">parse notes</text>
+      <path d="M303 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="440" y="-22" width="150" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="454" y="2" fill="#c8d4e2">generate HTML</text>
-      <path d="M596 0 h22 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
+      <rect x="329" y="-22" width="125" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="343" y="2" fill="#c8d4e2">data file</text>
+      <path d="M460 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="624" y="-22" width="152" height="38" rx="10" fill="#0e1c22" stroke="#00ccff" stroke-opacity="0.45"/>
-      <text x="638" y="2" fill="#7fdfff">GitHub Pages</text>
+      <rect x="486" y="-22" width="90" height="38" rx="10" fill="#0e1c22" stroke="#00ccff" stroke-opacity="0.45"/>
+      <text x="500" y="2" fill="#7fdfff">Pages</text>
     </g>
 
     <g transform="translate(0 232)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#7b8899">
       <text x="0" y="0">2 projects tracked</text>
       <circle cx="176" cy="-6" r="3" fill="#2b3644"/>
-      <text x="194" y="0">daily cron sync</text>
+      <text x="194" y="0">manual sync</text>
       <circle cx="356" cy="-6" r="3" fill="#2b3644"/>
-      <text x="374" y="0">no manual updates</text>
+      <text x="374" y="0">Pages on push</text>
     </g>
   </g>
 

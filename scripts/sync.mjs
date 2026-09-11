@@ -3,13 +3,15 @@
 /**
  * sync.mjs
  * --------
- * Syncs OpenClaw GitHub Releases into index.html's CHANGELOG_DATA.
+ * Syncs OpenClaw GitHub Releases into openclaw_data.js's CHANGELOG_DATA —
+ * the file openclaw.html actually loads.
  * Groups releases by month (monthly archive).
  *
  * Usage:
  *   GITHUB_TOKEN=ghp_xxx node scripts/sync.mjs
  *
  * Without GITHUB_TOKEN, uses unauthenticated API (60 req/hr limit).
+ * Run manually (the "Sync Changelog" workflow is workflow_dispatch-only).
  */
 
 import { execSync } from 'node:child_process';
@@ -19,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const INDEX_HTML = join(ROOT, 'index.html');
+const DATA_FILE = join(ROOT, 'openclaw_data.js');
 
 const REPO = 'openclaw/openclaw';
 const API_BASE = 'https://api.github.com';
@@ -307,48 +309,39 @@ export function formatChangelogData(months) {
 }
 
 /**
- * Validate that the generated JS in index.html is syntactically correct.
- * Extracts all <script> blocks and runs `node --check` on each.
+ * Validate that a generated JS source file is syntactically correct.
+ * Writes it to a temp file and runs `node --check`.
  */
-export function validateJsSyntax(html) {
-  const scriptRegex = /<script>([\s\S]*?)<\/script>/g;
-  let idx = 0;
+export function validateJsSyntax(source) {
+  const tmpFile = '/tmp/changelog_validate.js';
+  writeFileSync(tmpFile, source, 'utf-8');
 
-  for (const match of html.matchAll(scriptRegex)) {
-    idx++;
-    const scriptBody = match[1].trim();
-    if (!scriptBody) continue;
-
-    const tmpFile = `/tmp/changelog_validate_${idx}.js`;
-    writeFileSync(tmpFile, scriptBody, 'utf-8');
-
-    try {
-      execSync(`node --check ${tmpFile}`, { stdio: 'pipe' });
-    } catch (err) {
-      const stderr = err.stderr?.toString() || '';
-      throw new Error(`JS syntax error in <script> block #${idx}:\n${stderr}`);
-    }
+  try {
+    execSync(`node --check ${tmpFile}`, { stdio: 'pipe' });
+  } catch (err) {
+    const stderr = err.stderr?.toString() || '';
+    throw new Error(`JS syntax error in generated data file:\n${stderr}`);
   }
 
-  console.log(`  Validated ${idx} <script> block(s) — syntax OK.`);
+  console.log('  Validated generated data file — syntax OK.');
 }
 
-function updateIndexHtml(months) {
-  const html = readFileSync(INDEX_HTML, 'utf-8');
+function updateDataFile(months) {
+  const source = readFileSync(DATA_FILE, 'utf-8');
   const dataRegex = /const CHANGELOG_DATA\s*=\s*\[[\s\S]*?^\];/m;
 
   const newArray = formatChangelogData(months);
-  const newHtml = html.replace(dataRegex, () => `const CHANGELOG_DATA = ${newArray};`);
+  const newSource = source.replace(dataRegex, () => `const CHANGELOG_DATA = ${newArray};`);
 
-  if (newHtml === html) {
-    console.log('No CHANGELOG_DATA found in index.html, or content unchanged.');
+  if (newSource === source) {
+    console.log('No CHANGELOG_DATA found in openclaw_data.js, or content unchanged.');
     return false;
   }
 
   // Validate JS syntax before writing
-  validateJsSyntax(newHtml);
+  validateJsSyntax(newSource);
 
-  writeFileSync(INDEX_HTML, newHtml, 'utf-8');
+  writeFileSync(DATA_FILE, newSource, 'utf-8');
   return true;
 }
 
@@ -373,7 +366,7 @@ async function main() {
     }
 
     if (entries.length === 0) {
-      console.log('No releases with parseable features found. index.html not modified.');
+      console.log('No releases with parseable features found. openclaw_data.js not modified.');
       process.exit(0);
     }
 
@@ -388,9 +381,9 @@ async function main() {
       console.log(`  ${m.month}: ${m.releases.length} releases`);
     }
 
-    const changed = updateIndexHtml(months);
+    const changed = updateDataFile(months);
     if (changed) {
-      console.log('\nindex.html updated successfully.');
+      console.log('\nopenclaw_data.js updated successfully.');
     } else {
       console.log('\nNo changes needed.');
     }

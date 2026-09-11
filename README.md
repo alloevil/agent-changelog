@@ -20,9 +20,9 @@
 
 ## What it does
 
-Agent Changelog automatically tracks version updates for major AI agent frameworks. It pulls data from GitHub Releases API, parses the Highlights section from release notes, and generates a clean, browsable HTML changelog.
+Agent Changelog tracks version updates for major AI agent frameworks. `scripts/sync.mjs` pulls OpenClaw's GitHub Releases, parses the Highlights section out of the release notes and rewrites `openclaw_data.js` — the data file the pages load; the pages themselves are static HTML/CSS/JS.
 
-**No manual updates needed** — a daily cron job syncs the latest releases automatically.
+**The sync is manual, not scheduled.** There is no cron anywhere in this repo: run the `Sync Changelog` workflow (`workflow_dispatch`) or the `skills/sync-openlaw` skill, then commit — GitHub Pages deploys on push. Hermes has no fetch script at all; its `hermes_data.js` is maintained by hand.
 
 ---
 
@@ -30,8 +30,10 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
 
 | Project | Source | Versions | Time Span |
 |------|------|--------|----------|
-| **OpenClaw** | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 32+ | 2026.1 — present |
-| **Hermes Agent** | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 12 | 2026.3 — present |
+| **OpenClaw** | [openclaw/openclaw](https://github.com/openclaw/openclaw) | 167 | 2025.11 — 2026.9 |
+| **Hermes Agent** | [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) | 14 | 2026.7 — 2026.9 |
+
+Counts are read off the committed data files (`openclaw_data.js`: 167 releases, 2025-11-25 → 2026-09-10; `hermes_data.js`: 14 releases, 2026-07-01 → 2026-09-07) and a test (`tests/stats.test.mjs`) fails if the homepage cards stop matching them.
 
 ---
 
@@ -40,9 +42,9 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
 <details>
 <summary><b>Click to expand screenshots</b></summary>
 
-**Homepage** — project selection
+**OpenClaw changelog page** — month sections, per-release features with the parsed tags
 
-![Homepage](assets/screenshot.png)
+![OpenClaw changelog page](assets/screenshot.png)
 
 </details>
 
@@ -53,7 +55,8 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
 ```
   ┌──────────────────┐
   │  GitHub Releases │
-  │  API (per repo)  │
+  │  API             │
+  │  (OpenClaw only) │
   └────────┬─────────┘
            ▼
   ┌──────────────────┐
@@ -63,13 +66,14 @@ Agent Changelog automatically tracks version updates for major AI agent framewor
   └────────┬─────────┘
            ▼
   ┌──────────────────┐
-  │  Generate HTML   │
-  │  changelog pages │
+  │  Rewrite         │
+  │  openclaw_data.js│
+  │  (run on demand) │
   └────────┬─────────┘
            ▼
   ┌──────────────────┐
   │  GitHub Pages    │
-  │  (auto-deploy)   │
+  │  (deploy on push)│
   └──────────────────┘
 ```
 
@@ -87,7 +91,7 @@ agent-changelog/
 ├── assets/             # Static assets (screenshots, etc.)
 ├── scripts/            # Build & sync scripts
 ├── skills/             # Skill-related files
-└── .github/            # GitHub Actions (daily sync)
+└── .github/            # GitHub Actions (Pages deploy on push; manual sync)
 ```
 
 ---
