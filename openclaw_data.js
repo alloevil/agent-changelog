@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.4",
+        "date": "2026-09-11",
+        "features": [
+          {
+            "title": "失败更新可恢复",
+            "tag": "新增",
+            "summary": "兼容性失败更新恢复：保留之前的包，当 Schema 和配置检查证明回滚安全时恢复到之前的配置和服务；数据库迁移仍需预更新备份。",
+            "detail": "Recover from compatible failed updates: retain the previous package and restore it with the previous configuration and service when schema and configuration checks prove rollback is safe; database migrations still require a verified pre-update backup.",
+            "summaryZh": "失败更新自动恢复到之前的包和配置"
+          },
+          {
+            "title": "统一插件管理",
+            "tag": "新增",
+            "summary": "插件集中管理：发现内置和 ClawHub 插件，从 Control UI 安装，在统一的 Plugins 工作区中管理设置和访问权限。",
+            "detail": "Plugins in one place: discover bundled and ClawHub plugins, install them from the Control UI, and manage their setup, settings, and access in a unified Plugins workspace.",
+            "summaryZh": "统一插件工作区，支持 Control UI 安装和管理"
+          },
+          {
+            "title": "预备云端会话",
+            "tag": "新增",
+            "summary": "从预备的本地项目或公共 GitHub 仓库启动符合条件的 Linux 会话，并从 Control UI 在开始对话前构建可复用快照。",
+            "detail": "Prepared cloud sessions: start eligible Linux sessions from prepared local projects or public GitHub repositories, and build reusable snapshots from the Control UI before starting a conversation.",
+            "summaryZh": "从本地项目或 GitHub 仓库启动云端会话并构建快照"
+          },
+          {
+            "title": "终端内问答交互",
+            "tag": "新增",
+            "summary": "在 Gateway 连接和本地 TUI 会话中支持键盘驱动选择、自由文本回答和多问题提示。",
+            "detail": "Answer questions in the terminal: use keyboard-driven choices, free-text answers, and multi-question prompts in both Gateway-connected and local TUI sessions.",
+            "summaryZh": "终端中支持键盘选择、自由文本和多问题提示"
+          },
+          {
+            "title": "GPT Image 2.5 新风格",
+            "tag": "新增",
+            "summary": "新增 Flare 和 Sunburst 风格变体，可通过 OpenAI 或 fal 进行图像生成和编辑，无需更改现有默认模型。",
+            "detail": "GPT Image 2.5: select the new Flare and Sunburst variants for image generation and editing through OpenAI or fal without changing your existing default model.",
+            "summaryZh": "GPT Image 2.5 新增 Flare 和 Sunburst 风格变体"
+          },
+          {
+            "title": "更可靠的对话历史",
+            "tag": "优化",
+            "summary": "中断流后恢复最终回复，重载后保留超时通知，防止实时聊天交接到保存的历史时产生重复最终回答。",
+            "detail": "More dependable conversation history: recover final replies after interrupted streams, retain timeout notices after reload, and prevent duplicate final answers when live chat hands off to saved history.",
+            "summaryZh": "中断流恢复、超时保留、防重复回答"
+          }
+        ]
+      },
+      {
         "version": "v2026.6.35",
         "date": "2026-09-10",
         "features": [
@@ -58602,4 +58650,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;

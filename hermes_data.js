@@ -4,6 +4,54 @@ const RELEASES_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.11",
+        "date": "2026-09-11",
+        "features": [
+          {
+            "title": "state.db 可靠性全面修复",
+            "tag": "修复",
+            "summary": "六项 PR 根治 state.db 问题：消除多余的写入者、修复 WAL 数据库误报损坏、FTS 损坏不再阻断对话、单条损坏记录不再崩溃会话列表、多配置隔离、无写入时不持锁。",
+            "detail": "Six PRs fix root causes: no more second writers, healthy WAL databases stop wedging, FTS damage no longer kills your turn, one corrupt row no longer kills sessions list/export/insights, sessions never bind to another profile's database, opening state.db no longer takes write lock when nothing needs writing.",
+            "summaryZh": "六项 PR 根治 state.db 多余写入者、WAL 误报、FTS 阻断等核心问题"
+          },
+          {
+            "title": "多配置隔离加固",
+            "tag": "安全",
+            "summary": "修复多配置共享网关的隔离问题：次级配置不再继承默认配置的允许列表、适配器不再向默认主机发送凭证、MCP 服务器不再接收其他配置的 Vault 密钥。",
+            "detail": "Multi-profile isolation hardening: secondary-profile bots no longer inherit default profile's allow-lists, adapters no longer send credentials to default profile's host, stdio MCP servers no longer receive default profile's vault secrets.",
+            "summaryZh": "修复多配置共享网关的允许列表、凭证和密钥隔离问题"
+          },
+          {
+            "title": "Desktop 后端启动风暴修复",
+            "tag": "修复",
+            "summary": "Bot Mode 启动和轮询时不再为每个配置生成或拨号后端，悬停 Bots 名册不再按行生成后端，配置切换不再生成重复主后端。",
+            "detail": "Bot Mode no longer spawns or dials one backend per profile on launch and every roster tick, hovering Bots roster no longer spawns a backend per row, profile switches no longer spawn a duplicate primary.",
+            "summaryZh": "修复 Bot Mode 启动/轮询/切换时的后端重复生成问题"
+          },
+          {
+            "title": "密码无感知凭证库",
+            "tag": "新增",
+            "summary": "Agent 可从 1Password、Bitwarden 或本地凭证库登录、支付和填写地址而永不接触明文密钥；双因素码来自保存的认证密钥或通过用户 UI 请求。",
+            "detail": "The agent can sign in, pay, and fill addresses from 1Password, Bitwarden, or the local Hermes vault without ever seeing a secret; two-factor codes come from a saved authenticator key or are asked for in the user's UI.",
+            "summaryZh": "支持 1Password/Bitwarden/本地凭证库，Agent 永不接触明文密码"
+          },
+          {
+            "title": "插件目录和统一 Plugins 页面",
+            "tag": "新增",
+            "summary": "策划的 SHA 固定插件索引，配合 CLI、准入 CI、文档和仪表盘；Desktop 提供统一 Plugins 页面管理 Agent 和桌面插件。",
+            "detail": "A curated, SHA-pinned plugin index with CLI, admission CI, docs and dashboard; Desktop gets one Plugins page owning agent + desktop plugins, install, catalog and per-commit pinning.",
+            "summaryZh": "SHA 固定插件目录 + Desktop 统一 Plugins 页面"
+          },
+          {
+            "title": "Nous 免费推理和引导式首次启动",
+            "tag": "新增",
+            "summary": "开箱即用的免费推理和连接器，一条命令登录；支持 /login 聊天登录、连接器工具通过 tool_search 搜索、引导式首次启动体验。",
+            "detail": "Free inference and connectors out of the box with one command to sign in, /login from chat, connector tools searchable through tool_search, and a guided first launch behind HERMES_GUEST_ONBOARDING=1.",
+            "summaryZh": "开箱即用免费推理、连接器和引导式首次启动"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.7",
         "date": "2026-09-07",
         "features": [
@@ -712,4 +760,4 @@ const RELEASES_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = RELEASES_DATA;
+if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
