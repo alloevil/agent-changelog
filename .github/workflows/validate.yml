@@ -1,6 +1,7 @@
 name: Validate
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
@@ -8,7 +9,9 @@ on:
       - 'tests/**'
       - 'index.html'
       - 'package.json'
+      - 'package-lock.json'
       - 'biome.json'
+      - '.github/workflows/**'
   pull_request:
     branches: [master]
     paths:
@@ -16,7 +19,9 @@ on:
       - 'tests/**'
       - 'index.html'
       - 'package.json'
+      - 'package-lock.json'
       - 'biome.json'
+      - '.github/workflows/**'
 
 permissions:
   contents: read
