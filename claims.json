@@ -1,0 +1,127 @@
+{
+  "project": "agent-changelog",
+  "url": "https://alloevil.github.io/agent-changelog/",
+  "repository": "https://github.com/alloevil/agent-changelog",
+  "updated": "2026-09-13",
+  "claims": [
+    {
+      "id": "openclaw-release-count",
+      "claim": "The OpenClaw page publishes 167 releases.",
+      "value": "167",
+      "metric": "release entries in openclaw_data.js",
+      "method": "the data file declares CHANGELOG_DATA as a JSON array of months; this counts its releases",
+      "repro": "node -e \"...\"",
+      "evidence": "openclaw_data.js",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('openclaw_data.js').length)\"",
+        "expect": {
+          "equals": "167"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "hermes-release-count",
+      "claim": "The Hermes page publishes 14 releases.",
+      "value": "14",
+      "metric": "release entries in hermes_data.js",
+      "method": "same parse over the second data file",
+      "repro": "node -e \"...\"",
+      "evidence": "hermes_data.js",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('hermes_data.js').length)\"",
+        "expect": {
+          "equals": "14"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "homepage-cards-match-the-data",
+      "claim": "The homepage cards state the same release counts the data files hold.",
+      "value": "167 and 14",
+      "metric": "the two card figures in index.html versus the data",
+      "method": "compares each card's number with its data file, so the cards cannot drift again (they said 32+ and 12 before 2026-09-12)",
+      "repro": "grep -n '版本</span>' index.html",
+      "evidence": "index.html",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const n=[...h.matchAll(/([0-9]+) \\u7248\\u672c<\\/span>/g)].map(m=>+m[1]);const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;console.log(n.join(',')+' vs '+r('openclaw_data.js')+','+r('hermes_data.js'))\"",
+        "expect": {
+          "equals": "167,14 vs 167,14"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "sync-is-manual-not-scheduled",
+      "claim": "The sync is manual: no workflow in this repository has a schedule.",
+      "value": "0 cron triggers",
+      "metric": "`schedule:` blocks across .github/workflows",
+      "method": "the README says the sync is run on demand; this asserts nothing was quietly scheduled later",
+      "repro": "grep -rn 'schedule:' .github/workflows/",
+      "evidence": ".github/workflows/",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "grep -rl 'schedule:' .github/workflows/ | wc -l | tr -d ' '",
+        "expect": {
+          "equals": "0"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "sync-writes-the-file-the-site-loads",
+      "claim": "scripts/sync.mjs rewrites openclaw_data.js — the file openclaw.html loads.",
+      "value": "openclaw_data.js",
+      "metric": "the path the syncer writes versus the path the page loads",
+      "method": "both are read out of the committed files; before 2026-09-12 the syncer wrote a block into index.html that did not exist there",
+      "repro": "grep -n 'DATA_FILE' scripts/sync.mjs",
+      "evidence": "scripts/sync.mjs",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const s=fs.readFileSync('scripts/sync.mjs','utf8');const p=fs.readFileSync('openclaw.html','utf8');console.log((s.includes(\\\"'openclaw_data.js'\\\")?'sync-target-ok':'sync-target-WRONG')+' / '+(p.includes('openclaw_data.js')?'page-loads-it':'page-does-not'))\"",
+        "expect": {
+          "equals": "sync-target-ok / page-loads-it"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "card-stats-are-pinned-by-a-test",
+      "claim": "A test fails if the homepage cards stop matching the data files.",
+      "value": "tests/stats.test.mjs",
+      "metric": "the test file exists and reads both data files",
+      "method": "it was added on 2026-09-12 with the card fix; this asserts it is still there and still parses the data",
+      "repro": "node --test",
+      "evidence": "tests/stats.test.mjs",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const t=fs.readFileSync('tests/stats.test.mjs','utf8');console.log((t.includes('openclaw_data.js')&&t.includes('hermes_data.js'))?'both-files-read':'MISSING')\"",
+        "expect": {
+          "equals": "both-files-read"
+        },
+        "timeout": 60
+      }
+    },
+    {
+      "id": "license-mit",
+      "claim": "The LICENSE file is the MIT licence (package.json does not declare one; the package is private).",
+      "value": "MIT",
+      "metric": "the LICENSE file",
+      "method": "read the first line of the committed licence text",
+      "repro": "head -1 LICENSE",
+      "evidence": "LICENSE",
+      "as_of": "2026-09-13",
+      "check": {
+        "cmd": "head -1 LICENSE | grep -c MIT | tr -d ' '",
+        "expect": {
+          "equals": "1"
+        },
+        "timeout": 60
+      }
+    }
+  ]
+}

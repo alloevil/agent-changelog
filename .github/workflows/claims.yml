@@ -1,0 +1,22 @@
+name: claims
+
+# Runs the receipts behind claims.json: the release counts the pages publish, the homepage cards
+# against the data files, that the sync is still manual, and that scripts/sync.mjs still writes
+# the file the site loads. Weekly as well as on push, because the numbers come from an upstream
+# API and move without anyone committing here.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: published numbers still reproduce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: alloevil/verify-claims@v0.1.1
