@@ -7,7 +7,7 @@
     {
       "id": "openclaw-release-count",
       "claim": "The OpenClaw page publishes 167 releases.",
-      "value": "167",
+      "value": "168",
       "metric": "release entries in openclaw_data.js",
       "method": "the data file declares CHANGELOG_DATA as a JSON array of months; this counts its releases",
       "repro": "node -e \"...\"",
@@ -16,7 +16,7 @@
       "check": {
         "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('openclaw_data.js').length)\"",
         "expect": {
-          "equals": "167"
+          "equals": "168"
         },
         "timeout": 60
       }
@@ -24,7 +24,7 @@
     {
       "id": "hermes-release-count",
       "claim": "The Hermes page publishes 14 releases.",
-      "value": "14",
+      "value": "15",
       "metric": "release entries in hermes_data.js",
       "method": "same parse over the second data file",
       "repro": "node -e \"...\"",
@@ -33,7 +33,7 @@
       "check": {
         "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('hermes_data.js').length)\"",
         "expect": {
-          "equals": "14"
+          "equals": "15"
         },
         "timeout": 60
       }
@@ -41,7 +41,7 @@
     {
       "id": "homepage-cards-match-the-data",
       "claim": "The homepage cards state the same release counts the data files hold.",
-      "value": "167 and 14",
+      "value": "168 and 15",
       "metric": "the two card figures in index.html versus the data",
       "method": "compares each card's number with its data file, so the cards cannot drift again (they said 32+ and 12 before 2026-09-12)",
       "repro": "grep -n '版本</span>' index.html",
@@ -50,24 +50,24 @@
       "check": {
         "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const n=[...h.matchAll(/([0-9]+) \\u7248\\u672c<\\/span>/g)].map(m=>+m[1]);const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;console.log(n.join(',')+' vs '+r('openclaw_data.js')+','+r('hermes_data.js'))\"",
         "expect": {
-          "equals": "167,14 vs 167,14"
+          "equals": "168,15 vs 168,15"
         },
         "timeout": 60
       }
     },
     {
       "id": "sync-is-manual-not-scheduled",
-      "claim": "The sync is manual: no workflow in this repository has a schedule.",
+      "claim": "The sync workflow is manual: `sync.yml` has no `schedule:` trigger. (The claims gate itself is scheduled weekly; that is this repository's only cron.)",
       "value": "0 cron triggers",
-      "metric": "`schedule:` blocks across .github/workflows",
-      "method": "the README says the sync is run on demand; this asserts nothing was quietly scheduled later",
+      "metric": "`schedule:` blocks in .github/workflows/sync.yml, plus a count of every workflow that has one",
+      "method": "the README says the sync is run on demand; this asserts sync.yml stays dispatch-only and reports which workflows are scheduled",
       "repro": "grep -rn 'schedule:' .github/workflows/",
       "evidence": ".github/workflows/",
       "as_of": "2026-09-13",
       "check": {
-        "cmd": "grep -rl 'schedule:' .github/workflows/ | wc -l | tr -d ' '",
+        "cmd": "node -e \"const fs=require('fs'),p=require('path');const d='.github/workflows';const f=fs.readdirSync(d);const sched=f.filter(n=>fs.readFileSync(p.join(d,n),'utf8').includes('schedule:'));const sync=sched.includes('sync.yml');console.log('sync-scheduled='+sync+' scheduled=['+sched.join(',')+']')\"",
         "expect": {
-          "equals": "0"
+          "equals": "sync-scheduled=false scheduled=[claims.yml]"
         },
         "timeout": 60
       }
