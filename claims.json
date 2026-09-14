@@ -41,16 +41,16 @@
     {
       "id": "homepage-cards-match-the-data",
       "claim": "The homepage cards state the same release counts the data files hold.",
-      "value": "168 and 15",
-      "metric": "the two card figures in index.html versus the data",
-      "method": "compares each card's number with its data file, so the cards cannot drift again (they said 32+ and 12 before 2026-09-12)",
+      "value": "168,15 in the cards and in the hero",
+      "metric": "the two figures in index.html and the two in assets/hero.svg versus the data",
+      "method": "compares every place the release counts are published — the two homepage cards and the hero's footer line — with the data files, so no single copy can drift again. It had happened twice: the cards said 32+ and 12 before 2026-09-12, and the hero still said 32+/12 until 2026-09-15, when a rendered frame of the hero was checked by eye and the number did not match the claim.",
       "repro": "grep -n '版本</span>' index.html",
-      "evidence": "index.html",
-      "as_of": "2026-09-13",
+      "evidence": "index.html, assets/hero.svg",
+      "as_of": "2026-09-15",
       "check": {
-        "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const n=[...h.matchAll(/([0-9]+) \\u7248\\u672c<\\/span>/g)].map(m=>+m[1]);const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;console.log(n.join(',')+' vs '+r('openclaw_data.js')+','+r('hermes_data.js'))\"",
+        "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const cards=[...h.matchAll(/([0-9]+) \\\\u7248\\\\u672c<\\\\/span>/g)].map(m=>+m[1]);const s=fs.readFileSync('assets/hero.svg','utf8');const hero=[...s.matchAll(/OpenClaw ([0-9]+)/g)].map(m=>+m[1]).concat([...s.matchAll(/Hermes Agent ([0-9]+)/g)].map(m=>+m[1]));const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const real=[r('openclaw_data.js'),r('hermes_data.js')];console.log(cards.concat(hero).join(',')+' vs '+real.join(','))\"",
         "expect": {
-          "equals": "168,15 vs 168,15"
+          "equals": "168,15,168,15 vs 168,15"
         },
         "timeout": 60
       }
@@ -139,6 +139,23 @@
         },
         "timeout": 60
       }
+    },
+    {
+      "id": "animated-pages-respect-reduced-motion",
+      "claim": "Every page or SVG in this repository that animates also handles `prefers-reduced-motion` — motion here is decoration, and the artefact must stay complete when it is off.",
+      "value": "no animated file without a reduced-motion branch",
+      "metric": "files containing an animation primitive vs files containing `prefers-reduced-motion`",
+      "method": "the check walks every committed page and SVG and covers all four ways one can move — CSS animations/keyframes, SVG SMIL, requestAnimationFrame, and the CSS animations inside an SVG hero — requiring a `prefers-reduced-motion` reference wherever it finds one. SVG heroes are included because GitHub renders them through <img>: scripts do not run, CSS animations do, and a hero that loops forever is exactly what a reduced-motion branch is for.",
+      "repro": "grep -l 'prefers-reduced-motion' *.html docs/*.html assets/*.svg assets/readme/*.svg",
+      "as_of": "2026-09-15",
+      "check": {
+        "cmd": "python3 - <<'PY'\nimport pathlib, re\n\nMOVES = re.compile(r'animation\\s*:|@keyframes|<animate\\b|<animateTransform\\b|requestAnimationFrame')\nRELAX = 'prefers-reduced-motion'\npages = sorted(set(\n    list(pathlib.Path('.').glob('*.html'))\n    + list(pathlib.Path('.').glob('docs/*.html'))\n    + list(pathlib.Path('.').glob('assets/*.svg'))\n    + list(pathlib.Path('.').glob('assets/readme/*.svg'))\n))\npages = [p for p in pages if p.name != 'template.html']\nanimated, missing = 0, []\nfor p in pages:\n    t = p.read_text(encoding='utf-8', errors='replace')\n    if MOVES.search(t):\n        animated += 1\n        if RELAX not in t:\n            missing.append(str(p))\nprint('files', len(pages), 'animated', animated, 'missing', missing)\nassert animated and not missing\nPY",
+        "expect": {
+          "regex": "missing \\[\\]$"
+        },
+        "timeout": 180
+      },
+      "evidence": "assets/hero.svg"
     }
   ]
 }

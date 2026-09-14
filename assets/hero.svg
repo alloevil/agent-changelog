@@ -18,20 +18,20 @@
     <text x="0" y="104" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="21" fill="#9dabba">Upstream releases become a browsable, bilingual changelog.</text>
 
     <g transform="translate(0 150)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
-      <rect x="0" y="-22" width="118" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="14" y="2" fill="#c8d4e2">Releases</text>
+      <g id="step-releases"><rect x="0" y="-22" width="118" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="14" y="2" fill="#c8d4e2">Releases</text></g>
       <path d="M124 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="150" y="-22" width="147" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="164" y="2" fill="#c8d4e2">parse notes</text>
+      <g id="step-parse"><rect x="150" y="-22" width="147" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="164" y="2" fill="#c8d4e2">parse notes</text></g>
       <path d="M303 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="329" y="-22" width="125" height="38" rx="10" fill="#111823" stroke="#233040"/>
-      <text x="343" y="2" fill="#c8d4e2">data file</text>
+      <g id="step-data"><rect x="329" y="-22" width="125" height="38" rx="10" fill="#111823" stroke="#233040"/>
+      <text x="343" y="2" fill="#c8d4e2">data file</text></g>
       <path d="M460 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
 
-      <rect x="486" y="-22" width="90" height="38" rx="10" fill="#0e1c22" stroke="#00ccff" stroke-opacity="0.45"/>
-      <text x="500" y="2" fill="#7fdfff">Pages</text>
+      <g id="step-pages"><rect x="486" y="-22" width="90" height="38" rx="10" fill="#0e1c22" stroke="#00ccff" stroke-opacity="0.45"/>
+      <text x="500" y="2" fill="#7fdfff">Pages</text></g>
     </g>
 
     <g transform="translate(0 232)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#7b8899">
@@ -78,7 +78,20 @@
     </g>
 
     <g transform="translate(24 240)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c">
-      <text x="0" y="0">OpenClaw 32+ versions · Hermes Agent 12</text>
+      <text x="0" y="0">OpenClaw 168 versions · Hermes Agent 15</text>
     </g>
   </g>
+
+  <style>
+    /* 发布链依次点亮：Releases → parse notes → data file → Pages，6 秒一轮。
+       动效只引导视线，不承载信息；reduced-motion 下静止且完全可见。 */
+    @keyframes chainGlow { 0%, 100% { opacity: .6 } 9% { opacity: 1 } 30% { opacity: .6 } }
+    #step-releases { animation: chainGlow 6s ease-in-out infinite; animation-delay: 0s; }
+    #step-parse    { animation: chainGlow 6s ease-in-out infinite; animation-delay: 1.5s; }
+    #step-data     { animation: chainGlow 6s ease-in-out infinite; animation-delay: 3s; }
+    #step-pages    { animation: chainGlow 6s ease-in-out infinite; animation-delay: 4.5s; }
+    @media (prefers-reduced-motion: reduce) {
+      #step-releases, #step-parse, #step-data, #step-pages { animation: none; opacity: 1; }
+    }
+  </style>
 </svg>
