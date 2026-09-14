@@ -122,6 +122,23 @@
         },
         "timeout": 60
       }
+    },
+    {
+      "id": "crawler-files-present",
+      "claim": "The site ships `robots.txt` that allows all crawlers and names the sitemap, and an `llms.txt` summary; neither has been left to rot.",
+      "value": "robots allows all + declares the sitemap; llms.txt present",
+      "metric": "presence and content of robots.txt / llms.txt at the site root",
+      "method": "reads both files: robots.txt must contain 'User-agent: *', 'Allow: /' and a Sitemap line pointing at this site; llms.txt must be non-empty and link this site's pages",
+      "repro": "cat robots.txt llms.txt",
+      "evidence": "robots.txt",
+      "as_of": "2026-09-14",
+      "check": {
+        "cmd": "python3 -c \"import pathlib;r=pathlib.Path('robots.txt').read_text();l=pathlib.Path('llms.txt').read_text();ok=('User-agent: *' in r and 'Allow: /' in r and 'Sitemap: https://alloevil.github.io/agent-changelog/sitemap.xml' in r);ok=ok and len(l)>200 and 'alloevil.github.io/agent-changelog' in l;print('robots+llms ok', ok);assert ok\"",
+        "expect": {
+          "equals": "robots+llms ok True"
+        },
+        "timeout": 60
+      }
     }
   ]
 }

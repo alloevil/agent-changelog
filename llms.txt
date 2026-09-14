@@ -1,0 +1,24 @@
+# Agent Changelog
+
+> A small site that tracks the release history of agent CLIs and frameworks, one page per
+> tracked project, rebuilt from their own GitHub Releases. The sync is **manual**: there is no
+> cron in this repository — running the `Sync Changelog` workflow (or `node scripts/sync.mjs`)
+> fetches the releases, parses their notes and rewrites the data file the pages load.
+
+## Pages
+
+- Landing page: https://alloevil.github.io/agent-changelog/
+- OpenClaw changelog: https://alloevil.github.io/agent-changelog/openclaw.html
+- Hermes Agent changelog: https://alloevil.github.io/agent-changelog/hermes.html
+- Source and how to run the sync: https://github.com/alloevil/agent-changelog
+
+## What is checkable
+
+- Published numbers, and the command that recomputes each: `claims.json` in the repository root.
+- The tests compare the landing page's figures against the data files the pages actually load, so
+  a stale card fails CI instead of ageing quietly.
+
+## Scope
+
+- Only projects whose releases are public on GitHub; a project is added by adding a fetcher.
+- The pages show upstream release notes as published upstream, with the date and version attached.

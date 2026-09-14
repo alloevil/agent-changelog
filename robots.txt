@@ -1,0 +1,7 @@
+# The published site is three pages: the landing page and one changelog view per tracked
+# project (OpenClaw, Hermes). There is no draft, staging or internal path published here,
+# so nothing is disallowed.
+User-agent: *
+Allow: /
+
+Sitemap: https://alloevil.github.io/agent-changelog/sitemap.xml
