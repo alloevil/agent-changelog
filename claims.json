@@ -156,6 +156,23 @@
         "timeout": 180
       },
       "evidence": "assets/hero.svg"
+    },
+    {
+      "id": "jsonld-present-and-parseable",
+      "claim": "All three pages carry parseable schema.org JSON-LD, and none of them hardcodes a modified/published date — a hand-committed page with a fixed date would go stale on the next upstream release and nothing here would notice.",
+      "value": "3 pages, valid JSON-LD, no hardcoded dates",
+      "metric": "each page's <script type=application/ld+json> block: parses, has @context/@type, has no date fields",
+      "method": "the check extracts the block from each of index.html, openclaw.html and hermes.html and requires it to parse as JSON with a schema.org @context and a @type, and rejects dateModified/datePublished. Dates are deliberately absent rather than checked against the data: the sync is manual, so a date would be wrong most days.",
+      "repro": "grep -c 'application/ld+json' index.html openclaw.html hermes.html",
+      "evidence": "index.html",
+      "as_of": "2026-09-15",
+      "check": {
+        "cmd": "node -e \"const fs=require('fs');const pages=['index.html','openclaw.html','hermes.html'];const bad=[];for(const p of pages){const s=fs.readFileSync(p,'utf8');const m=s.match(/<script type=\\\"application\\/ld\\+json\\\">\\s*(\\{[\\s\\S]*?\\})\\s*<\\/script>/);if(!m){bad.push(p+':missing');continue;}let d;try{d=JSON.parse(m[1]);}catch(e){bad.push(p+':invalid-json');continue;}if(d['@context']!=='https://schema.org')bad.push(p+':context');if(!d['@type'])bad.push(p+':type');if(/dateModified|datePublished/.test(m[1]))bad.push(p+':hardcoded-date');}console.log('pages',pages.length,'problems',JSON.stringify(bad));if(bad.length)process.exit(1)\" ",
+        "expect": {
+          "equals": "pages 3 problems []"
+        },
+        "timeout": 60
+      }
     }
   ]
 }
