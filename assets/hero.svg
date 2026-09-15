@@ -13,11 +13,11 @@
   <rect x="0.5" y="0.5" width="1199" height="359" rx="19.5" fill="none" stroke="#1d242d"/>
 
   <g id="title-block" transform="translate(56 52)">
-    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c" letter-spacing="2.4">AI AGENT FRAMEWORKS · RELEASE TRACKER</text>
+    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c" letter-spacing="2.4">AI AGENT FRAMEWORKS · RELEASE TRACKER</text>
     <text x="0" y="62" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="54" font-weight="700" fill="#e8eef6">Agent Changelog</text>
     <text x="0" y="104" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="21" fill="#9dabba">Upstream releases become a browsable, bilingual changelog.</text>
 
-    <g transform="translate(0 150)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">
+    <g transform="translate(0 150)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18">
       <g id="step-releases"><rect x="0" y="-22" width="118" height="38" rx="10" fill="#111823" stroke="#233040"/>
       <text x="14" y="2" fill="#c8d4e2">Releases</text></g>
       <path d="M124 0 h20 m-6 -6 l6 6 -6 6" stroke="#3d4c5e" stroke-width="2" fill="none"/>
@@ -34,7 +34,7 @@
       <text x="500" y="2" fill="#7fdfff">Pages</text></g>
     </g>
 
-    <g transform="translate(0 232)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#7b8899">
+    <g transform="translate(0 232)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#7b8899">
       <text x="0" y="0">2 projects tracked</text>
       <circle cx="176" cy="-6" r="3" fill="#2b3644"/>
       <text x="194" y="0">manual sync</text>
@@ -47,13 +47,13 @@
     <rect x="0" y="0" width="444" height="268" rx="16" fill="url(#panel)" stroke="#1e2833"/>
 
     <g transform="translate(24 38)">
-      <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c" letter-spacing="1.6">2026 年 7 月 · OPENCLAW</text>
+      <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c" letter-spacing="1.6">2026 年 7 月 · OPENCLAW</text>
       <line x1="0" y1="16" x2="396" y2="16" stroke="#1e2833"/>
 
       <g transform="translate(0 48)">
         <circle cx="4" cy="-6" r="4" fill="#00ccff"/>
-        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#dbe6f2">v2026.7.1</text>
-        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c">2026-07-13</text>
+        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="20" fill="#dbe6f2">v2026.7.1</text>
+        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c">2026-07-13</text>
         <rect x="268" y="-18" width="52" height="24" rx="7" fill="#12261a" stroke="#1f4a2c"/>
         <text x="280" y="-1" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="18" fill="#7fd6a0">新增</text>
         <rect x="330" y="-18" width="52" height="24" rx="7" fill="#2a1c12" stroke="#4a3520"/>
@@ -62,30 +62,28 @@
 
       <g transform="translate(0 100)">
         <circle cx="4" cy="-6" r="4" fill="#3d4c5e"/>
-        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#dbe6f2">v2026.7.2</text>
-        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c">2026-07-21</text>
+        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="20" fill="#dbe6f2">v2026.7.2</text>
+        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c">2026-07-21</text>
         <rect x="268" y="-18" width="52" height="24" rx="7" fill="#121c2a" stroke="#1f3549"/>
         <text x="280" y="-1" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="18" fill="#8fb8e0">优化</text>
       </g>
 
       <g transform="translate(0 152)">
         <circle cx="4" cy="-6" r="4" fill="#3d4c5e"/>
-        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#dbe6f2">v2026.6.35</text>
-        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c">2026-06-30</text>
+        <text x="20" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="20" fill="#dbe6f2">v2026.6.35</text>
+        <text x="128" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c">2026-06-30</text>
         <rect x="268" y="-18" width="52" height="24" rx="7" fill="#2a1214" stroke="#4a2024"/>
         <text x="280" y="-1" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="18" fill="#e0919a">安全</text>
       </g>
     </g>
 
-    <g transform="translate(24 240)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6f7d8c">
+    <g transform="translate(24 240)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c">
       <text x="0" y="0">OpenClaw 168 versions · Hermes Agent 15</text>
     </g>
   </g>
 
     <style>
-    /* 发布链依次点亮：Releases → parse notes → data file → Pages。
-       幅度：透明度 .22 → 1 且上移（位置变化比透明度可感得多）。
-       reduced-motion 下全部静止、全部完全可见。 */
+    /* A local, strong change: the outline goes from dark grey to the accent colour. Far easier to notice than a whole block fading. */
     @keyframes chainGlow {
       0%       { opacity: .15; transform: translateY(0) scale(1); }
       6%, 40%  { opacity: 1;   transform: translateY(-18px) scale(1.04); }
@@ -119,24 +117,5 @@
     }
   </style>
 
-  <g id="packet-layer">
-    <circle id="packet" cx="56" cy="218" r="7" fill="#00ccff" fill-opacity="0.9"/>
-    <circle id="packet-halo" cx="56" cy="218" r="14" fill="#00ccff" fill-opacity="0.18"/>
-  </g>
 
-  <style>
-    /* 一个光点沿管线走过：位移跨越大半个画幅，这是眼睛余光能捕捉到的那类运动。
-       它只做引导，不承载信息 —— reduced-motion 下不显示。 */
-    @keyframes packetRun {
-      0%   { transform: translateX(0); opacity: 0; }
-      8%   { opacity: 1; }
-      92%  { opacity: 1; }
-      100% { transform: translateX(576px); opacity: 0; }
-    }
-    #packet { animation: packetRun 5s linear infinite; }
-    #packet-halo { animation: packetRun 5s linear infinite; }
-    @media (prefers-reduced-motion: reduce) {
-      #packet { display: none; }
-    }
-  </style>
 </svg>
