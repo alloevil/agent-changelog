@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/hero.svg" width="100%" alt="Agent Changelog — track version updates and evolution of AI agent frameworks like OpenClaw and Hermes Agent">
+  <img src="./assets/hero.svg?v=20260915" width="100%" alt="Agent Changelog — track version updates and evolution of AI agent frameworks like OpenClaw and Hermes Agent">
 </p>
 
 <p align="center">
