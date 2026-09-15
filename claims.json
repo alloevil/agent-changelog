@@ -2,7 +2,7 @@
   "project": "agent-changelog",
   "url": "https://alloevil.github.io/agent-changelog/",
   "repository": "https://github.com/alloevil/agent-changelog",
-  "updated": "2026-09-13",
+  "updated": "2026-09-15",
   "claims": [
     {
       "id": "openclaw-release-count",
@@ -23,17 +23,17 @@
     },
     {
       "id": "hermes-release-count",
-      "claim": "The Hermes page publishes 14 releases.",
-      "value": "15",
-      "metric": "release entries in hermes_data.js",
-      "method": "same parse over the second data file",
+      "claim": "The Hermes Agent card states the number of releases its data file holds — the check compares the two, so an upstream release cannot make the card stale.",
+      "value": "card == releases in hermes_data.js",
+      "metric": "the card's count versus the array length in hermes_data.js",
+      "method": "parses hermes_data.js and requires the card's number to equal it. Deliberately not a pinned count: Hermes ships releases, so a fixed number here would go red on its own.",
       "repro": "node -e \"...\"",
       "evidence": "hermes_data.js",
       "as_of": "2026-09-13",
       "check": {
-        "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('hermes_data.js').length)\"",
+        "cmd": "node -e \"const fs=require('fs');const n=JSON.parse(fs.readFileSync('hermes_data.js','utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const h=fs.readFileSync('index.html','utf8');const m=[...h.matchAll(/Hermes[\\\\s\\\\S]{0,400}?\\u0001?([0-9]+) \\\\u7248\\\\u672c/g)];const card=+(h.match(/Hermes[\\\\s\\\\S]{0,400}?([0-9]+) \\\\u7248\\\\u672c/)||[])[1];console.log('card', card, 'data', n);if(card!==n)process.exit(1);void m\"",
         "expect": {
-          "equals": "15"
+          "regex": "card \\d+ data \\d+$"
         },
         "timeout": 60
       }
@@ -41,16 +41,16 @@
     {
       "id": "homepage-cards-match-the-data",
       "claim": "The homepage cards state the same release counts the data files hold.",
-      "value": "168,15 in the cards and in the hero",
+      "value": "cards and hero == the data files",
       "metric": "the two figures in index.html and the two in assets/hero.svg versus the data",
       "method": "compares every place the release counts are published — the two homepage cards and the hero's footer line — with the data files, so no single copy can drift again. It had happened twice: the cards said 32+ and 12 before 2026-09-12, and the hero still said 32+/12 until 2026-09-15, when a rendered frame of the hero was checked by eye and the number did not match the claim.",
       "repro": "grep -n '版本</span>' index.html",
       "evidence": "index.html, assets/hero.svg",
       "as_of": "2026-09-15",
       "check": {
-        "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const cards=[...h.matchAll(/([0-9]+) \\\\u7248\\\\u672c<\\\\/span>/g)].map(m=>+m[1]);const s=fs.readFileSync('assets/hero.svg','utf8');const hero=[...s.matchAll(/OpenClaw ([0-9]+)/g)].map(m=>+m[1]).concat([...s.matchAll(/Hermes Agent ([0-9]+)/g)].map(m=>+m[1]));const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const real=[r('openclaw_data.js'),r('hermes_data.js')];console.log(cards.concat(hero).join(',')+' vs '+real.join(','))\"",
+        "cmd": "node -e \"const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const cards=[...h.matchAll(/([0-9]+) \\\\u7248\\\\u672c<\\\\/span>/g)].map(m=>+m[1]);const s=fs.readFileSync('assets/hero.svg','utf8');const hero=[...s.matchAll(/OpenClaw ([0-9]+)/g)].map(m=>+m[1]).concat([...s.matchAll(/Hermes Agent ([0-9]+)/g)].map(m=>+m[1]));const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const real=[r('openclaw_data.js'),r('hermes_data.js')];const all=cards.concat(hero);const ok=all.every((v,i)=>v===real[i%2]);console.log('published', all.join(','), 'vs data', real.join(','), 'match', ok);if(!ok)process.exit(1)\"",
         "expect": {
-          "equals": "168,15,168,15 vs 168,15"
+          "regex": "match true$"
         },
         "timeout": 60
       }
