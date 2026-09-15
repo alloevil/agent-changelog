@@ -4,6 +4,54 @@ const RELEASES_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.14",
+        "date": "2026-09-14",
+        "features": [
+          {
+            "title": "远程会话刷新不再过期",
+            "tag": "修复",
+            "summary": "修复远程 Desktop/Cloud 用户会话在刷新突发时过期的问题：网关上的两条刷新路径（cookie 和原生 bearer）现在会合并携带相同旋转刷新令牌的并发请求，避免 Desktop 唤醒突发触发 Portal 的令牌重用检测而吊销整个会话。",
+            "detail": "Remote dashboard sessions no longer expire on refresh bursts. Both refresh paths on the gateway now coalesce concurrent requests carrying the same rotating refresh token, preventing Desktop wake bursts from replaying an already-rotated token into Portal reuse detection.",
+            "summaryZh": "修复远程会话刷新突发导致的意外过期和吊销"
+          },
+          {
+            "title": "修复长期进程 state.db 写入句柄泄漏",
+            "tag": "修复",
+            "summary": "修复长期运行进程泄漏重复 state.db 写入句柄的问题：网关、Desktop 后端、ACP 和 CLI 读取器现在以只读方式附加，进程内写入器共享注册表句柄。",
+            "detail": "Long-lived processes stop leaking duplicate state.db writer handles. Gateway, dashboard/Desktop backend, ACP and CLI readers attach read-only and in-process writers share the registry handle.",
+            "summaryZh": "修复长期进程泄漏重复 state.db 写入句柄的问题"
+          },
+          {
+            "title": "新增推理强度选择与模型辅助控制",
+            "tag": "新增",
+            "summary": "每个模型选择器支持推理强度选择，Desktop 端新增 composer pill 和辅助模型控制；支持 OpenRouter OAuth PKCE 登录。",
+            "detail": "Reasoning-effort selection on every model picker, a composer pill and per-auxiliary control in Desktop; OpenRouter OAuth PKCE login.",
+            "summaryZh": "模型选择器支持推理强度控制，Desktop 新增辅助控制"
+          },
+          {
+            "title": "HEIF/HEIC/AVIF 图像解码支持",
+            "tag": "新增",
+            "summary": "新增 HEIF、HEIC 和 AVIF 格式的图像解码支持。",
+            "detail": "HEIF/HEIC/AVIF image decoding support added.",
+            "summaryZh": "新增 HEIF/HEIC/AVIF 图像格式解码"
+          },
+          {
+            "title": "FAL 模型目录扩展",
+            "tag": "新增",
+            "summary": "FAL 目录新增 Wan 3.0、Kling 3.0 / Kling Image v3、MiniMax H3 Max Turbo、Gemini Omni Flash 1.1 和 Meta Muse 模型。",
+            "detail": "Wan 3.0, Kling 3.0 / Kling Image v3, MiniMax H3 Max Turbo, Gemini Omni Flash 1.1 and Meta Muse added to FAL catalogs.",
+            "summaryZh": "FAL 目录新增多个视频和图像生成模型"
+          },
+          {
+            "title": "Slack 表格粘贴与 Agent Sessions API",
+            "tag": "新增",
+            "summary": "Slack 渠道支持粘贴表格；新增 Agent Sessions API。",
+            "detail": "Slack pasted tables support and the Agent Sessions API.",
+            "summaryZh": "Slack 支持粘贴表格，新增 Agent Sessions API"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.11",
         "date": "2026-09-11",
         "features": [
@@ -760,4 +808,4 @@ const RELEASES_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = RELEASES_DATA;
+if (typeof module !== "undefined") module.exports = RELEASES_DATA;
