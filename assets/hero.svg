@@ -82,16 +82,61 @@
     </g>
   </g>
 
-  <style>
-    /* 发布链依次点亮：Releases → parse notes → data file → Pages，6 秒一轮。
-       动效只引导视线，不承载信息；reduced-motion 下静止且完全可见。 */
-    @keyframes chainGlow { 0%, 100% { opacity: .6 } 9% { opacity: 1 } 30% { opacity: .6 } }
-    #step-releases { animation: chainGlow 6s ease-in-out infinite; animation-delay: 0s; }
-    #step-parse    { animation: chainGlow 6s ease-in-out infinite; animation-delay: 1.5s; }
-    #step-data     { animation: chainGlow 6s ease-in-out infinite; animation-delay: 3s; }
-    #step-pages    { animation: chainGlow 6s ease-in-out infinite; animation-delay: 4.5s; }
+    <style>
+    /* 发布链依次点亮：Releases → parse notes → data file → Pages。
+       幅度：透明度 .22 → 1 且上移（位置变化比透明度可感得多）。
+       reduced-motion 下全部静止、全部完全可见。 */
+    @keyframes chainGlow {
+      0%       { opacity: .15; transform: translateY(0) scale(1); }
+      6%, 40%  { opacity: 1;   transform: translateY(-18px) scale(1.04); }
+      52%      { opacity: .15; transform: translateY(0) scale(1); }
+      100%     { opacity: .15; transform: translateY(0) scale(1); }
+    }
+    }
+    #step-releases { animation: chainGlow 5s ease-in-out infinite; animation-delay: 0s; }
+    #step-parse { animation: chainGlow 5s ease-in-out infinite; animation-delay: 1.25s; }
+    #step-data { animation: chainGlow 5s ease-in-out infinite; animation-delay: 2.5s; }
+    #step-pages { animation: chainGlow 5s ease-in-out infinite; animation-delay: 3.75s; }
+    /* 亮起时描边从暗灰变亮蓝：一次局部强变化（通道差 >150），比整块半透明更容易被看到。 */
+    @keyframes borderGlow {
+      0%       { stroke: #26313C; }
+      6%, 40%  { stroke: #00ccff; }
+      52%      { stroke: #26313C; }
+      100%     { stroke: #26313C; }
+    }
+    }
+    #step-releases rect { animation: borderGlow 5s ease-in-out infinite; animation-delay: 0.0s; }
+    #step-parse rect { animation: borderGlow 5s ease-in-out infinite; animation-delay: 1.25s; }
+    #step-data rect { animation: borderGlow 5s ease-in-out infinite; animation-delay: 3.0s; }
+    #step-pages rect { animation: borderGlow 5s ease-in-out infinite; animation-delay: 3.75s; }
     @media (prefers-reduced-motion: reduce) {
-      #step-releases, #step-parse, #step-data, #step-pages { animation: none; opacity: 1; }
+      #step-releases, #step-parse, #step-data, #step-pages, #step-releases rect, #step-parse rect, #step-data rect, #step-pages rect { animation: none; opacity: 1; transform: none; }
+    }
+      #chip-claim, #chip-check, #chip-expect, #chip-asof,
+    #step-releases, #step-parse, #step-data, #step-pages,
+    #stage-collection, #stage-filtering, #stage-persistence, #stage-weekly {
+      transform-box: fill-box; transform-origin: center;
+    }
+  </style>
+
+  <g id="packet-layer">
+    <circle id="packet" cx="56" cy="218" r="7" fill="#00ccff" fill-opacity="0.9"/>
+    <circle id="packet-halo" cx="56" cy="218" r="14" fill="#00ccff" fill-opacity="0.18"/>
+  </g>
+
+  <style>
+    /* 一个光点沿管线走过：位移跨越大半个画幅，这是眼睛余光能捕捉到的那类运动。
+       它只做引导，不承载信息 —— reduced-motion 下不显示。 */
+    @keyframes packetRun {
+      0%   { transform: translateX(0); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translateX(576px); opacity: 0; }
+    }
+    #packet { animation: packetRun 5s linear infinite; }
+    #packet-halo { animation: packetRun 5s linear infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      #packet { display: none; }
     }
   </style>
 </svg>
