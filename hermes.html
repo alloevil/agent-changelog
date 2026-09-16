@@ -271,6 +271,16 @@ body {
   .feature-title { font-size: 12px; }
   .feature-summary { display: none; }
 }
+
+  /* reduced-motion：本页的动效只是悬停与展开过渡，关掉后内容全部照常可见。 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 <script type="application/ld+json">
 {
