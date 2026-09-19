@@ -4,6 +4,131 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.5",
+        "date": "2026-09-19",
+        "features": [
+          {
+            "title": "更安全的升级与会话历史保留",
+            "tag": "优化",
+            "summary": "Doctor 保留会话历史和重复修复状态，在无效保留历史下也能完成升级，避免在 Gateway 启动期间反复卡住或停止。",
+            "detail": "Doctor preserves session history and repeated-repair state, finishes upgrades with invalid retained histories, and avoids repeatedly stalling or stopping a Gateway that is still starting.",
+            "summaryZh": "Doctor 升级时保留会话历史，不再因无效历史卡住"
+          },
+          {
+            "title": "热插拔插件管理",
+            "tag": "新增",
+            "summary": "无需重启 Gateway 即可安装和重载插件，在活跃 Agent 和 Codex 会话中更新工具，单条 CLI 命令管理多个插件。",
+            "detail": "Install and reload supported plugins without restarting the Gateway, update tools in active agent and managed Codex conversations, and manage multiple plugins in one CLI command.",
+            "summaryZh": "无需重启即可安装、重载插件并更新工具"
+          },
+          {
+            "title": "多 Agent 工作流优化",
+            "tag": "优化",
+            "summary": "区分执行与结果交付，使用私有父级完成交接，恢复作用域会话库存，每次引导输入只交付一个答案。",
+            "detail": "Distinguish execution from result delivery, use private parent completion handoffs, resume scoped session inventories, and deliver one answer for each steered input.",
+            "summaryZh": "多 Agent 协作更清晰，区分执行与结果交付"
+          },
+          {
+            "title": "桌面端优先的 Systems 工作区",
+            "tag": "新增",
+            "summary": "通过 Web 登录管理 Gateway 连接，独立切换已保存的 Gateway（与 Primary 解耦），iOS 和 Android 支持侧边栏切换。",
+            "detail": "Manage Gateway connections through web login and switch saved Gateways independently of Primary, with sidebar switching on iOS and Android.",
+            "summaryZh": "Web 登录管理 Gateway，移动端支持侧边栏切换"
+          },
+          {
+            "title": "更灵活的实时语音",
+            "tag": "优化",
+            "summary": "在通话和会议中使用 GPT Live，选择账户级 Talk 默认设置，通话期间切换语音。",
+            "detail": "Use GPT Live across calls and meetings, choose account-specific Talk defaults, and change voices during an active Talk or Discord call.",
+            "summaryZh": "通话中支持 GPT Live 和实时切换语音"
+          },
+          {
+            "title": "引用预览与上下文审阅",
+            "tag": "新增",
+            "summary": "在 Web 和原生聊天中预览引用来源，将选中文本转为可编辑注释，支持 Review 中自动换行切换。",
+            "detail": "Preview cited sources in web and native chats, turn selected chat text into editable comments, and toggle word wrapping in Review.",
+            "summaryZh": "聊天中预览引用来源，选中文本可转为注释"
+          },
+          {
+            "title": "简化模型登录与选择",
+            "tag": "优化",
+            "summary": "原生登录与运行时选择对齐，无需更改模型即可登录，支持跨 Agent 选择，Radius 模型支持浏览器登录和原生流式传输。",
+            "detail": "Align native sign-in with runtime choices, sign in without changing the model, choose across agent harnesses, and connect Radius models with browser sign-in and native streaming.",
+            "summaryZh": "模型登录流程简化，跨 Agent 选择更便捷"
+          },
+          {
+            "title": "对话导航改进",
+            "tag": "优化",
+            "summary": "原生侧边栏预览待处理请求，macOS/iOS/Android/Web 可折叠已完成工作，历史更易阅读。",
+            "detail": "Native sidebars preview pending requests, while macOS, iOS, Android, and web chat can collapse completed work so replies and older history remain easier to read.",
+            "summaryZh": "侧边栏预览待处理请求，支持折叠已完成工作"
+          },
+          {
+            "title": "Agent 模板与团队预设",
+            "tag": "新增",
+            "summary": "从角色模板和团队预设启动，团队模式显示所有 Agent 及其会话，采用花名册优先的 Agents 首页。",
+            "detail": "Start from role templates and a team preset, show every agent and its sessions in team mode, and use a roster-first Agents home.",
+            "summaryZh": "角色模板和团队预设一键启动"
+          },
+          {
+            "title": "多 Agent 群组线程",
+            "tag": "新增",
+            "summary": "跨渠道协调有界多 Agent 群组线程，可选会话与配对团队 Gateway 只读共享。",
+            "detail": "Coordinate bounded multi-agent group threads across channels and share selected sessions read-only with a paired team Gateway.",
+            "summaryZh": "跨渠道多 Agent 群组线程协调"
+          },
+          {
+            "title": "远程工作区增强",
+            "tag": "优化",
+            "summary": "无需仓库即可启动远程会话，选择仓库定义的源代码检出，通过文件系统快照、APFS/ReFS 克隆减少源存储。",
+            "detail": "Start remote sessions without a repository, select repository-defined source checkouts, and reduce source storage through filesystem snapshots, APFS clones, and ReFS clones.",
+            "summaryZh": "远程会话无需仓库，文件系统快照减少存储"
+          },
+          {
+            "title": "Code 模式增强",
+            "tag": "优化",
+            "summary": "按任务查找 MCP 工具，代码单元间复用结果，保留超大结果供后续单元使用，从请求操作推断结果形状。",
+            "detail": "Find MCP tools by task, reuse results between code cells, retain oversized results for later cells, and infer result shape from the requested action.",
+            "summaryZh": "MCP 工具按任务查找，代码单元间结果可复用"
+          },
+          {
+            "title": "浏览器与仪表盘增强",
+            "tag": "优化",
+            "summary": "从浏览器侧边栏下载资源，与 Agent 共享浏览器仪表盘，全屏会话仪表盘嵌入网站。",
+            "detail": "Download assets from the Browser sidebar, share browser dashboards with agents, embed websites in full-screen session dashboards.",
+            "summaryZh": "浏览器侧边栏下载资源，仪表盘支持嵌入网站"
+          },
+          {
+            "title": "热策略变更",
+            "tag": "优化",
+            "summary": "浏览器控制策略、Telegram 访问/回复策略和续期 TLS 证书均支持热更新，无需重启服务。",
+            "detail": "Apply browser control policy, Telegram access/reply policy, and renewed TLS certificates without restarting their running services.",
+            "summaryZh": "浏览器和 Telegram 策略支持热更新"
+          },
+          {
+            "title": "Daybreak 兜底重试",
+            "tag": "新增",
+            "summary": "被安全策略拒绝的请求自动在 Daybreak 上重试，展示安全通知，重试成功时通知用户。",
+            "detail": "Retry supported cyber-refused turns on Daybreak, surface cyber notices, and announce successful retries.",
+            "summaryZh": "安全拒绝的请求自动在 Daybreak 重试"
+          },
+          {
+            "title": "分诊交接扩展",
+            "tag": "新增",
+            "summary": "通过现有分诊工作流新增 Muse、Grok、Cursor、Kimi Code 和 Qwen Code 交接支持。",
+            "detail": "Add Muse, Grok, Cursor, Kimi Code, and Qwen Code handoffs through the existing triage workflow.",
+            "summaryZh": "分诊工作流新增 Muse/Grok/Cursor 等交接"
+          },
+          {
+            "title": "自动化历史查询",
+            "tag": "优化",
+            "summary": "从 CLI 查询和分页运行历史，显示可读的定时器唤醒时间戳，自动化名称模糊时列出匹配项。",
+            "detail": "Query and paginate run history from the CLI, show readable timer wake timestamps, and list matches when an automation name is ambiguous.",
+            "summaryZh": "CLI 支持查询自动化运行历史"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.4",
         "date": "2026-09-11",
         "features": [
@@ -58650,4 +58775,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
