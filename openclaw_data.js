@@ -4,6 +4,47 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.7.35",
+        "date": "2026-09-21",
+        "features": [
+          {
+            "title": "7 月扩展稳定版累积安全加固",
+            "tag": "安全",
+            "summary": "加固命令解析、浏览器源检查、插件 Git 安装、诊断信息和 Webhook 日志，防范转义换行注入、Git 参数注入、不安全浏览器突变等安全边界问题。",
+            "detail": "Harden command parsing, browser origin checks, plugin Git installs, diagnostics, service credentials, and webhook logging across Gateway and official plugins. Reject escaped-newline command words, exact-origin mismatches, injected Git option arguments, inherited secret-response identifiers, unsafe browser mutations, and malformed or oversized node payloads.",
+            "summaryZh": "累积安全加固：命令解析、浏览器源检查、Git 注入防御等"
+          },
+          {
+            "title": "消息与会话完整性保障",
+            "tag": "修复",
+            "summary": "修复跨重试、Hook、恢复和频道生命周期切换时排队、导入、流式传输和工具结果消息可能丢失的问题。修复 Discord、Matrix、Telegram、Slack、WhatsApp、LINE、飞书、Zalo 等频道的边界丢消息场景。",
+            "detail": "Preserve queued, imported, streamed, and tool-result messages across retries, hooks, recovery, and channel lifecycle transitions. Repair Discord, Matrix, Telegram, Slack, WhatsApp, LINE, Feishu, Zalo, and meeting-plugin edge cases that could lose, corrupt, or stall messages.",
+            "summaryZh": "修复多频道消息丢失和会话恢复中断问题"
+          },
+          {
+            "title": "Gateway 可靠性与资源安全",
+            "tag": "修复",
+            "summary": "关闭失败的 HTTP 和 Responses 流，限制昂贵的读取和历史查询操作，在报告完成前确保关闭工作妥善完成。绑定目录、历史、媒体、API 和 Provider 等待时间。",
+            "detail": "Close failed HTTP and Responses streams, bound expensive reads and history queries, and settle shutdown work before reporting completion. Bound catalog, history, media, stderr, API, and provider waits; stop canceled parallel tools; drain channel shutdown.",
+            "summaryZh": "修复 Gateway 流关闭、资源限制和关闭顺序问题"
+          },
+          {
+            "title": "Doctor 插件注册表修复",
+            "tag": "修复",
+            "summary": "修复 Doctor 创建或修复注册表状态时丢失内置插件清单的问题，确保 Browser、Canvas、pairing 等默认插件重启后仍可用。兼容 2026.7.34 部分注册表状态的恢复。",
+            "detail": "Preserve the complete bundled plugin inventory when Doctor creates or repairs registry state, so default Browser, Canvas, pairing, file-transfer, phone-control, Talk voice, and Bonjour plugins remain available after restart. State-migration discovery recovers from partial registry written by 2026.7.34.",
+            "summaryZh": "修复 Doctor 插件注册表丢失内置插件的问题"
+          },
+          {
+            "title": "Provider 与媒体健壮性",
+            "tag": "优化",
+            "summary": "限制 Provider 请求和诊断范围，拒绝格式错误的 payload，保留有效的工具 schema 和响应生命周期。修复备份归档权限为仅所有者可读写。",
+            "detail": "Bound provider requests and diagnostics, reject malformed payloads, and preserve valid tool schemas and response lifecycles. Write backup archive with owner-only 0o600 permissions.",
+            "summaryZh": "增强 Provider 请求限制和 payload 校验"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.5",
         "date": "2026-09-19",
         "features": [

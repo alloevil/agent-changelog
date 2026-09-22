@@ -4,6 +4,54 @@ const RELEASES_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.21",
+        "date": "2026-09-21",
+        "features": [
+          {
+            "title": "v0.21.4 累积补丁发布（~1,800 PR）",
+            "tag": "变更",
+            "summary": "累积自 v0.21.3 以来的约 1,800 个 PR、5,071 个非合并提交，涵盖 5,169 个变更文件（+312,961 / -62,855 行）。完整策展说明将随 v0.22.0 发布。",
+            "detail": "Patch release rolling up ~1,800 PRs merged since v0.21.3 into a stable tagged release. Full curated notes for this window ship with v0.22.0.",
+            "summaryZh": "累积补丁：~1,800 PR，5,071 提交，5,169 文件变更"
+          },
+          {
+            "title": "Gateway 单例锁与 Desktop 直连后端",
+            "tag": "新增",
+            "summary": "新增主机级 Gateway 单例锁（附会合记录），Desktop 现在附加到运行中的主机后端而非启动第二个实例。",
+            "detail": "Host-wide gateway singleton lock with a rendezvous record, and Desktop attaching to the running host backend instead of spawning a second one.",
+            "summaryZh": "Gateway 单例锁 + Desktop 直连已有后端，不再重复启动"
+          },
+          {
+            "title": "CLI 结构化 JSONL 输出",
+            "tag": "新增",
+            "summary": "CLI 新增 --format stream-json 参数，支持结构化 JSONL 输出格式。",
+            "detail": "CLI supports --format stream-json structured JSONL output.",
+            "summaryZh": "CLI 新增 stream-json 结构化输出"
+          },
+          {
+            "title": "技能自动加载与插件管理增强",
+            "tag": "新增",
+            "summary": "新增 skills.auto_load 配置将技能固定注入每个新会话的 prompt；Desktop 支持聊天/界面字体选择器、一键本地引擎更新和从 Plugins hub 卸载插件。",
+            "detail": "skills.auto_load pinning skills into every new session prompt; Desktop chat/UI font picker, one-click local engine updates, and plugin uninstall from the Plugins hub.",
+            "summaryZh": "技能自动注入会话 + Desktop 插件管理全面增强"
+          },
+          {
+            "title": "新模型与视频目录支持",
+            "tag": "新增",
+            "summary": "视频目录新增 LTX 2.5 和 Kling O3 模型；MCP 发现连接数可配置（mcp.discovery_concurrency）。",
+            "detail": "LTX 2.5 and Kling O3 in the video catalogs; configurable MCP discovery connect cap (mcp.discovery_concurrency).",
+            "summaryZh": "新增 LTX 2.5 / Kling O3 视频模型 + MCP 并发配置"
+          },
+          {
+            "title": "插件目录与社区扩展",
+            "tag": "新增",
+            "summary": "插件目录新增十余个社区插件（tailscale、ssh、shodan、terminal、rss、resetwatch、done-bell、kiwi、cognee、Octen）；每个目录插件和作者都有独立网站页面。",
+            "detail": "A dozen new community plugins in the catalog (tailscale, ssh, shodan, terminal, rss, resetwatch, done-bell, kiwi, cognee, Octen); a website page for every catalog plugin and author.",
+            "summaryZh": "社区插件目录扩展：新增 tailscale、ssh、shodan 等十余个"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.14",
         "date": "2026-09-14",
         "features": [
