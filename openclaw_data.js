@@ -4,6 +4,26 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.6",
+        "date": "2026-09-23",
+        "features": [
+          {
+            "title": "macOS 应用更新警告",
+            "tag": "修复",
+            "summary": "2026.9.6 macOS 应用存在启动崩溃问题（#156861），已从 Sparkle 更新源撤回，2026.9.7 热修复正在推进中。npm/Gateway 包不受影响。",
+            "detail": "The 2026.9.6 macOS app can crash on every launch after the in-app update (#156861). It has been withdrawn from the Sparkle update feed; a 2026.9.7 Mac hotfix is in progress. The npm/Gateway package is unaffected.",
+            "summaryZh": "macOS 应用启动崩溃，已撤回更新，npm 包正常"
+          },
+          {
+            "title": "大规模贡献者参与",
+            "tag": "变更",
+            "summary": "本次发布包含 178 个直接提交、2,614 个 Pull Request、351 位贡献者参与。",
+            "detail": "178 direct commits, 2,614 pull requests, 351 contributors.",
+            "summaryZh": "178 提交 / 2614 PR / 351 贡献者"
+          }
+        ]
+      },
+      {
         "version": "v2026.7.35",
         "date": "2026-09-21",
         "features": [
@@ -58816,4 +58836,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
