@@ -4,6 +4,96 @@ const RELEASES_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.24",
+        "date": "2026-09-24",
+        "features": [
+          {
+            "title": "v0.21.5 累积补丁发布（~460 PR）",
+            "tag": "变更",
+            "summary": "累积自 v0.21.4 以来的约 460 个 PR、1,610 个非合并提交，涵盖 4,828 个变更文件（+164,132 / -149,440 行）。完整策展说明将随 v0.22.0 发布。",
+            "detail": "Patch release rolling up ~460 PRs merged since v0.21.4 into a stable tagged release. Full curated notes for this window ship with v0.22.0.",
+            "summaryZh": "累积补丁：~460 PR，1,610 提交，4,828 文件变更"
+          },
+          {
+            "title": "Desktop 插件 SDK 全面上线",
+            "tag": "新增",
+            "summary": "推出 Desktop 插件 SDK 浪潮：composer 草稿 API、session-list 和行装饰插槽、侧边栏导航偏好、模型标签提供者、类型化设置/Skills/Toolsets/Profiles 桥接、沙箱化嵌入原语、外观设置插槽，以及插件后端公共事件桥。",
+            "detail": "Desktop plugin SDK wave: composer draft API, session-list and row-decoration slots, sidebar nav prefs, model-pill label providers, typed settings/skills/toolsets/profiles bridges, a sandboxed embed primitive, appearance-settings slot, and a public event bridge for plugin backends.",
+            "summaryZh": "Desktop 插件 SDK：composer API、导航/外观/模型等多插槽全面开放"
+          },
+          {
+            "title": "连接器页面取代 MCP 标签",
+            "tag": "变更",
+            "summary": "Connectors 页面替代原有 MCP 标签页，新安装插件的 MCP 服务器支持立即连接，已安装插件的工具和技能在所有打开的聊天中即时生效。",
+            "detail": "Connectors page replacing the MCP tab, with Connect now for freshly installed plugin MCP servers; installed plugins tools and skills go live in every open chat.",
+            "summaryZh": "Connectors 页面替代 MCP 标签，插件工具即时生效"
+          },
+          {
+            "title": "多语言桌面目录与 RTL 支持",
+            "tag": "新增",
+            "summary": "新增法语、德语、西班牙语 Desktop 完整目录翻译，以及 RTL/LTR 文本方向设置。",
+            "detail": "Complete French, German and Spanish Desktop catalogs plus an RTL/LTR text direction setting.",
+            "summaryZh": "法语/德语/西班牙语目录 + RTL/LTR 文本方向"
+          },
+          {
+            "title": "GPT-6 系列与 Claude Opus 5.5",
+            "tag": "新增",
+            "summary": "Nous 和 OpenRouter 目录新增 GPT-6 Sol/Terra/Luna 和 Claude Opus 5.5 模型。",
+            "detail": "GPT-6 Sol/Terra/Luna and Claude Opus 5.5 in the Nous and OpenRouter catalogs.",
+            "summaryZh": "新增 GPT-6 Sol/Terra/Luna 和 Claude Opus 5.5"
+          },
+          {
+            "title": "自定义模型入口",
+            "tag": "新增",
+            "summary": "支持从 composer 和 Settings 选择器中直接添加自定义模型。",
+            "detail": "Custom model entry from the composer and Settings pickers.",
+            "summaryZh": "composer 和设置中可直接添加自定义模型"
+          },
+          {
+            "title": "功能键与听写语音快捷键",
+            "tag": "新增",
+            "summary": "新增功能键快捷键和听写语音快捷键支持。",
+            "detail": "Function-key and dictation voice shortcuts.",
+            "summaryZh": "新增功能键和听写语音快捷键"
+          },
+          {
+            "title": "多路复用器 Profile 管理",
+            "tag": "新增",
+            "summary": "主机多路复用器下支持每个 profile 的停止/启动/重启，以及 gateway.standalone 可将 profile 退出复用。",
+            "detail": "Per-profile stop/start/restart under the host multiplexer and gateway.standalone to opt a profile out.",
+            "summaryZh": "每个 profile 可独立停止/启动/重启"
+          },
+          {
+            "title": "看板设计优化",
+            "tag": "优化",
+            "summary": "看板进行设计优化：双列票据弹窗、Markdown 任务文本支持。",
+            "detail": "Kanban design pass with a two-column ticket modal and markdown task text.",
+            "summaryZh": "看板双列弹窗 + Markdown 任务文本"
+          },
+          {
+            "title": "Blender Lab 与 NVIDIA 插件集成",
+            "tag": "新增",
+            "summary": "新增官方 Blender Lab 集成和 NVIDIA app/Broadcast 插件。",
+            "detail": "Official Blender Lab integration and NVIDIA app/Broadcast plugins.",
+            "summaryZh": "Blender Lab + NVIDIA app/Broadcast 插件"
+          },
+          {
+            "title": "热路径性能优化",
+            "tag": "优化",
+            "summary": "大量热路径性能优化工作，涵盖配置加载、工具注册、Gateway 消息处理和模型选择器。",
+            "detail": "Hot-path performance work across config loading, the tool registry, gateway message handling and the model picker.",
+            "summaryZh": "配置加载/工具注册/消息处理/模型选择器性能全面优化"
+          },
+          {
+            "title": "Webhook 交付镜像到聊天会话",
+            "tag": "新增",
+            "summary": "Webhook 交付内容现在会镜像到目标聊天会话中。",
+            "detail": "Webhook deliveries mirrored into the target chat session.",
+            "summaryZh": "Webhook 交付内容镜像到目标聊天"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.21",
         "date": "2026-09-21",
         "features": [
