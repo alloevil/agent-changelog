@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.8.33",
+        "date": "2026-09-29",
+        "features": [
+          {
+            "title": "新一代旗舰模型支持",
+            "tag": "新增",
+            "summary": "在 extended-stable 线中新增 Meta Muse Spark 1.3、Anthropic Fable 5.1、OpenAI GPT-6 Astra 和 OpenAI/fal GPT Image 2.5 支持。",
+            "detail": "Add Meta Muse Spark 1.3, Anthropic Fable 5.1, OpenAI GPT-6 Astra, and OpenAI/fal GPT Image 2.5 support to the extended-stable line.",
+            "summaryZh": "新增 Muse Spark 1.3、Fable 5.1、GPT-6 Astra、GPT Image 2.5"
+          },
+          {
+            "title": "GPT-5.6 全家族完整支持",
+            "tag": "新增",
+            "summary": "完整保留 GPT-5.6 Sol、Terra、Luna 的目录、路由、迁移、图像、视觉和推理行为，包括跨模型运行时边界的 Ultra 推理和 Bedrock 工具结果图像。",
+            "detail": "Preserve Sol, Terra, and Luna catalog, routing, migration, image, vision, and thinking behavior, including Ultra reasoning across model-runtime boundaries and Bedrock tool-result images.",
+            "summaryZh": "GPT-5.6 Sol/Terra/Luna 全面支持，含 Ultra 推理"
+          },
+          {
+            "title": "Extended-stable 安全更新汇总",
+            "tag": "安全",
+            "summary": "整合所有影响 2026.8.2 的仓库安全公告，加固 Prometheus 指标授权和 Discord 资产/语音所有权，清除 Nodemailer 生产公告门控。",
+            "detail": "Reconcile all repository advisories affecting 2026.8.2, harden Prometheus metrics authorization and Discord asset/voice ownership, and clear the Nodemailer advisory gate.",
+            "summaryZh": "安全汇总：Prometheus/Discord 加固，Nodemailer 修复"
+          },
+          {
+            "title": "Anthropic 推理连续性修复",
+            "tag": "修复",
+            "summary": "修复 Fable 5.1 在模型切换和运行时事件中推理状态丢失的问题。",
+            "detail": "Preserve Fable 5.1 reasoning through model switches and runtime events.",
+            "summaryZh": "Fable 5.1 推理状态在切换时正确保持"
+          },
+          {
+            "title": "依赖安全修复",
+            "tag": "安全",
+            "summary": "覆盖 IMAP 依赖图至 Nodemailer 9.1.1，清除 address-parser DoS 及相关域/内容访问公告。",
+            "detail": "Override the IMAP dependency graph to Nodemailer 9.1.1, clearing the address-parser denial-of-service and related domain/content-access advisories.",
+            "summaryZh": "Nodemailer 升级至 9.1.1，修复 DoS 漏洞"
+          },
+          {
+            "title": "Discord 实时语音修复",
+            "tag": "修复",
+            "summary": "修复语音生命周期转换中说话者和播放所有权丢失的问题；修复主持人取消实时会话的记录和错误处理。",
+            "detail": "Preserve speaker and playback ownership across voice lifecycle transitions; fix host-cancelled realtime consult recording.",
+            "summaryZh": "Discord 语音所有权和会话取消修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.6",
         "date": "2026-09-23",
         "features": [
@@ -58836,4 +58884,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
