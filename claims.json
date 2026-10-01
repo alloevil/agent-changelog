@@ -6,32 +6,32 @@
   "claims": [
     {
       "id": "openclaw-release-count",
-      "claim": "The OpenClaw page publishes 167 releases.",
-      "value": "168",
-      "metric": "release entries in openclaw_data.js",
-      "method": "the data file declares CHANGELOG_DATA as a JSON array of months; this counts its releases",
+      "claim": "The OpenClaw card states the number of releases its data file holds.",
+      "value": "card == releases in openclaw_data.js",
+      "metric": "the OpenClaw card count versus the release array in openclaw_data.js",
+      "method": "Parses the data file and requires the matching card number to equal it; it deliberately does not pin a count because upstream releases add entries.",
       "repro": "node -e \"...\"",
       "evidence": "openclaw_data.js",
-      "as_of": "2026-09-13",
+      "as_of": "2026-09-24",
       "check": {
-        "cmd": "node -e \"const fs=require('fs');const r=f=>JSON.parse(fs.readFileSync(f,'utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases);console.log(r('openclaw_data.js').length)\"",
+        "cmd": "node -e \"const fs=require('fs');const n=JSON.parse(fs.readFileSync('openclaw_data.js','utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const h=fs.readFileSync('index.html','utf8');const card=+(h.match(/OpenClaw[\\\\s\\\\S]{0,400}?([0-9]+) \\\\u7248\\\\u672c/)||[])[1];console.log('card',card,'data',n);if(card!==n)process.exit(1)\"",
         "expect": {
-          "equals": "168"
+          "regex": "card \\d+ data \\d+$"
         },
         "timeout": 60
       }
     },
     {
       "id": "hermes-release-count",
-      "claim": "The Hermes Agent card states the number of releases its data file holds — the check compares the two, so an upstream release cannot make the card stale.",
+      "claim": "The Hermes Agent card states the number of releases its data file holds.",
       "value": "card == releases in hermes_data.js",
-      "metric": "the card's count versus the array length in hermes_data.js",
-      "method": "parses hermes_data.js and requires the card's number to equal it. Deliberately not a pinned count: Hermes ships releases, so a fixed number here would go red on its own.",
+      "metric": "the Hermes Agent card count versus the release array in hermes_data.js",
+      "method": "Parses the data file and requires the matching card number to equal it; it deliberately does not pin a count because upstream releases add entries.",
       "repro": "node -e \"...\"",
       "evidence": "hermes_data.js",
-      "as_of": "2026-09-13",
+      "as_of": "2026-09-24",
       "check": {
-        "cmd": "node -e \"const fs=require('fs');const n=JSON.parse(fs.readFileSync('hermes_data.js','utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const h=fs.readFileSync('index.html','utf8');const m=[...h.matchAll(/Hermes[\\\\s\\\\S]{0,400}?\\u0001?([0-9]+) \\\\u7248\\\\u672c/g)];const card=+(h.match(/Hermes[\\\\s\\\\S]{0,400}?([0-9]+) \\\\u7248\\\\u672c/)||[])[1];console.log('card', card, 'data', n);if(card!==n)process.exit(1);void m\"",
+        "cmd": "node -e \"const fs=require('fs');const n=JSON.parse(fs.readFileSync('hermes_data.js','utf8').match(/const [A-Z_]+ = (\\\\[[\\\\s\\\\S]*\\\\]);/)[1]).flatMap(x=>x.releases).length;const h=fs.readFileSync('index.html','utf8');const card=+(h.match(/Hermes Agent[\\\\s\\\\S]{0,400}?([0-9]+) \\\\u7248\\\\u672c/)||[])[1];console.log('card',card,'data',n);if(card!==n)process.exit(1)\"",
         "expect": {
           "regex": "card \\d+ data \\d+$"
         },
