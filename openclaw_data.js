@@ -4,6 +4,47 @@ const CHANGELOG_DATA = [
     "monthId": "2026-09",
     "releases": [
       {
+        "version": "v2026.9.7",
+        "date": "2026-09-30",
+        "features": [
+          {
+            "title": "OpenAI Agents API 与 ChatGPT 登录支持",
+            "tag": "新增",
+            "summary": "新增 OpenAI Agents API 运行时和 Sign in with ChatGPT (Beta) 认证方式，扩展 AI 代理能力边界。",
+            "detail": "Adds OpenAI Agents API runtime and Sign in with ChatGPT (Beta) authentication support.",
+            "summaryZh": "新增 Agents API + ChatGPT 登录"
+          },
+          {
+            "title": "高负载与长对话性能优化",
+            "tag": "优化",
+            "summary": "在高负载场景下响应更迅速，长对话体验更流畅，优化了配置加载、工具注册、消息处理和模型选择器的热路径性能。",
+            "detail": "Snappier under load and smoother in long conversations with hot-path performance work across config loading, tool registry, gateway message handling, and model picker.",
+            "summaryZh": "高负载更快速，长对话更流畅"
+          },
+          {
+            "title": "更新备份与回滚保护增强",
+            "tag": "优化",
+            "summary": "改进更新过程中的备份机制和回滚保护，同时修复了从 2026.9.5 升级时的问题。",
+            "detail": "Better update backups and rollback protection, plus fixes for upgrading from 2026.9.5.",
+            "summaryZh": "更新备份更可靠，回滚保护更完善"
+          },
+          {
+            "title": "Mac/iPhone/iPad 聊天体验改进",
+            "tag": "优化",
+            "summary": "改善 Mac、iPhone 和 iPad 上的聊天体验，包括重启后恢复工作的辅助功能。",
+            "detail": "Better chat on Mac, iPhone and iPad, and help picking up work after a restart.",
+            "summaryZh": "苹果设备聊天体验升级"
+          },
+          {
+            "title": "首次运行与设备配对改进",
+            "tag": "优化",
+            "summary": "Onboarding 更快启动、设备配对更清晰、Android 权限请求更合理、浏览器连接上限从 32 提升到 128。",
+            "detail": "Setup reaches the first question sooner with clearer guidance. Device pairing uses configured public HTTPS address. Android Request all lets you review optional permissions together. Shared network connection allowance raised from 32 to 128.",
+            "summaryZh": "引导流程更快，配对更清晰"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.33",
         "date": "2026-09-29",
         "features": [
