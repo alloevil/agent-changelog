@@ -1,5 +1,45 @@
 const CHANGELOG_DATA = [
   {
+    "month": "2026 年 10 月",
+    "monthId": "2026-10",
+    "releases": [
+      {
+        "version": "v2026.8.34",
+        "date": "2026-10-02",
+        "features": [
+          {
+            "title": "Extended-Stable 正确性累积更新",
+            "tag": "修复",
+            "summary": "回移 113 个经审计筛选的修复单元，覆盖升级、Doctor、认证、会话、渠道、插件、沙箱、文件系统安全、模型运行时和发布打包等模块。",
+            "detail": "Backport 113 audit-selected fix units across upgrades, Doctor, authentication, sessions, channels, plugins, sandboxing, filesystem safety, model runtimes, and release packaging.",
+            "summaryZh": "113 个修复回移，覆盖核心模块"
+          },
+          {
+            "title": "完整重扫描审计范围",
+            "tag": "优化",
+            "summary": "重新评估完整 2026.8.33 发现范围、大型混合用途 PR 和 2026.7.35 系列，而非仅从上次回移游标推进。",
+            "detail": "Re-evaluate the full 2026.8.33 discovery range, large mixed-purpose pull requests, and the 2026.7.35 lineage instead of advancing only from the previous backport cursor.",
+            "summaryZh": "全范围重扫描，不再仅增量推进"
+          },
+          {
+            "title": "升级与恢复加固",
+            "tag": "优化",
+            "summary": "在升级、重启和 Doctor 修复过程中保留凭证、Agent 状态、插件清单、对话记录、定时任务、服务所有权和运行时链接。",
+            "detail": "Preserve credentials, agent state, plugin inventory, transcripts, schedules, service ownership, and runtime links through upgrades, restarts, and Doctor repair.",
+            "summaryZh": "升级/重启时保留完整状态和配置"
+          },
+          {
+            "title": "边界安全修复",
+            "tag": "安全",
+            "summary": "收紧远程文件系统变更、插件与技能扫描、浏览器认证、渠道回复身份、私有技能入口和作用域运行时所有权。",
+            "detail": "Tighten remote filesystem mutation, plugin and skill scanning, browser authentication, channel reply identity, private skill ingress, and scoped runtime ownership.",
+            "summaryZh": "收紧文件系统/插件/浏览器等边界安全"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 9 月",
     "monthId": "2026-09",
     "releases": [
