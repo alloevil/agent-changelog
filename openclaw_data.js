@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.8.35",
+        "date": "2026-10-02",
+        "features": [
+          {
+            "title": "GPT-6.1 Sol 模型支持",
+            "tag": "新增",
+            "summary": "在 OpenAI 路由、发现、推理、harness 和 Reef guard-model 边界中添加 GPT-6.1 Sol 模型支持。",
+            "detail": "Add the current Sol model across OpenAI routing, discovery, reasoning, harness, and Reef guard-model boundaries.",
+            "summaryZh": "全线支持 GPT-6.1 Sol 模型"
+          },
+          {
+            "title": "更新与恢复安全性增强",
+            "tag": "修复",
+            "summary": "保留插件设置、防止重复 Gateway、处理 pnpm 更新时避免终端失败，并在迁移中保留插件清单。",
+            "detail": "Preserve plugin settings, prevent duplicate Gateways, handle pnpm package updates without terminal failures, and retain plugin inventory through migration.",
+            "summaryZh": "更新/迁移安全性全面提升"
+          },
+          {
+            "title": "Agent 完成可靠性修复",
+            "tag": "修复",
+            "summary": "保留完整委托和 CLI 答案、释放挂起的子容量、恢复完整 cron 输出，防止失败请求消耗已引导的问题。",
+            "detail": "Preserve complete delegated and CLI answers, release suspended child capacity, recover full cron output, and prevent failed requests from consuming steered questions.",
+            "summaryZh": "Agent 完成链路可靠性修复"
+          },
+          {
+            "title": "安全与所有权加固",
+            "tag": "安全",
+            "summary": "轮换期间保持 secret-store 类型稳定，恢复已批准的 secret-egress 执行，保留显式 cron 工具白名单并修复过期自动快照。",
+            "detail": "Keep secret-store kinds stable during rotation, restore admitted secret-egress execution, and retain explicit cron tool allowlists while repairing stale automatic snapshots.",
+            "summaryZh": "密钥管理与所有权安全加固"
+          },
+          {
+            "title": "渠道与集成可靠性",
+            "tag": "修复",
+            "summary": "修复 Gmail/IMAP 监视器、Matrix 直接映射、Telegram 进度显示、远程 MCP 启动及 Windows 上 managed llama.cpp 启动问题。",
+            "detail": "Repair Gmail and IMAP watchers, Matrix direct mappings, Telegram progress, remote MCP startup, and managed llama.cpp startup on clean Windows hosts.",
+            "summaryZh": "多渠道集成可靠性修复"
+          },
+          {
+            "title": "性能与 UI 连续性优化",
+            "tag": "优化",
+            "summary": "限制 model-catalog 等待时间，减少 Codex fleet 堆压力，保持 WebChat 已保存回复在历史刷新竞争中可见。",
+            "detail": "Bound model-catalog waits, reduce Codex fleet heap pressure, and keep saved WebChat replies visible across history refresh races.",
+            "summaryZh": "性能优化与 UI 稳定性提升"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.34",
         "date": "2026-10-02",
         "features": [
