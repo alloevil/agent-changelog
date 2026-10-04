@@ -4,6 +4,26 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.9.8",
+        "date": "2026-10-03",
+        "features": [
+          {
+            "title": "常规版本发布",
+            "tag": "变更",
+            "summary": "58 次提交、43 个 PR、21 位贡献者。包含发布验证、npm 包发布、Docker 构建等常规发布流程改进。",
+            "detail": "58 commits, 43 pull requests, 21 contributors. Standard release with verification, npm package publish, Docker builds, and ClawHub submission.",
+            "summaryZh": "常规稳定版发布，58 提交 / 43 PR / 21 贡献者"
+          },
+          {
+            "title": "桌面端与跨平台构建优化",
+            "tag": "优化",
+            "summary": "提供 macOS（arm64/x86_64/universal）和 Windows（arm64/x86_64）DMG/ZIP 安装包，含 dSYM 调试符号。",
+            "detail": "Provides macOS (arm64/x86_64/universal) and Windows (arm64/x86_64) DMG/ZIP installers with dSYM debug symbols.",
+            "summaryZh": "多平台桌面安装包与调试符号优化"
+          }
+        ]
+      },
+      {
         "version": "v2026.8.35",
         "date": "2026-10-02",
         "features": [
