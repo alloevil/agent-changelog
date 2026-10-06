@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.1-beta.1",
+        "date": "2026-10-05",
+        "features": [
+          {
+            "title": "会话与内存系统全面修复",
+            "tag": "修复",
+            "summary": "保留跨注册表变更的使用量、远程工作区的 Worker 附件交付、防止排队取消和转录别名阻塞活跃轮次、嵌入缓存分批迁移并报告超大行。",
+            "detail": "Preserved usage across registry changes, delivered worker attachments from remote workspaces, prevented queued cancellations and transcript aliases from stalling active turns, kept continuation signatures aligned, and migrated embedding caches in bounded batches with oversized-row reporting.",
+            "summaryZh": "会话使用量保持、嵌入缓存批量迁移、活跃轮次防阻塞"
+          },
+          {
+            "title": "回复与媒体播放修复",
+            "tag": "修复",
+            "summary": "恢复本地视频内联播放、替换已拒绝的媒体链接为有用错误信息、Telegram 进度更新不再附带预览卡片、修复推理模式下纯语音回复。",
+            "detail": "Restored inline playback for local videos, replaced rejected media links with useful errors, kept Telegram progress updates free of preview cards, and fixed speech-only replies when reasoning is enabled.",
+            "summaryZh": "本地视频播放恢复、Telegram 预览修复、纯语音回复修复"
+          },
+          {
+            "title": "更新与 Doctor 恢复增强",
+            "tag": "优化",
+            "summary": "改进 serving-verdict 恢复引导、修复只读托管配置下的维修功能、移除重复的配置/备份/元数据探测、成功清理报告为进度而非损坏 JSON、将仍在启动的 Gateway 视为警告。",
+            "detail": "Improved serving-verdict recovery guidance, kept repairs working with read-only managed config, removed repeated config, backup, metadata, and pnpm-root probes, reported successful cleanup as progress without corrupting JSON output, and treated a still-starting Gateway as a warning.",
+            "summaryZh": "Doctor 恢复引导改进，移除重复探测，清理报告更安全"
+          },
+          {
+            "title": "Windows 工作区与浏览器启动修复",
+            "tag": "修复",
+            "summary": "修复空和嵌套 Windows worktree 创建、改进 Linux Chromium 发现、ARM64 自动启动 Playwright Chromium。",
+            "detail": "Fixed empty and nested Windows worktree creation, improved Linux Chromium discovery, and automatically started Playwright Chromium on ARM64.",
+            "summaryZh": "Windows worktree 创建修复、ARM64 浏览器自动启动"
+          },
+          {
+            "title": "云端 Worker 与 Crabbox 优化",
+            "tag": "优化",
+            "summary": "暴露真实云端 Worker 失败原因、强制 Linux 租约、Worker 包下载与引导重叠、移除无关的暖镜像清理等待、防止慢读或不支持的后端导致 Worker 挂起。",
+            "detail": "Surfaced the real cloud-worker failure, enforced Linux leases, overlapped worker-bundle downloads with bootstrap, removed unrelated warm-image cleanup waits, and prevented slow reads or unsupported backends from stranding workers.",
+            "summaryZh": "云端 Worker 失败原因暴露、下载与引导重叠优化"
+          },
+          {
+            "title": "插件、Codex 与 MCP 同步",
+            "tag": "修复",
+            "summary": "保留 Bun 包导入捕获、减少预发布元数据请求、防止过期的远程执行审批污染认证配置、恢复 Node 策略钩子、同步 MCP 表单/文件/上下文、通过 Workshop 提案路由后台技能审查。",
+            "detail": "Preserved Bun package-import capture, reduced prerelease metadata requests, kept expired remote-exec approvals from poisoning auth profiles, restored node policy hooks, synchronized MCP forms/files/context, and routed background skill reviews through Workshop proposals.",
+            "summaryZh": "Bun 导入保留、MCP 同步修复、Node 策略钩子恢复"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.8",
         "date": "2026-10-03",
         "features": [
