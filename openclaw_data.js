@@ -4,6 +4,68 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.1-beta.2",
+        "date": "2026-10-08",
+        "features": [
+          {
+            "title": "会话与记忆稳定性提升",
+            "tag": "修复",
+            "summary": "跨注册表变更保留用量统计，远程工作区交付 worker 附件，防止排队取消和转录别名阻塞活跃轮次，保持续签签名对齐，分批迁移嵌入缓存并报告超大行",
+            "detail": "Preserved usage across registry changes, delivered worker attachments from remote workspaces, prevented queued cancellations and transcript aliases from stalling active turns, kept continuation signatures aligned, and migrated embedding caches in bounded batches with oversized-row reporting.",
+            "summaryZh": "跨注册表保留用量、远程 worker 附件交付、防排队取消阻塞、嵌入缓存分批迁移"
+          },
+          {
+            "title": "回复与媒体播放修复",
+            "tag": "修复",
+            "summary": "恢复本地视频内联播放，拒绝的媒体链接返回有用错误信息，Telegram 进度更新不再附带预览卡片，修复推理模式下纯语音回复",
+            "detail": "Restored inline playback for local videos, replaced rejected media links with useful errors, kept Telegram progress updates free of preview cards, and fixed speech-only replies when reasoning is enabled.",
+            "summaryZh": "本地视频内联播放恢复、Telegram 进度无预览卡、推理模式纯语音回复修复"
+          },
+          {
+            "title": "更新与 Doctor 诊断改进",
+            "tag": "优化",
+            "summary": "改进 serving-verdict 恢复指引，只读托管配置下修复正常工作，移除重复的配置/备份/元数据/pnpm-root 探测，清理成功时作为进度上报而不破坏 JSON 输出，将仍在启动的 Gateway 视为警告",
+            "detail": "Improved serving-verdict recovery guidance, kept repairs working with read-only managed config, removed repeated config, backup, metadata, and pnpm-root probes, reported successful cleanup as progress without corrupting JSON output, and treated a still-starting Gateway as a warning.",
+            "summaryZh": "Doctor 恢复指引改进、移除重复探测、Gateway 启动中视为警告"
+          },
+          {
+            "title": "Windows 工作区与浏览器启动修复",
+            "tag": "修复",
+            "summary": "修复空和嵌套 Windows worktree 创建，改进 Linux Chromium 发现，ARM64 自动启动 Playwright Chromium",
+            "detail": "Fixed empty and nested Windows worktree creation, improved Linux Chromium discovery, and automatically started Playwright Chromium on ARM64.",
+            "summaryZh": "Windows worktree 创建修复、ARM64 Playwright Chromium 自动启动"
+          },
+          {
+            "title": "云 worker 与 Crabbox 改进",
+            "tag": "优化",
+            "summary": "暴露真实云 worker 失败原因，强制 Linux 租约，worker-bundle 下载与引导重叠，移除无关的热镜像清理等待，防止慢读或不支持后端导致 worker 挂起",
+            "detail": "Surfaced the real cloud-worker failure, enforced Linux leases, overlapped worker-bundle downloads with bootstrap, removed unrelated warm-image cleanup waits, and prevented slow reads or unsupported backends from stranding workers.",
+            "summaryZh": "云 worker 失败原因暴露、下载引导重叠、防 worker 挂起"
+          },
+          {
+            "title": "插件、Codex 与 MCP 同步",
+            "tag": "修复",
+            "summary": "保留 Bun 包导入捕获，减少预发布元材请求，防止过期远程执行审批污染认证配置，恢复 node 策略钩子，同步 MCP 表单/文件/上下文，后台技能审查通过 Workshop 提案路由",
+            "detail": "Preserved Bun package-import capture, reduced prerelease metadata requests, kept expired remote-exec approvals from poisoning auth profiles, restored node policy hooks, synchronized MCP forms/files/context, and routed background skill reviews through Workshop proposals.",
+            "summaryZh": "Bun 导入保留、过期审批防污染、MCP 表单文件上下文同步"
+          },
+          {
+            "title": "Agent 迁移至本地 Claws",
+            "tag": "变更",
+            "summary": "现有 agent 迁移至本地 Claws；新增隐匿 actor 记忆和 Codex 历史路由的 inactive-foundation 支持",
+            "detail": "Migrated existing agents to local Claws. Added inactive-foundation support for incognito actor memory and Codex history routing.",
+            "summaryZh": "Agent 迁移至本地 Claws、隐匿 actor 记忆支持"
+          },
+          {
+            "title": "Sessions-board 性能优化",
+            "tag": "优化",
+            "summary": "通过预准备事实、复用卡片负载、主线程外生命周期变更、保留规范状态句柄，降低 Sessions-board 和状态路径开销",
+            "detail": "Reduced Sessions-board and state-path overhead by serving prepared facts, reusing card payloads per store revision, moving lifecycle mutations off the main thread, and retaining canonical state handles.",
+            "summaryZh": "Sessions-board 预准备事实、卡片复用、生命周期移出主线程"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.1-beta.1",
         "date": "2026-10-05",
         "features": [
