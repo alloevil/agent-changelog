@@ -1,5 +1,73 @@
 const RELEASES_DATA = [
   {
+    "month": "2026 年 10 月",
+    "monthId": "2026-10",
+    "releases": [
+      {
+        "version": "v0.21.6",
+        "date": "2026-10-08",
+        "features": [
+          {
+            "title": "v0.21.6 累积补丁发布（~2,100 PR）",
+            "tag": "变更",
+            "summary": "累积自 v0.21.5 以来的约 2,100 个 PR、8,867 个非合并提交，涵盖 8,342 个变更文件（+772,490 / -225,600 行）。完整策展说明将随 v0.22.0 发布。",
+            "detail": "Patch release rolling up ~2,100 PRs merged since v0.21.5 into a stable tagged release. Full curated notes for this window ship with v0.22.0.",
+            "summaryZh": "累积补丁：~2,100 PR，8,867 提交，8,342 文件变更"
+          },
+          {
+            "title": "实时语音转写与语音对话",
+            "tag": "新增",
+            "summary": "CLI、TUI 和桌面端支持边说边转写（stt.streaming），语音轮次可路由至专用模型（auxiliary.voice_chat），默认关闭推理",
+            "detail": "Live transcription while speaking on CLI, TUI and Desktop (stt.streaming); spoken voice turns routed to their own model (auxiliary.voice_chat) with reasoning off by default.",
+            "summaryZh": "边说边转写、语音对话专用模型通道"
+          },
+          {
+            "title": "插件隔离运行与统一设置页",
+            "tag": "新增",
+            "summary": "第三方插件可在每个 profile 的独立插件宿主中运行（plugins.isolation: host），Settings 中新增统一的插件管理页面",
+            "detail": "Third-party plugins running in a per-profile plugin host (plugins.isolation: host) and one Settings > Plugins home for their settings pages.",
+            "summaryZh": "插件隔离运行、Settings 统一插件管理页"
+          },
+          {
+            "title": "本地模型支持与 llama.cpp CUDA",
+            "tag": "新增",
+            "summary": "hermes model 命令支持本地模型，Linux x64 和 arm64 上支持 llama.cpp CUDA 加速",
+            "detail": "Local models in hermes model plus llama.cpp CUDA on Linux x64 and arm64.",
+            "summaryZh": "本地模型支持、llama.cpp CUDA 加速"
+          },
+          {
+            "title": "Dashboard 认证安全加固",
+            "tag": "安全",
+            "summary": "修复伪造 X-Forwarded-For 绕过登录限速、未认证请求写入无界审计日志、公共 /auth/ 路由无请求体大小限制、原生登录重定向劫持会话等 4 个安全漏洞",
+            "detail": "Fixed spoofed X-Forwarded-For bypassing rate limits, unbounded audit log writes, missing request-body size limits on /auth/ routes, and native sign-in redirect session takeover. Reported by Tenable Research (TRA-725 to TRA-728).",
+            "summaryZh": "修复 4 个 Dashboard 认证漏洞（Tenable Research 报告）"
+          },
+          {
+            "title": "仓库 Git 过滤器安全加固",
+            "tag": "安全",
+            "summary": "自动 git 调用（会话快照、子代理工作区等）不再执行不受信任仓库配置的 clean/smudge/process 过滤程序",
+            "detail": "Automatic git calls no longer run clean/smudge/process filter programs defined by untrusted repository config before the first prompt.",
+            "summaryZh": "不受信任仓库的 git 过滤器不再自动执行"
+          },
+          {
+            "title": "邮件网关发件人安全加固",
+            "tag": "安全",
+            "summary": "修复 From 头中引号显示名可绕过邮件白名单的问题",
+            "detail": "Fixed quoted display name in From header bypassing email allowlist.",
+            "summaryZh": "From 头引号显示名不再绕过邮件白名单"
+          },
+          {
+            "title": "GPT-6.1 Sol 与 Claude Sonnet/Haiku 5.5 上架",
+            "tag": "新增",
+            "summary": "目录新增 GPT-6.1 Sol 和 Claude Sonnet 5.5 / Haiku 5.5 模型",
+            "detail": "GPT-6.1 Sol and Claude Sonnet 5.5 / Haiku 5.5 in the catalogs.",
+            "summaryZh": "目录新增 GPT-6.1 Sol、Claude Sonnet/Haiku 5.5"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "month": "2026 年 9 月",
     "monthId": "2026-09",
     "releases": [

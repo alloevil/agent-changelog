@@ -214,6 +214,61 @@ const CHANGELOG_DATA = [
             "summaryZh": "收紧文件系统/插件/浏览器等边界安全"
           }
         ]
+      },
+      {
+        "version": "v2026.9.9",
+        "date": "2026-10-08",
+        "features": [
+          {
+            "title": "新增 GPT-6.1 Sol 与 Claude Haiku 5.5 模型支持",
+            "tag": "新增",
+            "summary": "Codex 模型列表新增 GPT-6.1 Sol，Anthropic 和 Claude CLI 新增 Claude Haiku 5.5 支持",
+            "detail": "Added GPT-6.1 Sol to the Codex model list and supports Claude Haiku 5.5 through Anthropic and Claude CLI.",
+            "summaryZh": "Codex 新增 GPT-6.1 Sol，支持 Claude Haiku 5.5"
+          },
+          {
+            "title": "更新失败恢复机制增强",
+            "tag": "优化",
+            "summary": "支持更新器在失败后恢复兼容安装并保留尝试期间写入的数据，FUSE 存储备份恢复正常，旧版内存数据库可完成升级",
+            "detail": "Supported updaters can recover a compatible installation after a failed update while preserving data, FUSE storage backups work correctly, and older memory databases can finish upgrading.",
+            "summaryZh": "更新失败后自动恢复、FUSE 备份修复、旧版数据库升级兼容"
+          },
+          {
+            "title": "聊天界面多项改进",
+            "tag": "优化",
+            "summary": "修复滚动位置保持、展开详情不再跳底、流式回复持续滚动、通道消息保持原始会话关联、对话标题延迟命名等问题",
+            "detail": "Fixed chat scrolling position, expandable details positioning, streaming reply scroll, channel conversation history preservation, and deferred conversation naming.",
+            "summaryZh": "聊天滚动、详情展开、流式回复、通道历史、对话标题等多项 UI 修复"
+          },
+          {
+            "title": "iMessage 回复缺失修复",
+            "tag": "修复",
+            "summary": "修复 iMessage 回复丢失的问题",
+            "detail": "Fixed missing iMessage replies.",
+            "summaryZh": "修复 iMessage 回复丢失"
+          },
+          {
+            "title": "定时任务干扰修复",
+            "tag": "修复",
+            "summary": "阻止旧的定时任务中断新会话",
+            "detail": "Keeps an old scheduled job from interrupting a newer conversation.",
+            "summaryZh": "旧定时任务不再干扰新会话"
+          },
+          {
+            "title": "Windows 工作区创建修复",
+            "tag": "修复",
+            "summary": "Windows 上创建空工作区不再因 Git 调用方式而失败",
+            "detail": "Creating an empty workspace on Windows no longer fails because of the way OpenClaw calls Git.",
+            "summaryZh": "Windows 创建工作区不再因 Git 失败"
+          },
+          {
+            "title": "Docker 启动循环修复",
+            "tag": "修复",
+            "summary": "修复旧版 Linux 主机上反复拒绝未变更数据库的升级循环，重试时复用已验证的回滚备份",
+            "detail": "Fixed an upgrade loop on older Linux hosts that repeatedly rejected an unchanged database; retries reuse verified rollback backups.",
+            "summaryZh": "Docker 启动不再因数据库校验死循环"
+          }
+        ]
       }
     ]
   },
