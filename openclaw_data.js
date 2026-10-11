@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.1",
+        "date": "2026-10-10",
+        "features": [
+          {
+            "title": "会话与记忆稳定性提升",
+            "tag": "修复",
+            "summary": "跨注册表变更保留用量统计，远程工作区交付 worker 附件，防止排队取消和转录别名阻塞活跃轮次，保持续签签名对齐，分批迁移嵌入缓存并报告超大行",
+            "detail": "Preserved usage across registry changes, delivered worker attachments from remote workspaces, prevented queued cancellations and transcript aliases from stalling active turns, kept continuation signatures aligned, and migrated embedding caches in bounded batches with oversized-row reporting.",
+            "summaryZh": "跨注册表保留用量、远程 worker 附件交付、防排队取消阻塞、嵌入缓存分批迁移"
+          },
+          {
+            "title": "回复与媒体播放修复",
+            "tag": "修复",
+            "summary": "恢复本地视频内联播放，拒绝的媒体链接返回有用错误信息，Telegram 进度更新不再附带预览卡片，修复推理模式下纯语音回复",
+            "detail": "Restored inline playback for local videos, replaced rejected media links with useful errors, kept Telegram progress updates free of preview cards, and fixed speech-only replies when reasoning is enabled.",
+            "summaryZh": "本地视频内联播放恢复、Telegram 进度无预览卡、推理模式纯语音回复修复"
+          },
+          {
+            "title": "更新与 Doctor 诊断改进",
+            "tag": "优化",
+            "summary": "改进 serving-verdict 恢复指引，只读托管配置下修复正常工作，移除重复的配置/备份/元数据/pnpm-root 探测，清理成功时作为进度上报而不破坏 JSON 输出，将仍在启动的 Gateway 视为警告",
+            "detail": "Improved serving-verdict recovery guidance, kept repairs working with read-only managed config, removed repeated config, backup, metadata, and pnpm-root probes, reported successful cleanup as progress without corrupting JSON output, and treated a still-starting Gateway as a warning.",
+            "summaryZh": "Doctor 恢复指引改进、移除重复探测、Gateway 启动中视为警告"
+          },
+          {
+            "title": "Windows 工作区与浏览器启动修复",
+            "tag": "修复",
+            "summary": "修复 Windows 空嵌套 worktree 创建，改进 Linux Chromium 发现，ARM64 上自动启动 Playwright Chromium",
+            "detail": "Fixed empty and nested Windows worktree creation, improved Linux Chromium discovery, and automatically started Playwright Chromium on ARM64.",
+            "summaryZh": "Windows worktree 创建修复、ARM64 Playwright 自动启动"
+          },
+          {
+            "title": "云 Worker 与 Crabbox 改进",
+            "tag": "优化",
+            "summary": "暴露真实 cloud-worker 失败原因，强制 Linux 租约，worker-bundle 下载与 bootstrap 重叠，移除无关的 warm-image 清理等待，防止慢读或不支持的后端导致 worker 挂起",
+            "detail": "Surfaced the real cloud-worker failure, enforced Linux leases, overlapped worker-bundle downloads with bootstrap, removed unrelated warm-image cleanup waits, and prevented slow reads or unsupported backends from stranding workers.",
+            "summaryZh": "暴露 cloud-worker 失败原因、Linux 租约强制、防 worker 挂起"
+          },
+          {
+            "title": "插件、Codex 与 MCP 修复",
+            "tag": "修复",
+            "summary": "保留 Bun 包导入捕获，减少预发布元数据请求，防止过期 remote-exec 审批污染 auth 配置，恢复 node policy hooks，同步 MCP forms/files/context，背景 skill 审查通过 Workshop proposals 路由",
+            "detail": "Preserved Bun package-import capture, reduced prerelease metadata requests, kept expired remote-exec approvals from poisoning auth profiles, restored node policy hooks, synchronized MCP forms/files/context, and routed background skill reviews through Workshop proposals.",
+            "summaryZh": "Bun 包导入保留、过期审批防污染、MCP 同步修复"
+          },
+          {
+            "title": "安全恢复与响应式聊天改进",
+            "tag": "修复",
+            "summary": "恢复中断的数据库 worker 和 Doctor 迁移，防止后台 CLI 回复挂起，保留新内容到达时的自动聊天跟踪",
+            "detail": "Recovered interrupted database workers and Doctor migrations, kept background CLI replies from hanging, and preserved automatic chat following as new content arrives.",
+            "summaryZh": "数据库 worker 恢复、CLI 回复防挂起、自动聊天跟踪保留"
+          },
+          {
+            "title": "Agent 与 Subagent 修复",
+            "tag": "修复",
+            "summary": "memory-saving 轮次不再恢复无关执行工具，子代理结果在孙代理交付待定时仍可送达，后续消息不再截断返回的子代理结果，完成的答案在仅推理尾部后存活，小上下文窗口 session 在自动压缩后恢复",
+            "detail": "Memory-saving turns no longer regain unrelated execution tools, finished subagent results are delivered even while a grandchild delivery is still pending, follow-up messages no longer cut off returning subagent results, completed answers survive a reasoning-only tail, and sessions on small context windows recover after auto-compaction.",
+            "summaryZh": "子代理结果交付修复、小窗口 session 压缩恢复"
+          },
+          {
+            "title": "Gateway 插件启动优化",
+            "tag": "优化",
+            "summary": "有效启动不再每次配置读取时丢弃插件 Doctor 模块，Windows 插件捕获恢复快速固定描述符复制，目录更新不再启动后重捕获插件，模型变更不再冻结含大型插件的 Gateway",
+            "detail": "Valid startups no longer capture and discard plugin Doctor modules on every config read, Windows plugin captures use the fast pinned-descriptor copy again, catalog updates no longer recapture plugins after startup, model changes no longer freeze the Gateway with large plugins.",
+            "summaryZh": "Windows 插件启动加速、模型变更不再冻结 Gateway"
+          },
+          {
+            "title": "Codex、ChatGPT 与本地模型兼容性",
+            "tag": "修复",
+            "summary": "Codex 回复不再丢失流式末尾 token，拒绝的 ChatGPT 缓存工具续期可恢复，超大代理请求报告上下文错误而非单 token 回复，恢复的 Claude session 刷新系统上下文，Ollama 工具调用配合 Tool Search 正常工作",
+            "detail": "Codex replies no longer lose their last token when a provider stream drops the final delta, rejected cached ChatGPT tool continuations recover without rerunning completed tools, oversized proxy requests report context errors instead of one-token replies, resumed Claude sessions refresh their system context, Ollama tool calls work with Tool Search enabled.",
+            "summaryZh": "Codex 末尾 token 修复、ChatGPT 缓存恢复、Ollama 工具调用修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.1-beta.2",
         "date": "2026-10-08",
         "features": [
