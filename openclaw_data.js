@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.5-beta.1",
+        "date": "2026-10-11",
+        "features": [
+          {
+            "title": "更安全的更新机制",
+            "tag": "修复",
+            "summary": "更新可在跨设备、跨文件系统、Windows 提权和中断激活等场景下完成，从过期租约或变更证据中恢复，避免安装卡死或阻断后续更新",
+            "detail": "Updates finish across devices, filesystems, Windows elevation, and interrupted activations, recovering from stale leases or changed evidence.",
+            "summaryZh": "跨设备/文件系统的更新完成与恢复机制"
+          },
+          {
+            "title": "重启安全的对话恢复",
+            "tag": "修复",
+            "summary": "中断的对话轮次、worktree 准备期间的首条消息和延迟任务可在 Gateway 重启后恢复，用户输入和已提交的会话数据在重启、并发写入和发布失败后均安全保留",
+            "detail": "Interrupted turns, first messages during worktree preparation, and deferred tasks resume after Gateway restart; user input and committed session data survive restarts.",
+            "summaryZh": "Gateway 重启后对话与任务自动恢复"
+          },
+          {
+            "title": "更快更稳定的 Gateway",
+            "tag": "优化",
+            "summary": "会话、转录、历史和元数据读取移至工作线程，每轮 SQLite 工作量大幅减少，启动维护推迟到就绪后执行，繁忙 Gateway 保持响应",
+            "detail": "Session, transcript, history, and metadata reads move onto worker threads with far less SQLite work per turn; startup maintenance runs after readiness.",
+            "summaryZh": "Gateway 主线程压力大幅降低，启动更流畅"
+          },
+          {
+            "title": "更可靠的对话轮次与子代理",
+            "tag": "修复",
+            "summary": "对话轮次可从停滞流、复用工具调用 ID 和过期 ChatGPT websocket 中恢复，不完整轮次以可见通知结束，子代理结果在后续操作、重启和过期投递窗口中持续返回",
+            "detail": "Turns recover from stalled streams, reused tool-call IDs, and expired ChatGPT websockets; subagent results keep returning through follow-ups and restarts.",
+            "summaryZh": "对话轮次和子代理结果返回机制全面加固"
+          },
+          {
+            "title": "X (Twitter) 频道插件",
+            "tag": "新增",
+            "summary": "新增 X 频道插件，支持通过 Activity API 流式处理提及消息，提供访客模式回答仓库问题，并强制 API 费用限制",
+            "detail": "New X channel plugin with streaming, guest mode for repository questions, and enforced API cost limits.",
+            "summaryZh": "新增 X/Twitter 频道插件（流式+访客模式+费用限制）"
+          },
+          {
+            "title": "语音通话增强",
+            "tag": "新增",
+            "summary": "语音通话新增每次通话简报、通话报告、实时引导、回调和语音信箱检测功能",
+            "detail": "Voice calls gain per-call briefs, call reports, live steering, callbacks, and voicemail detection.",
+            "summaryZh": "语音通话增加简报、报告、实时引导等功能"
+          },
+          {
+            "title": "更智能的模型选择器",
+            "tag": "优化",
+            "summary": "选择器优先展示各提供商推荐模型，新上架的 Claude、ChatGPT 和 Ollama 模型无需等待 OpenClaw 发版即可显示，目录加载时保持响应",
+            "detail": "Pickers lead with each provider's recommended models; newly listed models appear without waiting for a release.",
+            "summaryZh": "模型选择器优先推荐模型，新模型即时可见"
+          },
+          {
+            "title": "Gateway 内集成 ClawHub",
+            "tag": "新增",
+            "summary": "可在 Gateway 中浏览和搜索 ClawHub 插件和技能，插件自动选择当前 OpenClaw 支持的最新官方版本",
+            "detail": "Browse and search ClawHub plugins and skills from the Gateway; plugins auto-pick the newest official release.",
+            "summaryZh": "Gateway 直接浏览 ClawHub 插件/技能市场"
+          },
+          {
+            "title": "本地 Worker 推理运行时",
+            "tag": "新增",
+            "summary": "新增原生 Worker 推理运行时，支持 Gateway 调度、客户端放置、必需 Worker 策略和本地推理前的目标检查",
+            "detail": "Native worker inference runtime with Gateway dispatch, client placement, required worker policy and destination checks.",
+            "summaryZh": "新增原生 Worker 本地推理运行时"
+          },
+          {
+            "title": "Control UI 子代理面板",
+            "tag": "优化",
+            "summary": "显示聊天何时在等待子代理，可从子代理计数和名称打开子代理面板，子代理失败和需关注的事项在父聊天中展示",
+            "detail": "Show when a chat is waiting on subagents; open the Subagents panel from the chat; surface child failures in the parent chat.",
+            "summaryZh": "Control UI 新增子代理等待与失败状态展示"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.1",
         "date": "2026-10-10",
         "features": [
@@ -59274,4 +59350,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
+if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
