@@ -4,6 +4,33 @@ const RELEASES_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v0.21.7",
+        "date": "2026-10-12",
+        "features": [
+          {
+            "title": "更新跟随标签发布",
+            "tag": "变更",
+            "summary": "源码安装的更新现在跟随最新稳定标签而非 main 分支每次提交；桌面端新增更新渠道切换开关",
+            "detail": "A source install updates to the latest published vX.Y.Z release instead of every commit on main. Desktop app Settings ▸ About ▸ Updates has an Update channel switch (Stable releases / Every commit)",
+            "summaryZh": "源码安装默认跟随稳定标签，可手动切回 main"
+          },
+          {
+            "title": "推理状态跨会话保持",
+            "tag": "修复",
+            "summary": "签名推理内容在 hermes chat --resume 和后续网关轮次中正确重放，Bedrock Converse 推理模型不再被恢复会话拒绝",
+            "detail": "Signed thinking replays after hermes chat --resume and on the next gateway turn, and Bedrock Converse reasoning models no longer get rejected on resumed sessions",
+            "summaryZh": "推理状态在会话恢复后不再丢失"
+          },
+          {
+            "title": "防火墙环境更新兼容",
+            "tag": "修复",
+            "summary": "main 分支安装不再获取可能被地区防火墙返回 403 的发布记录；使用 GitHub token 时速率限制信息更清晰",
+            "detail": "Installs on main no longer fetch a release record that regional firewalls could answer with 403. The stable check uses your GitHub token when one is set and reports a GitHub rate limit as a rate limit",
+            "summaryZh": "修复部分防火墙环境下更新失败的问题"
+          }
+        ]
+      },
+      {
         "version": "v0.21.6",
         "date": "2026-10-08",
         "features": [

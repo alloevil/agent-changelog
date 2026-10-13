@@ -4,6 +4,68 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.5-beta.2",
+        "date": "2026-10-12",
+        "features": [
+          {
+            "title": "更新与恢复流程全面修复",
+            "tag": "修复",
+            "summary": "openclaw update 不再卡在 update-recovery-pending，正确清理过期交接租约和旧版恢复记录，处理 Windows 短路径问题，不再将成功的更新误报为失败",
+            "detail": "openclaw update settles stale handoff leases, completed receipts, and legacy recovery records instead of stopping on update-recovery-pending, handles Windows short-name paths, and no longer reports accepted handoffs or successful updates as failures",
+            "summaryZh": "更新流程不再卡住，正确处理旧记录和 Windows 路径"
+          },
+          {
+            "title": "Doctor 保留插件配置与数据",
+            "tag": "优化",
+            "summary": "Doctor 在路径安全检查阻止插件时保留其配置，不触碰格式错误的 UTF-8 记忆文件，恢复副本在迁移前捕获 Canvas 和 Memory Core 文件",
+            "detail": "Doctor preserves installed plugins configuration when path safety checks block them, leaves malformed UTF-8 root memory files untouched, and recovery copies capture Canvas and Memory Core files before migrations",
+            "summaryZh": "Doctor 更智能地保护插件配置和用户数据"
+          },
+          {
+            "title": "已批准工具调用不可被篡改",
+            "tag": "安全",
+            "summary": "hooks 不再能在可信内联批准后修改工具参数；转换参数的插件必须为最终参数重新请求批准",
+            "detail": "hooks can no longer change tool arguments after a trusted inline approval; plugins that transform arguments must request approval for their final arguments",
+            "summaryZh": "防止 hook 在批准后篡改工具参数"
+          },
+          {
+            "title": "子代理消息来源标记",
+            "tag": "安全",
+            "summary": "跨会话消息在重放时保持安全信封，父代理发送的指令永远不会被呈现为直接用户指令",
+            "detail": "inter-session messages keep their safety envelope from the first request and through replay, so parent-sent instructions are never presented to a child as direct user instructions",
+            "summaryZh": "子代理消息保留来源标记，防止注入攻击"
+          },
+          {
+            "title": "控制端 UI 会话不中断",
+            "tag": "修复",
+            "summary": "配对设备的聊天轮次在节点心跳、其他设备更新和标签页重连等正常配对活动期间不再中断",
+            "detail": "chat turns from paired devices survive ordinary pairing activity such as node heartbeats, other devices updates, and tab reconnects",
+            "summaryZh": "配对活动不再意外中断正在进行的聊天"
+          },
+          {
+            "title": "Codex 运行时兼容性检查",
+            "tag": "变更",
+            "summary": "插件准入拒绝低于 2026.9.7 的 Codex 运行时，不兼容的插件可检查但不会被导入",
+            "detail": "plugin admission rejects official Codex runtimes below 2026.9.7 with update and repair guidance, and incompatible plugins stay inspectable without being imported",
+            "summaryZh": "强制 Codex 运行时最低版本要求"
+          },
+          {
+            "title": "重启后会话恢复",
+            "tag": "修复",
+            "summary": "Gateway 重启期间中断的主会话在下次启动时恢复，中断的完成回复不再丢失",
+            "detail": "main sessions that were mid-turn during a Gateway restart resume on the next boot, interrupted completion replies are delivered instead of lost",
+            "summaryZh": "Gateway 重启后会话和回复自动恢复"
+          },
+          {
+            "title": "私有推理内容保护",
+            "tag": "修复",
+            "summary": "当回复触及 token 限制或内容过滤器时，未完成的模型推理内容保持私有",
+            "detail": "unfinished model reasoning stays private when a reply hits a token limit or content filter after a tool call",
+            "summaryZh": "推理内容在边界情况下不泄露"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.5-beta.1",
         "date": "2026-10-11",
         "features": [
