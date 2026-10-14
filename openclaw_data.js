@@ -4,6 +4,75 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.5-beta.3",
+        "date": "2026-10-13",
+        "features": [
+          {
+            "title": "更新期间保持 Gateway 运行",
+            "tag": "修复",
+            "summary": "pnpm 12 安装保持 Gateway 服务和启动器，Windows/macOS 更新不再导致 Gateway 停止",
+            "detail": "pnpm 12 installs keep their Gateway service and openclaw launcher on the durable install path, Windows updates accept qualified Scheduled Task accounts, macOS accepts protected Bun service commands, and clean service-install refusals no longer leave the Gateway stopped.",
+            "summaryZh": "更新不再中断 Gateway 服务"
+          },
+          {
+            "title": "卡住的更新自动恢复",
+            "tag": "修复",
+            "summary": "更新在文件系统重挂载、设备号漂移、状态数据库短暂锁定后自动恢复，不再报告虚假安装失败",
+            "detail": "Updates settle package-activation journals after filesystem remounts or device-number drift, ride out a briefly locked state database, stop reporting false post-install failures after migration, and reclaim retained updater runtimes that blocked npm recovery.",
+            "summaryZh": "更新在各种异常场景下自动恢复"
+          },
+          {
+            "title": "Doctor 保留凭据和数据",
+            "tag": "修复",
+            "summary": "Doctor 不再在旧存储不可读时删除 OAuth 配置，迁移数据库前拒绝已废弃状态",
+            "detail": "Doctor no longer deletes an OAuth profile when the legacy auth store is unreadable, refuses retired state before migrating the database, imports retained ACP metadata, and restores a stopped Gateway when cleanup fails.",
+            "summaryZh": "Doctor 不再误删 OAuth 凭据"
+          },
+          {
+            "title": "会话在 Gateway 重启后恢复",
+            "tag": "修复",
+            "summary": "中断的轮次、子代理工作、自动化轮次在 Gateway 重启后恢复，已终止 worker 的流式回复保留在历史中",
+            "detail": "Interrupted turns, subagent work, automation turns, steered sessions, and node-hosted turns resume after a Gateway restart, and streamed replies from a killed worker stay in history.",
+            "summaryZh": "Gateway 重启后会话自动恢复"
+          },
+          {
+            "title": "Telegram 不再重放旧更新",
+            "tag": "修复",
+            "summary": "更新后首次启动不再将数月前的 Telegram 消息作为新指令重新分发",
+            "detail": "The first start after updating no longer re-dispatches months-old Telegram updates from the legacy spool as new owner instructions.",
+            "summaryZh": "更新后不再重放历史 Telegram 消息"
+          },
+          {
+            "title": "Codex 和模型提供商回复修复",
+            "tag": "修复",
+            "summary": "Codex 回复保留最后 tokens，ChatGPT 重试中断的 WebSocket，DeepSeek 工具标记不再泄露到消息中",
+            "detail": "Codex replies keep their last tokens and accept follow-ups after a failed thread preparation, ChatGPT turns retry a mid-stream WebSocket close, and DeepSeek tool markup no longer leaks into messages.",
+            "summaryZh": "修复多个模型提供商的回复完整性问题"
+          },
+          {
+            "title": "新增 Meta Muse Wonder 模型",
+            "tag": "新增",
+            "summary": "支持 meta/muse-wonder-1.0，具备工具调用、图像输入、流式输出和 1M token 上下文窗口",
+            "detail": "Meta users can select meta/muse-wonder-1.0 with tools, image input, streaming, reasoning controls, and a 1M-token context window. Spark remains the onboarding default.",
+            "summaryZh": "新增 Meta Muse Wonder 1.0 模型支持"
+          },
+          {
+            "title": "设备加入支持会话托管",
+            "tag": "新增",
+            "summary": "CLI 和 Control UI 的 join 命令安装后台节点服务，可托管代理会话",
+            "detail": "The CLI and Control UI join command now installs a background node service that can host agent sessions (--service --session-host), with a command-only service alternative.",
+            "summaryZh": "设备加入后可托管代理会话"
+          },
+          {
+            "title": "插件 SDK 兼容性恢复",
+            "tag": "修复",
+            "summary": "2026.10.1 和 2026.10.2 构建的插件可再次从 plugin-sdk/control-ui 导入 createSessionHeaderLink",
+            "detail": "Plugins built against 2026.10.1 and 2026.10.2 can import createSessionHeaderLink from openclaw/plugin-sdk/control-ui again.",
+            "summaryZh": "恢复旧版插件 SDK 兼容性"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.5-beta.2",
         "date": "2026-10-12",
         "features": [
