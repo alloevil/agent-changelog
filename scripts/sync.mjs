@@ -18,6 +18,7 @@ import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { main as updateStats } from './update-stats.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -387,6 +388,8 @@ async function main() {
     } else {
       console.log('\nNo changes needed.');
     }
+    // Keep the published counts (homepage cards + hero) in step with the data files.
+    updateStats();
   } catch (err) {
     console.error('Error:', err.message);
     process.exit(1);
