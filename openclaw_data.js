@@ -211,6 +211,67 @@ const CHANGELOG_DATA = [
         ]
       },
       {
+        "version": "v2026.10.3",
+        "date": "2026-10-13",
+        "features": [
+          {
+            "title": "常规维护版本",
+            "tag": "变更",
+            "summary": "90 commits、79 PR、99 位贡献者，包含多项修复和改进",
+            "detail": "90 commits, 79 pull requests, 99 contributors. Release notes and changelog available at docs.openclaw.ai/releases/2026.10.3.",
+            "summaryZh": "常规维护版本，90 commits / 79 PRs / 99 贡献者"
+          }
+        ]
+      },
+      {
+        "version": "v2026.10.2",
+        "date": "2026-10-12",
+        "features": [
+          {
+            "title": "2026.10.1 升级修复",
+            "tag": "修复",
+            "summary": "从 2026.10.1 的首次升级现在能正确完成，Windows 和克隆文件系统更新路径不再卡住或回滚",
+            "detail": "The first upgrade from stable 2026.10.1 now completes cleanly, successful in-place updates no longer end in errors, and Windows, cloned-filesystem, and private-Node update paths finish instead of stalling or rolling back.",
+            "summaryZh": "修复从 2026.10.1 升级时的卡顿和回滚问题"
+          },
+          {
+            "title": "Doctor 和更新恢复增强",
+            "tag": "修复",
+            "summary": "Doctor 不再因残留导入、旧锁、慢检查或已移除账户的白名单而停止",
+            "detail": "Doctor no longer stops on residual legacy imports, stale Gateway locks, slow state inspection, memory reindex locks, or allowlists for removed channel accounts.",
+            "summaryZh": "Doctor 对残留状态和旧锁的容忍度大幅提升"
+          },
+          {
+            "title": "原生提供商压缩",
+            "tag": "优化",
+            "summary": "OpenAI 和 Anthropic API 路由默认使用提供商原生压缩，冷却期间自动恢复",
+            "detail": "OpenAI and Anthropic API-key routes now default to provider-native compaction, and compaction recovers when the primary auth profile is cooling down.",
+            "summaryZh": "默认启用 OpenAI/Anthropic 原生压缩"
+          },
+          {
+            "title": "凭证泄露修复",
+            "tag": "安全",
+            "summary": "跨分块边界的凭证现在会被正确脱敏，大文本脱敏不再栈溢出且速度提升数倍",
+            "detail": "Credentials that cross a chunk boundary in long tool output are now masked, and redaction of large text no longer stalls or overflows the stack while running several times faster.",
+            "summaryZh": "修复跨块凭证泄露，脱敏速度提升数倍"
+          },
+          {
+            "title": "Prompt 缓存稳定性",
+            "tag": "优化",
+            "summary": "Anthropic 对话检查点在后续对话、重放和重启中保持字节一致，缓存命中率大幅提升",
+            "detail": "Anthropic conversation checkpoints, enriched user prompts, tool results, and inter-session provenance stay byte-identical across follow-ups, replays, Gateway restarts, and subagent completions, so cached prefixes keep hitting.",
+            "summaryZh": "Anthropic prompt 缓存跨轮次和重启保持一致"
+          },
+          {
+            "title": "Gateway 响应性提升",
+            "tag": "修复",
+            "summary": "Control UI 重连、大插件模型切换和目录加载不再冻结 Gateway 或挂起新会话",
+            "detail": "Control UI reconnects, model changes with large plugins, dashboard title work, and catalog loading no longer freeze the Gateway or hang new sessions.",
+            "summaryZh": "大插件场景下 Gateway 不再冻结"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.1",
         "date": "2026-10-10",
         "features": [

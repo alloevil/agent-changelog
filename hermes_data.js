@@ -4,6 +4,151 @@ const RELEASES_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v0.22.1",
+        "date": "2026-10-14",
+        "features": [
+          {
+            "title": "Nemotron Super 3.5 默认参数",
+            "tag": "新增",
+            "summary": "为 Nemotron Super 3.5 添加默认参数和更新模型名称",
+            "detail": "Add nemotron super 3.5 default parameters and update model name.",
+            "summaryZh": "新增 Nemotron Super 3.5 默认参数"
+          },
+          {
+            "title": "模型选择器精选列表",
+            "tag": "优化",
+            "summary": "模型选择器顶部新增精选模型列表",
+            "detail": "Add curated model list at the top in the model picker list.",
+            "summaryZh": "模型选择器顶部新增精选列表"
+          },
+          {
+            "title": "韩语和巴西葡萄牙语语言包",
+            "tag": "新增",
+            "summary": "插件目录新增韩语（hermes-lang-ko）和巴西葡萄牙语（hermes-lang-pt-br）语言包",
+            "detail": "Plugin-catalog adds hermes-lang-ko (Korean Desktop language pack) and hermes-lang-pt-br (Brazilian Portuguese language pack).",
+            "summaryZh": "新增韩语和巴西葡萄牙语语言包"
+          },
+          {
+            "title": "压缩和技能标记修复",
+            "tag": "修复",
+            "summary": "修复回退摘要、多行设置和并行加载时的技能标记位置错误",
+            "detail": "Fallback summaries, multiline setup notes and parallel loads keep skill markers right. Small and slash-invoked skills keep their reload marker across compaction.",
+            "summaryZh": "修复压缩后技能标记丢失的问题"
+          },
+          {
+            "title": "MCP 服务器超时修复",
+            "tag": "修复",
+            "summary": "修复 MCP 服务器在外层工具执行时的截止时间传递问题",
+            "detail": "Preserve server deadlines through outer tool execution. Honor portable per-server call deadlines.",
+            "summaryZh": "修复 MCP 服务器调用超时不生效"
+          },
+          {
+            "title": "Gateway 多项稳定性修复",
+            "tag": "修复",
+            "summary": "修复 Bot 收据隔离、混合本地队列恢复、replay 间隙终止等问题",
+            "detail": "Isolate bot receipts and keep headless cron no-spawn. Recover mixed local queues and retire failed hot serves. Terminate replay gaps and retain ACP cancels.",
+            "summaryZh": "Gateway 稳定性大幅提升，修复多项边界场景"
+          }
+        ]
+      },
+      {
+        "version": "v0.22.0",
+        "date": "2026-10-14",
+        "features": [
+          {
+            "title": "首次启动引导聊天",
+            "tag": "新增",
+            "summary": "全新桌面安装打开后启动引导式设置聊天，使用免费试用模型（nous/welcome），无需 API 密钥即可开聊",
+            "detail": "A fresh desktop install opens on a guided setup chat that runs on a free trial model (nous/welcome, once per OS user), so a newcomer is talking to Hermes before they own an API key. Skip setup and re-run from Settings.",
+            "summaryZh": "全新安装自动进入引导聊天，免费模型无需密钥"
+          },
+          {
+            "title": "Connectors：连接你的应用",
+            "tag": "新增",
+            "summary": "通过 Nous 工具网关连接 Linear、Notion 等托管应用，无需 Nous 账号即可开始使用",
+            "detail": "The agent can act in hosted apps through the Nous tool gateway. Sign in once in your browser and the tools are usable in the same turn. Supports multiple named accounts per app.",
+            "summaryZh": "Connectors 让 Hermes 直接操作 Linear/Notion 等应用"
+          },
+          {
+            "title": "一键本地模型",
+            "tag": "新增",
+            "summary": "无需账号和 API 密钥，一键安装 llama.cpp 并运行本地模型（Qwen3.8 27B、DeepSeek V4 Flash 等）",
+            "detail": "Installs and maintains llama.cpp with the right engine for your hardware (CPU, CUDA, Metal, Vulkan or ROCm), rates every catalog model against your GPU and RAM, and picks the highest-quality build that fits.",
+            "summaryZh": "一键安装 llama.cpp，自动匹配硬件推荐本地模型"
+          },
+          {
+            "title": "稳定发布通道",
+            "tag": "新增",
+            "summary": "经过 CI、Docker、Nix、签名桌面构建和升级测试的 SemVer 稳定版，源码安装默认跟随稳定标签",
+            "detail": "Every release passes source CI, Docker, Nix, signed desktop builds and install/upgrade runs on every OS before it is published. Source installs now move from release to release by default.",
+            "summaryZh": "源码安装默认跟随经过完整测试的稳定标签发布"
+          },
+          {
+            "title": "签名桌面包和统一包管理器",
+            "tag": "新增",
+            "summary": "Windows MSIX 签名包（含 Microsoft Store）、macOS 签名公证构建；hermes pm 统一管理所有工具和依赖",
+            "detail": "Windows gets a signed MSIX through the Microsoft Store; macOS gets a signed notarized build. A new unified package manager (hermes pm) owns every pinned, hash-checked tool and Python environment.",
+            "summaryZh": "签名桌面包上架 Microsoft Store，hermes pm 统一管理依赖"
+          },
+          {
+            "title": "600+ 插件目录",
+            "tag": "新增",
+            "summary": "插件目录上线并增长至 600 个条目，每个插件固定到经过审查的提交，含作者页面和分类浏览",
+            "detail": "The plugin catalog launched and grew to 600 entries, each pinned to a reviewed commit and installable from Hermes Desktop or the CLI. Browse by category and star ranking.",
+            "summaryZh": "插件目录新增 600 个经过审查的插件"
+          },
+          {
+            "title": "Claude 5.5 / GPT-6 模型浪潮",
+            "tag": "新增",
+            "summary": "支持 Claude Opus 5.5、Sonnet 5.5、GPT-6 Astra/Sol/Luna、Gemini 4 Argon 等新模型",
+            "detail": "Claude Fable 5.1, Opus 5.5, Sonnet 5.5 and Haiku 5.5, GPT-6 Astra, Sol and Luna plus GPT-6.1 Sol, and Gemini 4 Argon are pickable on Nous Portal, OpenRouter and native routes.",
+            "summaryZh": "全面支持 Claude 5.5、GPT-6 和 Gemini 4 Argon"
+          },
+          {
+            "title": "密码管理器登录",
+            "tag": "新增",
+            "summary": "浏览器代理可使用 1Password、Bitwarden 或 Hermes 自有加密库中的密码登录网站，模型永远不会看到密码",
+            "detail": "The browser agent can log into sites with logins from 1Password, Bitwarden or Hermes's own encrypted vault, and the model never sees the password.",
+            "summaryZh": "浏览器代理通过密码管理器安全登录，模型不接触密码"
+          },
+          {
+            "title": "Bot Screen：远程接管",
+            "tag": "新增",
+            "summary": "Linux 网关上的机器人可拥有桌面并实时串流，遇到登录/2FA/CAPTCHA 时你可远程接管屏幕",
+            "detail": "A bot running on a Linux gateway can have its own desktop that Hermes Desktop streams live. When it hits a login, 2FA or CAPTCHA, you take the screen, finish the step, and hand control back.",
+            "summaryZh": "机器人桌面实时串流，遇到验证时远程接管"
+          },
+          {
+            "title": "单后端多配置文件",
+            "tag": "优化",
+            "summary": "每台机器只运行一个消息网关和一个桌面后端，服务所有配置文件，不再每个配置文件一个进程",
+            "detail": "Hermes now runs a single messaging gateway and a single desktop backend per machine that serve all of your profiles, instead of one process per profile.",
+            "summaryZh": "单进程服务所有配置文件，减少资源占用"
+          },
+          {
+            "title": "子代理实时可见和控制",
+            "tag": "新增",
+            "summary": "运行中的子代理在 CLI/TUI/Desktop 中实时显示任务、耗时和实时脚本，支持 Steer 和 Stop",
+            "detail": "Running subagents now stay visible above the composer in the CLI (F6), TUI (Ctrl+T) and Desktop with each child's task, elapsed time and live transcript, plus Steer and Stop buttons.",
+            "summaryZh": "子代理实时显示在编辑器上方，支持操控和停止"
+          },
+          {
+            "title": "智能模型选择器",
+            "tag": "优化",
+            "summary": "收藏常用模型，查看订阅余额和限速解除时间，选择推理强度，提前切换避免撞墙",
+            "detail": "Star your favorite models, see a subscription running low and when a rate limit lifts right in the picker, and pick reasoning effort as part of choosing a model.",
+            "summaryZh": "模型选择器显示余额和限速，支持收藏和推理强度"
+          },
+          {
+            "title": "代码库瘦身 34%",
+            "tag": "优化",
+            "summary": "代码从约 106 万行精简至 69.8 万行（-34%），gateway/run.py 从 34847 行缩至 5512 行",
+            "detail": "Source went from about 1.06M to 698K lines (−34%) and gateway/run.py shrank from 34,847 lines to 5,512. Prompts got lighter too: about 19 rarely used tools now load only on demand.",
+            "summaryZh": "代码量减少 34%，核心模块大幅精简"
+          }
+        ]
+      },
+      {
         "version": "v0.21.7",
         "date": "2026-10-12",
         "features": [
