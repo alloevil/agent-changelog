@@ -11,7 +11,7 @@ allowed-tools:
 
 # Sync OpenLaw Changelog
 
-从 OpenClaw GitHub Releases 拉取最新的版本信息，翻译为中文 changelog 条目，更新 `index.html`，并推送到 GitHub 部署。
+从 OpenClaw GitHub Releases 拉取最新的版本信息，翻译为中文 changelog 条目，更新数据文件（`openclaw_data.js`，Hermes 为 `hermes_data.js`），重新生成首页卡片数字，并安全地推送到 GitHub 部署。
 
 ## 执行步骤
 
@@ -24,7 +24,7 @@ export PATH="/tmp/gh_2.67.0_linux_amd64/bin:$PATH"
 gh release list --repo openclaw/openclaw --limit 10
 ```
 
-对比 `index.html` 中已有的版本号（搜索 `version:`），找出尚未收录的新 release。
+对比 `openclaw_data.js` 中已有的版本号（搜索 `version:`），找出尚未收录的新 release。
 
 ### 第 2 步：获取 release 详情
 
@@ -46,21 +46,35 @@ gh release view <tag> --repo openclaw/openclaw --json publishedAt,body
 - 版本号、日期从 release 的 tag_name 和 publishedAt 获取
 - 保持专业术语（如 SDK、API、MCP、OAuth 等）不翻译
 
-### 第 4 步：更新 index.html
+### 第 4 步：更新数据文件
 
-将新 release 添加到 `CHANGELOG_DATA` 数组中对应的月份分组下：
+将新 release 添加到 `openclaw_data.js` 的 `CHANGELOG_DATA` 数组中（Hermes 同理更新 `hermes_data.js`；不要再改 `index.html` 里的数据）对应的月份分组下：
 
 - 如果该月份已存在（如 "2026 年 4 月"），直接在 `releases` 数组中添加
 - 如果是新月份，在数组顶部（最新月份在前）创建新的月份分组
 - 格式必须与现有条目完全一致
 
-### 第 5 步：推送到 GitHub
+### 第 5 步：重新生成卡片数字
 
 ```bash
-git add index.html
-git commit -m "sync: 添加 <版本号> changelog"
-git push
+node scripts/update-stats.mjs   # 按数据文件重写 index.html 卡片和 assets/hero.svg 的版本数
+npm test                        # 卡片与数据不一致时会失败
 ```
+
+### 第 6 步：安全推送到 GitHub（禁止 force push）
+
+```bash
+git add openclaw_data.js hermes_data.js index.html assets/hero.svg
+git commit -m "sync: update changelogs (<版本号>)"
+git pull --rebase origin master          # 先基于最新 master，避免覆盖别人的提交
+node scripts/update-stats.mjs            # rebase 后数据可能变了，再生成一次
+git diff --quiet -- index.html assets/hero.svg || { git add index.html assets/hero.svg; git commit -m "chore: regenerate card stats"; }
+git push origin HEAD:master              # 绝对不要加 --force / -f / --force-with-lease
+gh workflow run stats.yml --repo alloevil/agent-changelog --ref master   # 兜底：再按数据重算一次卡片
+```
+
+- `git pull --rebase` 有冲突时停下来报告，不要用 `--force` 或 `reset --hard` 解决。
+- `git push` 被拒（non-fast-forward）时，重复 `git pull --rebase` 再推，不要 force。master 有分支保护，force push 会被拒绝。
 
 push 后 GitHub Actions 会自动部署到 GitHub Pages。
 
@@ -89,7 +103,7 @@ push 后 GitHub Actions 会自动部署到 GitHub Pages。
 ## 注意事项
 
 - `gh` CLI 路径：`/tmp/gh_2.67.0_linux_amd64/bin/gh`
-- GitHub 仓库：`alloevil/openclaw-changelog`
+- GitHub 仓库：`alloevil/agent-changelog`（默认分支 `master`）
 - OpenClaw 仓库：`openclaw/openclaw`
 - 翻质量很重要——直接机翻效果差，需要理解功能后重新用中文表述
 - 如果 release body 内容过多，优先翻译 Breaking 和重要 Changes
