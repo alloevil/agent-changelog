@@ -4,6 +4,68 @@ const RELEASES_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v0.22.2",
+        "date": "2026-10-15",
+        "features": [
+          {
+            "title": "修复 0.22.1 错误构建问题",
+            "tag": "修复",
+            "summary": "0.22.1 基于错误 commit 构建，包含未发布的 gateway 代码，Microsoft Store 应用可能卡在「连接中」。0.22.2 是 0.22.1 本应发布的版本",
+            "detail": "v0.22.1 was built from the wrong commit and shipped unreleased gateway work. The Microsoft Store app could stick on \"Connecting.\" 0.22.2 is the release 0.22.1 was meant to be.",
+            "summaryZh": "修复 0.22.1 错误构建导致的连接问题"
+          },
+          {
+            "title": "重启后 Gateway 正常启动",
+            "tag": "修复",
+            "summary": "修复 Linux 重启后 PID 被无关进程占用导致 Gateway 误判为已运行、systemd/launchd/Docker 下拒绝启动的问题",
+            "detail": "After a restart, Linux can hand an early PID to an unrelated process, and the gateway could mistake it for a running gateway. Hermes now records the boot it started in and asks the host lock when unsure.",
+            "summaryZh": "修复重启后 Gateway 无法启动"
+          },
+          {
+            "title": "笔记本本地模型长对话存活",
+            "tag": "修复",
+            "summary": "本地请求始终流式显示 prompt 读取进度，休眠跳过暂停时间，恢复的本地服务器获得重试而非断路器，压缩不再因长对话读取超时",
+            "detail": "Local requests stream with prompt-reading progress, stall timers skip sleep time, recovered local servers get retry instead of circuit breaker, and compression no longer times out during long conversations. Windows unified-memory machines size model launch and prompt cache to free memory.",
+            "summaryZh": "本地模型在笔记本上长对话不再中断"
+          },
+          {
+            "title": "Nemotron Super 3.5 默认参数",
+            "tag": "新增",
+            "summary": "为 Nemotron Super 3.5 添加默认参数，NVIDIA NIM 默认模型列表新增 nemotron",
+            "detail": "Add nemotron super 3.5 default parameters and add nemotron to NVIDIA NIM default model list.",
+            "summaryZh": "新增 Nemotron Super 3.5 模型支持"
+          },
+          {
+            "title": "模型选择器精选列表",
+            "tag": "优化",
+            "summary": "模型选择器顶部新增精选模型列表，简化模型路由视图构建",
+            "detail": "Add curated model list at the top in the model picker list; build the seed routing view once and expand enabled too.",
+            "summaryZh": "模型选择器新增精选列表"
+          },
+          {
+            "title": "韩语和巴西葡萄牙语语言包",
+            "tag": "新增",
+            "summary": "插件目录新增 hermes-lang-ko（韩语）和 hermes-lang-pt-br（巴西葡萄牙语）桌面语言包",
+            "detail": "Plugin-catalog: add hermes-lang-ko (Korean) and hermes-lang-pt-br (Brazilian Portuguese) desktop language packs.",
+            "summaryZh": "新增韩语和巴西葡萄牙语语言包"
+          },
+          {
+            "title": "发布流程优化",
+            "tag": "优化",
+            "summary": "拆分 Microsoft Store 构建为独立 lane，支持通过 lane 选择稳定版构建和测试内容",
+            "detail": "Split the Microsoft Store bundle into its own windows-store lane; choose what a stable release builds and tests with lanes.",
+            "summaryZh": "发布流程拆分独立 lane"
+          },
+          {
+            "title": "多个新插件和更新",
+            "tag": "新增",
+            "summary": "新增 wait-ledger、author-feed、openinvest、lightningai、hermes-agent-mixer、Hermes AAC 等插件；Kumiho Memory 移至记忆目录",
+            "detail": "New plugins: wait-ledger, author-feed, openinvest, lightningai, hermes-agent-mixer, Hermes AAC, teamorouter. Kumiho Memory moved to memory catalog shelf. aux-ledger bumped to 1.4.0.",
+            "summaryZh": "新增多个社区插件"
+          }
+        ]
+      },
+      {
         "version": "v0.22.1",
         "date": "2026-10-14",
         "features": [

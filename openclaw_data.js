@@ -4,6 +4,19 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.10-beta.1",
+        "date": "2026-10-15",
+        "features": [
+          {
+            "title": "Beta 版本发布",
+            "tag": "新增",
+            "summary": "2026.10.10-beta.1 版本发布，包含依赖更新和发布流程优化",
+            "detail": "Beta release v2026.10.10-beta.1 published via automated CI pipeline with dependency evidence and release manifest.",
+            "summaryZh": "自动化 CI 发布 beta 版本"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.5-beta.3",
         "date": "2026-10-13",
         "features": [
@@ -59542,4 +59555,4 @@ const CHANGELOG_DATA = [
   }
 ];
 
-if (typeof module !== 'undefined') module.exports = CHANGELOG_DATA;
+if (typeof module !== "undefined") module.exports = CHANGELOG_DATA;
