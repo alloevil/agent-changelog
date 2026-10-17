@@ -7,6 +7,10 @@ name: claims
 on:
   push:
   pull_request:
+  # stats.yml dispatches this after it commits regenerated counts: its GITHUB_TOKEN push does not
+  # fire `push` workflows, so without this the last claims run on master stays red on the data
+  # commit even though master HEAD is already consistent.
+  workflow_dispatch:
   schedule:
     - cron: "17 6 * * 1"
 
