@@ -4,6 +4,136 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.9.33",
+        "date": "2026-10-15",
+        "features": [
+          {
+            "title": "9 月线升级安全性增强",
+            "tag": "优化",
+            "summary": "2026.9 线更新保留状态、插件数据、服务所有权和 Windows 状态路径完整，拒绝未经归因的 Doctor 写入自动恢复",
+            "detail": "Updates on the 2026.9 line keep state, plugin data, service ownership, and Windows state paths intact, and refuse automatic restore over unattributed Doctor writes.",
+            "summaryZh": "9 月线升级状态完整性保障"
+          },
+          {
+            "title": "pnpm/npm/Windows 更新完成性修复",
+            "tag": "修复",
+            "summary": "pnpm 12 Gateway 服务和启动器在原生更新后存活，保留的更新运行时不再阻塞 npm 恢复，Windows 更新不再回滚",
+            "detail": "pnpm 12 Gateway services and launchers survive native updates, retained updater runtimes no longer block npm recovery, and Windows updates no longer roll back after Doctor rechecks.",
+            "summaryZh": "多平台更新完成性修复"
+          },
+          {
+            "title": "新模型支持：Meta Muse Wonder、MiniMax M3.1",
+            "tag": "新增",
+            "summary": "支持 Meta Muse Wonder 模型（含最大思考能力），支持 MiniMax M3.1 思考级别，MiniMax OAuth 过期后保持登录",
+            "detail": "Run Meta Muse Wonder with max thinking support, use MiniMax M3.1 thinking effort levels, and stay signed in to MiniMax portal OAuth past token expiry.",
+            "summaryZh": "新增 Muse Wonder 和 MiniMax M3.1 模型支持"
+          },
+          {
+            "title": "模型对话可靠性提升",
+            "tag": "优化",
+            "summary": "Agent 运行遵守实时思考级别，本地提供商获得响应头截止时间，ChatGPT WebSocket 正常关闭可恢复",
+            "detail": "Agent runs honor live thinking levels, local providers get response-header deadlines, ChatGPT WebSocket normal closes recover, and Codex replies keep their final tokens.",
+            "summaryZh": "模型对话可靠性提升"
+          },
+          {
+            "title": "Gateway 重启后任务存活",
+            "tag": "修复",
+            "summary": "中断的自动化任务、引导会话、云端 worker 请求和部分 worker 回复现在可在重启后恢复或持久化",
+            "detail": "Interrupted automation turns, steered sessions, cloud worker claims, and partial worker replies now resume or persist after a restart.",
+            "summaryZh": "Gateway 重启后任务不再丢失"
+          },
+          {
+            "title": "设备配对和消息投递稳定性",
+            "tag": "修复",
+            "summary": "实时发送在队列恢复后存活，节点请求不再因无关配对活动或另一设备配对写入而失败",
+            "detail": "Live sends survive queue recovery, and node requests no longer fail on unrelated pairing activity or while another device's pairing is written.",
+            "summaryZh": "设备配对和消息投递稳定性修复"
+          }
+        ]
+      },
+      {
+        "version": "v2026.10.5-beta.4",
+        "date": "2026-10-15",
+        "features": [
+          {
+            "title": "更新流程可靠性提升",
+            "tag": "优化",
+            "summary": "macOS 更新不再因别名临时目录超时，systemd 用户安装可回收废弃运行时，pacman/FreeBSD 安装交由包管理器处理",
+            "detail": "macOS updates no longer time out on aliased temporary directories, systemd user installs reclaim abandoned runtimes, pacman and FreeBSD package installs are left to their package manager.",
+            "summaryZh": "更新流程可靠性大幅提升"
+          },
+          {
+            "title": "ChatGPT 模型支持默认 Codex 运行时",
+            "tag": "修复",
+            "summary": "ChatGPT 列表中的模型不再在发送请求前就失败",
+            "detail": "ChatGPT-listed models no longer fail before sending any request.",
+            "summaryZh": "ChatGPT 模型兼容默认 Codex 运行时"
+          },
+          {
+            "title": "无头浏览器通行密钥交互修复",
+            "tag": "修复",
+            "summary": "无头页面在网站等待通行密钥期间仍可正常接受点击和按键",
+            "detail": "Headless pages keep accepting clicks and key presses while a site waits for a passkey.",
+            "summaryZh": "无头浏览器通行密钥期间保持交互"
+          },
+          {
+            "title": "上下文限制显示修正",
+            "tag": "优化",
+            "summary": "状态显示经模型发现修正后的上下文限制，Copilot 遵守报告的上下文容量，llama.cpp 刷新时保留实时路由模型限制",
+            "detail": "Status shows corrected context limits after model discovery, Copilot honors reported context capacity when native limits are missing, and llama.cpp keeps live router model limits and tools on refresh.",
+            "summaryZh": "上下文限制显示更准确"
+          }
+        ]
+      },
+      {
+        "version": "v2026.10.4",
+        "date": "2026-10-16",
+        "features": [
+          {
+            "title": "Gateway 睡眠/时钟跳变稳定性",
+            "tag": "修复",
+            "summary": "Gateway 在电脑睡眠或系统时钟跳变后不再因误判心跳过期而自行重启",
+            "detail": "The Gateway keeps running after the computer sleeps or the system clock jumps, instead of restarting itself because its ownership heartbeat looked stale.",
+            "summaryZh": "Gateway 睡眠后不再误重启"
+          },
+          {
+            "title": "Gateway 关闭/重启不再挂起",
+            "tag": "修复",
+            "summary": "Gateway 关闭和重启不再因 transcript worker 卡住或会话生命周期事件而挂起",
+            "detail": "Gateway shutdown and restart no longer hang on a stalled transcript worker or in-flight session lifecycle events.",
+            "summaryZh": "Gateway 关闭不再挂起"
+          },
+          {
+            "title": "Tlon 群组 DM 所有权安全修复",
+            "tag": "安全",
+            "summary": "Tlon 群组 DM 不再将其他参与者误认为群主，关闭了所有权冒充漏洞",
+            "detail": "Tlon group DMs no longer treat other participants as the owner, closing an owner-impersonation path.",
+            "summaryZh": "修复 Tlon 群组所有权冒充漏洞"
+          },
+          {
+            "title": "无头浏览器通行密钥支持",
+            "tag": "修复",
+            "summary": "无头浏览器页面在网站等待通行密钥时仍可正常响应点击操作",
+            "detail": "Headless browser pages keep responding to clicks while a site waits for a passkey.",
+            "summaryZh": "无头浏览器通行密钥期间保持响应"
+          },
+          {
+            "title": "手动 /compact 不再中止活跃任务",
+            "tag": "修复",
+            "summary": "手动 /compact 现在会先完成活跃任务再压缩，而非直接中止并丢弃待处理请求",
+            "detail": "Manual /compact settles the active run before compacting instead of aborting it and dropping the pending request.",
+            "summaryZh": "/compact 不再丢弃待处理请求"
+          },
+          {
+            "title": "多渠道稳定性修复",
+            "tag": "修复",
+            "summary": "修复 Tailscale、Telegram、Discord、Feishu、IRC 等渠道的多个稳定性问题",
+            "detail": "Fixes for Tailscale Serve, Telegram polling, Discord voice consults, Feishu config hot-reload, and IRC non-ASCII reply handling.",
+            "summaryZh": "多渠道稳定性修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.10-beta.1",
         "date": "2026-10-15",
         "features": [
