@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write # to dispatch claims/validate/deploy after committing the counts
 
 concurrency:
   group: card-stats
@@ -29,6 +30,7 @@ jobs:
           node-version: '20'
       - run: node scripts/update-stats.mjs
       - name: Commit if the counts moved
+        id: commit
         run: |
           if git diff --quiet -- index.html assets/hero.svg; then
             echo "Counts already match the data."
@@ -40,3 +42,16 @@ jobs:
           git commit -m "chore: regenerate card stats from data files"
           git pull --rebase origin master
           git push origin HEAD:master
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      # A push made with GITHUB_TOKEN does not start `push` workflows (no loop, but also no checks
+      # and no Pages deploy for the corrected commit). workflow_dispatch is the documented exception,
+      # so re-run the checks and the deploy on the new master HEAD explicitly. Seen 2026-10-16:
+      # claims stayed red on 915d836 and the site kept showing 186 after b1a8638 fixed the cards.
+      - name: Re-run checks and deploy on the corrected commit
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run claims.yml --ref master
+          gh workflow run validate.yml --ref master
+          gh workflow run deploy.yml --ref master
