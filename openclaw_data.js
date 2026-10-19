@@ -4,6 +4,96 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.5",
+        "date": "2026-10-18",
+        "features": [
+          {
+            "title": "更新自动完成与自愈",
+            "tag": "修复",
+            "summary": "openclaw update 跨设备、文件系统、pnpm 12、Windows 提权和 macOS 登录 shell 自动完成，清理过期交接租约和包激活日志，繁忙或异常 Gateway 不再阻塞更新",
+            "detail": "openclaw update completes across devices, filesystems, pnpm 12, Windows elevation, and macOS login shells, settles stale handoff leases and package-activation journals, and keeps busy or unhealthy Gateways from blocking the update.",
+            "summaryZh": "更新跨平台自动完成并自愈"
+          },
+          {
+            "title": "重启安全对话恢复",
+            "tag": "新增",
+            "summary": "中断的对话轮次、worktree 准备期间的首条消息、子代理工作和延迟任务在 Gateway 重启后自动恢复，用户输入和已提交的会话数据在重启、并发写入和发布失败后存活",
+            "detail": "Interrupted turns, first messages during worktree preparation, subagent work, and deferred tasks resume after a Gateway restart. User input and committed session data survive restarts, concurrent writes, and failed publications.",
+            "summaryZh": "Gateway 重启后对话自动恢复"
+          },
+          {
+            "title": "更快更轻的 Gateway",
+            "tag": "优化",
+            "summary": "会话、转录、历史和元数据读取移至工作线程，SQLite 每轮次开销大幅减少，启动维护延迟到就绪后运行，内存占用回落至 2026.10.4 水平",
+            "detail": "Session, transcript, history, and metadata reads move onto worker threads with far less SQLite work per turn. Startup maintenance runs after readiness. Gateway startup and memory search workers use less memory, back in the 2026.10.4 range.",
+            "summaryZh": "Gateway 性能优化，内存占用降低"
+          },
+          {
+            "title": "可靠的轮次与子代理",
+            "tag": "修复",
+            "summary": "轮次可从流中断、复用 tool-call ID、过期 ChatGPT websocket 和畸形 OpenAI/Google 流中恢复，不完整轮次以可见通知结束，子代理结果在重启后持续返回",
+            "detail": "Turns recover from stalled streams, reused tool-call IDs, expired ChatGPT websockets, and malformed OpenAI or Google streams. Incomplete turns end with a visible notice. Subagent results keep returning through restarts.",
+            "summaryZh": "轮次和子代理可靠性大幅提升"
+          },
+          {
+            "title": "X (Twitter) 频道插件",
+            "tag": "新增",
+            "summary": "新增 X 频道插件，支持流式回复 X 提及、访客模式仓库提问、GitHub 验证的仓库作者，以及每日/每月 API 成本限制",
+            "detail": "Answer X (Twitter) mentions through a new channel plugin with streaming, guest mode for repository questions, GitHub-verified repository writers, and enforced daily and monthly API cost limits.",
+            "summaryZh": "新增 X/Twitter 频道插件"
+          },
+          {
+            "title": "语音通话增强",
+            "tag": "新增",
+            "summary": "语音通话新增每次通话简报、通话报告、实时引导、回拨和语音信箱检测功能",
+            "detail": "Voice calls gain per-call briefs, call reports, live steering, callbacks, and voicemail detection.",
+            "summaryZh": "语音通话新增多项实用功能"
+          },
+          {
+            "title": "智能模型选择器与新模型",
+            "tag": "新增",
+            "summary": "模型选择器优先展示各提供商推荐模型，无需等待版本更新即可显示新上架模型，Google 新增 Gemini 4 Argon 和 Gemini 3.8 Flash",
+            "detail": "Pickers lead with each provider's recommended models, show newly listed Claude, ChatGPT, and Ollama models without waiting for an OpenClaw release, and Google adds Gemini 4 Argon and Gemini 3.8 Flash.",
+            "summaryZh": "模型选择器智能化，新增 Gemini 4 等模型"
+          },
+          {
+            "title": "ClawHub Gateway 集成",
+            "tag": "新增",
+            "summary": "在 Gateway 中浏览和搜索 ClawHub 插件和技能，插件自动选择 OpenClaw 支持的最新官方版本",
+            "detail": "Browse and search ClawHub plugins and skills from the Gateway, and plugins automatically pick the newest official release your OpenClaw supports.",
+            "summaryZh": "Gateway 内置 ClawHub 浏览和搜索"
+          },
+          {
+            "title": "Worker 本地推理运行时",
+            "tag": "新增",
+            "summary": "新增原生 worker 推理运行时，支持 Gateway 调度、客户端放置、所需 worker 策略和本地推理前的目标检查",
+            "detail": "Add a native worker inference runtime with Gateway dispatch, client placement, required worker policy and destination checks before local inference.",
+            "summaryZh": "新增 Worker 本地推理运行时"
+          },
+          {
+            "title": "设备加入与会话托管",
+            "tag": "新增",
+            "summary": "CLI 和 Control UI 的 join 命令现可安装后台 node 服务托管 agent 会话，已配对设备可启用会话托管",
+            "detail": "The CLI and Control UI join command now installs a background node service that can host agent sessions with --service --session-host.",
+            "summaryZh": "设备可作为会话托管节点"
+          },
+          {
+            "title": "工具审批钩子安全加固",
+            "tag": "安全",
+            "summary": "普通钩子无法再未经审批重写 trusted-inline 工具参数，转换插件必须为最终参数请求单独审批，否则调用被阻断",
+            "detail": "Ordinary hooks can no longer rewrite trusted-inline-approved tool arguments without another approval. Transforming plugins must request separate approval for their final arguments or the call is blocked.",
+            "summaryZh": "工具审批钩子安全机制加固"
+          },
+          {
+            "title": "iOS Cloudflare Access 原生支持",
+            "tag": "新增",
+            "summary": "iOS 应用通过原生 Cloudflare Access 连接 Gateway，支持应用自有的浏览器和 profile 准入",
+            "detail": "iOS connects the Gateway through native Cloudflare Access with app-owned browser and profile admission.",
+            "summaryZh": "iOS 原生支持 Cloudflare Access"
+          }
+        ]
+      },
+      {
         "version": "v2026.9.33",
         "date": "2026-10-15",
         "features": [
