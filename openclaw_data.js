@@ -4,6 +4,54 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.10-beta.2",
+        "date": "2026-10-19",
+        "features": [
+          {
+            "title": "apply_patch 多文件安全校验",
+            "tag": "修复",
+            "summary": "多文件 apply_patch 在改动前先校验后续目标文件存在且上下文匹配，不匹配则整体拒绝，保留工作区原状供下次重试",
+            "detail": "Workspace safety: reject a multi-file apply_patch before changing files when a later update target is missing or its context does not match, preserving the original workspace for the next attempt.",
+            "summaryZh": "apply_patch 多文件补丁先校验后写入"
+          },
+          {
+            "title": "Gateway 稳定性与日志修复",
+            "tag": "修复",
+            "summary": "Buzz 中继在 NIP-42 认证中断开时自动重连且不打断其他频道；临时目录被删导致日志轮转失败不再影响服务；会话 diff 捕获不再打开 live SQLite 防止 SIGBUS 崩溃循环；模型运行时刷新被取代时不再退出",
+            "detail": "Buzz reconnects when a relay closes during NIP-42 authentication without terminating the Gateway; daily log rollover failure from a deleted temp backing path no longer breaks serving; session diff capture no longer opens live SQLite and hard-linked files, preventing SIGBUS crash loops; Gateway follows a replacement model-runtime refresh instead of exiting.",
+            "summaryZh": "修复 Gateway 重连、日志轮转与 SIGBUS 崩溃"
+          },
+          {
+            "title": "Cron 历史维护内存优化",
+            "tag": "修复",
+            "summary": "Cron 历史维护按运行标识规划、仅对需更新的行加载完整负载，大型 cron 历史不再耗尽 SQLite worker 内存拖垮频道",
+            "detail": "Cron: plan history maintenance from run identities and load full payloads only for rows it updates, so large cron histories no longer exhaust the SQLite worker memory and take channels down.",
+            "summaryZh": "大型 cron 历史不再耗尽内存"
+          },
+          {
+            "title": "更新与 Doctor 流程修复",
+            "tag": "修复",
+            "summary": "Doctor 在 native-first 配置上完成 agent 数据库升级后才报告成功；激活后 Doctor 步骤受更新时限约束不再无限等待；openclaw update --no-restart 对 npm/pnpm/bun 安装如实生效；源更新不再因运行时替换后备份模块缺失而失败",
+            "detail": "Doctor finishes agent database upgrades on native-first profiles before reporting success; the post-activation Doctor step is bounded by the update allowance; openclaw update --no-restart is honest for npm, pnpm, and bun installs; Gateway-managed source updates no longer fail with missing backup modules after the runtime is replaced.",
+            "summaryZh": "更新与 Doctor 升级流程更可靠"
+          },
+          {
+            "title": "macOS 与 Windows 桌面体验",
+            "tag": "修复",
+            "summary": "macOS 附件下载走系统原生「保存」对话框且不关闭当前页面，全新 native 配置可正常启动 Gateway 完成自动设置；Windows 上 Claude Code 不读凭据管道导致每轮卡到看门狗超时的问题已修复",
+            "detail": "macOS saves dashboard and conversation attachments through the native Save dialog while keeping the current page open, fresh native profiles can start the Gateway and complete automatic setup, and Windows stops turns with a stored Anthropic credential from stalling when Claude Code never reads the credential pipe.",
+            "summaryZh": "macOS 保存对话框与 Windows 凭据卡顿修复"
+          },
+          {
+            "title": "插件与工具链修复",
+            "tag": "修复",
+            "summary": "插件 before_tool_call 钩子在 openclaw agent exec 独立会话中生效；恢复已发布外部插件依赖的 SDK facade 导出；移除启动失败的 tool server 后聊天保持可用；OpenRouter 上手接受默认 openrouter/auto 模型的有效 API key",
+            "detail": "Plugin before_tool_call hooks run in standalone openclaw agent exec sessions; SDK facade exports that published external plugins import are restored; chat stays usable after removing a tool server that failed to start; OpenRouter onboarding accepts valid API keys with the default openrouter/auto model.",
+            "summaryZh": "插件钩子与 SDK 导出恢复"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.5",
         "date": "2026-10-18",
         "features": [
