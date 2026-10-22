@@ -4,6 +4,60 @@ const RELEASES_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v0.22.4",
+        "date": "2026-10-21",
+        "features": [
+          {
+            "title": "桌面端移除输入框上方建议 pills",
+            "tag": "修复",
+            "summary": "桌面端不再在输入框上方显示莫名出现的建议 pills（多为引导配置 MCP 服务器），相关辅助逻辑一并移除",
+            "detail": "Desktop no longer shows suggestion pills above the composer. The pills appeared for no clear reason, mostly nudging you to set up MCP servers. They and the helpers that only they used are gone.",
+            "summaryZh": "桌面端移除输入框上方建议 pills"
+          },
+          {
+            "title": "无依赖插件跳过依赖确认",
+            "tag": "优化",
+            "summary": "未声明依赖或 pyproject.toml 不安装任何内容的插件，启用时不再弹出空的依赖确认步骤",
+            "detail": "Plugins that install nothing skip the dependency consent step. A plugin that declares no dependencies, or whose pyproject.toml installs nothing, now enables without an empty consent prompt.",
+            "summaryZh": "无依赖插件启用免确认"
+          },
+          {
+            "title": "Dashboard 与桌面端修复",
+            "tag": "修复",
+            "summary": "WhatsApp 登出后可安全重新配对；插件 review 的 surface lint 不再标记 prototype 写入（改为人工检查）；审批模式 chip 跟随当前 profile 的模式；存储较慢时桌面打包预构建检查有足够时间校验归档构建输入",
+            "detail": "Dashboard: WhatsApp can be safely re-paired after logging out. Desktop plugin review: the surface lint no longer flags prototype writes; reviewers check them by hand. Desktop: the approval-mode chip follows the active profile's mode. Release builds: the desktop bundle's pre-build check gets enough time to verify archived build inputs when storage is slow.",
+            "summaryZh": "WhatsApp 重新配对与桌面端多项修复"
+          },
+          {
+            "title": "插件目录新增",
+            "tag": "新增",
+            "summary": "新增 bubblewrap（Linux bwrap 终端后端）、Singularity/Apptainer、mcp-serve（Hermes 作为 MCP 服务器）、agent-importers（hermes import-agent，现支持 Cursor）、inbox、workflow-record；Telegram Business 移至 Hermes Labs 社区层",
+            "detail": "Also new in the plugin catalog: bubblewrap (bwrap terminal backend on Linux), Singularity/Apptainer, mcp-serve (Hermes as an MCP server), agent-importers (hermes import-agent, now with Cursor), inbox and workflow-record from Hermes Labs. Telegram Business moves to the Hermes Labs community tier.",
+            "summaryZh": "插件目录新增 6 项，Telegram Business 调整层级"
+          }
+        ]
+      },
+      {
+        "version": "v0.22.3",
+        "date": "2026-10-21",
+        "features": [
+          {
+            "title": "累计发布 ~620 个 PR",
+            "tag": "变更",
+            "summary": "将 v0.22.2 以来合并的约 620 个 PR（2,911 个非合并提交、4,206 个变更文件、+360,278/−64,308 行）汇总为稳定版本，完整整理的发布说明将随 v0.23.0 发布",
+            "detail": "This tag rolls up the ~620 PRs merged since v0.22.2 into a stable release: 2,911 non-merge commits across 4,206 changed files (+360,278 / −64,308). Full curated release notes for this window ship with v0.23.0.",
+            "summaryZh": "v0.22.2 以来约 620 个 PR 的累计稳定版"
+          },
+          {
+            "title": "本期未单独记录的亮点",
+            "tag": "新增",
+            "summary": "MCP 进度通知实时流式展示工具进度；经典 CLI 布局焕新（glyph 转写、输入框下状态行、双行头部）；插件可声明 OAuth 客户端由 Hermes 登录刷新；hermes plugins update 一次更新全部插件、Desktop 支持 git 安装插件一键更新；Desktop 支持转向/编辑排队提示词、子代理模型与 provider 引导选择；CLI/TUI 实时 /loop 倒计时；可选 Telegram DM 话题迁移；post_compaction 插件钩子；能力目录；Microsoft Store 发布后自动上架；会话自动清理改为可选并在磁盘不足时一次性提示；本地运行时支持 Nemotron 3.5 Bolt 与单槽 DFlash 草稿；新增数十个插件目录条目",
+            "detail": "Undocumented highlights in this window: MCP progress notifications streamed as live tool progress, a refreshed classic CLI layout (glyph transcript, status line under the composer, two-line header), OAuth clients that plugins declare and Hermes signs in and refreshes, hermes plugins update offering every available plugin update plus an Update button for git-installed plugins in Desktop, steering and editing a queued prompt from Desktop, a guided subagent model and provider picker in Desktop, a live /loop countdown row in the CLI and TUI, opt-in Telegram DM topic transfer, a post_compaction plugin hook, a capabilities catalog, the Microsoft Store build going live automatically when a release publishes, session auto-prune back to opt-in with a one-time prompt when disk runs low, Nemotron 3.5 Bolt and one-slot DFlash drafts in the local runtime, and dozens of new plugin catalog entries.",
+            "summaryZh": "MCP 进度流、CLI 新布局、插件 OAuth 等大量更新"
+          }
+        ]
+      },
+      {
         "version": "v0.22.2",
         "date": "2026-10-15",
         "features": [

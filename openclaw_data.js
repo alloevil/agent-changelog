@@ -4,6 +4,82 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.10-beta.3",
+        "date": "2026-10-21",
+        "features": [
+          {
+            "title": "Windows 可靠性与升级恢复",
+            "tag": "修复",
+            "summary": "恢复全新状态初始化与 Gateway 启动，应用更新期间隐藏 SQLite 辅助窗口，强制 Gateway 重装可容忍 launcher 时间戳延迟落定；应用自有插件收敛到升级后的核心版本，schema 变更更新后恢复受影响的 agent 存储（含 held system agents），迁移回滚备份仅限被改动的版本化表",
+            "detail": "Windows reliability: restore fresh state initialization and Gateway startup, hide SQLite helper windows during app updates, and make forced Gateway reinstalls tolerate launcher timestamp settling. Upgrade recovery: converge app-owned plugins to the upgraded core version, restore affected agent stores including held system agents after schema-changing updates, and scope migration rollback backups to the versioned tables being changed.",
+            "summaryZh": "Windows 启动可靠性与升级后 agent 存储恢复"
+          },
+          {
+            "title": "Agent 并发初始化修复",
+            "tag": "修复",
+            "summary": "并发初始化不再允许两个 agent 同时认领同一个 agent 数据库的所有权",
+            "detail": "Agent state: concurrent initialization can no longer let two agents claim ownership of the same agent database.",
+            "summaryZh": "并发初始化不再重复认领 agent 数据库"
+          },
+          {
+            "title": "Codex 与原生应用稳定性",
+            "tag": "修复",
+            "summary": "上下文刷新后预览不再阻塞回复；原生子进程恢复后会话回复自动续接；Codex 绑定历史在 app-server 重启后保留；重连后原生应用消息恢复发送",
+            "detail": "Codex and native apps: previews no longer block replies after a context refresh, session replies resume after native child recovery, bound Codex history survives app-server restarts, and native app messages send again after reconnecting.",
+            "summaryZh": "Codex/原生应用回复与历史保存修复"
+          },
+          {
+            "title": "后台任务与 Discord 修复",
+            "tag": "修复",
+            "summary": "turn 中途配置变更不再丢失后台任务完成结果；恢复 Discord 频道和线程中的原生斜杠命令",
+            "detail": "Background tasks: completions are no longer dropped when the config changes mid-turn. Discord: restore native slash commands in channels and threads.",
+            "summaryZh": "后台任务完成结果不再因配置变更丢失"
+          },
+          {
+            "title": "Agent 重试与定向消息修复",
+            "tag": "修复",
+            "summary": "限流重试的运行保留 prompt cache；无显式目标的 steering 消息不再丢失",
+            "detail": "Agents: keep the prompt cache when a rate-limited run retries, and preserve steering messages that arrive without an explicit target.",
+            "summaryZh": "限流重试保留 prompt cache"
+          },
+          {
+            "title": "Cron/CLI 会话连续性",
+            "tag": "修复",
+            "summary": "cron announce 唤醒不再重置 CLI 聊天会话的 provider session；工具目录变化时失效复用的 CLI 会话，Gateway 重启后恢复 exec 等工具，防止过期工具目录传给派生 agent",
+            "detail": "Cron/CLI continuity: preserve CLI chat sessions across cron announce wakes instead of resetting their provider session. CLI tools: invalidate reused CLI sessions when the available tool catalog changes, restoring tools such as exec after Gateway restarts and preventing stale catalogs from reaching spawned agents.",
+            "summaryZh": "cron 唤醒保留 CLI 会话，工具目录变更自动刷新"
+          },
+          {
+            "title": "GMI GPT-5.6 兼容修复",
+            "tag": "修复",
+            "summary": "GPT-5.6 工具调用轮次省略不支持的 reasoning_effort 值，provider 不再返回 HTTP 400",
+            "detail": "GMI: omit unsupported reasoning_effort values on GPT-5.6 tool turns so the provider no longer rejects them with HTTP 400.",
+            "summaryZh": "GPT-5.6 不再因 reasoning_effort 报 400"
+          },
+          {
+            "title": "Windows 更新与 Doctor 修复",
+            "tag": "修复",
+            "summary": "各 Windows 显示语言下均能识别计划任务权限拒绝；Doctor 各阶段保留 Windows 插件依赖链接；备份临时目录清理不再 EPERM；更新收尾尊重 TMPDIR；Docker 容器反复重启不再每次全量 Doctor 预修复采集",
+            "detail": "Windows updates: recognize Scheduled Task permission denials in every Windows display language, keep Windows plugin dependency links across Doctor phases, and clean up backup scratch directories without EPERM failures. Update and Doctor: update finalization honors TMPDIR for disposable copies, Doctor suggests a retry instead of a restore after snapshot contention, and repeated Docker container restarts no longer take a full Doctor pre-repair capture each time.",
+            "summaryZh": "Windows 更新与 Doctor 诊断多项修复"
+          },
+          {
+            "title": "记忆索引修复",
+            "tag": "修复",
+            "summary": "冷启动 Gateway 不再打开全部记忆索引（恢复 2026.10.4 启动内存占用）；插件重载后记忆文件继续索引；缓慢 dreaming 清理不再导致插件重载超时",
+            "detail": "Memory: cold Gateway starts no longer open every memory index (restoring 2026.10.4 startup memory), memory files keep indexing after plugin reloads, and plugin reloads no longer time out during slow dreaming cleanup.",
+            "summaryZh": "冷启动不再全量打开记忆索引"
+          },
+          {
+            "title": "节点、macOS 与控制 UI 修复",
+            "tag": "修复",
+            "summary": "同步节点 exec 输出不再重复为单独的 Exec finished 唤醒；macOS 应用节点长命令不再 20 秒超时；Host Desktop 关闭时引导桌面设置而非重试；模型选择器随目录变更刷新",
+            "detail": "Nodes: synchronous node exec output is no longer repeated as a separate Exec finished wake after the waiting caller already received it. macOS: long exec commands through the macOS app node no longer fail after 20 seconds. Control UI: offer desktop setup instead of Retry when Host Desktop is off, model pickers refresh when the catalog changes mid-read, and locale refresh works again after adding a source-only locale.",
+            "summaryZh": "节点/macOS/控制 UI 多项体验修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.10-beta.2",
         "date": "2026-10-19",
         "features": [
