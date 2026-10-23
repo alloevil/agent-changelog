@@ -78,7 +78,11 @@
     </g>
 
     <g transform="translate(24 240)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="18" fill="#6f7d8c">
+<<<<<<< HEAD
       <text x="0" y="0">OpenClaw 193 versions · Hermes Agent 25</text>
+=======
+      <text x="0" y="0">OpenClaw 193 versions · Hermes Agent 25</text>
+>>>>>>> origin/master
     </g>
   </g>
 
