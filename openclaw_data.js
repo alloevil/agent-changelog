@@ -4,6 +4,110 @@ const CHANGELOG_DATA = [
     "monthId": "2026-10",
     "releases": [
       {
+        "version": "v2026.10.6",
+        "date": "2026-10-22",
+        "features": [
+          {
+            "title": "强制使用已修复的 Node 运行时",
+            "tag": "安全",
+            "summary": "OpenClaw 现在要求 Node 24 线最低 24.22.1、26 线最低 26.12.1，拒绝信任 2026 年 10 月 Node.js 安全公告中被泄露证书私钥签名的 TLS 证书链。Docker 镜像内置 Node 24.22.1，安装器自动选择已修复的运行时；openclaw update 检测到旧版 Node 时会拒绝升级并给出恢复指引，而不是直接弄坏现有安装。源码构建固定 pnpm 12.15.0",
+            "detail": "OpenClaw now requires Node 24.22.1+ on the 24 line or 26.12.1+ on the 26 line, which reject TLS chains signed with the compromised certificate keys addressed in the October 2026 Node.js security releases. Docker images ship Node 24.22.1, installers select the patched runtimes, and openclaw update refuses with recovery guidance before installing on an older Node instead of breaking the running install. Source builds now pin pnpm 12.15.0.",
+            "summaryZh": "强制升级到已修复的 Node 运行时，防范泄露证书风险"
+          },
+          {
+            "title": "更安全的更新与恢复",
+            "tag": "修复",
+            "summary": "包替换前会拒绝不安全的服务状态；Windows 与 macOS 包管理器更新可从平台特有的失败中恢复；卡死的 Gateway 启动所有者可以被干净地退休回收",
+            "detail": "Safer updates and recovery: package swaps now refuse unsafe service states, Windows and macOS package-manager updates recover from platform-specific failures, and frozen Gateway startup owners can be retired cleanly.",
+            "summaryZh": "更新过程更安全，异常状态可恢复"
+          },
+          {
+            "title": "迁移与备份保数据",
+            "tag": "修复",
+            "summary": "Doctor 与迁移流程会拒绝格式错误或有损的工作区导入，保留格式异常的 Notes 原始字节，拒绝不安全的非 UTF-8 wiki 重写，保留深层嵌套的 SQLite 备份，并在恢复检查失败时保留暂存证据",
+            "detail": "Data-preserving migrations and backups: Doctor and migration paths now refuse malformed or lossy workspace imports, preserve malformed Notes bytes, reject unsafe non-UTF-8 wiki rewrites, keep deeply nested SQLite backups, and retain staging evidence when restore inspection fails.",
+            "summaryZh": "迁移与备份不再丢数据"
+          },
+          {
+            "title": "重启后消息可靠投递",
+            "tag": "修复",
+            "summary": "排队中的轮次、被关注的子进程结果、死信投递和流式回复都能在恢复后幸存，不再消失、重复或误报\"回答缺失\"",
+            "detail": "Reliable delivery across restarts: queued turns, watched child results, dead-lettered deliveries, and streamed replies now survive recovery without disappearing, duplicating, or producing false missing-answer notices.",
+            "summaryZh": "重启后排队消息不再丢失或重复"
+          },
+          {
+            "title": "模型与 Provider 稳定性",
+            "tag": "修复",
+            "summary": "GPT-5.6 工具调用轮次、OpenRouter DeepSeek 工具调用、LM Studio 溢出恢复、并行 OpenAI reasoning 设置以及模型重试/回退预算的行为都更加一致",
+            "detail": "Provider and model resilience: GPT-5.6 tool turns, OpenRouter DeepSeek tool calls, LM Studio overflow recovery, parallel OpenAI reasoning settings, and model retry/fallback budgets now behave consistently.",
+            "summaryZh": "GPT-5.6/DeepSeek/LM Studio 等调用更稳定"
+          },
+          {
+            "title": "Windows 与移动端稳定性",
+            "tag": "修复",
+            "summary": "全新的 Windows 状态存储、Proxy 环境和已保存的 Anthropic 凭据不再阻塞启动；iOS Talk 与聊天连接可以从首条回复失败和超时故障中恢复",
+            "detail": "Windows and mobile stability: fresh Windows state stores, Proxy-backed environments, and stored Anthropic credentials no longer block startup, while iOS Talk and chat connectivity recover from first-reply and timeout failures.",
+            "summaryZh": "Windows 启动与 iOS 连接问题修复"
+          },
+          {
+            "title": "Agent 与工具调用恢复",
+            "tag": "修复",
+            "summary": "未完成的工具调用会可见地超时；上下文溢出在被引导的工具结果后压缩；格式错误的调用可在早期被拒后继续；超大补丁块不再触发参数上限崩溃；已停止的 yielded 任务保持停止",
+            "detail": "Agent and tool-call recovery: unfinished tools now time out visibly, context overflow compacts after steered tool results, malformed calls continue after earlier refusals, large patch hunks avoid argument-limit crashes, and stopped yielded tasks stay stopped.",
+            "summaryZh": "工具调用超时与上下文溢出处理更稳"
+          },
+          {
+            "title": "多渠道消息投递修复",
+            "tag": "修复",
+            "summary": "WhatsApp 重试与贴纸、Telegram 相册与双栈回复、Slack 中继恢复、Discord 语音通话回复不再丢失或重复消息",
+            "detail": "Channel delivery correctness: WhatsApp retries and stickers, Telegram albums and dual-stack replies, Slack relay recovery, and Discord voice-call replies no longer lose or duplicate messages.",
+            "summaryZh": "WhatsApp/Telegram/Slack/Discord 消息不丢不重"
+          },
+          {
+            "title": "Worker 与 worktree 恢复",
+            "tag": "修复",
+            "summary": "主机重启后可回收 worker 容量；部分克隆的 worktree 能修复缺失对象；子进程结果与 exec 唤醒证据在 Gateway 重启后仍然保留",
+            "detail": "Worker and worktree recovery: hosts reclaim worker capacity after reboot, partial-clone worktrees repair missing objects, and child-result and exec-wake evidence survives Gateway restarts.",
+            "summaryZh": "重启后 worker 容量自动回收，worktree 可自修复"
+          },
+          {
+            "title": "纯修复补丁版本",
+            "tag": "变更",
+            "summary": "本补丁版本只包含聚焦的可靠性修复，不引入新的用户可见功能",
+            "detail": "This patch release contains focused reliability fixes only; it does not introduce new user-facing features.",
+            "summaryZh": "纯修复版本，无新功能"
+          },
+          {
+            "title": "系统 Agent 与 macOS 伴侣修复",
+            "tag": "修复",
+            "summary": "恢复被问题升级占住的 agent 访问权限，schema 变更后找回被占住的系统 agent 数据库，取证快照失败时保留活动配置；macOS 伴侣进程正确处理长命令与审批时限，迟到或丢失的回复不再重放已提交的命令，并保留原生权限细节",
+            "detail": "State and system-agent recovery: restore access to agents held by affected upgrades, recover held system-agent databases after schema changes, and preserve live configuration when forensic snapshots fail. macOS companion execution: honor long command and approval deadlines across the companion socket, classify late or lost replies without replaying submitted commands, and preserve native permission details.",
+            "summaryZh": "系统 Agent 恢复与 macOS 伴侣执行修复"
+          },
+          {
+            "title": "Doctor、更新诊断与 SQLite 修复",
+            "tag": "修复",
+            "summary": "Doctor 修复空的已退休插件元数据、清除已解决的迁移告警并让应用托管插件收敛到已安装核心版本；更新诊断保留 FRV 阻塞项、解释包日志标识与运行时保留失败、避免共享恢复清单上的清理停滞；SQLite 在告警处理器抛异常时保留事务结果、正确收尾共享 worker 拒绝后的对端关闭、防止已退休缓存代际抢占 worker 所有权",
+            "detail": "Doctor and managed plugins: repair empty retired-plugin metadata, clear resolved migration warnings, and converge app-managed plugins onto the installed core version. Update diagnostics: preserve FRV blockers, explain package-journal identity and runtime-retention failures, and avoid cleanup stalls on shared recovery manifests. SQLite correctness: preserve transaction outcomes when warning handlers throw, settle peer closes after shared-worker refusal, and prevent retired cache generations from taking worker ownership.",
+            "summaryZh": "Doctor、更新诊断与 SQLite 一致性修复"
+          },
+          {
+            "title": "回复、Codex 与 Gateway 生命周期修复",
+            "tag": "修复",
+            "summary": "保留旁支问题与即时回退的排序，流式投递后不再重复或漏答，已停止的 yielded 任务不会重启；Codex 与原生会话在取消或清理失败后释放卡住的启动等待，跨运行时重启保留对话与工作区绑定；Gateway 生命周期保留重启托管权、避免停止时租约死锁、跨重载保留被静音渠道配置",
+            "detail": "Reply recovery: preserve side-question and immediate fallback ordering, avoid repeated or missing answers after streamed delivery, and keep stopped yielded tasks from restarting. Codex and native sessions: release stalled startup waits and completed subagents after cancellation or cleanup failures, preserve conversations across runtime restarts, keep workspace bindings across reply resets, and settle recovered child binding writes before session readiness. Gateway lifecycle: retain restart custody, avoid stop-time lease deadlocks, recover worker capacity after reboot, and preserve suppressed-channel configuration across reloads.",
+            "summaryZh": "回复顺序、Codex 会话与 Gateway 生命周期修复"
+          },
+          {
+            "title": "CLI 诊断、定时跟进与媒体修复",
+            "tag": "修复",
+            "summary": "Gateway 命令退出时保留 JSON 输出，报告资源释放与 PTY EOF 失败，诊断写入失败不再崩溃而是可见地提示；同会话定时跟进执行时保留授权操作者的当前权限，一次性续跑可调用 next_check 稍后回查；托管语音合成过慢会超时，播放缓存、探测和配额失败会报告而不是静默丢弃",
+            "detail": "CLI and process diagnostics: preserve JSON output on Gateway command exits, report resource-disposal and PTY EOF failures, and surface failed diagnostic writes without crashing. Scheduled follow-ups: same-conversation follow-ups scheduled from an authorized operator turn keep that operator's current authority when they run, and one-shot continuations can call next_check to check back later. Media and TTS: time out slow hosted speech synthesis and report playback cache, probe, and quota failures rather than silently dropping cleanup errors.",
+            "summaryZh": "CLI 诊断、定时跟进与 TTS 媒体修复"
+          }
+        ]
+      },
+      {
         "version": "v2026.10.10-beta.3",
         "date": "2026-10-21",
         "features": [
